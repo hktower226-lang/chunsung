@@ -316,7 +316,7 @@ else:
                 for col in cols:
                     if col == '지부': cls = "col-jibu"
                     elif col == '현장명': cls = "col-site"
-                    elif col == '타워회사': cls, cls = "col-tower"
+                    elif col == '타워회사': cls = "col-tower"
                     elif col in ['총대수', '합계']: cls = "col-total"
                     elif col == '특이사항': cls = "col-etc"
                     else: cls = "col-union"
