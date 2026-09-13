@@ -10,7 +10,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# 2. 모바일 친화적 디자인 및 2단 분리형 소계 스타일 적용
+# 2. 모바일 친화적 디자인 및 컬럼 폭·줄바꿈 최적화 스타일 적용
 st.markdown(
     """
     <style>
@@ -34,7 +34,7 @@ st.markdown(
     .mobile-table {
         width: 100%;
         border-collapse: collapse;
-        font-size: 0.68rem;
+        font-size: 0.62rem;
         background: white;
         border-radius: 6px;
         overflow: hidden;
@@ -43,7 +43,7 @@ st.markdown(
         table-layout: fixed;
     }
     .mobile-table th, .mobile-table td {
-        padding: 5px 2px;
+        padding: 4px 1px;
         text-align: center;
         border-bottom: 1px solid #f1f5f9;
         color: #334155;
@@ -53,11 +53,11 @@ st.markdown(
         background-color: #1e293b;
         color: white;
         font-weight: 600;
-        font-size: 0.7rem;
+        font-size: 0.65rem;
     }
     .mobile-table tr:nth-child(even) { background-color: #f8fafc; }
 
-    /* 소계 2단 분리 행 스타일 */
+    /* 소계 2단 분리 행 스타일 (완벽한 줄바꿈 방지) */
     .subtotal-row-1 {
         background-color: #eff6ff !important;
         font-weight: bold;
@@ -66,6 +66,7 @@ st.markdown(
         border-top: 1.5px solid #cbd5e1;
         border-bottom: none !important;
         color: #1e293b;
+        white-space: nowrap !important;
     }
     .subtotal-row-2 {
         background-color: #eff6ff !important;
@@ -75,15 +76,16 @@ st.markdown(
         border-top: none !important;
         border-bottom: 1.5px solid #cbd5e1;
         color: #1d4ed8;
-        font-size: 0.62rem;
+        font-size: 0.55rem;
+        white-space: nowrap !important;
     }
 
-    /* 컬럼 폭 커스텀 지정 */
-    .col-jibu { width: 10%; }
-    .col-site { width: 28%; text-align: left !important; padding-left: 4px !important; }
-    .col-tower { width: 22%; text-align: left !important; padding-left: 4px !important; }
-    .col-union { width: 6.5%; }
-    .col-total { width: 7%; font-weight: bold; }
+    /* 컬럼 폭 최적 재배치 (노조 칸 공간 확보) */
+    .col-jibu { width: 9%; }
+    .col-site { width: 22%; text-align: left !important; padding-left: 2px !important; font-size: 0.58rem; }
+    .col-tower { width: 18%; text-align: left !important; padding-left: 2px !important; font-size: 0.58rem; }
+    .col-union { width: 8.2%; } /* 노조별 칸 폭을 넓혀서 숫자/퍼센트 쪼김 방지 */
+    .col-total { width: 8%; font-weight: bold; }
 
     .stTabs [data-baseweb="tab-list"] { gap: 6px; justify-content: center; }
     .stTabs [data-baseweb="tab"] { 
@@ -150,7 +152,7 @@ def load_and_merge_data():
                             p_val = match_stat[col_pct].values[0]
                             
                             if pd.notna(c_val) and c_val != "-":
-                                count_dict[union] = f"{c_val}대"
+                                count_dict[union] = f"{c_val}"
                             else:
                                 count_dict[union] = "-"
                                 
@@ -159,7 +161,7 @@ def load_and_merge_data():
                                     p_num = float(p_val) * 100
                                     percent_dict[union] = f"({p_num:.1f}%)"
                                 except:
-                                    percent_dict[union] = str(p_val)
+                                    percent_dict[union] = f"({str(p_val)})"
                             else:
                                 percent_dict[union] = "-"
                 
@@ -256,13 +258,12 @@ else:
             is_subtotal = '소계' in jibu_val
             
             if is_subtotal:
-                # --- 소계 행인 경우: 2개의 행(Row)으로 나누어서 출력 ---
                 clean_jibu_name = jibu_val.replace(' 소계', '')
                 sub_info = subtotal_map.get(idx, {"counts": {}, "percents": {}})
                 counts = sub_info.get("counts", {})
                 percents = sub_info.get("percents", {})
                 
-                # [1행] 지부명, "소계(대수)", 대수 숫자들
+                # [1행] 대수
                 html_table += "<tr class='subtotal-row-1'>"
                 for col in cols:
                     if col == '지부': cls = "col-jibu"
@@ -274,7 +275,7 @@ else:
                     if col == '지부':
                         html_table += f"<td class='{cls}' rowspan='2' style='vertical-align: middle;'><b>{clean_jibu_name}</b></td>"
                     elif col == '현장명':
-                        html_table += f"<td class='{cls}' style='text-align: left; padding-left: 4px; font-weight: bold;'>소계 (대수)</td>"
+                        html_table += f"<td class='{cls}' style='text-align: left; padding-left: 2px; font-weight: bold;'>소계(대수)</td>"
                     elif col == '타워회사':
                         html_table += f"<td class='{cls}'>-</td>"
                     else:
@@ -282,17 +283,17 @@ else:
                         html_table += f"<td class='{cls}'>{val}</td>"
                 html_table += "</tr>"
                 
-                # [2행] "소계(비율)", 퍼센티지(%)들
+                # [2행] 퍼센티지 (%)
                 html_table += "<tr class='subtotal-row-2'>"
                 for col in cols:
-                    if col == '지부': continue  # 1행에서 rowspan으로 처리했으므로 건너뜀
+                    if col == '지부': continue
                     if col == '현장명': cls = "col-site"
                     elif col == '타워회사': cls = "col-tower"
                     elif col in ['총대수', '합계']: cls = "col-total"
                     else: cls = "col-union"
                     
                     if col == '현장명':
-                        html_table += f"<td class='{cls}' style='text-align: left; padding-left: 4px; font-weight: bold;'>점유율(%)</td>"
+                        html_table += f"<td class='{cls}' style='text-align: left; padding-left: 2px; font-weight: bold;'>점유율(%)</td>"
                     elif col == '타워회사':
                         html_table += f"<td class='{cls}'>-</td>"
                     else:
@@ -301,7 +302,6 @@ else:
                 html_table += "</tr>"
                 
             else:
-                # --- 일반 현장 행인 경우 ---
                 html_table += "<tr>"
                 for col in cols:
                     if col == '지부': cls = "col-jibu"
