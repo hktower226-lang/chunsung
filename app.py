@@ -42,7 +42,7 @@ st.markdown(
     /* 모바일 테이블 스타일 */
     .mobile-table {
         width: 100%;
-        min-width: 520px; /* 최소 너비를 확보하여 글자 깨짐 방지 */
+        min-width: 520px;
         border-collapse: collapse;
         font-size: 0.62rem;
         background: white;
@@ -83,7 +83,7 @@ st.markdown(
         border-bottom: 1.5px solid #cbd5e1;
         color: #1d4ed8;
         font-size: 0.52rem;
-        white-space: nowrap !important; /* 퍼센티지 찌그러짐 원천 차단 */
+        white-space: nowrap !important;
     }
 
     /* 컬럼 폭 지정 */
@@ -145,7 +145,7 @@ def load_and_merge_data():
             jibu_name = str(row['지부']).strip()
             if '소계' in jibu_name:
                 clean_jibu = jibu_name.replace(' 소계', '').replace('지부', '') + '지부'
-                match_stat = df_branch_stats[df_branch_stats['지부'].astype(str).str.contains(clean_jibu, na=False)]
+                match_stat = df_branch_stats[df_branch_stats['지부'].astype(str).str.contains(clean_jibu, na=False, regex=False)]
                 
                 count_dict = {}
                 percent_dict = {}
@@ -245,11 +245,10 @@ else:
         filtered_df0 = df_main.copy()
         if selected_jibu != "전체보기":
             target_prefix = selected_jibu.replace('지부', '')
-            filtered_df0 = filtered_df0[filtered_df0['지부'].astype(str).str.contains(target_prefix, na=False)]
+            filtered_df0 = filtered_df0[filtered_df0['지부'].astype(str).str.contains(target_prefix, na=False, regex=False)]
 
         st.markdown(f"<p style='font-size: 0.7rem; color: #64748b; margin: 4px 0;'>조회 결과: <b>{len(filtered_df0)}</b>건</p>", unsafe_allow_html=True)
         
-        # 스크롤 가능한 컨테이너로 테이블 감싸기
         html_table = "<div class='table-container'><table class='mobile-table'><thead><tr>"
         cols = list(filtered_df0.columns)
         for col in cols:
@@ -331,15 +330,13 @@ else:
 
     # --- [탭 2] 타워사별 현황 ---
     with tabs[1]:
-        tower_list = ["전체보기"]
-        if df_sub2 is not None and '타워사' in df_sub2.columns:
-            tower_list += sorted(list(df_sub2['타워사'].astype(str).unique()))
-        
-        selected_tower = st.selectbox("🔍 타워사 선택/검색", tower_list, label_visibility="collapsed")
+        # 자유롭게 글자를 직접 입력해서 검색할 수 있는 입력창으로 변경
+        search_keyword = st.text_input("🔍 타워사 검색 (예: (주), 대원 등)", "", placeholder="검색어를 입력하세요")
         
         filtered_df2 = df_sub2.copy() if df_sub2 is not None else None
-        if selected_tower != "전체보기" and filtered_df2 is not None:
-            filtered_df2 = filtered_df2[filtered_df2['타워사'].astype(str).str.contains(selected_tower, case=False, na=False)]
+        if search_keyword.strip() and filtered_df2 is not None and '타워사' in filtered_df2.columns:
+            # regex=False 옵션을 주어 괄호 '(', ')' 문자도 특수문자 오류 없이 완벽하게 검색되도록 처리
+            filtered_df2 = filtered_df2[filtered_df2['타워사'].astype(str).str.contains(search_keyword.strip(), case=False, na=False, regex=False)]
 
         st.markdown(f"<p style='font-size: 0.7rem; color: #64748b; margin: 4px 0;'>검색 결과: <b>{len(filtered_df2) if filtered_df2 is not None else 0}</b>건</p>", unsafe_allow_html=True)
         
@@ -359,7 +356,7 @@ else:
             
             st.markdown(html_table2, unsafe_allow_html=True)
         else:
-            st.info("데이터가 없습니다.")
+            st.info("검색된 타워사 데이터가 없습니다.")
 
     st.markdown("---")
     st.markdown("<p style='text-align: center; font-size: 0.65rem; color: #94a3b8;'>Gyeonggi Regional Headquarters Dashboard</p>", unsafe_allow_html=True)
