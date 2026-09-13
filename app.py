@@ -10,7 +10,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# 2. 모바일 친화적 디자인 및 컬럼 폭·줄바꿈 최적화 스타일 적용
+# 2. 모바일 친화적 디자인 및 가로 스크롤 테이블 스타일 적용
 st.markdown(
     """
     <style>
@@ -30,20 +30,26 @@ st.markdown(
     }
     .summary-title { font-weight: 700; color: #1e293b; margin-bottom: 4px; font-size: 0.8rem; }
     
+    /* 테이블을 감싸는 스크롤 컨테이너 (모바일 찌그러짐 방지) */
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+        margin-bottom: 10px;
+        border-radius: 6px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
     /* 모바일 테이블 스타일 */
     .mobile-table {
         width: 100%;
+        min-width: 520px; /* 최소 너비를 확보하여 글자 깨짐 방지 */
         border-collapse: collapse;
         font-size: 0.62rem;
         background: white;
-        border-radius: 6px;
-        overflow: hidden;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-        margin-bottom: 10px;
         table-layout: fixed;
     }
     .mobile-table th, .mobile-table td {
-        padding: 4px 1px;
+        padding: 5px 2px;
         text-align: center;
         border-bottom: 1px solid #f1f5f9;
         color: #334155;
@@ -76,16 +82,17 @@ st.markdown(
         border-top: none !important;
         border-bottom: 1.5px solid #cbd5e1;
         color: #1d4ed8;
-        font-size: 0.55rem;
-        white-space: nowrap !important;
+        font-size: 0.52rem;
+        white-space: nowrap !important; /* 퍼센티지 찌그러짐 원천 차단 */
     }
 
-    /* 컬럼 폭 최적 재배치 (노조 칸 공간 확보) */
-    .col-jibu { width: 9%; }
-    .col-site { width: 22%; text-align: left !important; padding-left: 2px !important; font-size: 0.58rem; }
-    .col-tower { width: 18%; text-align: left !important; padding-left: 2px !important; font-size: 0.58rem; }
-    .col-union { width: 8.2%; } /* 노조별 칸 폭을 넓혀서 숫자/퍼센트 쪼김 방지 */
-    .col-total { width: 8%; font-weight: bold; }
+    /* 컬럼 폭 지정 */
+    .col-jibu { width: 55px; }
+    .col-site { width: 110px; text-align: left !important; padding-left: 4px !important; font-size: 0.58rem; }
+    .col-tower { width: 95px; text-align: left !important; padding-left: 4px !important; font-size: 0.58rem; }
+    .col-etc { width: 45px; }
+    .col-union { width: 42px; }
+    .col-total { width: 45px; font-weight: bold; }
 
     .stTabs [data-baseweb="tab-list"] { gap: 6px; justify-content: center; }
     .stTabs [data-baseweb="tab"] { 
@@ -242,13 +249,15 @@ else:
 
         st.markdown(f"<p style='font-size: 0.7rem; color: #64748b; margin: 4px 0;'>조회 결과: <b>{len(filtered_df0)}</b>건</p>", unsafe_allow_html=True)
         
-        html_table = "<table class='mobile-table'><thead><tr>"
+        # 스크롤 가능한 컨테이너로 테이블 감싸기
+        html_table = "<div class='table-container'><table class='mobile-table'><thead><tr>"
         cols = list(filtered_df0.columns)
         for col in cols:
             if col == '지부': cls = "col-jibu"
             elif col == '현장명': cls = "col-site"
             elif col == '타워회사': cls = "col-tower"
             elif col in ['총대수', '합계']: cls = "col-total"
+            elif col == '특이사항': cls = "col-etc"
             else: cls = "col-union"
             html_table += f"<th class='{cls}'>{col}</th>"
         html_table += "</tr></thead><tbody>"
@@ -270,12 +279,13 @@ else:
                     elif col == '현장명': cls = "col-site"
                     elif col == '타워회사': cls = "col-tower"
                     elif col in ['총대수', '합계']: cls = "col-total"
+                    elif col == '특이사항': cls = "col-etc"
                     else: cls = "col-union"
                     
                     if col == '지부':
                         html_table += f"<td class='{cls}' rowspan='2' style='vertical-align: middle;'><b>{clean_jibu_name}</b></td>"
                     elif col == '현장명':
-                        html_table += f"<td class='{cls}' style='text-align: left; padding-left: 2px; font-weight: bold;'>소계(대수)</td>"
+                        html_table += f"<td class='{cls}' style='text-align: left; padding-left: 4px; font-weight: bold;'>소계(대수)</td>"
                     elif col == '타워회사':
                         html_table += f"<td class='{cls}'>-</td>"
                     else:
@@ -290,10 +300,11 @@ else:
                     if col == '현장명': cls = "col-site"
                     elif col == '타워회사': cls = "col-tower"
                     elif col in ['총대수', '합계']: cls = "col-total"
+                    elif col == '특이사항': cls = "col-etc"
                     else: cls = "col-union"
                     
                     if col == '현장명':
-                        html_table += f"<td class='{cls}' style='text-align: left; padding-left: 2px; font-weight: bold;'>점유율(%)</td>"
+                        html_table += f"<td class='{cls}' style='text-align: left; padding-left: 4px; font-weight: bold;'>점유율(%)</td>"
                     elif col == '타워회사':
                         html_table += f"<td class='{cls}'>-</td>"
                     else:
@@ -308,13 +319,14 @@ else:
                     elif col == '현장명': cls = "col-site"
                     elif col == '타워회사': cls = "col-tower"
                     elif col in ['총대수', '합계']: cls = "col-total"
+                    elif col == '특이사항': cls = "col-etc"
                     else: cls = "col-union"
                     
                     val = str(row[col])
                     html_table += f"<td class='{cls}'>{val}</td>"
                 html_table += "</tr>"
                 
-        html_table += "</tbody></table>"
+        html_table += "</tbody></table></div>"
         st.markdown(html_table, unsafe_allow_html=True)
 
     # --- [탭 2] 타워사별 현황 ---
@@ -332,7 +344,7 @@ else:
         st.markdown(f"<p style='font-size: 0.7rem; color: #64748b; margin: 4px 0;'>검색 결과: <b>{len(filtered_df2) if filtered_df2 is not None else 0}</b>건</p>", unsafe_allow_html=True)
         
         if filtered_df2 is not None and not filtered_df2.empty:
-            html_table2 = "<table class='mobile-table'><thead><tr>"
+            html_table2 = "<div class='table-container'><table class='mobile-table'><thead><tr>"
             for col in filtered_df2.columns:
                 html_table2 += f"<th>{col}</th>"
             html_table2 += "</tr></thead><tbody>"
@@ -343,7 +355,7 @@ else:
                     val = str(row[col])
                     html_table2 += f"<td>{val}</td>"
                 html_table2 += "</tr>"
-            html_table2 += "</tbody></table>"
+            html_table2 += "</tbody></table></div>"
             
             st.markdown(html_table2, unsafe_allow_html=True)
         else:
