@@ -316,7 +316,7 @@ else:
                 for col in cols:
                     if col == '지부': cls = "col-jibu"
                     elif col == '현장명': cls = "col-site"
-                    elif col == '타워회사': cls = "col-tower"
+                    elif col == '타워회사': cls, cls = "col-tower"
                     elif col in ['총대수', '합계']: cls = "col-total"
                     elif col == '특이사항': cls = "col-etc"
                     else: cls = "col-union"
@@ -328,17 +328,30 @@ else:
         html_table += "</tbody></table></div>"
         st.markdown(html_table, unsafe_allow_html=True)
 
-    # --- [탭 2] 타워사별 현황 ---
+    # --- [탭 2] 타워사별 현황 (두 글자 검색 + 터치형 선택) ---
     with tabs[1]:
-        # 자유롭게 글자를 직접 입력해서 검색할 수 있는 입력창으로 변경
-        search_keyword = st.text_input("🔍 타워사 검색 (예: (주), 대원 등)", "", placeholder="검색어를 입력하세요")
+        all_towers = []
+        if df_sub2 is not None and '타워사' in df_sub2.columns:
+            all_towers = sorted(list(df_sub2['타워사'].astype(str).unique()))
+        
+        # 1단계: 두 글자 이상 입력해서 해당되는 타워회사들만 뽑아내는 검색창
+        search_query = st.text_input("🔍 타워사 검색 (두 글자만 입력하세요, 예: 대원, 국영)", "", placeholder="여기에 검색어 입력 (예: 대원)")
+        
+        # 검색어가 포함된 타워사들만 리스트업
+        matched_towers = ["전체보기"]
+        if search_query.strip():
+            matched_towers += [t for t in all_towers if search_query.strip().lower() in t.lower()]
+        else:
+            matched_towers += all_towers  # 검색어가 없으면 전체 목록 표시
+            
+        # 2단계: 필터링된 풀네임을 터치(클릭)해서 선택하는 셀렉트박스
+        selected_tower = st.selectbox("👇 조회할 타워회사를 터치하세요", matched_towers, label_visibility="collapsed")
         
         filtered_df2 = df_sub2.copy() if df_sub2 is not None else None
-        if search_keyword.strip() and filtered_df2 is not None and '타워사' in filtered_df2.columns:
-            # regex=False 옵션을 주어 괄호 '(', ')' 문자도 특수문자 오류 없이 완벽하게 검색되도록 처리
-            filtered_df2 = filtered_df2[filtered_df2['타워사'].astype(str).str.contains(search_keyword.strip(), case=False, na=False, regex=False)]
+        if selected_tower != "전체보기" and filtered_df2 is not None:
+            filtered_df2 = filtered_df2[filtered_df2['타워사'].astype(str) == selected_tower]
 
-        st.markdown(f"<p style='font-size: 0.7rem; color: #64748b; margin: 4px 0;'>검색 결과: <b>{len(filtered_df2) if filtered_df2 is not None else 0}</b>건</p>", unsafe_allow_html=True)
+        st.markdown(f"<p style='font-size: 0.7rem; color: #64748b; margin: 4px 0;'>조회 결과: <b>{len(filtered_df2) if filtered_df2 is not None else 0}</b>건</p>", unsafe_allow_html=True)
         
         if filtered_df2 is not None and not filtered_df2.empty:
             html_table2 = "<div class='table-container'><table class='mobile-table'><thead><tr>"
