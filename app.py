@@ -328,24 +328,20 @@ else:
         html_table += "</tbody></table></div>"
         st.markdown(html_table, unsafe_allow_html=True)
 
-    # --- [탭 2] 타워사별 현황 (두 글자 검색 + 터치형 선택) ---
+    # --- [탭 2] 타워사별 현황 (텍스트 검색으로 풀네임 실시간 필터링) ---
     with tabs[1]:
         all_towers = []
         if df_sub2 is not None and '타워사' in df_sub2.columns:
             all_towers = sorted(list(df_sub2['타워사'].astype(str).unique()))
         
-        # 1단계: 두 글자 이상 입력해서 해당되는 타워회사들만 뽑아내는 검색창
+        # 1단계: 두 글자만 입력하면 해당되는 타워회사들만 뽑아내는 텍스트 검색창
         search_query = st.text_input("🔍 타워사 검색 (두 글자만 입력하세요, 예: 대원, 국영)", "", placeholder="여기에 검색어 입력 (예: 대원)")
         
-        # 검색어가 포함된 타워사들만 리스트업
-        matched_towers = ["전체보기"]
-        if search_query.strip():
-            matched_towers += [t for t in all_towers if search_query.strip().lower() in t.lower()]
-        else:
-            matched_towers += all_towers  # 검색어가 없으면 전체 목록 표시
-            
-        # 2단계: 필터링된 풀네임을 터치(클릭)해서 선택하는 셀렉트박스
-        selected_tower = st.selectbox("👇 조회할 타워회사를 터치하세요", matched_towers, label_visibility="collapsed")
+        # 검색어 필터 적용
+        matched_towers = [t for t in all_towers if search_query.strip().lower() in t.lower()] if search_query.strip() else all_towers
+        
+        # 일치하는 타워사 목록을 하나의 버튼/선택 목록 형태로 깔끔하게 제공
+        selected_tower = st.radio("👇 조회할 타워회사를 터치하세요", ["전체보기"] + matched_towers, horizontal=True, label_visibility="collapsed")
         
         filtered_df2 = df_sub2.copy() if df_sub2 is not None else None
         if selected_tower != "전체보기" and filtered_df2 is not None:
