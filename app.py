@@ -30,31 +30,9 @@ st.markdown("🏗️ 경기지역본부 현장 점유율 및 통계", unsafe_all
 st.markdown('<p class="subtitle">모바일 최적화 통합 조회 시스템 (조회 전용)</p>', unsafe_allow_html=True)
 
 
-# [핵심] 엑셀 데이터 정제 함수 (퍼센트부터 바꾸고 빈칸 처리)
-def process_dataframe(df):
-    df.columns = df.columns.astype(str).str.strip()
-    
-    # 1. 빈칸을 채우기 '전'에 숫자(0.279)를 퍼센트(27.9%)로 변환합니다.
-    for col in df.columns:
-        if pd.api.types.is_numeric_dtype(df[col]):
-            # 컬럼 이름에 '율', '%', '점유', '비중'이 들어가거나 소수점 데이터인 경우
-            is_percent_col = any(keyword in col for keyword in ['율', '%', '비중', '점유', '퍼센트'])
-            valid_vals = df[col].dropna()
-            
-            if not valid_vals.empty:
-                is_decimal = (valid_vals.max() <= 1.0) and (valid_vals.min() >= 0.0) and not (valid_vals % 1 == 0).all()
-                
-                if is_percent_col or is_decimal:
-                    # 100 곱하고 소수점 첫째 자리까지 표시한 뒤 % 붙이기 (예: 0.279 -> 27.9%)
-                    df[col] = (df[col] * 100).round(1).astype(str) + "%"
-    
-    # 2. 퍼센트 변환이 안전하게 다 끝난 후, 빈칸(None)을 '-'로 바꿔줍니다.
-    df = df.fillna("-")
-    return df
-
-
+# [순정 로직] 코드가 숫자를 절대 건드리지 않고 엑셀 원본 그대로 표시 + 빈칸만 '-'로 처리
 @st.cache_data(ttl=5)
-def load_excel_data():
+def load_excel_raw():
     excel_files = [f for f in os.listdir(".") if f.endswith((".xlsx", ".xls")) and not f.startswith("~$")]
     if not excel_files:
         return None, None, None, "폴더에 엑셀 파일이 없습니다."
@@ -64,22 +42,31 @@ def load_excel_data():
         xl = pd.ExcelFile(target_file)
         sheet_names = xl.sheet_names
 
-        # 각 시트별로 process_dataframe 함수를 거쳐서 완벽하게 정제된 표를 가져옴
-        df1 = process_dataframe(pd.read_excel(target_file, sheet_name=0))
-        df2 = process_dataframe(pd.read_excel(target_file, sheet_name=1)) if len(sheet_names) > 1 else None
-        df3 = process_dataframe(pd.read_excel(target_file, sheet_name=2)) if len(sheet_names) > 2 else None
+        # 각 시트의 컬럼 정리 및 빈칸만 '-'로 치환 (숫자 데이터 변조 0%)
+        df1 = pd.read_excel(target_file, sheet_name=0)
+        df1.columns = df1.columns.astype(str).str.strip()
+        df1 = df1.fillna("-")
+
+        df2 = pd.read_excel(target_file, sheet_name=1) if len(sheet_names) > 1 else None
+        if df2 is not None:
+            df2.columns = df2.columns.astype(str).str.strip()
+            df2 = df2.fillna("-")
+
+        df3 = pd.read_excel(target_file, sheet_name=2) if len(sheet_names) > 2 else None
+        if df3 is not None:
+            df3.columns = df3.columns.astype(str).str.strip()
+            df3 = df3.fillna("-")
 
         return df1, df2, df3, None
     except Exception as e:
         return None, None, None, str(e)
 
 
-df_main, df_sub1, df_sub2, err_msg = load_excel_data()
+df_main, df_sub1, df_sub2, err_msg = load_excel_raw()
 
 if err_msg or df_main is None:
     st.error(f"엑셀 파일을 읽는 중 오류가 발생했습니다: {err_msg}")
 else:
-    # 탭 구성 (타워사별 시트가 있으면 3개, 없으면 2개 자동 조절)
     tab_names = ["📋 전체 현장 조회", "📊 지부별 점유율"]
     if df_sub2 is not None:
         tab_names.append("🏗️ 타워사별 현황")
