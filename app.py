@@ -10,7 +10,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# 2. 모바일 친화적 디자인 및 소계 행 가로 정렬 스타일 적용
+# 2. 모바일 친화적 디자인 및 가로 정렬·줄바꿈 방지 스타일 적용
 st.markdown(
     """
     <style>
@@ -43,7 +43,7 @@ st.markdown(
         table-layout: fixed;
     }
     .mobile-table th, .mobile-table td {
-        padding: 5px 2px;
+        padding: 6px 2px;
         text-align: center;
         border-bottom: 1px solid #f1f5f9;
         color: #334155;
@@ -57,7 +57,7 @@ st.markdown(
     }
     .mobile-table tr:nth-child(even) { background-color: #f8fafc; }
 
-    /* 소계 행 강조 스타일 (배경색을 살짝 다르게 줘서 구분) */
+    /* 소계 행 강조 및 가로 정렬 스타일 */
     .subtotal-row {
         background-color: #eff6ff !important;
         font-weight: bold;
@@ -66,14 +66,17 @@ st.markdown(
         border-top: 1.5px solid #cbd5e1;
         border-bottom: 1.5px solid #cbd5e1;
     }
+    .sub-stat {
+        white-space: nowrap;
+        font-size: 0.65rem;
+    }
 
-    /* 컬럼 폭 커스텀 지정 (현장명/타워회사 넓게, 숫자 칸 좁게) */
+    /* 컬럼 폭 커스텀 지정 */
     .col-jibu { width: 10%; }
-    .col-site { width: 25%; text-align: left !important; padding-left: 4px !important; }
-    .col-tower { width: 25%; text-align: left !important; padding-left: 4px !important; }
-    .col-union { width: 6.5%; font-size: 0.6rem; }
+    .col-site { width: 28%; text-align: left !important; padding-left: 4px !important; }
+    .col-tower { width: 22%; text-align: left !important; padding-left: 4px !important; }
+    .col-union { width: 6.5%; }
     .col-total { width: 7%; font-weight: bold; }
-    .col-etc { width: 5%; font-size: 0.6rem; }
 
     .stTabs [data-baseweb="tab-list"] { gap: 6px; justify-content: center; }
     .stTabs [data-baseweb="tab"] { 
@@ -120,8 +123,6 @@ def load_and_merge_data():
         df0 = df0.fillna("-")
 
         unions = ['한노', '민노', '섬유', '건산', '직원', '기타']
-        
-        # 소계 행 데이터 저장을 위한 딕셔너리 생성 (나중에 HTML 렌더링 시 활용)
         subtotal_data_map = {}
         
         for idx, row in df0.iterrows():
@@ -141,13 +142,10 @@ def load_and_merge_data():
                             if pd.notna(c_val) and c_val != "-" and pd.notna(p_val) and p_val != "-":
                                 try:
                                     p_num = float(p_val) * 100
-                                    # 가로로 나란히 배치되도록 수정 (대수와 퍼센티지를 공백 또는 얇은 간격으로)
-                                    row_dict[union] = f"<b>{c_val}대</b> <span style='color:#1d4ed8; font-weight:900;'>({p_num:.1f}%)</span>"
+                                    # 가로로 나란히 배치하되 줄바꿈 방지 클래스 적용
+                                    row_dict[union] = f"<span class='sub-stat'><b>{c_val}대</b> <span style='color:#1d4ed8; font-weight:900;'>({p_num:.1f}%)</span></span>"
                                 except:
                                     row_dict[union] = f"{c_val}"
-                    # 총대수 및 합계 등 처리
-                    if '총대수' in row:
-                        row_dict['총대수'] = row['총대수']
                 subtotal_data_map[idx] = row_dict
 
         # --- 타워사별 현황 데이터 읽기 ---
@@ -163,7 +161,8 @@ def load_and_merge_data():
             def fmt_hano_ratio(val):
                 try:
                     v = float(val)
-                    return f"<span style='color:#dc2626; font-weight:900;'>{v * 100:.1f}%</span>"
+                    # 줄바꿈 방지 적용
+                    return f"<span style='color:#dc2626; font-weight:900; white-space:nowrap;'>{v * 100:.1f}%</span>"
                 except:
                     return str(val)
             df2['한노점유율'] = df2['한노점유율'].apply(fmt_hano_ratio)
@@ -222,7 +221,6 @@ else:
 
         st.markdown(f"<p style='font-size: 0.7rem; color: #64748b; margin: 4px 0;'>조회 결과: <b>{len(filtered_df0)}</b>건</p>", unsafe_allow_html=True)
         
-        # HTML 테이블 생성 (소계 행인 경우 왼쪽 빈 공간 활용)
         html_table = "<table class='mobile-table'><thead><tr>"
         cols = list(filtered_df0.columns)
         for col in cols:
@@ -250,17 +248,15 @@ else:
                 
                 if is_subtotal:
                     if col == '지부':
-                        # 지부 이름만 깔끔하게
                         val = jibu_val.replace(' 소계', '')
                         html_table += f"<td class='{cls}'><b>{val}</b></td>"
                     elif col == '현장명':
-                        # 왼쪽 빈 공간 활용하여 소계 라벨 표기
-                        html_table += f"<td class='{cls}' style='text-align: left; font-weight: bold; color: #1e40af;'>📋 지부 소계</td>"
+                        # 현장명과 타워회사 칸을 합쳐서 넓게 활용하여 소계 라벨 표기
+                        html_table += f"<td class='{cls}' colspan='2' style='text-align: left; padding-left: 6px; font-weight: bold; color: #1e40af;'>📋 {val} 소계</td>"
                     elif col == '타워회사':
-                        # 빈 공간으로 비워둠
-                        html_table += f"<td class='{cls}'>-</td>"
+                        # colspan으로 흡수되었으므로 skip
+                        continue
                     else:
-                        # 소계 데이터 맵에서 가져오기
                         sub_dict = subtotal_map.get(idx, {})
                         val = sub_dict.get(col, str(row[col]))
                         html_table += f"<td class='{cls}'>{val}</td>"
@@ -274,11 +270,17 @@ else:
 
     # --- [탭 2] 타워사별 현황 ---
     with tabs[1]:
-        search_kw2 = st.text_input("🔍 타워사 검색", placeholder="타워(렌탈)사 이름 입력", label_visibility="collapsed")
+        # 타워사 목록 추출 (전체보기 + 각 타워사)
+        tower_list = ["전체보기"]
+        if filtered_df2 is not None and '타워사' in filtered_df2.columns:
+            tower_list += sorted(list(filtered_df2['타워사'].astype(str).unique()))
+        
+        # 글자를 조금만 쳐도 검색 및 선택이 가능한 셀렉트박스 활용
+        selected_tower = st.selectbox("🔍 타워사 선택/검색", tower_list, label_visibility="collapsed")
+        
         filtered_df2 = df_sub2.copy()
-        if search_kw2 and filtered_df2 is not None:
-            mask = filtered_df2.astype(str).apply(lambda x: x.str.contains(search_kw2, case=False, na=False)).any(axis=1)
-            filtered_df2 = filtered_df2[mask]
+        if selected_tower != "전체보기" and filtered_df2 is not None:
+            filtered_df2 = filtered_df2[filtered_df2['타워사'].astype(str).str.contains(selected_tower, case=False, na=False)]
 
         st.markdown(f"<p style='font-size: 0.7rem; color: #64748b; margin: 4px 0;'>검색 결과: <b>{len(filtered_df2) if filtered_df2 is not None else 0}</b>건</p>", unsafe_allow_html=True)
         
