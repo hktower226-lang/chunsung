@@ -143,7 +143,7 @@ def load_and_merge_data():
                                 try:
                                     p_num = float(p_val) * 100
                                     # 가로로 나란히 배치하되 줄바꿈 방지 클래스 적용
-                                    row_dict[union] = f"<span class='sub-stat'><b>{c_val}대</b> <span style='color:#1d4ed8; font-weight:900;'>({p_num:.1f}%)</span></span>"
+                                    row_dict[union] = f"<span class='sub-stat'><b>{c_val}</b> <span style='color:#1d4ed8; font-weight:900;'>({p_num:.1f}%)</span></span>"
                                 except:
                                     row_dict[union] = f"{c_val}"
                 subtotal_data_map[idx] = row_dict
@@ -161,7 +161,6 @@ def load_and_merge_data():
             def fmt_hano_ratio(val):
                 try:
                     v = float(val)
-                    # 줄바꿈 방지 적용
                     return f"<span style='color:#dc2626; font-weight:900; white-space:nowrap;'>{v * 100:.1f}%</span>"
                 except:
                     return str(val)
@@ -251,11 +250,11 @@ else:
                         val = jibu_val.replace(' 소계', '')
                         html_table += f"<td class='{cls}'><b>{val}</b></td>"
                     elif col == '현장명':
-                        # 현장명과 타워회사 칸을 합쳐서 넓게 활용하여 소계 라벨 표기
-                        html_table += f"<td class='{cls}' colspan='2' style='text-align: left; padding-left: 6px; font-weight: bold; color: #1e40af;'>📋 {val} 소계</td>"
+                        # 칸을 합치지 않고 현장명 칸에 깔끔하게 소계 명칭 표시
+                        html_table += f"<td class='{cls}' style='text-align: left; padding-left: 4px; font-weight: bold; color: #1e40af;'>소계</td>"
                     elif col == '타워회사':
-                        # colspan으로 흡수되었으므로 skip
-                        continue
+                        # 타워회사 칸은 비워두어 칸 밀림 현상 원천 차단
+                        html_table += f"<td class='{cls}'>-</td>"
                     else:
                         sub_dict = subtotal_map.get(idx, {})
                         val = sub_dict.get(col, str(row[col]))
@@ -270,15 +269,13 @@ else:
 
     # --- [탭 2] 타워사별 현황 ---
     with tabs[1]:
-        # 타워사 목록 추출 (전체보기 + 각 타워사)
         tower_list = ["전체보기"]
-        if filtered_df2 is not None and '타워사' in filtered_df2.columns:
-            tower_list += sorted(list(filtered_df2['타워사'].astype(str).unique()))
+        if df_sub2 is not None and '타워사' in df_sub2.columns:
+            tower_list += sorted(list(df_sub2['타워사'].astype(str).unique()))
         
-        # 글자를 조금만 쳐도 검색 및 선택이 가능한 셀렉트박스 활용
         selected_tower = st.selectbox("🔍 타워사 선택/검색", tower_list, label_visibility="collapsed")
         
-        filtered_df2 = df_sub2.copy()
+        filtered_df2 = df_sub2.copy() if df_sub2 is not None else None
         if selected_tower != "전체보기" and filtered_df2 is not None:
             filtered_df2 = filtered_df2[filtered_df2['타워사'].astype(str).str.contains(selected_tower, case=False, na=False)]
 
