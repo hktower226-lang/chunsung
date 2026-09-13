@@ -328,24 +328,15 @@ else:
         html_table += "</tbody></table></div>"
         st.markdown(html_table, unsafe_allow_html=True)
 
-    # --- [탭 2] 타워사별 현황 (검색어 입력 시 해당되는 타워사만 셀렉트박스에 필터링) ---
+    # --- [탭 2] 타워사별 현황 (텍스트 입력창 제거하고 셀렉트박스 하나만 깔끔하게 배치) ---
     with tabs[1]:
         all_towers = []
         if df_sub2 is not None and '타워사' in df_sub2.columns:
             all_towers = sorted(list(df_sub2['타워사'].astype(str).unique()))
         
-        # 1. 타워사 검색창 (여기에 글자를 입력하면 아래 목록이 필터링됨)
-        search_query = st.text_input("🔍 타워사 검색", "", placeholder="타워사 이름 일부 입력 (예: 대원)")
-        
-        # 2. 검색어에 맞는 타워사들만 목록에 남기기 (검색어가 없으면 전체 목록)
-        if search_query.strip():
-            matched_towers = [t for t in all_towers if search_query.strip().lower() in t.lower()]
-        else:
-            matched_towers = all_towers
-            
-        # 3. 필터링된 타워사 선택 셀렉트박스 (전체보기 + 검색된 타워사들)
-        select_options = ["전체보기"] + matched_towers
-        selected_tower = st.selectbox("👇 조회할 타워회사 선택", select_options, label_visibility="collapsed")
+        # 전체보기 + 타워사 목록을 담은 깔끔한 셀렉트박스 하나만 배치
+        select_options = ["전체보기"] + all_towers
+        selected_tower = st.selectbox("👇 타워회사 선택", select_options, label_visibility="collapsed")
         
         filtered_df2 = df_sub2.copy() if df_sub2 is not None else None
         if selected_tower != "전체보기" and filtered_df2 is not None:
@@ -369,7 +360,7 @@ else:
             
             st.markdown(html_table2, unsafe_allow_html=True)
         else:
-            st.info("검색된 타워사 데이터가 없습니다.")
+            st.info("조회된 데이터가 없습니다.")
 
     st.markdown("---")
     st.markdown("<p style='text-align: center; font-size: 0.65rem; color: #94a3b8;'>Gyeonggi Regional Headquarters Dashboard</p>", unsafe_allow_html=True)
