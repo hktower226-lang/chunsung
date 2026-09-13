@@ -10,7 +10,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# 2. 모바일 친화적 디자인 및 가로 정렬·줄바꿈 방지 스타일 적용
+# 2. 모바일 친화적 디자인 및 2단 분리형 소계 스타일 적용
 st.markdown(
     """
     <style>
@@ -43,7 +43,7 @@ st.markdown(
         table-layout: fixed;
     }
     .mobile-table th, .mobile-table td {
-        padding: 6px 2px;
+        padding: 5px 2px;
         text-align: center;
         border-bottom: 1px solid #f1f5f9;
         color: #334155;
@@ -57,18 +57,25 @@ st.markdown(
     }
     .mobile-table tr:nth-child(even) { background-color: #f8fafc; }
 
-    /* 소계 행 강조 및 가로 정렬 스타일 */
-    .subtotal-row {
+    /* 소계 2단 분리 행 스타일 */
+    .subtotal-row-1 {
         background-color: #eff6ff !important;
         font-weight: bold;
     }
-    .subtotal-row td {
+    .subtotal-row-1 td {
         border-top: 1.5px solid #cbd5e1;
-        border-bottom: 1.5px solid #cbd5e1;
+        border-bottom: none !important;
+        color: #1e293b;
     }
-    .sub-stat {
-        white-space: nowrap;
-        font-size: 0.65rem;
+    .subtotal-row-2 {
+        background-color: #eff6ff !important;
+        font-weight: bold;
+    }
+    .subtotal-row-2 td {
+        border-top: none !important;
+        border-bottom: 1.5px solid #cbd5e1;
+        color: #1d4ed8;
+        font-size: 0.62rem;
     }
 
     /* 컬럼 폭 커스텀 지정 */
@@ -131,7 +138,9 @@ def load_and_merge_data():
                 clean_jibu = jibu_name.replace(' 소계', '').replace('지부', '') + '지부'
                 match_stat = df_branch_stats[df_branch_stats['지부'].astype(str).str.contains(clean_jibu, na=False)]
                 
-                row_dict = {}
+                count_dict = {}
+                percent_dict = {}
+                
                 if not match_stat.empty:
                     for union in unions:
                         col_cnt = f"{union} (대)"
@@ -139,14 +148,25 @@ def load_and_merge_data():
                         if col_cnt in match_stat.columns and col_pct in match_stat.columns:
                             c_val = match_stat[col_cnt].values[0]
                             p_val = match_stat[col_pct].values[0]
-                            if pd.notna(c_val) and c_val != "-" and pd.notna(p_val) and p_val != "-":
+                            
+                            if pd.notna(c_val) and c_val != "-":
+                                count_dict[union] = f"{c_val}대"
+                            else:
+                                count_dict[union] = "-"
+                                
+                            if pd.notna(p_val) and p_val != "-":
                                 try:
                                     p_num = float(p_val) * 100
-                                    # 가로로 나란히 배치하되 줄바꿈 방지 클래스 적용
-                                    row_dict[union] = f"<span class='sub-stat'><b>{c_val}</b> <span style='color:#1d4ed8; font-weight:900;'>({p_num:.1f}%)</span></span>"
+                                    percent_dict[union] = f"({p_num:.1f}%)"
                                 except:
-                                    row_dict[union] = f"{c_val}"
-                subtotal_data_map[idx] = row_dict
+                                    percent_dict[union] = str(p_val)
+                            else:
+                                percent_dict[union] = "-"
+                
+                subtotal_data_map[idx] = {
+                    "counts": count_dict,
+                    "percents": percent_dict
+                }
 
         # --- 타워사별 현황 데이터 읽기 ---
         df2_raw = pd.read_excel(target_file, sheet_name=2)
@@ -235,36 +255,66 @@ else:
             jibu_val = str(row['지부'])
             is_subtotal = '소계' in jibu_val
             
-            row_class = "subtotal-row" if is_subtotal else ""
-            html_table += f"<tr class='{row_class}'>"
-            
-            for col in cols:
-                if col == '지부': cls = "col-jibu"
-                elif col == '현장명': cls = "col-site"
-                elif col == '타워회사': cls = "col-tower"
-                elif col in ['총대수', '합계']: cls = "col-total"
-                else: cls = "col-union"
+            if is_subtotal:
+                # --- 소계 행인 경우: 2개의 행(Row)으로 나누어서 출력 ---
+                clean_jibu_name = jibu_val.replace(' 소계', '')
+                sub_info = subtotal_map.get(idx, {"counts": {}, "percents": {}})
+                counts = sub_info.get("counts", {})
+                percents = sub_info.get("percents", {})
                 
-                if is_subtotal:
+                # [1행] 지부명, "소계(대수)", 대수 숫자들
+                html_table += "<tr class='subtotal-row-1'>"
+                for col in cols:
+                    if col == '지부': cls = "col-jibu"
+                    elif col == '현장명': cls = "col-site"
+                    elif col == '타워회사': cls = "col-tower"
+                    elif col in ['총대수', '합계']: cls = "col-total"
+                    else: cls = "col-union"
+                    
                     if col == '지부':
-                        val = jibu_val.replace(' 소계', '')
-                        html_table += f"<td class='{cls}'><b>{val}</b></td>"
+                        html_table += f"<td class='{cls}' rowspan='2' style='vertical-align: middle;'><b>{clean_jibu_name}</b></td>"
                     elif col == '현장명':
-                        # 칸을 합치지 않고 현장명 칸에 깔끔하게 소계 명칭 표시
-                        html_table += f"<td class='{cls}' style='text-align: left; padding-left: 4px; font-weight: bold; color: #1e40af;'>소계</td>"
+                        html_table += f"<td class='{cls}' style='text-align: left; padding-left: 4px; font-weight: bold;'>소계 (대수)</td>"
                     elif col == '타워회사':
-                        # 타워회사 칸은 비워두어 칸 밀림 현상 원천 차단
                         html_table += f"<td class='{cls}'>-</td>"
                     else:
-                        sub_dict = subtotal_map.get(idx, {})
-                        val = sub_dict.get(col, str(row[col]))
+                        val = counts.get(col, str(row[col]))
                         html_table += f"<td class='{cls}'>{val}</td>"
-                else:
+                html_table += "</tr>"
+                
+                # [2행] "소계(비율)", 퍼센티지(%)들
+                html_table += "<tr class='subtotal-row-2'>"
+                for col in cols:
+                    if col == '지부': continue  # 1행에서 rowspan으로 처리했으므로 건너뜀
+                    if col == '현장명': cls = "col-site"
+                    elif col == '타워회사': cls = "col-tower"
+                    elif col in ['총대수', '합계']: cls = "col-total"
+                    else: cls = "col-union"
+                    
+                    if col == '현장명':
+                        html_table += f"<td class='{cls}' style='text-align: left; padding-left: 4px; font-weight: bold;'>점유율(%)</td>"
+                    elif col == '타워회사':
+                        html_table += f"<td class='{cls}'>-</td>"
+                    else:
+                        val = percents.get(col, "-")
+                        html_table += f"<td class='{cls}'>{val}</td>"
+                html_table += "</tr>"
+                
+            else:
+                # --- 일반 현장 행인 경우 ---
+                html_table += "<tr>"
+                for col in cols:
+                    if col == '지부': cls = "col-jibu"
+                    elif col == '현장명': cls = "col-site"
+                    elif col == '타워회사': cls = "col-tower"
+                    elif col in ['총대수', '합계']: cls = "col-total"
+                    else: cls = "col-union"
+                    
                     val = str(row[col])
                     html_table += f"<td class='{cls}'>{val}</td>"
-            html_table += "</tr>"
+                html_table += "</tr>"
+                
         html_table += "</tbody></table>"
-        
         st.markdown(html_table, unsafe_allow_html=True)
 
     # --- [탭 2] 타워사별 현황 ---
