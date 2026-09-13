@@ -10,7 +10,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# 2. 모바일 친화적 디자인 및 가독성 스타일 적용
+# 2. 모바일 친화적 디자인 및 컬럼 너비(Width) 최적화 스타일 적용
 st.markdown(
     """
     <style>
@@ -30,32 +30,39 @@ st.markdown(
     }
     .summary-title { font-weight: 700; color: #1e293b; margin-bottom: 4px; font-size: 0.8rem; }
     
-    /* 깔끔한 모바일 커스텀 테이블 스타일 */
+    /* 컬럼 폭 조절이 반영된 모바일 테이블 스타일 */
     .mobile-table {
         width: 100%;
         border-collapse: collapse;
-        font-size: 0.72rem;
+        font-size: 0.7rem;
         background: white;
         border-radius: 6px;
         overflow: hidden;
         box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         margin-bottom: 10px;
+        table-layout: fixed; /* 컬럼 너비 고정 적용 */
+    }
+    .mobile-table th, .mobile-table td {
+        padding: 6px 3px;
+        text-align: center;
+        border-bottom: 1px solid #f1f5f9;
+        color: #334155;
+        word-break: break-all;
     }
     .mobile-table th {
         background-color: #1e293b;
         color: white;
-        padding: 6px 4px;
-        text-align: center;
         font-weight: 600;
     }
-    .mobile-table td {
-        padding: 6px 4px;
-        text-align: center;
-        border-bottom: 1px solid #f1f5f9;
-        color: #334155;
-    }
     .mobile-table tr:nth-child(even) { background-color: #f8fafc; }
-    
+
+    /* 지부별 현장명단 테이블 컬럼별 가로 폭 커스텀 지정 */
+    .col-jibu { width: 11%; }
+    .col-site { width: 32%; text-align: left !important; padding-left: 4px !important; } /* 현장명 넓게 확보 */
+    .col-tower { width: 22%; text-align: left !important; padding-left: 4px !important; } /* 타워회사 넓게 확보 */
+    .col-union { width: 7.2%; font-size: 0.62rem; } /* 숫자 칸은 좁게 축소 */
+    .col-total { width: 7.2%; font-weight: bold; }
+
     .stTabs [data-baseweb="tab-list"] { gap: 6px; justify-content: center; }
     .stTabs [data-baseweb="tab"] { 
         height: 38px; background-color: #e2e8f0; border-radius: 6px; 
@@ -87,7 +94,6 @@ def load_and_merge_data():
         total_counts = df1_raw.iloc[1]
         total_ratios = df1_raw.iloc[2]
         
-        # 지부별 소속 현황 테이블 추출 (행 6부터)
         header_row = df1_raw.iloc[5].astype(str).str.strip()
         df_branch_stats = df1_raw.iloc[6:].copy()
         df_branch_stats.columns = header_row
@@ -101,7 +107,6 @@ def load_and_merge_data():
         df0 = df0.loc[:, ~df0.columns.str.contains('^Unnamed')]
         df0 = df0.fillna("-")
 
-        # 지부별 소계 행에 대수 + 진한 퍼센트 반영
         unions = ['한노', '민노', '섬유', '건산', '직원', '기타']
         
         for idx, row in df0.iterrows():
@@ -119,8 +124,7 @@ def load_and_merge_data():
                             if pd.notna(c_val) and c_val != "-" and pd.notna(p_val) and p_val != "-":
                                 try:
                                     p_num = float(p_val) * 100
-                                    # HTML 렌더링을 위해 가독성 좋은 스타일 적용
-                                    df0.loc[idx, union] = f"<b>{c_val}대</b> <span style='color:#1d4ed8; font-weight:900;'>({p_num:.1f}%)</span>"
+                                    df0.loc[idx, union] = f"<b>{c_val}대</b><br><span style='color:#1d4ed8; font-weight:900;'>({p_num:.1f}%)</span>"
                                 except:
                                     pass
 
@@ -131,7 +135,6 @@ def load_and_merge_data():
         df2 = df2.loc[:, ~df2.columns.str.contains('^Unnamed')]
         df2 = df2.fillna("-")
 
-        # 한노점유율을 맨 첫 번째로 배치하고 퍼센티지 깔끔하게 표시
         if '한노점유율' in df2.columns and '타워사' in df2.columns:
             cols = ['타워사', '한노점유율'] + [c for c in df2.columns if c not in ['타워사', '한노점유율']]
             df2 = df2[cols]
@@ -143,7 +146,6 @@ def load_and_merge_data():
                     return str(val)
             df2['한노점유율'] = df2['한노점유율'].apply(fmt_hano_ratio)
 
-        # 요약 정보 딕셔너리
         summary_info = {
             "한노": f"{total_counts.get('한노', 51)}대 ({float(total_ratios.get('한노', 0.2786))*100:.1f}%)",
             "민노": f"{total_counts.get('민노', 79)}대 ({float(total_ratios.get('민노', 0.4316))*100:.1f}%)",
@@ -186,8 +188,6 @@ else:
                 unsafe_allow_html=True
             )
 
-        # 지부 선택 셀렉트박스 (전체보기 + 각 지부별 선택)
-        # 엑셀 데이터에서 실제 지부 목록 추출
         unique_jibus = sorted(list(df_main[df_main['지부'] != '-']['지부'].apply(lambda x: str(x).replace(' 소계', '').replace('지부', '').strip()).unique()))
         jibu_options = ["전체보기"] + [f"{j}지부" for j in unique_jibus if j and j != 'nan']
         
@@ -196,22 +196,32 @@ else:
         filtered_df0 = df_main.copy()
         if selected_jibu != "전체보기":
             target_prefix = selected_jibu.replace('지부', '')
-            # 해당 지부 행들과 그 소계 행까지 필터링
             filtered_df0 = filtered_df0[filtered_df0['지부'].astype(str).str.contains(target_prefix, na=False)]
 
         st.markdown(f"<p style='font-size: 0.7rem; color: #64748b; margin: 4px 0;'>조회 결과: <b>{len(filtered_df0)}</b>건</p>", unsafe_allow_html=True)
         
-        # HTML 테이블로 직접 렌더링하여 태그 노출 방지 및 스타일 적용
+        # 커스텀 클래스가 적용된 HTML 테이블 렌더링
         html_table = "<table class='mobile-table'><thead><tr>"
-        for col in filtered_df0.columns:
-            html_table += f"<th>{col}</th>"
+        cols = list(filtered_df0.columns)
+        for i, col in enumerate(cols):
+            if col == '지부': cls = "col-jibu"
+            elif col == '현장명': cls = "col-site"
+            elif col == '타워회사': cls = "col-tower"
+            elif col in ['총대수', '합계']: cls = "col-total"
+            else: cls = "col-union"
+            html_table += f"<th class='{cls}'>{col}</th>"
         html_table += "</tr></thead><tbody>"
         
         for _, row in filtered_df0.iterrows():
             html_table += "<tr>"
-            for col in filtered_df0.columns:
+            for col in cols:
                 val = str(row[col])
-                html_table += f"<td>{val}</td>"
+                if col == '지부': cls = "col-jibu"
+                elif col == '현장명': cls = "col-site"
+                elif col == '타워회사': cls = "col-tower"
+                elif col in ['총대수', '합계']: cls = "col-total"
+                else: cls = "col-union"
+                html_table += f"<td class='{cls}'>{val}</td>"
             html_table += "</tr>"
         html_table += "</tbody></table>"
         
@@ -228,7 +238,6 @@ else:
         st.markdown(f"<p style='font-size: 0.7rem; color: #64748b; margin: 4px 0;'>검색 결과: <b>{len(filtered_df2) if filtered_df2 is not None else 0}</b>건</p>", unsafe_allow_html=True)
         
         if filtered_df2 is not None and not filtered_df2.empty:
-            # 타워사별 현황도 HTML 테이블로 깔끔하게 렌더링
             html_table2 = "<table class='mobile-table'><thead><tr>"
             for col in filtered_df2.columns:
                 html_table2 += f"<th>{col}</th>"
