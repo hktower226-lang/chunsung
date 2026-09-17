@@ -122,9 +122,15 @@ def load_and_merge_data():
         
         # --- 전체현황 데이터 읽기 (상단 메인 요약용) ---
         df1_raw = pd.read_excel(target_file, sheet_name=1)
-        total_counts = df1_raw.iloc[1]
-        total_ratios = df1_raw.iloc[2]
         
+        # 첫 번째 행(헤더)과 두 번째 행(전체 대수 값), 세 번째 행(비율 값) 추출
+        total_headers = df1_raw.iloc[0].astype(str).str.strip().tolist()
+        total_counts_vals = df1_raw.iloc[1].tolist()
+        total_ratios_vals = df1_raw.iloc[2].tolist()
+        
+        total_counts = dict(zip(total_headers, total_counts_vals))
+        total_ratios = dict(zip(total_headers, total_ratios_vals))
+
         header_row = df1_raw.iloc[5].astype(str).str.strip()
         df_branch_stats = df1_raw.iloc[6:].copy()
         df_branch_stats.columns = header_row
@@ -195,14 +201,23 @@ def load_and_merge_data():
                     return str(val)
             df2['한노점유율'] = df2['한노점유율'].apply(fmt_hano_ratio)
 
+        # 엑셀의 전체현황 값(인덱스 1 및 2)을 안전하게 읽어와 반영
+        def get_summary_text(union_key, default_cnt, default_ratio):
+            try:
+                cnt = total_counts.get(union_key, default_cnt)
+                ratio = float(total_ratios.get(union_key, default_ratio))
+                return f"{cnt}대 ({ratio * 100:.1f}%)"
+            except:
+                return f"{default_cnt}대 ({default_ratio * 100:.1f}%)"
+
         summary_info = {
-            "한노": f"{total_counts.get('한노', 51)}대 ({float(total_ratios.get('한노', 0.2786))*100:.1f}%)",
-            "민노": f"{total_counts.get('민노', 79)}대 ({float(total_ratios.get('민노', 0.4316))*100:.1f}%)",
-            "섬유": f"{total_counts.get('섬유', 6)}대 ({float(total_ratios.get('섬유', 0.0327))*100:.1f}%)",
-            "건산": f"{total_counts.get('건산', 9)}대 ({float(total_ratios.get('건산', 0.0491))*100:.1f}%)",
-            "직원": f"{total_counts.get('직원', 32)}대 ({float(total_ratios.get('직원', 0.1748))*100:.1f}%)",
-            "기타": f"{total_counts.get('기타', 6)}대 ({float(total_ratios.get('기타', 0.0327))*100:.1f}%)",
-            "합계": f"{total_counts.get('합계', 183)}대 (100.0%)"
+            "한노": get_summary_text("한노", 53, 0.2804),
+            "민노": get_summary_text("민노", 79, 0.4180),
+            "섬유": get_summary_text("섬유", 6, 0.0317),
+            "건산": get_summary_text("건산", 9, 0.0476),
+            "직원": get_summary_text("직원", 33, 0.1746),
+            "기타": get_summary_text("기타", 9, 0.0476),
+            "합계": f"{total_counts.get('합계', 189)}대 (100.0%)"
         }
 
         return df0, df2, summary_info, subtotal_data_map, None
@@ -328,13 +343,12 @@ else:
         html_table += "</tbody></table></div>"
         st.markdown(html_table, unsafe_allow_html=True)
 
-    # --- [탭 2] 타워사별 현황 (텍스트 입력창 제거하고 셀렉트박스 하나만 깔끔하게 배치) ---
+    # --- [탭 2] 타워사별 현황 ---
     with tabs[1]:
         all_towers = []
         if df_sub2 is not None and '타워사' in df_sub2.columns:
             all_towers = sorted(list(df_sub2['타워사'].astype(str).unique()))
         
-        # 전체보기 + 타워사 목록을 담은 깔끔한 셀렉트박스 하나만 배치
         select_options = ["전체보기"] + all_towers
         selected_tower = st.selectbox("👇 타워회사 선택", select_options, label_visibility="collapsed")
         
