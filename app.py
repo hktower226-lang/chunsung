@@ -1,0 +1,308 @@
+import pandas as pd
+import streamlit as st
+
+# 페이지 설정 (모바일 최적화 및 넓은 화면 레이아웃)
+st.set_page_config(
+    page_title="점유율 현황 모바일 대시보드",
+    layout="wide",
+    initial_sidebar_state="collapsed",
+)
+
+# 모바일 가독성을 위한 대형 글씨 및 디자인 CSS 적용
+st.markdown(
+    """
+    <style>
+    .main { font-size: 22px !important; }
+    h1 { font-size: 28px !important; font-weight: bold; }
+    h2 { font-size: 24px !important; font-weight: bold; }
+    p, label, .stMarkdown { font-size: 18px !important; }
+    .metric-container {
+        background-color: #f8f9fa;
+        padding: 16px;
+        border-radius: 12px;
+        margin-bottom: 12px;
+        border: 1px solid #dee2e6;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .badge-hanno { background-color: #ff4d4d; color: white; padding: 3px 8px; border-radius: 6px; font-weight: bold; }
+    .badge-minno { background-color: #4d94ff; color: white; padding: 3px 8px; border-radius: 6px; font-weight: bold; }
+    .badge-seomvu { background-color: #ff9933; color: white; padding: 3px 8px; border-radius: 6px; font-weight: bold; }
+    .badge-geonsan { background-color: #33cc33; color: white; padding: 3px 8px; border-radius: 6px; font-weight: bold; }
+    .badge-staff { background-color: #9966ff; color: white; padding: 3px 8px; border-radius: 6px; font-weight: bold; }
+    .badge-etc { background-color: #8c8c8c; color: white; padding: 3px 8px; border-radius: 6px; font-weight: bold; }
+    </style>
+""",
+    unsafe_allow_html=True,
+)
+
+
+@st.cache_data
+def load_sheet_names():
+    file_path = "data.xlsx"
+    xls = pd.ExcelFile(file_path)
+    return xls.sheet_names
+
+
+try:
+    sheet_names = load_sheet_names()
+    file_path = "data.xlsx"
+except Exception as e:
+    st.error(
+        f"엑셀 파일('data.xlsx')을 불러오지 못했습니다. 경로를 확인해주세요. 에러: {e}"
+    )
+    st.stop()
+
+# 상단 타이틀
+st.title("📊 점유율 현황 모바일 대시보드")
+st.write("---")
+
+# 3가지 화면(탭) 구성
+tab1, tab2, tab3 = st.tabs(
+    ["1. 2026 전체 소속", "2. 경기지역본부", "3. 타워사 별"]
+)
+
+# -------------------------------------------------------------------------
+# 첫 번째 화면: 2026 전체 소속별 점유율 (색상 구분)
+# -------------------------------------------------------------------------
+with tab1:
+    st.header("🏢 2026년 전체 소속별 점유율")
+    st.markdown("전체 소속별 수치 및 퍼센테이지 현황입니다.")
+
+    try:
+        df_ratio = pd.read_excel(file_path, sheet_name="채용비율")
+        t1 = df_ratio.iloc[0:2, :8].copy()
+        t1.columns = t1.iloc[0]
+        t1 = t1.drop(0).reset_index(drop=True)
+
+        cols = [c for c in t1.columns if c not in ["소속", "합계", "비율"]]
+        total_val = float(t1["합계"].values[0]) if "합계" in t1.columns else 198
+
+        badge_map = {
+            "한노": "badge-hanno",
+            "민노": "badge-minno",
+            "섬유": "badge-seomvu",
+            "건산": "badge-geonsan",
+            "직원": "badge-staff",
+            "미정": "badge-etc",
+        }
+
+        for col in cols:
+            val = float(t1[col].values[0])
+            pct = (val / total_val) * 100
+            b_class = badge_map.get(col, "badge-etc")
+
+            st.markdown(
+                f"""
+                <div class="metric-container" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div><span class="{b_class}">{col}</span></div>
+                    <div style="text-align: right;">
+                        <b style="font-size: 20px;">{val:,.0f}명</b> &nbsp;|&nbsp; 
+                        <span style="font-size: 20px; color: #d62728; font-weight: bold;">{pct:.1f}%</span>
+                    </div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+    except Exception as e:
+        st.warning(f"데이터 처리 중 오류 발생: {e}")
+
+# -------------------------------------------------------------------------
+# 두 번째 화면: 경기지역본부 현장 점유율 현황 (지부 검색, 현장별 수치, 깔끔한 단일 소계)
+# -------------------------------------------------------------------------
+with tab2:
+    st.header("📍 경기지역본부 현장 점유율")
+    st.markdown("원하시는 지부를 선택해 현장별 및 소계 현황을 확인하세요.")
+
+    try:
+        df_ratio = pd.read_excel(file_path, sheet_name="채용비율")
+        t2 = df_ratio.iloc[7:76, :12].copy()
+        t2.columns = [
+            "지부",
+            "현장명",
+            "타워회사",
+            "특이사항",
+            "한노",
+            "민노",
+            "섬유",
+            "건산",
+            "직원",
+            "미정",
+            "총대수",
+            "비고",
+        ]
+        t2["지부"] = t2["지부"].ffill()
+
+        # 숫자형 변환
+        for num_col in ["한노", "민노", "섬유", "건산", "직원", "미정", "총대수"]:
+            t2[num_col] = (
+                pd.to_numeric(t2[num_col], errors="coerce").fillna(0)
+            )
+
+        # 총대수가 1이면서 비율 행(소계 아래 중복 행)인 경우 필터링하여 제거
+        # (원래 소계 행은 총대수가 8, 66 등으로 크고, 그 아래 비율 행은 총대수가 정확히 1임)
+        t2 = t2[
+            ~(
+                t2["지부"].astype(str).str.contains("소계")
+                & (t2["총대수"] == 1)
+                & t2["현장명"].isna()
+            )
+        ]
+
+        # 지부 이름만 깔끔하게 추출
+        raw_branches = t2["지부"].dropna().astype(str).unique().tolist()
+        clean_branches = []
+        for b in raw_branches:
+            cleaned = (
+                b.replace("지부 소계", "")
+                .replace("지부", "")
+                .replace(" 소계", "")
+                .strip()
+            )
+            if cleaned and cleaned not in clean_branches:
+                clean_branches.append(cleaned)
+
+        selected_branch = st.selectbox(
+            "🔍 지부 선택", ["전체 보기"] + clean_branches
+        )
+
+        if selected_branch != "전체 보기":
+            filtered_df = t2[
+                t2["지부"].astype(str).str.contains(selected_branch)
+            ]
+        else:
+            filtered_df = t2
+
+        for _, row in filtered_df.iterrows():
+            is_subtotal = "소계" in str(row["지부"]) or pd.isna(row["현장명"])
+
+            h = row["한노"]
+            m = row["민노"]
+            s = row["섬유"]
+            g = row["건산"]
+            st_f = row["직원"]
+            u = row["미정"]
+            total = row["총대수"]
+
+            if is_subtotal:
+                h_pct = (h / total * 100) if total > 0 else 0
+                m_pct = (m / total * 100) if total > 0 else 0
+                s_pct = (s / total * 100) if total > 0 else 0
+                g_pct = (g / total * 100) if total > 0 else 0
+                st_f_pct = (st_f / total * 100) if total > 0 else 0
+                u_pct = (u / total * 100) if total > 0 else 0
+
+                st.markdown(
+                    f"""
+                    <div class="metric-container" style="background-color: #e8f4f8; border: 2px solid #1f77b4;">
+                        <b style="font-size: 20px; color: #1f77b4;">📌 [{row['지부']}] 합계 및 비율</b><br>
+                        총 대수: <b>{total:,.0f}대</b><br>
+                        <div style="margin-top: 6px; font-size: 16px;">
+                            <span class="badge-hanno">한노 {h:.0f} ({h_pct:.1f}%)</span> 
+                            <span class="badge-minno">민노 {m:.0f} ({m_pct:.1f}%)</span> 
+                            <span class="badge-seomvu">섬유 {s:.0f} ({s_pct:.1f}%)</span> 
+                            <span class="badge-geonsan">건산 {g:.0f} ({g_pct:.1f}%)</span> 
+                            <span class="badge-staff">직원 {st_f:.0f} ({st_f_pct:.1f}%)</span> 
+                            <span class="badge-etc">미정 {u:.0f} ({u_pct:.1f}%)</span>
+                        </div>
+                    </div>
+                    """,
+                    unsafe_allow_html=True,
+                )
+            else:
+                st.markdown(
+                    f"""
+                    <div class="metric-container">
+                        <b>{row['현장명']}</b> <span style="font-size: 14px; color: #666;">({row['타워회사']})</span><br>
+                        <div style="margin-top: 6px; font-size: 16px;">
+                            <span class="badge-hanno">한노 {h:.0f}</span> 
+                            <span class="badge-minno">민노 {m:.0f}</span> 
+                            <span class="badge-seomvu">섬유 {s:.0f}</span> 
+                            <span class="badge-geonsan">건산 {g:.0f}</span> 
+                            <span class="badge-staff">직원 {st_f:.0f}</span> 
+                            <span class="badge-etc">미정 {u:.0f}</span> 
+                            &nbsp;|&nbsp; <b>총 {total:,.0f}대</b>
+                        </div>
+                    </div>
+                    """,
+                    unsafe_allow_html=True,
+                )
+    except Exception as e:
+        st.warning(f"데이터 처리 중 오류 발생: {e}")
+
+# -------------------------------------------------------------------------
+# 세 번째 화면: 타워사 별 점유율 (한노 점유율 맨 앞 배치, 전 소속 수치 표시)
+# -------------------------------------------------------------------------
+with tab3:
+    st.header("🏗️ 타워사 별 점유율 현황")
+    st.markdown(
+        "한노 점유율을 맨 앞에 배치하고, 각 타워사별 전체 소속 수치를 제공합니다."
+    )
+
+    try:
+        df_ratio = pd.read_excel(file_path, sheet_name="채용비율")
+        t3 = df_ratio.iloc[81:, :10].copy()
+        t3.columns = [
+            "타워사",
+            "현장수",
+            "한노",
+            "민노",
+            "섬유",
+            "건산",
+            "직원",
+            "기타",
+            "합계",
+            "한노점유율",
+        ]
+        t3 = t3.dropna(subset=["타워사"])
+
+        for col in [
+            "현장수",
+            "한노",
+            "민노",
+            "섬유",
+            "건산",
+            "직원",
+            "기타",
+            "합계",
+            "한노점유율",
+        ]:
+            t3[col] = pd.to_numeric(t3[col], errors="coerce").fillna(0)
+
+        t3 = t3.dropna(subset=["합계"])
+        t3 = t3.sort_values(by="한노점유율", ascending=False).reset_index(
+            drop=True
+        )
+
+        for _, row in t3.iterrows():
+            hanno_share = (
+                row["한노점유율"] * 100 if pd.notna(row["한노점유율"]) else 0
+            )
+
+            st.markdown(
+                f"""
+                <div class="metric-container">
+                    <div style="font-size: 20px; font-weight: bold; color: #ff4b4b; margin-bottom: 4px;">
+                        🔥 한노 점유율: {hanno_share:.1f}% 
+                    </div>
+                    <span style="font-size: 18px; font-weight: bold;">{row['타워사']}</span> <span style="font-size: 14px; color: #666;">(현장수: {row['현장수']}개, 총합계: {row['합계']:.0f}명)</span><br>
+                    <div style="margin-top: 6px; font-size: 16px;">
+                        <span class="badge-hanno">한노 {row['한노']:.0f}</span> 
+                        <span class="badge-minno">민노 {row['민노']:.0f}</span> 
+                        <span class="badge-seomvu">섬유 {row['섬유']:.0f}</span> 
+                        <span class="badge-geonsan">건산 {row['건산']:.0f}</span> 
+                        <span class="badge-staff">직원 {row['직원']:.0f}</span> 
+                        <span class="badge-etc">기타 {row['기타']:.0f}</span>
+                    </div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+    except Exception as e:
+        st.warning(f"데이터 처리 중 오류 발생: {e}")
+
+# 하단 안내
+st.markdown("---")
+st.markdown(
+    "<p style='text-align: center; color: gray;'>모바일 화면 최적화 완료</p>",
+    unsafe_allow_html=True,
+)
