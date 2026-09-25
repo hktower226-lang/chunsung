@@ -8,28 +8,45 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# 모바일 가독성을 위한 대형 글씨 및 디자인 CSS 적용
+# 모바일 가독성 향상 및 표/카드 스타일 CSS 적용
 st.markdown(
     """
     <style>
-    .main { font-size: 22px !important; }
-    h1 { font-size: 28px !important; font-weight: bold; }
-    h2 { font-size: 24px !important; font-weight: bold; }
-    p, label, .stMarkdown { font-size: 18px !important; }
-    .metric-container {
-        background-color: #f8f9fa;
-        padding: 16px;
-        border-radius: 12px;
-        margin-bottom: 12px;
-        border: 1px solid #dee2e6;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    .main { font-size: 20px !important; }
+    h1 { font-size: 26px !important; font-weight: bold; }
+    h2 { font-size: 22px !important; font-weight: bold; }
+    p, label, .stMarkdown { font-size: 16px !important; }
+    
+    .metric-card {
+        background-color: #ffffff;
+        padding: 14px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #e0e0e0;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     }
-    .badge-hanno { background-color: #ff4d4d; color: white; padding: 3px 8px; border-radius: 6px; font-weight: bold; }
-    .badge-minno { background-color: #4d94ff; color: white; padding: 3px 8px; border-radius: 6px; font-weight: bold; }
-    .badge-seomvu { background-color: #ff9933; color: white; padding: 3px 8px; border-radius: 6px; font-weight: bold; }
-    .badge-geonsan { background-color: #33cc33; color: white; padding: 3px 8px; border-radius: 6px; font-weight: bold; }
-    .badge-staff { background-color: #9966ff; color: white; padding: 3px 8px; border-radius: 6px; font-weight: bold; }
-    .badge-etc { background-color: #8c8c8c; color: white; padding: 3px 8px; border-radius: 6px; font-weight: bold; }
+    .subtotal-card {
+        background-color: #f0f4f8;
+        padding: 16px;
+        border-radius: 10px;
+        margin-bottom: 12px;
+        border: 2px solid #2b6cb0;
+    }
+    /* 모바일 테이블 디자인 최적화 */
+    table {
+        width: 100% !important;
+        font-size: 14px !important;
+        text-align: center !important;
+    }
+    th {
+        background-color: #f1f3f5 !important;
+        text-align: center !important;
+        font-size: 14px !important;
+    }
+    td {
+        text-align: center !important;
+        font-size: 14px !important;
+    }
     </style>
 """,
     unsafe_allow_html=True,
@@ -62,7 +79,7 @@ tab1, tab2, tab3 = st.tabs(
 )
 
 # -------------------------------------------------------------------------
-# 첫 번째 화면: 2026 전체 소속별 점유율 (색상 구분)
+# 첫 번째 화면: 2026 전체 소속별 점유율
 # -------------------------------------------------------------------------
 with tab1:
     st.header("🏢 2026년 전체 소속별 점유율")
@@ -77,27 +94,17 @@ with tab1:
         cols = [c for c in t1.columns if c not in ["소속", "합계", "비율"]]
         total_val = float(t1["합계"].values[0]) if "합계" in t1.columns else 198
 
-        badge_map = {
-            "한노": "badge-hanno",
-            "민노": "badge-minno",
-            "섬유": "badge-seomvu",
-            "건산": "badge-geonsan",
-            "직원": "badge-staff",
-            "미정": "badge-etc",
-        }
-
         for col in cols:
             val = float(t1[col].values[0])
             pct = (val / total_val) * 100
-            b_class = badge_map.get(col, "badge-etc")
 
             st.markdown(
                 f"""
-                <div class="metric-container" style="display: flex; justify-content: space-between; align-items: center;">
-                    <div><span class="{b_class}">{col}</span></div>
-                    <div style="text-align: right;">
-                        <b style="font-size: 20px;">{val:,.0f}명</b> &nbsp;|&nbsp; 
-                        <span style="font-size: 20px; color: #d62728; font-weight: bold;">{pct:.1f}%</span>
+                <div class="metric-card" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="font-weight: bold; font-size: 18px;">{col}</div>
+                    <div>
+                        <span style="font-size: 18px; font-weight: bold;">{val:,.0f}명</span> &nbsp;|&nbsp; 
+                        <span style="font-size: 18px; color: #e53e3e; font-weight: bold;">{pct:.1f}%</span>
                     </div>
                 </div>
                 """,
@@ -107,7 +114,7 @@ with tab1:
         st.warning(f"데이터 처리 중 오류 발생: {e}")
 
 # -------------------------------------------------------------------------
-# 두 번째 화면: 경기지역본부 현장 점유율 현황 (지부 검색, 현장별 수치, 깔끔한 단일 소계)
+# 두 번째 화면: 경기지역본부 현장 점유율 (표 형태로 깔끔하게 정돈)
 # -------------------------------------------------------------------------
 with tab2:
     st.header("📍 경기지역본부 현장 점유율")
@@ -138,8 +145,7 @@ with tab2:
                 pd.to_numeric(t2[num_col], errors="coerce").fillna(0)
             )
 
-        # 총대수가 1이면서 비율 행(소계 아래 중복 행)인 경우 필터링하여 제거
-        # (원래 소계 행은 총대수가 8, 66 등으로 크고, 그 아래 비율 행은 총대수가 정확히 1임)
+        # 중복 소계 행 제거
         t2 = t2[
             ~(
                 t2["지부"].astype(str).str.contains("소계")
@@ -148,7 +154,7 @@ with tab2:
             )
         ]
 
-        # 지부 이름만 깔끔하게 추출
+        # 지부 이름만 추출
         raw_branches = t2["지부"].dropna().astype(str).unique().tolist()
         clean_branches = []
         for b in raw_branches:
@@ -193,17 +199,23 @@ with tab2:
 
                 st.markdown(
                     f"""
-                    <div class="metric-container" style="background-color: #e8f4f8; border: 2px solid #1f77b4;">
-                        <b style="font-size: 20px; color: #1f77b4;">📌 [{row['지부']}] 합계 및 비율</b><br>
-                        총 대수: <b>{total:,.0f}대</b><br>
-                        <div style="margin-top: 6px; font-size: 16px;">
-                            <span class="badge-hanno">한노 {h:.0f} ({h_pct:.1f}%)</span> 
-                            <span class="badge-minno">민노 {m:.0f} ({m_pct:.1f}%)</span> 
-                            <span class="badge-seomvu">섬유 {s:.0f} ({s_pct:.1f}%)</span> 
-                            <span class="badge-geonsan">건산 {g:.0f} ({g_pct:.1f}%)</span> 
-                            <span class="badge-staff">직원 {st_f:.0f} ({st_f_pct:.1f}%)</span> 
-                            <span class="badge-etc">미정 {u:.0f} ({u_pct:.1f}%)</span>
+                    <div class="subtotal-card">
+                        <div style="font-size: 18px; font-weight: bold; color: #2b6cb0; margin-bottom: 6px;">
+                            📌 [{row['지부']}] 합계 (총 대수: {total:,.0f}대)
                         </div>
+                        <table style="width:100%; margin-top:4px;">
+                            <tr>
+                                <th>한노</th><th>민노</th><th>섬유</th><th>건산</th><th>직원</th><th>미정</th>
+                            </tr>
+                            <tr>
+                                <td><b>{h:.0f}</b><br><span style="color:#e53e3e; font-size:12px;">({h_pct:.1f}%)</span></td>
+                                <td><b>{m:.0f}</b><br><span style="color:#3182ce; font-size:12px;">({m_pct:.1f}%)</span></td>
+                                <td><b>{s:.0f}</b><br><span style="font-size:12px;">({s_pct:.1f}%)</span></td>
+                                <td><b>{g:.0f}</b><br><span style="font-size:12px;">({g_pct:.1f}%)</span></td>
+                                <td><b>{st_f:.0f}</b><br><span style="font-size:12px;">({st_f_pct:.1f}%)</span></td>
+                                <td><b>{u:.0f}</b><br><span style="font-size:12px;">({u_pct:.1f}%)</span></td>
+                            </tr>
+                        </table>
                     </div>
                     """,
                     unsafe_allow_html=True,
@@ -211,17 +223,23 @@ with tab2:
             else:
                 st.markdown(
                     f"""
-                    <div class="metric-container">
-                        <b>{row['현장명']}</b> <span style="font-size: 14px; color: #666;">({row['타워회사']})</span><br>
-                        <div style="margin-top: 6px; font-size: 16px;">
-                            <span class="badge-hanno">한노 {h:.0f}</span> 
-                            <span class="badge-minno">민노 {m:.0f}</span> 
-                            <span class="badge-seomvu">섬유 {s:.0f}</span> 
-                            <span class="badge-geonsan">건산 {g:.0f}</span> 
-                            <span class="badge-staff">직원 {st_f:.0f}</span> 
-                            <span class="badge-etc">미정 {u:.0f}</span> 
-                            &nbsp;|&nbsp; <b>총 {total:,.0f}대</b>
-                        </div>
+                    <div class="metric-card">
+                        <div style="font-weight: bold; font-size: 16px; color: #1a202c;">{row['현장명']}</div>
+                        <div style="font-size: 13px; color: #718096; margin-bottom: 6px;">타워사: {row['타워회사']}</div>
+                        <table style="width:100%;">
+                            <tr>
+                                <th>한노</th><th>민노</th><th>섬유</th><th>건산</th><th>직원</th><th>미정</th><th>총합</th>
+                            </tr>
+                            <tr>
+                                <td style="color: #e53e3e; font-weight: bold;">{h:.0f}</td>
+                                <td style="color: #3182ce; font-weight: bold;">{m:.0f}</td>
+                                <td>{s:.0f}</td>
+                                <td>{g:.0f}</td>
+                                <td>{st_f:.0f}</td>
+                                <td>{u:.0f}</td>
+                                <td style="font-weight: bold;">{total:,.0f}</td>
+                            </tr>
+                        </table>
                     </div>
                     """,
                     unsafe_allow_html=True,
@@ -230,13 +248,11 @@ with tab2:
         st.warning(f"데이터 처리 중 오류 발생: {e}")
 
 # -------------------------------------------------------------------------
-# 세 번째 화면: 타워사 별 점유율 (한노 점유율 맨 앞 배치, 전 소속 수치 표시)
+# 세 번째 화면: 타워사 별 점유율
 # -------------------------------------------------------------------------
 with tab3:
     st.header("🏗️ 타워사 별 점유율 현황")
-    st.markdown(
-        "한노 점유율을 맨 앞에 배치하고, 각 타워사별 전체 소속 수치를 제공합니다."
-    )
+    st.markdown("한노 점유율을 맨 앞에 배치한 타워사별 현황입니다.")
 
     try:
         df_ratio = pd.read_excel(file_path, sheet_name="채용비율")
@@ -280,19 +296,25 @@ with tab3:
 
             st.markdown(
                 f"""
-                <div class="metric-container">
-                    <div style="font-size: 20px; font-weight: bold; color: #ff4b4b; margin-bottom: 4px;">
-                        🔥 한노 점유율: {hanno_share:.1f}% 
+                <div class="metric-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                        <span style="font-size: 16px; font-weight: bold; color: #2d3748;">{row['타워사']}</span>
+                        <span style="font-size: 16px; font-weight: bold; color: #e53e3e;">한노 점유율: {hanno_share:.1f}%</span>
                     </div>
-                    <span style="font-size: 18px; font-weight: bold;">{row['타워사']}</span> <span style="font-size: 14px; color: #666;">(현장수: {row['현장수']}개, 총합계: {row['합계']:.0f}명)</span><br>
-                    <div style="margin-top: 6px; font-size: 16px;">
-                        <span class="badge-hanno">한노 {row['한노']:.0f}</span> 
-                        <span class="badge-minno">민노 {row['민노']:.0f}</span> 
-                        <span class="badge-seomvu">섬유 {row['섬유']:.0f}</span> 
-                        <span class="badge-geonsan">건산 {row['건산']:.0f}</span> 
-                        <span class="badge-staff">직원 {row['직원']:.0f}</span> 
-                        <span class="badge-etc">기타 {row['기타']:.0f}</span>
-                    </div>
+                    <div style="font-size: 13px; color: #718096; margin-bottom: 6px;">현장수: {row['현장수']}개 | 총합계: {row['합계']:.0f}명</div>
+                    <table style="width:100%;">
+                        <tr>
+                            <th>한노</th><th>민노</th><th>섬유</th><th>건산</th><th>직원</th><th>기타</th>
+                        </tr>
+                        <tr>
+                            <td style="color: #e53e3e; font-weight: bold;">{row['한노']:.0f}</td>
+                            <td style="color: #3182ce; font-weight: bold;">{row['민노']:.0f}</td>
+                            <td>{row['섬유']:.0f}</td>
+                            <td>{row['건산']:.0f}</td>
+                            <td>{row['직원']:.0f}</td>
+                            <td>{row['기타']:.0f}</td>
+                        </tr>
+                    </table>
                 </div>
                 """,
                 unsafe_allow_html=True,
