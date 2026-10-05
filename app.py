@@ -27,20 +27,20 @@ st.markdown(
     }
     
     /* 소속별 뱃지 스타일 */
-    .badge-hanno { background-color: #ffebee; color: #c62828; padding: 4px 8px; border-radius: 6px; font-weight: bold; }
-    .badge-minno { background-color: #e3f2fd; color: #1565c0; padding: 4px 8px; border-radius: 6px; font-weight: bold; }
-    .badge-seom { background-color: #e8f5e9; color: #2e7d32; padding: 4px 8px; border-radius: 6px; font-weight: bold; }
-    .badge-geonsan { background-color: #fff3e0; color: #ef6c00; padding: 4px 8px; border-radius: 6px; font-weight: bold; }
-    .badge-staff { background-color: #f3e5f5; color: #7b1fa2; padding: 4px 8px; border-radius: 6px; font-weight: bold; }
-    .badge-mijung { background-color: #eceff1; color: #37474f; padding: 4px 8px; border-radius: 6px; font-weight: bold; }
+    .badge-hanno { background-color: #ffebee; color: #c62828; padding: 3px 6px; border-radius: 4px; font-weight: bold; }
+    .badge-minno { background-color: #e3f2fd; color: #1565c0; padding: 3px 6px; border-radius: 4px; font-weight: bold; }
+    .badge-seom { background-color: #e8f5e9; color: #2e7d32; padding: 3px 6px; border-radius: 4px; font-weight: bold; }
+    .badge-geonsan { background-color: #fff3e0; color: #ef6c00; padding: 3px 6px; border-radius: 4px; font-weight: bold; }
+    .badge-staff { background-color: #f3e5f5; color: #7b1fa2; padding: 3px 6px; border-radius: 4px; font-weight: bold; }
+    .badge-mijung { background-color: #eceff1; color: #37474f; padding: 3px 6px; border-radius: 4px; font-weight: bold; }
     
     .metric-box {
         background-color: #f8f9fa;
         border-radius: 8px;
-        padding: 10px;
+        padding: 8px;
         text-align: center;
         border: 1px solid #e9ecef;
-        margin-bottom: 8px;
+        margin-bottom: 6px;
     }
     </style>
 """,
@@ -64,34 +64,33 @@ except Exception as e:
   st.stop()
 
 # ==========================================
-# 1. 상단 고정 영역 (26년 전체 소속별 점유율)
+# 1. 상단 고정 영역 (26년 전체 소속별 점유율 - 순서: 한,민,섬,건,직,미,합계)
 # ==========================================
 st.markdown('<div class="sticky-header">', unsafe_allow_html=True)
-st.markdown("### 📌 26년 전체 소속별 점유율 (통계제외 현장 제외)")
+st.markdown("### 📌 26년 전체 소속별 점유율")
 
 try:
-  # 엑셀 행 데이터 추출
+  # 엑셀 원본 순서대로 추출: 한노, 민노, 섬유, 건산, 직원, 미정, 합계
   hanno_c, minno_c, seom_c, geonsan_c, staff_c, mijung_c, total_c, _ = (
       df.iloc[1, 1:9].values
   )
   hanno_p, minno_p, seom_p, geonsan_p, staff_p, mijung_p = df.iloc[2, 1:7].values
 
-  # 2열씩 묶어서 그리드 표현 (글씨 크기 및 비율 완벽 일치)
   col1, col2, col3 = st.columns(3)
   with col1:
     st.markdown(
         f"""<div class="metric-box">
         <span class="badge-hanno">한노</span><br>
-        <b style="font-size: 1.2rem;">{hanno_c}대</b><br>
-        <span style="color: #c62828; font-size: 0.9rem; font-weight: bold;">({float(hanno_p)*100:.1f}%)</span>
+        <b style="font-size: 1.1rem;">{hanno_c}대</b><br>
+        <span style="color: #c62828; font-size: 0.85rem; font-weight: bold;">({float(hanno_p)*100:.1f}%)</span>
         </div>""",
         unsafe_allow_html=True,
     )
     st.markdown(
         f"""<div class="metric-box">
         <span class="badge-geonsan">건산</span><br>
-        <b style="font-size: 1.2rem;">{geonsan_c}대</b><br>
-        <span style="color: #ef6c00; font-size: 0.9rem; font-weight: bold;">({float(geonsan_p)*100:.1f}%)</span>
+        <b style="font-size: 1.1rem;">{geonsan_c}대</b><br>
+        <span style="color: #ef6c00; font-size: 0.85rem; font-weight: bold;">({float(geonsan_p)*100:.1f}%)</span>
         </div>""",
         unsafe_allow_html=True,
     )
@@ -100,16 +99,16 @@ try:
     st.markdown(
         f"""<div class="metric-box">
         <span class="badge-minno">민노</span><br>
-        <b style="font-size: 1.2rem;">{minno_c}대</b><br>
-        <span style="color: #1565c0; font-size: 0.9rem; font-weight: bold;">({float(minno_p)*100:.1f}%)</span>
+        <b style="font-size: 1.1rem;">{minno_c}대</b><br>
+        <span style="color: #1565c0; font-size: 0.85rem; font-weight: bold;">({float(minno_p)*100:.1f}%)</span>
         </div>""",
         unsafe_allow_html=True,
     )
     st.markdown(
         f"""<div class="metric-box">
         <span class="badge-staff">직원</span><br>
-        <b style="font-size: 1.2rem;">{staff_c}대</b><br>
-        <span style="color: #7b1fa2; font-size: 0.9rem; font-weight: bold;">({float(staff_p)*100:.1f}%)</span>
+        <b style="font-size: 1.1rem;">{staff_c}대</b><br>
+        <span style="color: #7b1fa2; font-size: 0.85rem; font-weight: bold;">({float(staff_p)*100:.1f}%)</span>
         </div>""",
         unsafe_allow_html=True,
     )
@@ -118,22 +117,22 @@ try:
     st.markdown(
         f"""<div class="metric-box">
         <span class="badge-seom">섬유</span><br>
-        <b style="font-size: 1.2rem;">{seom_c}대</b><br>
-        <span style="color: #2e7d32; font-size: 0.9rem; font-weight: bold;">({float(seom_p)*100:.1f}%)</span>
+        <b style="font-size: 1.1rem;">{seom_c}대</b><br>
+        <span style="color: #2e7d32; font-size: 0.85rem; font-weight: bold;">({float(seom_p)*100:.1f}%)</span>
         </div>""",
         unsafe_allow_html=True,
     )
     st.markdown(
         f"""<div class="metric-box">
         <span class="badge-mijung">미정</span><br>
-        <b style="font-size: 1.2rem;">{mijung_c}대</b><br>
-        <span style="color: #37474f; font-size: 0.9rem; font-weight: bold;">({float(mijung_p)*100:.1f}%)</span>
+        <b style="font-size: 1.1rem;">{mijung_c}대</b><br>
+        <span style="color: #37474f; font-size: 0.85rem; font-weight: bold;">({float(mijung_p)*100:.1f}%)</span>
         </div>""",
         unsafe_allow_html=True,
     )
 
   st.markdown(
-      f"<div style='text-align: center; margin-top: 5px; font-weight: bold;'>합계: {total_c}대 (100%)</div>",
+      f"<div style='text-align: center; margin-top: 4px; font-weight: bold; font-size: 1rem;'>총대수 합계: {total_c}대 (100%)</div>",
       unsafe_allow_html=True,
   )
 
@@ -164,11 +163,11 @@ raw_data.columns = [
 jibues = ["북부", "남부", "남서", "동부", "서부", "북서", "용인", "중부"]
 
 # ==========================================
-# 2. 8개 지부별 소계 및 퍼센테이지 / 세부 현장 뷰
+# 2. 8개 지역 지부별 소계 및 상세 수치 출력
 # ==========================================
 st.markdown("### 🏢 8개 지역 지부별 현황 및 소계")
 st.markdown(
-    "<p style='font-size: 0.9rem; color: gray;'>지부명을 누르면 해당 지부의 세부 현장 정보와 대수를 확인할 수 있습니다.</p>",
+    "<p style='font-size: 0.9rem; color: gray;'>지부 소계 탭을 누르면 각 현장의 세부 내역이 펼쳐집니다.</p>",
     unsafe_allow_html=True,
 )
 
@@ -206,20 +205,4 @@ for jibu in jibues:
           if pd.notna(raw_data.loc[pct_row_idx, "섬유"])
           else 0
       )
-      gp = (
-          float(raw_data.loc[pct_row_idx, "건산"]) * 100
-          if pd.notna(raw_data.loc[pct_row_idx, "건산"])
-          else 0
-      )
-      tp = (
-          float(raw_data.loc[pct_row_idx, "직원"]) * 100
-          if pd.notna(raw_data.loc[pct_row_idx, "직원"])
-          else 0
-      )
-      mjp = (
-          float(raw_data.loc[pct_row_idx, "미정"]) * 100
-          if pd.notna(raw_data.loc[pct_row_idx, "미정"])
-          else 0
-      )
-    else:
-      hp, mp, sp, gp, tp, mjp = 0, 0, 0, 0
+        
