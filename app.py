@@ -145,4 +145,23 @@ with tab1:
             filtered_t2 = t2
 
         for _, row in filtered_t2.iterrows():
-            is_
+            is_subtotal = "소계" in str(row["지부"]) or pd.isna(row["현장명"])
+            h, m, s, g, st_f, u, total = row["한노"], row["민노"], row["섬유"], row["건산"], row["직원"], row["미정"], row["총대수"]
+
+            if is_subtotal:
+                h_pct = (h / total * 100) if total > 0 else 0
+                m_pct = (m / total * 100) if total > 0 else 0
+                s_pct = (s / total * 100) if total > 0 else 0
+                g_pct = (g / total * 100) if total > 0 else 0
+                st_f_pct = (st_f / total * 100) if total > 0 else 0
+                u_pct = (u / total * 100) if total > 0 else 0
+
+                sub_html = (
+                    '<div class="subtotal-card">'
+                    '<div style="font-size: 16px; font-weight: bold; color: #2b6cb0; margin-bottom: 6px;">'
+                    '📌 [' + str(row["지부"]) + '] 합계 (총 대수: ' + f"{total:,.0f}" + '대) | <span style="color: #e53e3e;">한노 점유율: ' + f"{h_pct:.1f}" + '%</span>'
+                    '</div>'
+                    '<div class="item-container">'
+                    '<span class="badge-hanno">한노 ' + f"{h:.0f}" + ' (' + f"{h_pct:.1f}" + '%)</span>'
+                    '<span class="badge-minno">민노 ' + f"{m:.0f}" + ' (' + f"{m_pct:.1f}" + '%)</span>'
+                    '<span class="badge-seomvu">섬유 ' + f"{s:.0
