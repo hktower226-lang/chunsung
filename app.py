@@ -108,16 +108,17 @@ with tab1:
             is_hanno = (col == "한노")
             
             card_style = "border: 2px solid #e53e3e; background-color: #fff5f5;" if is_hanno else ""
+            color_val = "#e53e3e" if is_hanno else "#2b6cb0"
             
-            card_html = f"""
-            <div class="metric-card" style="{card_style} display: flex; justify-content: space-between; align-items: center;">
-                <div><span class="{b_class}">{col}</span></div>
-                <div>
-                    <span style="font-size: 17px; font-weight: bold;">{val:,.0f}명</span> &nbsp;|&nbsp; 
-                    <span style="font-size: 17px; color: {'#e53e3e' if is_hanno else '#2b6cb0'}; font-weight: bold;">{pct:.1f}%</span>
-                </div>
-            </div>
-            """
+            card_html = (
+                f'<div class="metric-card" style="{card_style} display: flex; justify-content: space-between; align-items: center;">'
+                f'<div><span class="{b_class}">{col}</span></div>'
+                f'<div>'
+                f'<span style="font-size: 17px; font-weight: bold;">{val:,.0f}명</span> &nbsp;|&nbsp; '
+                f'<span style="font-size: 17px; color: {color_val}; font-weight: bold;">{pct:.1f}%</span>'
+                f'</div>'
+                f'</div>'
+            )
             st.markdown(card_html, unsafe_allow_html=True)
 
         st.write("---")
@@ -130,102 +131,4 @@ with tab1:
         # 소수점 비율 행(불필요한 행) 걸러내기
         t2 = t2.dropna(subset=["총대수"])
         t2["총대수_num"] = pd.to_numeric(t2["총대수"], errors="coerce")
-        t2 = t2[~((t2["현장명"].isna()) & (t2["지부"].isna()) & (t2["총대수_num"] < 1.5))].copy()
-        
-        t2["지부"] = t2["지부"].ffill()
-
-        for num_col in ["한노", "민노", "섬유", "건산", "직원", "미정", "총대수"]:
-            t2[num_col] = pd.to_numeric(t2[num_col], errors="coerce").fillna(0)
-
-        raw_branches = t2["지부"].dropna().astype(str).unique().tolist()
-        clean_branches = []
-        for b in raw_branches:
-            cleaned = b.replace("지부 소계", "").replace("지부", "").replace(" 소계", "").strip()
-            if cleaned and cleaned not in clean_branches:
-                clean_branches.append(cleaned)
-
-        selected_branch = st.selectbox("지부를 선택하세요", ["전체 보기"] + clean_branches, key="tab1_branch")
-
-        if selected_branch != "전체 보기":
-            filtered_t2 = t2[t2["지부"].astype(str).str.contains(selected_branch)]
-        else:
-            filtered_t2 = t2
-
-        for _, row in filtered_t2.iterrows():
-            is_subtotal = "소계" in str(row["지부"]) or pd.isna(row["현장명"])
-            h, m, s, g, st_f, u, total = row["한노"], row["민노"], row["섬유"], row["건산"], row["직원"], row["미정"], row["총대수"]
-
-            if is_subtotal:
-                h_pct = (h / total * 100) if total > 0 else 0
-                m_pct = (m / total * 100) if total > 0 else 0
-                s_pct = (s / total * 100) if total > 0 else 0
-                g_pct = (g / total * 100) if total > 0 else 0
-                st_f_pct = (st_f / total * 100) if total > 0 else 0
-                u_pct = (u / total * 100) if total > 0 else 0
-
-                sub_html = f"""
-                <div class="subtotal-card">
-                    <div style="font-size: 16px; font-weight: bold; color: #2b6cb0; margin-bottom: 6px;">
-                        📌 [{row['지부']}] 합계 (총 대수: {total:,.0f}대) | <span style="color: #e53e3e;">한노 점유율: {h_pct:.1f}%</span>
-                    </div>
-                    <div class="item-container">
-                        <span class="badge-hanno">한노 {h:.0f} ({h_pct:.1f}%)</span>
-                        <span class="badge-minno">민노 {m:.0f} ({m_pct:.1f}%)</span>
-                        <span class="badge-seomvu">섬유 {s:.0f} ({s_pct:.1f}%)</span>
-                        <span class="badge-geonsan">건산 {g:.0f} ({g_pct:.1f}%)</span>
-                        <span class="badge-staff">직원 {st_f:.0f} ({st_f_pct:.1f}%)</span>
-                        <span class="badge-etc">미정 {u:.0f} ({u_pct:.1f}%)</span>
-                    </div>
-                </div>
-                """
-                st.markdown(sub_html, unsafe_allow_html=True)
-            else:
-                h_pct = (h / total * 100) if total > 0 else 0
-                card_html = f"""
-                <div class="metric-card">
-                    <div style="font-weight: bold; font-size: 15px; color: #1a202c;">{row['현장명']}</div>
-                    <div style="font-size: 13px; color: #718096; margin-bottom: 4px;">타워사: {row['타워회사']} | 총 대수: <b>{total:,.0f}대</b> | <span style="color: #e53e3e; font-weight: bold;">한노 {h_pct:.1f}%</span></div>
-                    <div class="item-container">
-                        <span class="badge-hanno">한노 {h:.0f}</span>
-                        <span class="badge-minno">민노 {m:.0f}</span>
-                        <span class="badge-seomvu">섬유 {s:.0f}</span>
-                        <span class="badge-geonsan">건산 {g:.0f}</span>
-                        <span class="badge-staff">직원 {st_f:.0f}</span>
-                        <span class="badge-etc">미정 {u:.0f}</span>
-                    </div>
-                </div>
-                """
-                st.markdown(card_html, unsafe_allow_html=True)
-
-        st.write("---")
-        st.subheader("🏗 임대사별 한노 점유율 검색")
-
-        t3 = df_ratio.iloc[81:, :10].copy()
-        t3.columns = ["타워사", "현장수", "한노", "민노", "섬유", "건산", "직원", "기타", "합계", "한노점유율"]
-        t3 = t3.dropna(subset=["타워사"])
-
-        for col in ["현장수", "한노", "민노", "섬유", "건산", "직원", "기타", "합계", "한노점유율"]:
-            t3[col] = pd.to_numeric(t3[col], errors="coerce").fillna(0)
-
-        t3 = t3.dropna(subset=["합계"])
-        t3 = t3.sort_values(by="한노점유율", ascending=False).reset_index(drop=True)
-
-        tower_list = t3["타워사"].tolist()
-        selected_tower = st.selectbox("임대사(타워사) 선택", ["전체 보기"] + tower_list, key="tab1_tower")
-
-        if selected_tower != "전체 보기":
-            filtered_t3 = t3[t3["타워사"] == selected_tower]
-        else:
-            filtered_t3 = t3
-
-        for _, row in filtered_t3.iterrows():
-            hanno_share = row["한노점유율"] * 100 if pd.notna(row["한노점유율"]) else 0
-            t_html = f"""
-            <div class="metric-card">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-                    <span style="font-size: 15px; font-weight: bold; color: #2d3748;">{row['타워사']}</span>
-                    <span style="font-size: 15px; font-weight: bold; color: #e53e3e;">한노 점유율: {hanno_share:.1f}%</span>
-                </div>
-                <div style="font-size: 13px; color: #718096; margin-bottom: 4px;">현장수: {row['현장수']}개 | 총합계: {row['합계']:.0f}명</div>
-                <div class="item-container">
-                    <span class="badge-hanno
+        t2 = t2[~((t2["현장명"].isna()) & (t2["지부"].isna()) & (t2["총대수_num"] < 1.5))
