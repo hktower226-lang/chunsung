@@ -4,7 +4,7 @@ import pandas as pd
 st.set_page_config(
     page_title="2026 채용 현황 대시보드",
     page_icon="📱",
-    layout="centered", # 모바일 레이아웃 최적화
+    layout="centered",
     initial_sidebar_state="collapsed"
 )
 
@@ -49,7 +49,7 @@ st.markdown("""
 # 깃허브 원본 엑셀 RAW URL
 GITHUB_EXCEL_URL = "https://raw.githubusercontent.com/chunsung/chunsung/main/%EC%B2%84%EC%9A%A9%EB%B9%84%EC%9C%A8.xlsx"
 
-@st.cache_data(ttl=60) # 1분 간격 자동 갱신
+@st.cache_data(ttl=60)
 def load_excel_data():
     try:
         xl = pd.ExcelFile(GITHUB_EXCEL_URL)
@@ -65,10 +65,7 @@ if df_raw is not None:
     st.title("📱 2026 채용 현황")
     st.caption("🔄 GitHub 연동 완료 (자동 업데이트)")
 
-    # ----------------------------------------------------
     # 1. 메인 고정: 2026년 전체 소속별 점유율
-    # ----------------------------------------------------
     st.markdown("### 📊 2026년 전체 소속별 점유율")
     
     try:
-        cnt_vals =
