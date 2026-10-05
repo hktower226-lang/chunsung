@@ -70,7 +70,6 @@ st.markdown('<div class="sticky-header">', unsafe_allow_html=True)
 st.markdown("### 📌 26년 전체 소속별 점유율")
 
 try:
-  # 데이터 추출
   hanno_c, minno_c, seom_c, geonsan_c, staff_c, mijung_c, total_c, _ = (
       df.iloc[1, 1:9].values
   )
@@ -122,79 +121,4 @@ try:
         f"""<div class="metric-box">
         <span class="badge-staff">직원</span><br>
         <b style="font-size: 1.1rem;">{staff_c}대</b><br>
-        <span style="color: #7b1fa2; font-size: 0.85rem; font-weight: bold;">({float(staff_p)*100:.1f}%)</span>
-        </div>""",
-        unsafe_allow_html=True,
-    )
-  with r2_c3:
-    st.markdown(
-        f"""<div class="metric-box">
-        <span class="badge-mijung">미정</span><br>
-        <b style="font-size: 1.1rem;">{mijung_c}대</b><br>
-        <span style="color: #37474f; font-size: 0.85rem; font-weight: bold;">({float(mijung_p)*100:.1f}%)</span>
-        </div>""",
-        unsafe_allow_html=True,
-    )
-
-  # 합계
-  st.markdown(
-      f"<div style='text-align: center; margin-top: 4px; font-weight: bold; font-size: 1rem;'>총대수 합계: {total_c}대 (100%)</div>",
-      unsafe_allow_html=True,
-  )
-
-except Exception as e:
-  st.warning(f"상단 요약 로딩 중: {e}")
-
-st.markdown("</div>", unsafe_allow_html=True)
-
-# ==========================================
-# 데이터 전처리: 지부별 현장 정보 파싱
-# ==========================================
-raw_data = df.iloc[6:76].copy()
-raw_data.columns = [
-    "지부",
-    "현장명",
-    "타워회사",
-    "특이사항",
-    "한노",
-    "민노",
-    "섬유",
-    "건산",
-    "직원",
-    "미정",
-    "총대수",
-    "비고",
-]
-
-jibues = ["북부", "남부", "남서", "동부", "서부", "북서", "용인", "중부"]
-
-# ==========================================
-# 2. 8개 지역 지부별 소계 및 상세 수치 출력
-# ==========================================
-st.markdown("### 🏢 8개 지역 지부별 현황 및 소계")
-st.markdown(
-    "<p style='font-size: 0.9rem; color: gray;'>지부 소계 탭을 누르면 각 현장의 세부 내역이 펼쳐집니다.</p>",
-    unsafe_allow_html=True,
-)
-
-for jibu in jibues:
-  jibu_df = raw_data[raw_data["지부"] == jibu]
-  if jibu_df.empty:
-    continue
-
-  subtotal_row = jibu_df[jibu_df["현장명"].isna()]
-  if not subtotal_row.empty:
-    st_idx = subtotal_row.index[0]
-    hanno_cnt = raw_data.loc[st_idx, "한노"]
-    minno_cnt = raw_data.loc[st_idx, "민노"]
-    seom_cnt = raw_data.loc[st_idx, "섬유"]
-    geonsan_cnt = raw_data.loc[st_idx, "건산"]
-    staff_cnt = raw_data.loc[st_idx, "직원"]
-    mijung_cnt = raw_data.loc[st_idx, "미정"]
-    total_cnt = raw_data.loc[st_idx, "총대수"]
-
-    pct_row_idx = st_idx + 1
-    if pct_row_idx in raw_data.index:
-      hp = (
-          float(raw_data.loc[pct_row_idx, "한노"]) * 100
-          if pd.notna(raw_data.loc
+        <span style="color: #7b1fa2; font-size: 0.85rem; font-weight: bold;">({float(staff_p)*10
