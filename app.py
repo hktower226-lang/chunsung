@@ -108,19 +108,18 @@ with tab1:
             is_hanno = (col == "한노")
             
             card_style = "border: 2px solid #e53e3e; background-color: #fff5f5;" if is_hanno else ""
+            pct_color = "#e53e3e" if is_hanno else "#2b6cb0"
             
-            st.markdown(
-                f"""
-                <div class="metric-card" style="{card_style} display: flex; justify-content: space-between; align-items: center;">
-                    <div><span class="{b_class}">{col}</span></div>
-                    <div>
-                        <span style="font-size: 17px; font-weight: bold;">{val:,.0f}명</span> &nbsp;|&nbsp; 
-                        <span style="font-size: 17px; color: {'#e53e3e' if is_hanno else '#2b6cb0'}; font-weight: bold;">{pct:.1f}%</span>
-                    </div>
-                </div>
-                """,
-                unsafe_allow_html=True,
+            html_content = (
+                '<div class="metric-card" style="' + card_style + ' display: flex; justify-content: space-between; align-items: center;">'
+                '<div><span class="' + b_class + '">' + col + '</span></div>'
+                '<div>'
+                '<span style="font-size: 17px; font-weight: bold;">' + f"{val:,.0f}" + '명</span> &nbsp;|&nbsp; '
+                '<span style="font-size: 17px; color: ' + pct_color + '; font-weight: bold;">' + f"{pct:.1f}" + '%</span>'
+                '</div>'
+                '</div>'
             )
+            st.markdown(html_content, unsafe_allow_html=True)
 
         st.write("---")
         st.subheader("🔍 경기지역본부 현장 및 지부 검색")
@@ -147,13 +146,11 @@ with tab1:
         else:
             filtered_t2 = t2
 
-        # 중복 소계 출력 방지를 위한 집합(Set)
         printed_subtotals = set()
 
         for _, row in filtered_t2.iterrows():
             is_subtotal = "소계" in str(row["지부"]) or pd.isna(row["현장명"])
             
-            # 소계 행인 경우 이미 출력된 지부인지 확인하고 중복 제거 (위에 것만 남김)
             if is_subtotal:
                 raw_b = str(row["지부"])
                 base_b = raw_b.replace("지부 소계", "").replace("지부", "").replace(" 소계", "").strip()
@@ -173,43 +170,39 @@ with tab1:
                 st_f_pct = (st_f / total * 100) if total > 0 else 0
                 u_pct = (u / total * 100) if total > 0 else 0
 
-                st.markdown(
-                    f"""
-                    <div class="subtotal-card">
-                        <div style="font-size: 16px; font-weight: bold; color: #2b6cb0; margin-bottom: 6px;">
-                            📌 [{row['지부']}] 합계 (총 대수: {total:,.0f}대) | <span style="color: #e53e3e;">한노 점유율: {h_pct:.1f}%</span>
-                        </div>
-                        <div class="item-container">
-                            <span class="badge-hanno">한노 {h:.0f} ({h_pct:.1f}%)</span>
-                            <span class="badge-minno">민노 {m:.0f} ({m_pct:.1f}%)</span>
-                            <span class="badge-seomvu">섬유 {s:.0f} ({s_pct:.1f}%)</span>
-                            <span class="badge-geonsan">건산 {g:.0f} ({g_pct:.1f}%)</span>
-                            <span class="badge-staff">직원 {st_f:.0f} ({st_f_pct:.1f}%)</span>
-                            <span class="badge-etc">미정 {u:.0f} ({u_pct:.1f}%)</span>
-                        </div>
-                    </div>
-                    """,
-                    unsafe_allow_html=True,
+                sub_html = (
+                    '<div class="subtotal-card">'
+                    '<div style="font-size: 16px; font-weight: bold; color: #2b6cb0; margin-bottom: 6px;">'
+                    '📌 [' + str(row['지부']) + '] 합계 (총 대수: ' + f"{total:,.0f}" + '대) | <span style="color: #e53e3e;">한노 점유율: ' + f"{h_pct:.1f}" + '%</span>'
+                    '</div>'
+                    '<div class="item-container">'
+                    '<span class="badge-hanno">한노 ' + f"{h:.0f}" + ' (' + f"{h_pct:.1f}" + '%)</span>'
+                    '<span class="badge-minno">민노 ' + f"{m:.0f}" + ' (' + f"{m_pct:.1f}" + '%)</span>'
+                    '<span class="badge-seomvu">섬유 ' + f"{s:.0f}" + ' (' + f"{s_pct:.1f}" + '%)</span>'
+                    '<span class="badge-geonsan">건산 ' + f"{g:.0f}" + ' (' + f"{g_pct:.1f}" + '%)</span>'
+                    '<span class="badge-staff">직원 ' + f"{st_f:.0f}" + ' (' + f"{st_f_pct:.1f}" + '%)</span>'
+                    '<span class="badge-etc">미정 ' + f"{u:.0f}" + ' (' + f"{u_pct:.1f}" + '%)</span>'
+                    '</div>'
+                    '</div>'
                 )
+                st.markdown(sub_html, unsafe_allow_html=True)
             else:
                 h_pct = (h / total * 100) if total > 0 else 0
-                st.markdown(
-                    f"""
-                    <div class="metric-card">
-                        <div style="font-weight: bold; font-size: 15px; color: #1a202c;">{row['현장명']}</div>
-                        <div style="font-size: 13px; color: #718096; margin-bottom: 4px;">타워사: {row['타워회사']} | 총 대수: <b>{total:,.0f}대</b> | <span style="color: #e53e3e; font-weight: bold;">한노 {h_pct:.1f}%</span></div>
-                        <div class="item-container">
-                            <span class="badge-hanno">한노 {h:.0f}</span>
-                            <span class="badge-minno">민노 {m:.0f}</span>
-                            <span class="badge-seomvu">섬유 {s:.0f}</span>
-                            <span class="badge-geonsan">건산 {g:.0f}</span>
-                            <span class="badge-staff">직원 {st_f:.0f}</span>
-                            <span class="badge-etc">미정 {u:.0f}</span>
-                        </div>
-                    </div>
-                    """,
-                    unsafe_allow_html=True,
+                card_html = (
+                    '<div class="metric-card">'
+                    '<div style="font-weight: bold; font-size: 15px; color: #1a202c;">' + str(row['현장명']) + '</div>'
+                    '<div style="font-size: 13px; color: #718096; margin-bottom: 4px;">타워사: ' + str(row['타워회사']) + ' | 총 대수: <b>' + f"{total:,.0f}" + '대</b> | <span style="color: #e53e3e; font-weight: bold;">한노 ' + f"{h_pct:.1f}" + '%</span></div>'
+                    '<div class="item-container">'
+                    '<span class="badge-hanno">한노 ' + f"{h:.0f}" + '</span>'
+                    '<span class="badge-minno">민노 ' + f"{m:.0f}" + '</span>'
+                    '<span class="badge-seomvu">섬유 ' + f"{s:.0f}" + '</span>'
+                    '<span class="badge-geonsan">건산 ' + f"{g:.0f}" + '</span>'
+                    '<span class="badge-staff">직원 ' + f"{st_f:.0f}" + '</span>'
+                    '<span class="badge-etc">미정 ' + f"{u:.0f}" + '</span>'
+                    '</div>'
+                    '</div>'
                 )
+                st.markdown(card_html, unsafe_allow_html=True)
 
         st.write("---")
         st.subheader("🏗 임대사별 한노 점유율 검색")
@@ -234,9 +227,79 @@ with tab1:
 
         for _, row in filtered_t3.iterrows():
             hanno_share = row["한노점유율"] * 100 if pd.notna(row["한노점유율"]) else 0
-            st.markdown(
-                f"""
-                <div class="metric-card">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-                        <span style="font-size: 15px; font-weight: bold; color: #2d3748;">{row['타워사']}</span>
-                        <span style="font-size: 15px;
+            t3_html = (
+                '<div class="metric-card">'
+                '<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">'
+                '<span style="font-size: 15px; font-weight: bold; color: #2d3748;">' + str(row['타워사']) + '</span>'
+                '<span style="font-size: 15px; font-weight: bold; color: #e53e3e;">한노 점유율: ' + f"{hanno_share:.1f}" + '%</span>'
+                '</div>'
+                '<div style="font-size: 13px; color: #718096; margin-bottom: 4px;">현장수: ' + str(row['현장수']) + '개 | 총합계: ' + f"{row['합계']:.0f}" + '명</div>'
+                '<div class="item-container">'
+                '<span class="badge-hanno">한노 ' + f"{row['한노']:.0f}" + '</span>'
+                '<span class="badge-minno">민노 ' + f"{row['민노']:.0f}" + '</span>'
+                '<span class="badge-seomvu">섬유 ' + f"{row['섬유']:.0f}" + '</span>'
+                '<span class="badge-geonsan">건산 ' + f"{row['건산']:.0f}" + '</span>'
+                '<span class="badge-staff">직원 ' + f"{row['직원']:.0f}" + '</span>'
+                '<span class="badge-etc">기타 ' + f"{row['기타']:.0f}" + '</span>'
+                '</div>'
+                '</div>'
+            )
+            st.markdown(t3_html, unsafe_allow_html=True)
+
+    except Exception as e:
+        st.warning(f"데이터 처리 중 오류 발생: {e}")
+
+# -------------------------------------------------------------------------
+# [탭 2] 반도체현장 시트
+# -------------------------------------------------------------------------
+with tab2:
+    st.header("⚡ 반도체현장 타워크레인 설치 및 노조별 대수")
+    st.markdown("반도체 현장 전체 대수 비교 및 현장명 검색 기능입니다.")
+
+    try:
+        df_semi = pd.read_excel(file_path, sheet_name="반도체현장")
+        
+        total_summary_val = df_semi.iloc[4, 0]
+        h_semi = df_semi.iloc[4, 1]
+        m_semi = df_semi.iloc[4, 2]
+        c_semi = df_semi.iloc[4, 3]
+        b_semi = df_semi.iloc[4, 4]
+
+        semi_sum_html = (
+            '<div class="subtotal-card">'
+            '<div style="font-size: 16px; font-weight: bold; color: #2b6cb0; margin-bottom: 6px;">'
+            '📌 반도체 현장 전체 대수 비교 (총 대수: ' + str(total_summary_val) + '대)'
+            '</div>'
+            '<div class="item-container">'
+            '<span class="badge-hanno">한국노총 ' + str(h_semi) + '</span>'
+            '<span class="badge-minno">민주노총 ' + str(m_semi) + '</span>'
+            '<span class="badge-seomvu">건설노조 ' + str(c_semi) + '</span>'
+            '<span class="badge-etc">비노조 ' + str(b_semi) + '</span>'
+            '</div>'
+            '</div>'
+        )
+        st.markdown(semi_sum_html, unsafe_allow_html=True)
+
+        st.write("---")
+        st.subheader("🔍 반도체 현장명 검색")
+
+        t_semi_details = df_semi.iloc[8:, :9].copy()
+        t_semi_details.columns = ["No", "현장명", "전체대수", "한국노총", "민주노총", "건설노조", "비노조", "미정", "비고"]
+        t_semi_details = t_semi_details.dropna(subset=["현장명"])
+
+        for col in ["전체대수", "한국노총", "민주노총", "건설노조", "비노조", "미정"]:
+            t_semi_details[col] = pd.to_numeric(t_semi_details[col], errors="coerce").fillna(0)
+
+        semi_sites = t_semi_details["현장명"].tolist()
+        selected_semi_site = st.selectbox("현장명을 선택하세요", ["전체 보기"] + semi_sites, key="tab2_site")
+
+        if selected_semi_site != "전체 보기":
+            filtered_semi = t_semi_details[t_semi_details["현장명"] == selected_semi_site]
+        else:
+            filtered_semi = t_semi_details
+
+        for _, row in filtered_semi.iterrows():
+            semi_card_html = (
+                '<div class="metric-card">'
+                '<div style="font-weight: bold; font-size: 15px; color: #1a202c;">' + str(row['현장명']) + '</div>'
+                '<div style="font-size: 13px; color: #718096; margin-bottom: 4px;">전체 대수: <b>
