@@ -8,7 +8,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# 모바일 가독성 및 스타일 CSS 적용 (가로 스크롤 방지 및 카드형 UI)
+# 모바일 가독성 및 스타일 CSS 적용
 st.markdown(
     """
     <style>
@@ -35,7 +35,6 @@ st.markdown(
         word-break: break-all;
     }
     
-    /* 항목 배지 스타일 */
     .badge-hanno { background-color: #e53e3e; color: white; padding: 4px 8px; border-radius: 6px; font-weight: bold; display: inline-block; margin: 2px; font-size: 13px; }
     .badge-minno { background-color: #3182ce; color: white; padding: 4px 8px; border-radius: 6px; font-weight: bold; display: inline-block; margin: 2px; font-size: 13px; }
     .badge-seomvu { background-color: #dd6b20; color: white; padding: 4px 8px; border-radius: 6px; font-weight: bold; display: inline-block; margin: 2px; font-size: 13px; }
@@ -51,7 +50,7 @@ st.markdown(
         align-items: center;
     }
     </style>
-""",
+    """,
     unsafe_allow_html=True,
 )
 
@@ -108,7 +107,6 @@ with tab1:
             b_class = badge_map.get(col, "badge-etc")
             is_hanno = (col == "한노")
             
-            # 한노 강조 스타일
             card_style = "border: 2px solid #e53e3e; background-color: #fff5f5;" if is_hanno else ""
             
             st.markdown(
@@ -200,9 +198,8 @@ with tab1:
                 )
 
         st.write("---")
-        st.subheader("🏗️ 임대사별 한노 점유율 검색")
+        st.subheader("🏗️️ 임대사별 한노 점유율 검색")
 
-        # 3. 타워(임대)사별 현황 및 검색
         t3 = df_ratio.iloc[81:, :10].copy()
         t3.columns = ["타워사", "현장수", "한노", "민노", "섬유", "건산", "직원", "기타", "합계", "한노점유율"]
         t3 = t3.dropna(subset=["타워사"])
@@ -257,13 +254,11 @@ with tab2:
     try:
         df_semi = pd.read_excel(file_path, sheet_name="반도체현장")
         
-        # 1. 반도체 현장 전체 대수 비교 (상단 고정)
         total_summary_val = df_semi.iloc[4, 0]
         h_semi = df_semi.iloc[4, 1]
         m_semi = df_semi.iloc[4, 2]
-        c_semi = df_semi.iloc[4, 3] # 건설노조(건산,섬유)
-        b_semi = df_semi.iloc[4, 4] # 비노조
-        u_semi = df_semi.iloc[4, 5] if df_semi.shape[1] > 5 else 0
+        c_semi = df_semi.iloc[4, 3]
+        b_semi = df_semi.iloc[4, 4]
 
         st.markdown(
             f"""
@@ -285,7 +280,6 @@ with tab2:
         st.write("---")
         st.subheader("🔍 반도체 현장명 검색")
 
-        # 2. 각 현장별 상세 현황
         t_semi_details = df_semi.iloc[8:, :9].copy()
         t_semi_details.columns = ["No", "현장명", "전체대수", "한국노총", "민주노총", "건설노조", "비노조", "미정", "비고"]
         t_semi_details = t_semi_details.dropna(subset=["현장명"])
@@ -322,19 +316,66 @@ with tab2:
         st.warning(f"데이터 처리 중 오류 발생: {e}")
 
 # -------------------------------------------------------------------------
-# [탭 3] 과거 채용비율 ('목록' 시트 데이터 활용 또는 24~25년 데이터)
+# [탭 3] 과거 채용비율 ('목록' 시트 데이터 활용)
 # -------------------------------------------------------------------------
 with tab3:
     st.header("📈 24년 9월 ~ 25년 12월 채용비율 현황")
     st.markdown("전체 채용비율 요약 및 임대사/원청사 검색 기능입니다.")
 
     try:
-        # '목록' 시트를 활용하여 임대사별/원청사별 구조 표현 (사용자 요구사항 반영)
         df_list = pd.read_excel(file_path, sheet_name="목록")
         
-        # 상단 전체 채용비율 안내 카드 고정
         st.markdown(
             """
             <div class="subtotal-card">
                 <div style="font-size: 16px; font-weight: bold; color: #2b6cb0; margin-bottom: 4px;">
-                    📌 24년 9월 ~ 25년 12월 전체 채용비
+                    📌 24년 9월 ~ 25년 12월 전체 채용비율 현황
+                </div>
+                <div style="font-size: 14px; color: #4a5568;">
+                    해당 기간 동안의 임대사 및 원청사별 타워크레인 투입 및 노조 구성 내역입니다.
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+        st.write("---")
+        st.subheader("🔍 임대사 / 원청사 검색")
+
+        df_clean = df_list.iloc[2:, [3, 4, 1, 6]].copy()
+        df_clean.columns = ["임대사", "원청사", "본부", "대형소형"]
+        df_clean = df_clean.dropna(subset=["임대사"])
+
+        search_keyword = st.text_input("임대사 또는 원청사 이름을 입력하세요")
+
+        if search_keyword:
+            searched_df = df_clean[
+                df_clean["임대사"].astype(str).str.contains(search_keyword, na=False) | 
+                df_clean["원청사"].astype(str).str.contains(search_keyword, na=False)
+            ]
+        else:
+            searched_df = df_clean.head(20)
+
+        if not searched_df.empty:
+            for _, row in searched_df.iterrows():
+                st.markdown(
+                    f"""
+                    <div class="metric-card">
+                        <div style="font-weight: bold; font-size: 15px; color: #2b6cb0;">임대사: {row['임대사']}</div>
+                        <div style="font-size: 14px; color: #2d3748; margin-top: 2px;">원청사: {row['원청사']}</div>
+                        <div style="font-size: 12px; color: #718096; margin-top: 4px;">본부: {row.get('본부', 'N/A')} | 규격: {row.get('대형소형', 'N/A')}</div>
+                    </div>
+                    """,
+                    unsafe_allow_html=True,
+                )
+        else:
+            st.info("검색 결과가 없습니다.")
+
+    except Exception as e:
+        st.warning(f"데이터 처리 중 오류 발생: {e}")
+
+st.markdown("---")
+st.markdown(
+    "<p style='text-align: center; color: gray;'>모바일 화면 최적화 완료</p>",
+    unsafe_allow_html=True,
+)
