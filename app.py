@@ -147,8 +147,22 @@ with tab1:
         else:
             filtered_t2 = t2
 
+        # 중복 소계 출력 방지를 위한 집합(Set)
+        printed_subtotals = set()
+
         for _, row in filtered_t2.iterrows():
             is_subtotal = "소계" in str(row["지부"]) or pd.isna(row["현장명"])
+            
+            # 소계 행인 경우 이미 출력된 지부인지 확인하고 중복 제거 (위에 것만 남김)
+            if is_subtotal:
+                raw_b = str(row["지부"])
+                base_b = raw_b.replace("지부 소계", "").replace("지부", "").replace(" 소계", "").strip()
+                if not base_b:
+                    base_b = raw_b
+                if base_b in printed_subtotals:
+                    continue
+                printed_subtotals.add(base_b)
+
             h, m, s, g, st_f, u, total = row["한노"], row["민노"], row["섬유"], row["건산"], row["직원"], row["미정"], row["총대수"]
 
             if is_subtotal:
@@ -198,7 +212,7 @@ with tab1:
                 )
 
         st.write("---")
-        st.subheader("🏗️️ 임대사별 한노 점유율 검색")
+        st.subheader("🏗 임대사별 한노 점유율 검색")
 
         t3 = df_ratio.iloc[81:, :10].copy()
         t3.columns = ["타워사", "현장수", "한노", "민노", "섬유", "건산", "직원", "기타", "합계", "한노점유율"]
@@ -368,14 +382,3 @@ with tab3:
                     """,
                     unsafe_allow_html=True,
                 )
-        else:
-            st.info("검색 결과가 없습니다.")
-
-    except Exception as e:
-        st.warning(f"데이터 처리 중 오류 발생: {e}")
-
-st.markdown("---")
-st.markdown(
-    "<p style='text-align: center; color: gray;'>모바일 화면 최적화 완료</p>",
-    unsafe_allow_html=True,
-)
