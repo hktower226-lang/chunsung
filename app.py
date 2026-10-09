@@ -113,11 +113,31 @@ if sheets is None:
 
 # 시트 이름 매핑
 sheet_names = list(sheets.keys())
-s1_name = sheet_names[0] if len(sheet_names) > 0 else "1.26년 전체 소속별 점유율"
-s2_name = sheet_names[1] if len(sheet_names) > 1 else "2.각8개지부 현장점유율"
-s3_name = sheet_names[2] if len(sheet_names) > 2 else "3.타워사별 점유현황"
-s4_name = sheet_names[3] if len(sheet_names) > 3 else "4.반도체현장"
-s5_name = sheet_names[4] if len(sheet_names) > 4 else "5.1~9월채용추이"
+
+if len(sheet_names) > 0:
+    s1_name = sheet_names[0]
+else:
+    s1_name = "1.26년 전체 소속별 점유율"
+
+if len(sheet_names) > 1:
+    s2_name = sheet_names[1]
+else:
+    s2_name = "2.각8개지부 현장점유율"
+
+if len(sheet_names) > 2:
+    s3_name = sheet_names[2]
+else:
+    s3_name = "3.타워사별 점유현황"
+
+if len(sheet_names) > 3:
+    s4_name = sheet_names[3]
+else:
+    s4_name = "4.반도체현장"
+
+if len(sheet_names) > 4:
+    s5_name = sheet_names[4]
+else:
+    s5_name = "5.1~9월채용추이"
 
 
 # 퍼센트 포맷 변환 헬퍼 함수
@@ -153,7 +173,7 @@ menu = st.sidebar.radio(
 # ==========================================
 
 # ------------------------------------------
-# [메뉴 1] 메인: 1.26년 전체 소속별 점유율 (글씨 크기 조정)
+# [메뉴 1] 메인: 1.26년 전체 소속별 점유율
 # ------------------------------------------
 if menu == "🏠 메인: 전체 소속별 점유율":
     st.title("📊 2026년 전체 소속별 점유율")
@@ -208,7 +228,7 @@ if menu == "🏠 메인: 전체 소속별 점유율":
             },
         ]
 
-        # 1. 상단 총 대수 강조 카드 (글씨 크기 및 여백 축소)
+        # 1. 상단 총 대수 강조 카드
         st.markdown(
             f"""
         <div class="main-total-card">
@@ -221,7 +241,7 @@ if menu == "🏠 메인: 전체 소속별 점유율":
 
         st.markdown("<h4 style='font-size: 1.2rem; font-weight: bold; color: #1E40AF; margin-bottom: 10px;'>👇 소속별 점유 현황 (위아래 세로 보기)</h4>", unsafe_allow_html=True)
 
-        # 2. 위아래로 내리는 세로 배치 카드 (글씨 크기 및 간격 축소)
+        # 2. 위아래로 내리는 세로 배치 카드
         for item in stat_items:
             st.markdown(
                 f"""
@@ -244,7 +264,7 @@ if menu == "🏠 메인: 전체 소속별 점유율":
 
 
 # ------------------------------------------
-# [메뉴 2] 2.각 8개지부 현장점유율
+# [메뉴 2] 2.각 8개지부 현장점유율 (요청 반영)
 # ------------------------------------------
 elif menu == "🏢 각 8개지부 현장 점유율":
     st.title("🏢 지부별 현장 점유율")
@@ -285,7 +305,6 @@ elif menu == "🏢 각 8개지부 현장 점유율":
                 "sites": [],
             }
 
-        # '소계퍼센테이지'를 먼저 파싱하여 '소계' 조건에 오버라이드되는 문제 해결
         if "퍼센테이지" in branch_col or "소계퍼센테이지" in branch_col:
             branch_data[current_branch]["percent"] = r
         elif "소계" in branch_col:
@@ -293,7 +312,6 @@ elif menu == "🏢 각 8개지부 현장 점유율":
         elif pd.notna(r[1]) and str(r[1]).strip() != "현장명":  # 현장 데이터
             branch_data[current_branch]["sites"].append(r)
 
-    # 각 지부별 Expander 출력 (소계 및 퍼센티지 요약 + 클릭 시 현장 목록 표출)
     st.subheader("📌 각 8개 지부 현장 점유율")
 
     for b_name in branches:
@@ -303,36 +321,34 @@ elif menu == "🏢 각 8개지부 현장 점유율":
             pct_row = b_info["percent"]
             sites_list = b_info["sites"]
 
-            with st.expander(f"🔹 {b_name} 소계 및 퍼센테이지 (클릭하여 열기/접기)"):
-                # 1. 요약 소계 및 퍼센티지 표시
-                if sum_row is not None and pct_row is not None:
-                    hanno_cnt, hanno_pct = sum_row[4], fmt_pct(pct_row[4])
-                    minno_cnt, minno_pct = sum_row[5], fmt_pct(pct_row[5])
-                    seomoo_cnt, seomoo_pct = sum_row[6], fmt_pct(pct_row[6])
-                    geunsan_cnt, geunsan_pct = sum_row[7], fmt_pct(pct_row[7])
-                    jikwon_cnt, jikwon_pct = sum_row[8], fmt_pct(pct_row[8])
-                    mijeong_cnt, mijeong_pct = sum_row[9], fmt_pct(pct_row[9])
-                    total_cnt = sum_row[10] if len(sum_row) > 10 else "-"
+            # 외부 제목 만들기 (요청대로 소속별 색상 지정 및 한 줄 표출)
+            if sum_row is not None and pct_row is not None:
+                hanno_cnt, hanno_pct = sum_row[4], fmt_pct(pct_row[4])
+                minno_cnt, minno_pct = sum_row[5], fmt_pct(pct_row[5])
+                seomoo_cnt, seomoo_pct = sum_row[6], fmt_pct(pct_row[6])
+                geunsan_cnt, geunsan_pct = sum_row[7], fmt_pct(pct_row[7])
+                jikwon_cnt, jikwon_pct = sum_row[8], fmt_pct(pct_row[8])
+                mijeong_cnt, mijeong_pct = sum_row[9], fmt_pct(pct_row[9])
+                total_cnt = sum_row[10] if len(sum_row) > 10 else "-"
 
-                    st.markdown(
-                        f"📊 **한노** {hanno_cnt}({hanno_pct}) &nbsp;|&nbsp; "
-                        f"**민노** {minno_cnt}({minno_pct}) &nbsp;|&nbsp; "
-                        f"**섬유** {seomoo_cnt}({seomoo_pct}) &nbsp;|&nbsp; "
-                        f"**건산** {geunsan_cnt}({geunsan_pct}) &nbsp;|&nbsp; "
-                        f"**직원** {jikwon_cnt}({jikwon_pct}) &nbsp;|&nbsp; "
-                        f"**미정** {mijeong_cnt}({mijeong_pct}) &nbsp;|&nbsp; "
-                        f"**총대수** {total_cnt}(100%)"
-                    )
-                elif sum_row is not None:
-                    st.markdown(
-                        f"📊 **총대수:** {sum_row[10] if len(sum_row)>10 else '-'}대 | "
-                        f"한노: {sum_row[4]} | 민노: {sum_row[5]} | 섬유: {sum_row[6]} | "
-                        f"건산: {sum_row[7]} | 직원: {sum_row[8]} | 미정: {sum_row[9]}"
-                    )
+                expander_label = (
+                    f"{b_name}📊 "
+                    f":red[한노 {hanno_cnt}({hanno_pct})] | "
+                    f":blue[민노 {minno_cnt}({minno_pct})] | "
+                    f":green[섬유 {seomoo_cnt}({seomoo_pct})] | "
+                    f":orange[건산 {geunsan_cnt}({geunsan_pct})] | "
+                    f":violet[직원 {jikwon_cnt}({jikwon_pct})] | "
+                    f":gray[미정 {mijeong_cnt}({mijeong_pct})] | "
+                    f"**총대수 {total_cnt}(100%)**"
+                )
+            elif sum_row is not None:
+                total_cnt = sum_row[10] if len(sum_row) > 10 else "-"
+                expander_label = f"{b_name}📊 **총대수 {total_cnt}대**"
+            else:
+                expander_label = f"{b_name}"
 
-                st.markdown("<hr style='margin: 10px 0;'>", unsafe_allow_html=True)
-
-                # 2. 클릭 시 표출되는 현장 상세 테이블
+            # 펼치기 항목
+            with st.expander(expander_label):
                 if sites_list:
                     site_df = pd.DataFrame(sites_list)
                     display_df = pd.DataFrame(
