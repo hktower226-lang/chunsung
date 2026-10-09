@@ -356,7 +356,7 @@ elif menu == "🏗️ 3. 타워사별 점유 현황":
 
 
 # ------------------------------------------
-# [메뉴 4] 반도체 현장 현황 (전체 대수 111대 100% 카드 시각화 및 노조별 색상 구분)
+# [메뉴 4] 반도체 현장 현황
 # ------------------------------------------
 elif menu == "🏭 4. 반도체 현장 현황":
     st.title("🏭 반도체 현장 타워크레인 현황")
@@ -379,7 +379,6 @@ elif menu == "🏭 4. 반도체 현장 현황":
         non_p = fmt_pct(df4_raw.iloc[6, 4])
         mi_p = fmt_pct(df4_raw.iloc[6, 5])
 
-        # 상단 전체 대수 카드
         st.markdown(
             f"""
         <div class="main-total-card">
@@ -390,7 +389,6 @@ elif menu == "🏭 4. 반도체 현장 현황":
             unsafe_allow_html=True,
         )
 
-        # 노조별 카드 시각화 (색상 구분)
         col_s1, col_s2 = st.columns(2)
         with col_s1:
             st.markdown(
@@ -473,7 +471,7 @@ elif menu == "🏭 4. 반도체 현장 현황":
 
 
 # ------------------------------------------
-# [메뉴 5] 1~9월 채용 추이 (1월 포함 및 상세 항목 색상 구분)
+# [메뉴 5] 1~9월 채용 추이 (9월 미정 인원 안내 문구 추가)
 # ------------------------------------------
 elif menu == "📅 5. 1~9월 채용 추이":
     st.title("📅 월별 채용 현황 및 추이")
@@ -534,6 +532,10 @@ elif menu == "📅 5. 1~9월 채용 추이":
                     f"<span style='color:#8B5CF6; font-weight:bold;'>직원: {fmt_pct(pct_row[7])}</span>",
                     unsafe_allow_html=True
                 )
+            
+            # 9월 채용 현황일 경우 미정 인원 안내 문구 추가
+            if "9월" in m_name:
+                st.info("ℹ️ 참고: 미정인원 12명 (인력 확정 시 비율 변동)")
 
     st.markdown("---")
     st.subheader("🔍 상세 채용 현황 조회할 월 선택")
@@ -559,6 +561,8 @@ elif menu == "📅 5. 1~9월 채용 추이":
 
         if detail_list:
             st.markdown(f"### 📍 {selected_m} 상세 현황")
+            if "9월" in selected_m:
+                st.info("ℹ️ 참고: 미정인원 12명 (인력 확정 시 비율 변동)")
             st.dataframe(pd.DataFrame(detail_list).fillna(""), use_container_width=True, hide_index=True)
         else:
             st.info("해당 월의 상세 데이터가 없습니다.")
