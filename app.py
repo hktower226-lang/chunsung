@@ -356,26 +356,29 @@ elif menu == "🏗️ 3. 타워사별 점유 현황":
 
 
 # ------------------------------------------
-# [메뉴 4] 반도체 현장 현황 (엑셀 구조 반영 수정 완료)
+# [메뉴 4] 반도체 현장 현황 (엑셀 구조 맞춤형 안전 파싱)
 # ------------------------------------------
 elif menu == "🏭 4. 반도체 현장 현황":
     st.title("🏭 반도체 현장 타워크레인 현황")
-    df4 = sheets[s4_name].copy()
+    
+    # 헤더 없이 원본 그대로 로드하여 정확한 위치 파싱
+    xls = pd.ExcelFile(EXCEL_FILE)
+    df4_raw = pd.read_excel(xls, s4_name, header=None)
 
     st.subheader("📊 반도체 현장 전체 대수 비교")
     try:
-        tot_d = df4.iloc[4, 0]
-        hanno_cnt = df4.iloc[4, 1]
-        minno_cnt = df4.iloc[4, 2]
-        gunsan_cnt = df4.iloc[4, 3]
-        non_cnt = df4.iloc[4, 4]
-        mi_cnt = df4.iloc[4, 5]
+        tot_d = df4_raw.iloc[5, 0]
+        hanno_cnt = df4_raw.iloc[5, 1]
+        minno_cnt = df4_raw.iloc[5, 2]
+        gunsan_cnt = df4_raw.iloc[5, 3]
+        non_cnt = df4_raw.iloc[5, 4]
+        mi_cnt = df4_raw.iloc[5, 5]
 
-        hanno_p = fmt_pct(df4.iloc[5, 1])
-        minno_p = fmt_pct(df4.iloc[5, 2])
-        gunsan_p = fmt_pct(df4.iloc[5, 3])
-        non_p = fmt_pct(df4.iloc[5, 4])
-        mi_p = fmt_pct(df4.iloc[5, 5])
+        hanno_p = fmt_pct(df4_raw.iloc[6, 1])
+        minno_p = fmt_pct(df4_raw.iloc[6, 2])
+        gunsan_p = fmt_pct(df4_raw.iloc[6, 3])
+        non_p = fmt_pct(df4_raw.iloc[6, 4])
+        mi_p = fmt_pct(df4_raw.iloc[6, 5])
 
         summary_data = {
             "구분": ["전체 대수", "한국노총", "민주노총", "건설노조(건산,섬유)", "비노조", "미정"],
@@ -389,9 +392,9 @@ elif menu == "🏭 4. 반도체 현장 현황":
     st.markdown("---")
     st.subheader("📍 각 현장별 상세 현황 및 담당자")
 
-    # 엑셀 9번 행부터 상세 현장 데이터 파싱
-    for idx in range(9, len(df4)):
-        row = df4.iloc[idx]
+    # 10번 행부터 상세 현장 데이터 파싱
+    for idx in range(10, len(df4_raw)):
+        row = df4_raw.iloc[idx]
         site_name = str(row[1]) if pd.notna(row[1]) else ""
         if not site_name or site_name == "nan" or "합" in site_name:
             continue
@@ -408,7 +411,7 @@ elif menu == "🏭 4. 반도체 현장 현황":
             st.write(f"• **한국노총:** {hanno}대 | **민주노총:** {minno}대 | **건설노조(건산,섬유):** {gunsan}대")
             st.write(f"• **비노조:** {non_union}대 | **미정:** {mijung}대")
 
-            if contact_info:
+            if contact_info and contact_info != "nan":
                 import re
                 phone_match = re.search(r"01[016789][-\s]?\d{3,4}[-\s]?\d{4}", contact_info)
                 if phone_match:
