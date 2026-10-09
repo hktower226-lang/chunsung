@@ -18,10 +18,14 @@ st.markdown(
         font-size: 17px !important;
     }
     
-    /* 사이드바 메뉴 1~5번 글씨 크기 크게 키우기 */
-    [data-testid="stSidebar"] .stRadio label {
-        font-size: 1.25rem !important;
-        font-weight: bold !important;
+    /* 사이드바 메뉴 1~5번 글씨 크기 대폭 확대 */
+    [data-testid="stSidebar"] .stRadio label p, 
+    [data-testid="stSidebar"] .stRadio div[role="radiogroup"] label span {
+        font-size: 1.35rem !important;
+        font-weight: 800 !important;
+    }
+    [data-testid="stSidebar"] .stRadio div[role="radiogroup"] {
+        gap: 12px;
     }
     
     /* 제목 및 헤더 크기 */
@@ -313,7 +317,7 @@ elif menu == "🏢 2. 각 8개지부 현장 점유율":
 
 
 # ------------------------------------------
-# [메뉴 3] 타워사별 점유 현황 (한노점유율 타워사 바로 다음 배치 및 빨간색 굵게 강조)
+# [메뉴 3] 타워사별 점유 현황 (오류 해결 및 한노점유율 타워사 바로 다음 배치)
 # ------------------------------------------
 elif menu == "🏗️ 3. 타워사별 점유 현황":
     st.title("🏗️ 임대사(타워사)별 점유 현황")
@@ -325,7 +329,7 @@ elif menu == "🏗️ 3. 타워사별 점유 현황":
 
     df3 = df3.dropna(subset=["타워사"]).fillna(0)
 
-    # 컬럼 재배치: '한노점유율'을 타워사 바로 다음(맨 앞)으로 이동
+    # 컬럼 재배치: '한노점유율'을 타워사 바로 다음으로 이동
     cols = list(df3.columns)
     if "한노점유율" in cols and "타워사" in cols:
         cols.remove("한노점유율")
@@ -351,14 +355,8 @@ elif menu == "🏗️ 3. 타워사별 점유 현황":
 
     st.markdown("### 📋 타워사 점유 현황 목록")
     
-    # 한노점유율 빨간색 굵게 스타일링 적용
-    def style_menu3(df):
-        styler = df.style
-        if '한노점유율' in df.columns:
-            styler = styler.applymap(lambda x: 'color: #DC2626; font-weight: bold;', subset=['한노점유율'])
-        return styler
-
-    st.dataframe(style_menu3(filtered_df), use_container_width=True, hide_index=True)
+    # 안정적인 데이터프레임 출력 (AttributeError 방지)
+    st.dataframe(filtered_df, use_container_width=True, hide_index=True)
 
 
 # ------------------------------------------
