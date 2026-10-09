@@ -1,4 +1,3 @@
-import re
 import pandas as pd
 import streamlit as st
 
@@ -9,7 +8,7 @@ st.set_page_config(
     page_title="현장 점유율 및 채용 현황", layout="wide", initial_sidebar_state="collapsed"
 )
 
-# 모바일용 가독성 증대 CSS (큰 글씨, 위아래 스크롤 레이아웃, 색상 스타일)
+# 모바일용 가독성 증대 CSS (큰 글씨, 위아래 스크롤 레이아웃, 카드 색상 추가)
 st.markdown(
     """
     <style>
@@ -57,10 +56,9 @@ st.markdown(
         margin-bottom: 10px;
         text-align: center;
         box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        width: 100%;
     }
 
-    /* 메인 화면 세로 카드 디자인 및 색상 */
+    /* 메인 화면 전용 카드 스타일 & 소속별 구분색 */
     .main-total-card {
         background: linear-gradient(135deg, #1E3A8A, #3B82F6);
         color: white;
@@ -78,12 +76,12 @@ st.markdown(
         margin-bottom: 12px;
         box-shadow: 0 2px 4px rgba(0,0,0,0.06);
     }
-    .border-hanno { border-left-color: #EF4444 !important; }   /* 한노 - 빨강 */
-    .border-minno { border-left-color: #3B82F6 !important; }   /* 민노 - 파랑 */
-    .border-seomoo { border-left-color: #10B981 !important; }  /* 섬유 - 초록 */
-    .border-geunsan { border-left-color: #F59E0B !important; } /* 건산 - 주황 */
-    .border-jikwon { border-left-color: #8B5CF6 !important; }  /* 직원 - 보라 */
-    .border-mijeong { border-left-color: #6B7280 !important; } /* 미정 - 회색 */
+    .border-hanno { border-left-color: #EF4444 !important; }   /* 빨강 */
+    .border-minno { border-left-color: #3B82F6 !important; }   /* 파랑 */
+    .border-seomoo { border-left-color: #10B981 !important; }  /* 초록 */
+    .border-geunsan { border-left-color: #F59E0B !important; } /* 주황 */
+    .border-jikwon { border-left-color: #8B5CF6 !important; }  /* 보라 */
+    .border-mijeong { border-left-color: #6B7280 !important; } /* 회색 */
     </style>
 """,
     unsafe_allow_html=True,
@@ -122,8 +120,8 @@ s4_name = sheet_names[3] if len(sheet_names) > 3 else "4.반도체현장"
 s5_name = sheet_names[4] if len(sheet_names) > 4 else "5.1~9월채용추이"
 
 
-# 퍼센트 변환 헬퍼 함수 (예: 0.28169 -> 28.2%)
-def fmt_pct_val(val):
+# 퍼센트 포맷 변환 헬퍼 함수
+def fmt_pct(val):
     try:
         if pd.isna(val) or val == "" or val == "-":
             return "0%"
@@ -132,11 +130,11 @@ def fmt_pct_val(val):
             return f"{f * 100:.1f}%"
         return f"{f:.1f}%"
     except:
-        return str(val)
+        return str(val) if pd.notna(val) else "0%"
 
 
 # ==========================================
-# 3. 사이드바 메뉴 (요청하신 메뉴명으로 변경)
+# 3. 사이드바 메뉴 (요청 반영: 채용 비율 메뉴 선택)
 # ==========================================
 st.sidebar.title("📌 채용 비율 메뉴 선택")
 menu = st.sidebar.radio(
@@ -155,63 +153,62 @@ menu = st.sidebar.radio(
 # ==========================================
 
 # ------------------------------------------
-# [메뉴 1] 메인: 1.26년 전체 소속별 점유율 (세로 보기 & 컬러 적용)
+# [메뉴 1] 메인: 1.26년 전체 소속별 점유율 (수정: 세로 레이아웃, 컬러, 퍼센트)
 # ------------------------------------------
 if menu == "🏠 메인: 전체 소속별 점유율":
     st.title("📊 2026년 전체 소속별 점유율")
     df1 = sheets[s1_name].copy()
 
     try:
-        # 데이터 위치 추출
-        tot_cnt = df1.iloc[1, 7]  # 총 209대
+        tot_cnt = df1.iloc[1, 7]  # 209
         tot_pct = df1.iloc[1, 8]  # 100%
 
         stat_items = [
             {
                 "title": "한국노총 (한노)",
                 "cnt": df1.iloc[1, 1],
-                "pct": fmt_pct_val(df1.iloc[2, 1]),
+                "pct": fmt_pct(df1.iloc[2, 1]),
                 "class": "border-hanno",
                 "color": "#EF4444",
             },
             {
                 "title": "민주노총 (민노)",
                 "cnt": df1.iloc[1, 2],
-                "pct": fmt_pct_val(df1.iloc[2, 2]),
+                "pct": fmt_pct(df1.iloc[2, 2]),
                 "class": "border-minno",
                 "color": "#3B82F6",
             },
             {
                 "title": "섬유노조",
                 "cnt": df1.iloc[1, 3],
-                "pct": fmt_pct_val(df1.iloc[2, 3]),
+                "pct": fmt_pct(df1.iloc[2, 3]),
                 "class": "border-seomoo",
                 "color": "#10B981",
             },
             {
                 "title": "건설산업 (건산)",
                 "cnt": df1.iloc[1, 4],
-                "pct": fmt_pct_val(df1.iloc[2, 4]),
+                "pct": fmt_pct(df1.iloc[2, 4]),
                 "class": "border-geunsan",
                 "color": "#F59E0B",
             },
             {
                 "title": "직원",
                 "cnt": df1.iloc[1, 5],
-                "pct": fmt_pct_val(df1.iloc[2, 5]),
+                "pct": fmt_pct(df1.iloc[2, 5]),
                 "class": "border-jikwon",
                 "color": "#8B5CF6",
             },
             {
                 "title": "미정",
                 "cnt": df1.iloc[1, 6],
-                "pct": fmt_pct_val(df1.iloc[2, 6]),
+                "pct": fmt_pct(df1.iloc[2, 6]),
                 "class": "border-mijeong",
                 "color": "#6B7280",
             },
         ]
 
-        # 1. 전체 합계 상단 메인 카드
+        # 1. 상단 총 대수 강조 카드
         st.markdown(
             f"""
         <div class="main-total-card">
@@ -222,9 +219,9 @@ if menu == "🏠 메인: 전체 소속별 점유율":
             unsafe_allow_html=True,
         )
 
-        st.subheader("👇 소속별 점유 현황 (위아래 세로 스크롤)")
+        st.subheader("👇 소속별 점유 현황 (위아래 세로 보기)")
 
-        # 2. 소속별 세로 카드 순차 표시
+        # 2. 위아래로 내리는 세로 배치 카드
         for item in stat_items:
             st.markdown(
                 f"""
@@ -241,8 +238,7 @@ if menu == "🏠 메인: 전체 소속별 점유율":
                 unsafe_allow_html=True,
             )
 
-    except Exception as e:
-        # 데이터 파싱 에러 대비 기본 테이블 표기 유지
+    except Exception:
         st.write("### 💡 전체 소속별 통계 개요")
         st.dataframe(df1.fillna(""), use_container_width=True, hide_index=True)
 
@@ -269,12 +265,14 @@ elif menu == "🏢 각 8개지부 현장 점유율":
         "중부지부",
     ]
 
+    # 각 지부별 데이터 구조화
     branch_data = {}
     current_branch = "북부"
 
     for r in rows[1:]:  # 헤더 제외
         branch_col = str(r[0]).strip() if pd.notna(r[0]) else ""
 
+        # 지부 변경 감지
         for b in ["북부", "남부", "남서", "동부", "서부", "북서", "용인", "중부"]:
             if branch_col == b:
                 current_branch = b + "지부"
@@ -313,10 +311,9 @@ elif menu == "🏢 각 8개지부 현장 점유율":
                 if pct_row is not None:
                     st.markdown(
                         f"**[점유율]** "
-                        f"한노: <b style='color:#EF4444;'>{fmt_pct_val(pct_row[4])}</b> | "
-                        f"민노: <b style='color:#3B82F6;'>{fmt_pct_val(pct_row[5])}</b> | "
-                        f"섬유: {fmt_pct_val(pct_row[6])} | 건산: {fmt_pct_val(pct_row[7])} | "
-                        f"직원: {fmt_pct_val(pct_row[8])} | 미정: {fmt_pct_val(pct_row[9])}"
+                        f"한노: **{fmt_pct(pct_row[4])}** | 민노: **{fmt_pct(pct_row[5])}** | "
+                        f"섬유: {fmt_pct(pct_row[6])} | 건산: {fmt_pct(pct_row[7])} | "
+                        f"직원: {fmt_pct(pct_row[8])} | 미정: {fmt_pct(pct_row[9])}"
                     )
 
     st.markdown("---")
@@ -329,6 +326,7 @@ elif menu == "🏢 각 8개지부 현장 점유율":
         sites_list = branch_data[selected_b]["sites"]
         site_df = pd.DataFrame(sites_list)
 
+        # 필요한 컬럼 추출 [현장명, 타워회사, 한노, 민노, 섬유, 건산, 직원, 미정, 총대수]
         display_df = pd.DataFrame(
             {
                 "현장명": site_df[1],
@@ -357,6 +355,7 @@ elif menu == "🏗️ 타워사별 점유 현황":
 
     df3 = sheets[s3_name].copy()
 
+    # 데이터 정돈
     if "타워사" in df3.iloc[0].values:
         df3.columns = df3.iloc[0]
         df3 = df3[1:].reset_index(drop=True)
@@ -375,10 +374,11 @@ elif menu == "🏗️ 타워사별 점유 현황":
     else:
         filtered_df = df3
 
+    # 한노점유율 퍼센트 변환
     if "한노점유율" in filtered_df.columns:
         filtered_df_disp = filtered_df.copy()
         filtered_df_disp["한노점유율"] = filtered_df_disp["한노점유율"].apply(
-            fmt_pct_val
+            fmt_pct
         )
     else:
         filtered_df_disp = filtered_df
@@ -395,6 +395,7 @@ elif menu == "🏭 반도체 현장 현황":
 
     df4 = sheets[s4_name].copy()
 
+    # 1. 전체 대수 요약 정보 찾기
     st.subheader("📊 반도체 현장 전체 대수 비교")
     try:
         summary_data = {
@@ -416,11 +417,11 @@ elif menu == "🏭 반도체 현장 현황":
             ],
             "점유율": [
                 "-",
-                fmt_pct_val(df4.iloc[5, 1]),
-                fmt_pct_val(df4.iloc[5, 2]),
-                fmt_pct_val(df4.iloc[5, 3]),
-                fmt_pct_val(df4.iloc[5, 4]),
-                fmt_pct_val(df4.iloc[5, 5]),
+                fmt_pct(df4.iloc[5, 1]),
+                fmt_pct(df4.iloc[5, 2]),
+                fmt_pct(df4.iloc[5, 3]),
+                fmt_pct(df4.iloc[5, 4]),
+                fmt_pct(df4.iloc[5, 5]),
             ],
         }
         st.table(pd.DataFrame(summary_data))
@@ -430,6 +431,7 @@ elif menu == "🏭 반도체 현장 현황":
     st.markdown("---")
     st.subheader("📍 각 현장별 상세 현황 및 담당자")
 
+    # 현장별 상세 테이블 추출 (8번 행부터)
     detail_rows = df4.iloc[9:].dropna(how="all").copy()
 
     for idx, row in detail_rows.iterrows():
@@ -451,7 +453,10 @@ elif menu == "🏭 반도체 현장 현황":
             )
             st.write(f"• **비노조:** {non_union}대 | **미정:** {mijung}대")
 
+            # 담당자 전화번호 연결 버튼 생성
             if contact_info:
+                import re
+
                 phone_match = re.search(
                     r"01[016789][-\s]?\d{3,4}[-\s]?\d{4}", contact_info
                 )
@@ -476,6 +481,7 @@ elif menu == "📅 1~9월 채용 추이":
 
     df5 = sheets[s5_name].copy()
 
+    # 월별 블록 분리 파싱
     rows = df5.values.tolist()
 
     month_blocks = {}
@@ -496,6 +502,7 @@ elif menu == "📅 1~9월 채용 추이":
     if current_month and current_data:
         month_blocks[current_month] = current_data
 
+    # 1. 월별 합계 및 비율 한눈에 보기
     st.subheader("📌 월별 채용현황 합계 및 비율 요약")
 
     for m_name, m_rows in month_blocks.items():
@@ -519,14 +526,14 @@ elif menu == "📅 1~9월 채용 추이":
             if pct_row is not None:
                 st.markdown(
                     f"**[비율]** "
-                    f"한노: <b style='color:#EF4444;'>{fmt_pct_val(pct_row[4])}</b> | "
-                    f"민노: <b style='color:#3B82F6;'>{fmt_pct_val(pct_row[5])}</b> | "
-                    f"기타: {fmt_pct_val(pct_row[6])} | 직원: {fmt_pct_val(pct_row[7])} | "
-                    f"미정: {fmt_pct_val(pct_row[8])}"
+                    f"한노: **{fmt_pct(pct_row[4])}** | 민노: **{fmt_pct(pct_row[5])}** | "
+                    f"기타: {fmt_pct(pct_row[6])} | 직원: {fmt_pct(pct_row[7])} | "
+                    f"미정: {fmt_pct(pct_row[8])}"
                 )
 
     st.markdown("---")
 
+    # 2. 월 선택 후 상세 현황 보기
     st.subheader("🔍 상세 채용 현황 조회할 월 선택")
     selected_m = st.selectbox("월을 선택하세요", list(month_blocks.keys()))
 
