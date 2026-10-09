@@ -60,4 +60,152 @@ st.markdown(
 
     /* 메인 화면 전용 카드 스타일 & 소속별 구분색 */
     .main-total-card {
-        background: linear-gradient(135deg, #
+        background: linear-gradient(135deg, #1E3A8A, #3B82F6);
+        color: white;
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+        margin-bottom: 18px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .main-stat-card {
+        background-color: #FFFFFF;
+        border-left: 6px solid #3B82F6;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 12px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+    }
+    .border-hanno { border-left-color: #EF4444 !important; }   /* 빨강 */
+    .border-minno { border-left-color: #3B82F6 !important; }   /* 파랑 */
+    .border-seomoo { border-left-color: #10B981 !important; }  /* 초록 */
+    .border-geunsan { border-left-color: #F59E0B !important; } /* 주황 */
+    .border-jikwon { border-left-color: #8B5CF6 !important; }  /* 보라 */
+    .border-mijeong { border-left-color: #6B7280 !important; } /* 회색 */
+    </style>
+""",
+    unsafe_allow_html=True,
+)
+
+EXCEL_FILE = "채용비율.xlsx"
+
+
+# ==========================================
+# 2. 데이터 로드 및 전처리 함수
+# ==========================================
+@st.cache_data(ttl=5)  # 엑셀 수정 시 빠르게 반영되도록 설정
+def load_all_sheets():
+    try:
+        xls = pd.ExcelFile(EXCEL_FILE)
+        sheets = {sheet: pd.read_excel(xls, sheet) for sheet in xls.sheet_names}
+        return sheets
+    except Exception as e:
+        st.error(
+            f"엑셀 파일을 읽는 중 오류가 발생했습니다. '{EXCEL_FILE}' 파일이 같은 폴더에 있는지 확인해주세요.\n오류 내용: {e}"
+        )
+        return None
+
+
+sheets = load_all_sheets()
+
+if sheets is None:
+    st.stop()
+
+# 시트 이름 매핑
+sheet_names = list(sheets.keys())
+s1_name = sheet_names[0] if len(sheet_names) > 0 else "1.26년 전체 소속별 점유율"
+s2_name = sheet_names[1] if len(sheet_names) > 1 else "2.각8개지부 현장점유율"
+s3_name = sheet_names[2] if len(sheet_names) > 2 else "3.타워사별 점유현황"
+s4_name = sheet_names[3] if len(sheet_names) > 3 else "4.반도체현장"
+s5_name = sheet_names[4] if len(sheet_names) > 4 else "5.1~9월채용추이"
+
+
+# 퍼센트 포맷 변환 헬퍼 함수
+def fmt_pct(val):
+    try:
+        if pd.isna(val) or val == "" or val == "-":
+            return "0%"
+        f = float(val)
+        if f <= 1.0:
+            return f"{f * 100:.1f}%"
+        return f"{f:.1f}%"
+    except:
+        return str(val) if pd.notna(val) else "0%"
+
+
+# ==========================================
+# 3. 사이드바 메뉴 (요청 반영: 채용 비율 메뉴 선택)
+# ==========================================
+st.sidebar.title("📌 채용 비율 메뉴 선택")
+menu = st.sidebar.radio(
+    "원하시는 화면을 선택하세요",
+    [
+        "🏠 메인: 전체 소속별 점유율",
+        "🏢 각 8개지부 현장 점유율",
+        "🏗️ 타워사별 점유 현황",
+        "🏭 반도체 현장 현황",
+        "📅 1~9월 채용 추이",
+    ],
+)
+
+# ==========================================
+# 4. 메뉴별 화면 구현
+# ==========================================
+
+# ------------------------------------------
+# [메뉴 1] 메인: 1.26년 전체 소속별 점유율 (글씨 크기만 축소)
+# ------------------------------------------
+if menu == "🏠 메인: 전체 소속별 점유율":
+    st.title("📊 2026년 전체 소속별 점유율")
+    df1 = sheets[s1_name].copy()
+
+    try:
+        tot_cnt = df1.iloc[1, 7]  # 209
+        tot_pct = df1.iloc[1, 8]  # 100%
+
+        stat_items = [
+            {
+                "title": "한국노총 (한노)",
+                "cnt": df1.iloc[1, 1],
+                "pct": fmt_pct(df1.iloc[2, 1]),
+                "class": "border-hanno",
+                "color": "#EF4444",
+            },
+            {
+                "title": "민주노총 (민노)",
+                "cnt": df1.iloc[1, 2],
+                "pct": fmt_pct(df1.iloc[2, 2]),
+                "class": "border-minno",
+                "color": "#3B82F6",
+            },
+            {
+                "title": "섬유노조",
+                "cnt": df1.iloc[1, 3],
+                "pct": fmt_pct(df1.iloc[2, 3]),
+                "class": "border-seomoo",
+                "color": "#10B981",
+            },
+            {
+                "title": "건설산업 (건산)",
+                "cnt": df1.iloc[1, 4],
+                "pct": fmt_pct(df1.iloc[2, 4]),
+                "class": "border-geunsan",
+                "color": "#F59E0B",
+            },
+            {
+                "title": "직원",
+                "cnt": df1.iloc[1, 5],
+                "pct": fmt_pct(df1.iloc[2, 5]),
+                "class": "border-jikwon",
+                "color": "#8B5CF6",
+            },
+            {
+                "title": "미정",
+                "cnt": df1.iloc[1, 6],
+                "pct": fmt_pct(df1.iloc[2, 6]),
+                "class": "border-mijeong",
+                "color": "#6B7280",
+            },
+        ]
+
+        # 1. 상단 총 대수 강조 카드 (글씨 크기 소폭 축소)
