@@ -356,12 +356,11 @@ elif menu == "🏗️ 3. 타워사별 점유 현황":
 
 
 # ------------------------------------------
-# [메뉴 4] 반도체 현장 현황 (엑셀 구조 맞춤형 안전 파싱)
+# [메뉴 4] 반도체 현장 현황 (노조별 색상 구별 적용)
 # ------------------------------------------
 elif menu == "🏭 4. 반도체 현장 현황":
     st.title("🏭 반도체 현장 타워크레인 현황")
     
-    # 헤더 없이 원본 그대로 로드하여 정확한 위치 파싱
     xls = pd.ExcelFile(EXCEL_FILE)
     df4_raw = pd.read_excel(xls, s4_name, header=None)
 
@@ -392,7 +391,6 @@ elif menu == "🏭 4. 반도체 현장 현황":
     st.markdown("---")
     st.subheader("📍 각 현장별 상세 현황 및 담당자")
 
-    # 10번 행부터 상세 현장 데이터 파싱
     for idx in range(10, len(df4_raw)):
         row = df4_raw.iloc[idx]
         site_name = str(row[1]) if pd.notna(row[1]) else ""
@@ -408,8 +406,18 @@ elif menu == "🏭 4. 반도체 현장 현황":
         contact_info = str(row[8]) if pd.notna(row[8]) else ""
 
         with st.expander(f"🏢 {site_name} (총 {total_cnt}대)", expanded=True):
-            st.write(f"• **한국노총:** {hanno}대 | **민주노총:** {minno}대 | **건설노조(건산,섬유):** {gunsan}대")
-            st.write(f"• **비노조:** {non_union}대 | **미정:** {mijung}대")
+            # 요청 반영: 노조별 색상 적용 (한노: 빨강, 민노: 파랑, 건설노조: 초록, 비노조: 주황, 미정: 회색)
+            st.markdown(
+                f"• <span style='color:#EF4444; font-weight:bold;'>한국노총:</span> <b>{hanno}대</b> | "
+                f"<span style='color:#3B82F6; font-weight:bold;'>민주노총:</span> <b>{minno}대</b> | "
+                f"<span style='color:#10B981; font-weight:bold;'>건설노조(건산,섬유):</span> <b>{gunsan}대</b>",
+                unsafe_allow_html=True
+            )
+            st.markdown(
+                f"• <span style='color:#F59E0B; font-weight:bold;'>비노조:</span> <b>{non_union}대</b> | "
+                f"<span style='color:#6B7280; font-weight:bold;'>미정:</span> <b>{mijung}대</b>",
+                unsafe_allow_html=True
+            )
 
             if contact_info and contact_info != "nan":
                 import re
@@ -426,13 +434,15 @@ elif menu == "🏭 4. 반도체 현장 현황":
 
 
 # ------------------------------------------
-# [메뉴 5] 1~9월 채용 추이
+# [메뉴 5] 1~9월 채용 추이 (1월 포함 및 요약 타이틀 한노 퍼센트 반영)
 # ------------------------------------------
 elif menu == "📅 5. 1~9월 채용 추이":
     st.title("📅 월별 채용 현황 및 추이")
-    df5 = sheets[s5_name].copy()
+    
+    xls = pd.ExcelFile(EXCEL_FILE)
+    df5_raw = pd.read_excel(xls, s5_name, header=None)
 
-    rows = df5.values.tolist()
+    rows = df5_raw.values.tolist()
     month_blocks = {}
     current_month = None
     current_data = []
@@ -462,19 +472,22 @@ elif menu == "📅 5. 1~9월 채용 추이":
             elif "비율" in cell0:
                 pct_row = r
 
-        with st.expander(f"🗓️ {m_name} 요약 보기 (클릭하여 열기/접기)"):
+        # 요청 반영: 엑셀 데이터를 바탕으로 한노 점유율 퍼센트를 계산하여 제목에 표출 (예: 1월 채용 현황 (한노 33.3%))
+        hanno_pct_str = "0%"
+        if pct_row is not None and len(pct_row) > 4:
+            hanno_pct_str = fmt_pct(pct_row[4])
+
+        with st.expander(f"🗓️ {m_name} (한노 {hanno_pct_str}) 요약 보기 (클릭하여 열기/접기)"):
             if sum_row is not None:
                 st.markdown(
                     f"**[합계]** 총대수: **{sum_row[3] if len(sum_row)>3 else '-'}**대 | "
-                    f"한노: {sum_row[4]} | 민노: {sum_row[5]} | 기타: {sum_row[6]} | "
-                    f"직원: {sum_row[7]} | 미정: {sum_row[8]}"
+                    f"한노: {sum_row[4]} | 민노: {sum_row[5]} | 기타: {sum_row[6]} | 직원: {sum_row[7]}"
                 )
             if pct_row is not None:
                 st.markdown(
                     f"**[비율]** "
                     f"한노: **{fmt_pct(pct_row[4])}** | 민노: **{fmt_pct(pct_row[5])}** | "
-                    f"기타: {fmt_pct(pct_row[6])} | 직원: {fmt_pct(pct_row[7])} | "
-                    f"미정: {fmt_pct(pct_row[8])}"
+                    f"기타: {fmt_pct(pct_row[6])} | 직원: {fmt_pct(pct_row[7])}"
                 )
 
     st.markdown("---")
@@ -494,10 +507,9 @@ elif menu == "📅 5. 1~9월 채용 추이":
                     "총대수": r[3],
                     "한노": r[4],
                     "민노": r[5],
-                    "기타": r[6],
+                    "기타(건산섬유)": r[6],
                     "직원": r[7],
-                    "미정": r[8],
-                    "비고": r[9] if len(r) > 9 else "",
+                    "비고": r[8] if len(r) > 8 else "",
                 })
 
         if detail_list:
