@@ -205,7 +205,7 @@ if menu == "📊 1. 2026년 전체 소속별 점유율":
 
 
 # ------------------------------------------
-# [메뉴 2] 각 8개지부 현장 점유율 (통합 검색 기능 추가)
+# [메뉴 2] 각 8개지부 현장 점유율
 # ------------------------------------------
 elif menu == "🏢 2. 각 8개지부 현장 점유율":
     st.title("🏢 지부별 현장 점유율")
@@ -234,7 +234,6 @@ elif menu == "🏢 2. 각 8개지부 현장 점유율":
         elif pd.notna(r[1]) and str(r[1]).strip() != "현장명":
             branch_data[current_branch]["sites"].append(r)
 
-    # 2번째 메뉴 통합 검색창
     st.subheader("🔍 타워사/현장명 통합 검색")
     search_query = st.text_input("타워사 또는 현장명을 입력하면 어느 지부인지 바로 확인 가능합니다", "", placeholder="예: 백산, 복정 등")
     
@@ -317,7 +316,7 @@ elif menu == "🏢 2. 각 8개지부 현장 점유율":
 
 
 # ------------------------------------------
-# [메뉴 3] 타워사별 점유 현황 (오류 해결 및 한노점유율 타워사 바로 다음 배치)
+# [메뉴 3] 타워사별 점유 현황
 # ------------------------------------------
 elif menu == "🏗️ 3. 타워사별 점유 현황":
     st.title("🏗️ 임대사(타워사)별 점유 현황")
@@ -329,7 +328,6 @@ elif menu == "🏗️ 3. 타워사별 점유 현황":
 
     df3 = df3.dropna(subset=["타워사"]).fillna(0)
 
-    # 컬럼 재배치: '한노점유율'을 타워사 바로 다음으로 이동
     cols = list(df3.columns)
     if "한노점유율" in cols and "타워사" in cols:
         cols.remove("한노점유율")
@@ -354,13 +352,11 @@ elif menu == "🏗️ 3. 타워사별 점유 현황":
         filtered_df = filtered_df[filtered_df["타워사"].astype(str).str.contains(search_kw, case=False)]
 
     st.markdown("### 📋 타워사 점유 현황 목록")
-    
-    # 안정적인 데이터프레임 출력 (AttributeError 방지)
     st.dataframe(filtered_df, use_container_width=True, hide_index=True)
 
 
 # ------------------------------------------
-# [메뉴 4] 반도체 현장 현황
+# [메뉴 4] 반도체 현장 현황 (엑셀 구조 반영 수정 완료)
 # ------------------------------------------
 elif menu == "🏭 4. 반도체 현장 현황":
     st.title("🏭 반도체 현장 타워크레인 현황")
@@ -368,10 +364,23 @@ elif menu == "🏭 4. 반도체 현장 현황":
 
     st.subheader("📊 반도체 현장 전체 대수 비교")
     try:
+        tot_d = df4.iloc[4, 0]
+        hanno_cnt = df4.iloc[4, 1]
+        minno_cnt = df4.iloc[4, 2]
+        gunsan_cnt = df4.iloc[4, 3]
+        non_cnt = df4.iloc[4, 4]
+        mi_cnt = df4.iloc[4, 5]
+
+        hanno_p = fmt_pct(df4.iloc[5, 1])
+        minno_p = fmt_pct(df4.iloc[5, 2])
+        gunsan_p = fmt_pct(df4.iloc[5, 3])
+        non_p = fmt_pct(df4.iloc[5, 4])
+        mi_p = fmt_pct(df4.iloc[5, 5])
+
         summary_data = {
             "구분": ["전체 대수", "한국노총", "민주노총", "건설노조(건산,섬유)", "비노조", "미정"],
-            "대수": [df4.iloc[4, 0], df4.iloc[4, 1], df4.iloc[4, 2], df4.iloc[4, 3], df4.iloc[4, 4], df4.iloc[4, 5]],
-            "점유율": ["-", fmt_pct(df4.iloc[5, 1]), fmt_pct(df4.iloc[5, 2]), fmt_pct(df4.iloc[5, 3]), fmt_pct(df4.iloc[5, 4]), fmt_pct(df4.iloc[5, 5])],
+            "대수": [tot_d, hanno_cnt, minno_cnt, gunsan_cnt, non_cnt, mi_cnt],
+            "점유율": ["-", hanno_p, minno_p, gunsan_p, non_p, mi_p],
         }
         st.table(pd.DataFrame(summary_data))
     except Exception:
@@ -380,11 +389,11 @@ elif menu == "🏭 4. 반도체 현장 현황":
     st.markdown("---")
     st.subheader("📍 각 현장별 상세 현황 및 담당자")
 
-    detail_rows = df4.iloc[9:].dropna(how="all").copy()
-
-    for idx, row in detail_rows.iterrows():
+    # 엑셀 9번 행부터 상세 현장 데이터 파싱
+    for idx in range(9, len(df4)):
+        row = df4.iloc[idx]
         site_name = str(row[1]) if pd.notna(row[1]) else ""
-        if not site_name or site_name == "nan":
+        if not site_name or site_name == "nan" or "합" in site_name:
             continue
 
         total_cnt = row[2] if pd.notna(row[2]) else 0
@@ -396,7 +405,7 @@ elif menu == "🏭 4. 반도체 현장 현황":
         contact_info = str(row[8]) if pd.notna(row[8]) else ""
 
         with st.expander(f"🏢 {site_name} (총 {total_cnt}대)", expanded=True):
-            st.write(f"• **한국노총:** {hanno}대 | **민주노총:** {minno}대 | **건설노조:** {gunsan}대")
+            st.write(f"• **한국노총:** {hanno}대 | **민주노총:** {minno}대 | **건설노조(건산,섬유):** {gunsan}대")
             st.write(f"• **비노조:** {non_union}대 | **미정:** {mijung}대")
 
             if contact_info:
