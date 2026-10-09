@@ -356,7 +356,7 @@ elif menu == "🏗️ 3. 타워사별 점유 현황":
 
 
 # ------------------------------------------
-# [메뉴 4] 반도체 현장 현황 (동적 합계 계산 적용)
+# [메뉴 4] 반도체 현장 현황 (동적 합계 계산 완벽 보완)
 # ------------------------------------------
 elif menu == "🏭 4. 반도체 현장 현황":
     st.title("🏭 반도체 현장 타워크레인 현황")
@@ -366,7 +366,6 @@ elif menu == "🏭 4. 반도체 현장 현황":
 
     st.subheader("📊 반도체 현장 전체 대수 비교")
     try:
-        # 상세 현장 목록 행(10번째 행부터 시작)을 읽어서 동적으로 합계 계산
         site_rows = []
         for idx in range(10, len(df4_raw)):
             row = df4_raw.iloc[idx]
@@ -487,7 +486,7 @@ elif menu == "🏭 4. 반도체 현장 현황":
 
 
 # ------------------------------------------
-# [메뉴 5] 1~9월 채용 추이
+# [메뉴 5] 1~9월 채용 추이 (안전 파싱 적용)
 # ------------------------------------------
 elif menu == "📅 5. 1~9월 채용 추이":
     st.title("📅 월별 채용 현황 및 추이")
@@ -508,76 +507,81 @@ elif menu == "📅 5. 1~9월 채용 추이":
             current_month = title_cell
             current_data = []
         elif current_month:
-            current_data.append(r)
+            # 빈 행이 아닐 경우에만 추가
+            if any(pd.notna(cell) for cell in r):
+                current_data.append(r)
 
     if current_month and current_data:
         month_blocks[current_month] = current_data
 
-    st.subheader("📌 월별 채용현황 합계 및 비율 요약")
+    if not month_blocks:
+        st.warning("월별 채용 데이터를 불러오지 못했습니다. 엑셀 5번 시트의 양식을 확인해주세요.")
+    else:
+        st.subheader("📌 월별 채용현황 합계 및 비율 요약")
 
-    for m_name, m_rows in month_blocks.items():
-        sum_row = None
-        pct_row = None
-        for r in m_rows:
-            cell0 = str(r[0]).strip() if pd.notna(r[0]) else ""
-            if "합계" in cell0:
-                sum_row = r
-            elif "비율" in cell0:
-                pct_row = r
+        for m_name, m_rows in month_blocks.items():
+            sum_row = None
+            pct_row = None
+            for r in m_rows:
+                cell0 = str(r[0]).strip() if pd.notna(r[0]) else ""
+                if "합계" in cell0:
+                    sum_row = r
+                elif "비율" in cell0:
+                    pct_row = r
 
-        hanno_pct_str = "0%"
-        if pct_row is not None and len(pct_row) > 4:
-            hanno_pct_str = fmt_pct(pct_row[4])
+            hanno_pct_str = "0%"
+            if pct_row is not None and len(pct_row) > 4:
+                hanno_pct_str = fmt_pct(pct_row[4])
 
-        with st.expander(f"🗓️ {m_name} (한노 {hanno_pct_str}) 요약 보기 (클릭하여 열기/접기)"):
-            if sum_row is not None:
-                st.markdown(
-                    f"**[합계]** 총대수: **{sum_row[3] if len(sum_row)>3 else '-'}**대 | "
-                    f"<span style='color:#EF4444; font-weight:bold;'>한노: {sum_row[4]}</span> | "
-                    f"<span style='color:#3B82F6; font-weight:bold;'>민노: {sum_row[5]}</span> | "
-                    f"<span style='color:#10B981; font-weight:bold;'>기타: {sum_row[6]}</span> | "
-                    f"<span style='color:#8B5CF6; font-weight:bold;'>직원: {sum_row[7]}</span>",
-                    unsafe_allow_html=True
-                )
-            if pct_row is not None:
-                st.markdown(
-                    f"**[비율]** "
-                    f"<span style='color:#EF4444; font-weight:bold;'>한노: {fmt_pct(pct_row[4])}</span> | "
-                    f"<span style='color:#3B82F6; font-weight:bold;'>민노: {fmt_pct(pct_row[5])}</span> | "
-                    f"<span style='color:#10B981; font-weight:bold;'>기타: {fmt_pct(pct_row[6])}</span> | "
-                    f"<span style='color:#8B5CF6; font-weight:bold;'>직원: {fmt_pct(pct_row[7])}</span>",
-                    unsafe_allow_html=True
-                )
-            
-            if "9월" in m_name:
-                st.info("ℹ️ 참고: 미정인원 12명 (인력 확정 시 비율 변동)")
+            with st.expander(f"🗓️ {m_name} (한노 {hanno_pct_str}) 요약 보기 (클릭하여 열기/접기)"):
+                if sum_row is not None:
+                    st.markdown(
+                        f"**[합계]** 총대수: **{sum_row[3] if len(sum_row)>3 else '-'}**대 | "
+                        f"<span style='color:#EF4444; font-weight:bold;'>한노: {sum_row[4]}</span> | "
+                        f"<span style='color:#3B82F6; font-weight:bold;'>민노: {sum_row[5]}</span> | "
+                        f"<span style='color:#10B981; font-weight:bold;'>기타: {sum_row[6]}</span> | "
+                        f"<span style='color:#8B5CF6; font-weight:bold;'>직원: {sum_row[7]}</span>",
+                        unsafe_allow_html=True
+                    )
+                if pct_row is not None:
+                    st.markdown(
+                        f"**[비율]** "
+                        f"<span style='color:#EF4444; font-weight:bold;'>한노: {fmt_pct(pct_row[4])}</span> | "
+                        f"<span style='color:#3B82F6; font-weight:bold;'>민노: {fmt_pct(pct_row[5])}</span> | "
+                        f"<span style='color:#10B981; font-weight:bold;'>기타: {fmt_pct(pct_row[6])}</span> | "
+                        f"<span style='color:#8B5CF6; font-weight:bold;'>직원: {fmt_pct(pct_row[7])}</span>",
+                        unsafe_allow_html=True
+                    )
+                
+                if "9월" in m_name:
+                    st.info("ℹ️ 참고: 미정인원 12명 (인력 확정 시 비율 변동)")
 
-    st.markdown("---")
-    st.subheader("🔍 상세 채용 현황 조회할 월 선택")
-    selected_m = st.selectbox("월을 선택하세요", list(month_blocks.keys()))
+        st.markdown("---")
+        st.subheader("🔍 상세 채용 현황 조회할 월 선택")
+        selected_m = st.selectbox("월을 선택하세요", list(month_blocks.keys()))
 
-    if selected_m:
-        m_rows = month_blocks[selected_m]
-        detail_list = []
-        for r in m_rows:
-            cell0 = str(r[0]).strip() if pd.notna(r[0]) else ""
-            if cell0 and "임대사" not in cell0 and "합계" not in cell0 and "비율" not in cell0:
-                detail_list.append({
-                    "임대사": r[0],
-                    "원청사": r[1],
-                    "현장명": r[2],
-                    "총대수": r[3],
-                    "한노": r[4],
-                    "민노": r[5],
-                    "기타(건산섬유)": r[6],
-                    "직원": r[7],
-                    "비고": r[8] if len(r) > 8 else "",
-                })
+        if selected_m:
+            m_rows = month_blocks[selected_m]
+            detail_list = []
+            for r in m_rows:
+                cell0 = str(r[0]).strip() if pd.notna(r[0]) else ""
+                if cell0 and "임대사" not in cell0 and "합계" not in cell0 and "비율" not in cell0:
+                    detail_list.append({
+                        "임대사": r[0],
+                        "원청사": r[1] if len(r) > 1 else "",
+                        "현장명": r[2] if len(r) > 2 else "",
+                        "총대수": r[3] if len(r) > 3 else 0,
+                        "한노": r[4] if len(r) > 4 else 0,
+                        "민노": r[5] if len(r) > 5 else 0,
+                        "기타(건산섬유)": r[6] if len(r) > 6 else 0,
+                        "직원": r[7] if len(r) > 7 else 0,
+                        "비고": r[8] if len(r) > 8 else "",
+                    })
 
-        if detail_list:
-            st.markdown(f"### 📍 {selected_m} 상세 현황")
-            if "9월" in selected_m:
-                st.info("ℹ️ 참고: 미정인원 12명 (인력 확정 시 비율 변동)")
-            st.dataframe(pd.DataFrame(detail_list).fillna(""), use_container_width=True, hide_index=True)
-        else:
-            st.info("해당 월의 상세 데이터가 없습니다.")
+            if detail_list:
+                st.markdown(f"### 📍 {selected_m} 상세 현황")
+                if "9월" in selected_m:
+                    st.info("ℹ️ 참고: 미정인원 12명 (인력 확정 시 비율 변동)")
+                st.dataframe(pd.DataFrame(detail_list).fillna(""), use_container_width=True, hide_index=True)
+            else:
+                st.info("해당 월의 상세 데이터가 없습니다.")
