@@ -7,16 +7,22 @@ import streamlit as st
 st.set_page_config(
     page_title="현장 점유율 및 채용 현황",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="collapsed",  # 요청 반영: 앱 처음 켤 때 사이드바가 닫혀있도록 설정
 )
 
-# 모바일 가독성 최적화 CSS (글씨 크기 적당히 키움)
+# 모바일 가독성 최적화 CSS (사이드바 메뉴 글씨 크기 대폭 확대)
 st.markdown(
     """
     <style>
     /* 전체 글꼴 및 기본 폰트 크기 */
     html, body, [class*="css"] {
         font-size: 17px !important;
+    }
+    
+    /* 사이드바 메뉴 1~5번 글씨 크기 크게 키우기 */
+    [data-testid="stSidebar"] .stRadio label {
+        font-size: 1.25rem !important;
+        font-weight: bold !important;
     }
     
     /* 제목 및 헤더 크기 */
@@ -124,12 +130,11 @@ def fmt_pct(val):
         return str(val) if pd.notna(val) else "0%"
 
 # ==========================================
-# 사이드바 메뉴 설정 (처음 켤 때 홈 화면이 기본 선택되도록 구성)
+# 사이드바 메뉴 설정 (홈 제거, 1~5번 메뉴 직관적 제공)
 # ==========================================
 st.sidebar.title("📌 채용 비율 메뉴 선택")
 
 menu_options = [
-    "🏠 홈: 메뉴 선택 대시보드",
     "📊 1. 2026년 전체 소속별 점유율",
     "🏢 2. 각 8개지부 현장 점유율",
     "🏗️ 3. 타워사별 점유 현황",
@@ -137,55 +142,16 @@ menu_options = [
     "📅 5. 1~9월 채용 추이",
 ]
 
-if "selected_menu" not in st.session_state:
-    st.session_state.selected_menu = menu_options[0]
-
-selected_menu = st.sidebar.radio(
-    "원하시는 화면을 선택하세요",
-    menu_options,
-    index=menu_options.index(st.session_state.selected_menu) if st.session_state.selected_menu in menu_options else 0
-)
-
-st.session_state.selected_menu = selected_menu
-menu = st.session_state.selected_menu
+menu = st.sidebar.radio("원하시는 화면을 선택하세요", menu_options)
 
 # ==========================================
 # 메뉴별 화면 구현
 # ==========================================
 
 # ------------------------------------------
-# [홈 화면] 처음 어플 켰을 때 뜨는 메뉴 선택 화면
-# ------------------------------------------
-if menu == "🏠 홈: 메뉴 선택 대시보드":
-    st.title("🏗️ 타워크레인 현장 점유율 및 채용 현황")
-    st.markdown("### 📌 원하시는 메뉴를 터치(선택)해 주세요.")
-    st.markdown("---")
-
-    col_h1, col_h2 = st.columns(2)
-    with col_h1:
-        if st.button("📊 2026년 전체 소속별 점유율", use_container_width=True):
-            st.session_state.selected_menu = "📊 1. 2026년 전체 소속별 점유율"
-            st.rerun()
-        if st.button("🏗️ 타워사별 점유 현황", use_container_width=True):
-            st.session_state.selected_menu = "🏗️ 3. 타워사별 점유 현황"
-            st.rerun()
-        if st.button("📅 1~9월 채용 추이", use_container_width=True):
-            st.session_state.selected_menu = "📅 5. 1~9월 채용 추이"
-            st.rerun()
-    with col_h2:
-        if st.button("🏢 각 8개지부 현장 점유율", use_container_width=True):
-            st.session_state.selected_menu = "🏢 2. 각 8개지부 현장 점유율"
-            st.rerun()
-        if st.button("🏭 반도체 현장 현황", use_container_width=True):
-            st.session_state.selected_menu = "🏭 4. 반도체 현장 현황"
-            st.rerun()
-
-    st.markdown("<br><p style='text-align: center; color: #64748B;'>좌측 사이드바 메뉴를 통해서도 언제든지 이동하실 수 있습니다.</p>", unsafe_allow_html=True)
-
-# ------------------------------------------
 # [메뉴 1] 전체 소속별 점유율
 # ------------------------------------------
-elif menu == "📊 1. 2026년 전체 소속별 점유율":
+if menu == "📊 1. 2026년 전체 소속별 점유율":
     st.title("📊 2026년 전체 소속별 점유율")
     df1 = sheets[s1_name].copy()
 
@@ -236,7 +202,7 @@ elif menu == "📊 1. 2026년 전체 소속별 점유율":
 
 
 # ------------------------------------------
-# [메뉴 2] 각 8개지부 현장 점유율 (한노 강조)
+# [메뉴 2] 각 8개지부 현장 점유율 (오류 수정 및 한노 강조)
 # ------------------------------------------
 elif menu == "🏢 2. 각 8개지부 현장 점유율":
     st.title("🏢 지부별 현장 점유율")
@@ -283,15 +249,15 @@ elif menu == "🏢 2. 각 8개지부 현장 점유율":
                 mijeong_cnt, mijeong_pct = sum_row[9], fmt_pct(pct_row[9])
                 total_cnt = sum_row[10] if len(sum_row) > 10 else "-"
 
-                # 요청 반영: 한노 글씨크기를 키우고 진하게 강조
+                # 오류 수정: HTML 태그 대신 Streamlit 마크다운 전용 색상 태그 사용하여 깔끔하게 출력
                 expander_label = (
                     f"📁 **{b_name}** | "
-                    f"<span style='color:#DC2626; font-size:1.15rem; font-weight:900;'>🔥 한노 {hanno_cnt}({hanno_pct})</span> &nbsp;|&nbsp; "
-                    f":blue[민노 {minno_cnt}({minno_pct})] &nbsp;|&nbsp; "
-                    f":green[섬유 {seomoo_cnt}({seomoo_pct})] &nbsp;|&nbsp; "
-                    f":orange[건산 {geunsan_cnt}({geunsan_pct})] &nbsp;|&nbsp; "
-                    f":violet[직원 {jikwon_cnt}({jikwon_pct})] &nbsp;|&nbsp; "
-                    f":gray[미정 {mijeong_cnt}({mijeong_pct})] &nbsp;|&nbsp; "
+                    f":red[**🔥 한노 {hanno_cnt}({hanno_pct})**] | "
+                    f":blue[민노 {minno_cnt}({minno_pct})] | "
+                    f":green[섬유 {seomoo_cnt}({seomoo_pct})] | "
+                    f":orange[건산 {geunsan_cnt}({geunsan_pct})] | "
+                    f":violet[직원 {jikwon_cnt}({jikwon_pct})] | "
+                    f":gray[미정 {mijeong_cnt}({mijeong_pct})] | "
                     f"**총대수 {total_cnt}(100%)**"
                 )
             else:
@@ -350,7 +316,6 @@ elif menu == "🏗️ 3. 타워사별 점유 현황":
     tower_list = ["전체 보기"] + list(df3["타워사"].astype(str).unique())
     selected_tower = st.selectbox("타워사를 선택하세요 (글자 입력 시 즉시 검색/필터링)", tower_list)
 
-    # 추가 키워드 입력 필터
     search_kw = st.text_input("또는 타워사 이름 일부 직접 입력", "", placeholder="예: 비엠, 대원 등")
 
     filtered_df = df3.copy()
