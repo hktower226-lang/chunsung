@@ -213,7 +213,7 @@ if menu == "📊 1. 2026년 전체 소속별 점유율":
 
 
 # ------------------------------------------
-# [메뉴 2] 각 8개지부 현장 점유율 (철저한 숫자 보정 및 nan 방지)
+# [메뉴 2] 각 8개지부 현장 점유율 (철저한 숫자 보정 적용)
 # ------------------------------------------
 elif menu == "🏢 2. 각 8개지부 현장 점유율":
     st.title("🏢 지부별 현장 점유율")
@@ -304,6 +304,7 @@ elif menu == "🏢 2. 각 8개지부 현장 점유율":
 
             with st.expander(expander_label):
                 if sites_list:
+                    # 상세 목록 테이블 표출 시 비어있는 셀은 0으로 채움
                     clean_sites = []
                     for s in sites_list:
                         clean_sites.append({
@@ -583,7 +584,7 @@ elif menu == "📅 5. 1~9월 채용 추이":
             detail_list = []
             for r in m_rows:
                 cell0 = str(r[0]).strip() if pd.notna(r[0]) else ""
-                if cell0 and "임대사" not in cell0 and "합계" not in cell0 and "비율" not in cell0:
+                if cell0 and "임대사" not in cell0 and "합계" not in, "비율" not in cell0:
                     detail_list.append({
                         "임대사": r[0],
                         "원청사": r[1] if len(r) > 1 else "",
@@ -593,7 +594,7 @@ elif menu == "📅 5. 1~9월 채용 추이":
                         "민노": r[5] if len(r) > 5 else 0,
                         "기타(건산섬유)": r[6] if len(r) > 6 else 0,
                         "직원": r[7] if len(r) > 7 else 0,
-                        "비고": r[8] if len(r) > 8 else "",
+                        "비고": r[8] if len(r) > 8 else 0,
                     })
 
             if detail_list:
