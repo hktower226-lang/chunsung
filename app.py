@@ -1,27 +1,60 @@
+import re
 import pandas as pd
 import streamlit as st
 
 # ==========================================
-# 1. 페이지 기본 설정 및 모바일 CSS
+# 1. 모바일 최적화 레이아웃 및 디자인 CSS
 # ==========================================
 st.set_page_config(
-    page_title="현장 점유율 및 채용 현황", layout="wide", initial_sidebar_state="collapsed"
+    page_title="현장 점유율 어플", layout="wide", initial_sidebar_state="expanded"
 )
 
 st.markdown(
     """
     <style>
+    /* 전체 글씨 크기 확대 */
     html, body, [class*="css"] { font-size: 19px !important; }
-    h1 { font-size: 2.2rem !important; font-weight: bold !important; color: #1E3A8A; }
-    h2 { font-size: 1.8rem !important; font-weight: bold !important; color: #1E40AF; }
-    h3 { font-size: 1.5rem !important; font-weight: bold !important; }
+    
+    /* 헤더 및 타이틀 */
+    h1 { font-size: 2.1rem !important; font-weight: bold !important; color: #1E3A8A; }
+    h2 { font-size: 1.7rem !important; font-weight: bold !important; color: #1E40AF; }
+    h3 { font-size: 1.4rem !important; font-weight: bold !important; }
+    
+    /* 모바일 세로 스크롤 레이아웃 */
+    .block-container {
+        padding-top: 1.2rem !important;
+        padding-bottom: 3rem !important;
+        padding-left: 0.6rem !important;
+        padding-right: 0.6rem !important;
+    }
+    
+    /* 버튼 및 카드 디자인 */
     .stSelectbox label, .stRadio label { font-size: 1.2rem !important; font-weight: bold !important; }
-    .block-container { padding-top: 1.5rem !important; padding-bottom: 3rem !important; padding-left: 0.8rem !important; padding-right: 0.8rem !important; }
-    .dataframe { font-size: 16px !important; }
+    
+    /* 전화걸기 버튼 스타일 */
     .phone-btn {
-        display: inline-block; background-color: #25D366; color: white !important;
-        padding: 10px 18px; font-size: 18px; font-weight: bold; text-decoration: none;
-        border-radius: 8px; margin-top: 5px; margin-bottom: 10px; text-align: center;
+        display: inline-block;
+        background-color: #25D366;
+        color: white !important;
+        padding: 10px 18px;
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 8px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        text-align: center;
+        width: 100%;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    
+    /* 카드형 박스 */
+    .card-box {
+        background-color: #F8FAFC;
+        border: 1px solid #E2E8F0;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 12px;
     }
     </style>
 """,
@@ -32,63 +65,96 @@ EXCEL_FILE = "채용비율.xlsx"
 
 
 # ==========================================
-# 2. 데이터 로드
+# 2. 엑셀 데이터 로드 (헤더 없는 원본 파싱)
 # ==========================================
 @st.cache_data(ttl=5)
-def load_all_sheets():
+def load_sheets():
     try:
         xls = pd.ExcelFile(EXCEL_FILE)
-        return {sheet: pd.read_excel(xls, sheet) for sheet in xls.sheet_names}
+        # header=None으로 읽어 원본 데이터 유실 방지
+        sheets = {
+            sheet: pd.read_excel(xls, sheet, header=None)
+            for sheet in xls.sheet_names
+        }
+        return sheets
     except Exception as e:
-        st.error(f"❌ 엑셀 파일을 읽는 중 에러가 발생했습니다: {e}")
+        st.error(
+            f"❌ 엑셀 파일('{EXCEL_FILE}')을 읽는 중 에러가 발생했습니다: {e}"
+        )
         return None
 
 
-sheets = load_all_sheets()
+sheets = load_sheets()
 
 if not sheets:
-    st.warning("⚠️ 엑셀 데이터를 로드하지 못했습니다. 파일명을 확인해 주세요.")
     st.stop()
 
-sheet_names = list(sheets.keys())
-s1_name = sheet_names[0] if len(sheet_names) > 0 else "1.26년 전체 소속별 점유율"
-s2_name = sheet_names[1] if len(sheet_names) > 1 else "2.각8개지부 현장점유율"
-s3_name = sheet_names[2] if len(sheet_names) > 2 else "3.타워사별 점유현황"
-s4_name = sheet_names[3] if len(sheet_names) > 3 else "4.반도체현장"
-s5_name = sheet_names[4] if len(sheet_names) > 4 else "5.1~9월채용추이"
+sheet_keys = list(sheets.keys())
 
 # ==========================================
-# 3. 사이드바 메뉴
+# 3. 사이드바 어플 메뉴 (모바일 메뉴)
 # ==========================================
-st.sidebar.title("📌 메뉴 이동")
+st.sidebar.title("📱 어플 메뉴")
 menu = st.sidebar.radio(
     "원하시는 화면을 선택하세요",
     [
-        "🏠 메인: 전체 소속별 점유율",
-        "🏢 각 8개지부 현장 점유율",
-        "🏗️ 타워사별 점유 현황",
-        "🏭 반도체 현장 현황",
-        "📅 1~9월 채용 추이",
+        "1️⃣ 메인: 전체 소속별 점유율",
+        "2️⃣ 8개 지부 현장 점유율",
+        "3️⃣ 타워사별 점유 현황",
+        "4️⃣ 반도체 현장 파악",
+        "5️⃣ 1~9월 채용 현황 및 추이",
     ],
 )
+
+# 퍼센트 변환 함수
+def to_pct_str(val):
+    try:
+        if pd.isna(val) or val == "" or val == "-":
+            return "0%"
+        f_val = float(val)
+        if f_val <= 1.0:
+            return f"{f_val * 100:.1f}%"
+        return f"{f_val:.1f}%"
+    except:
+        return str(val)
+
 
 # ==========================================
 # 4. 메뉴별 화면 구현
 # ==========================================
 
-# 1. 메인
-if menu == "🏠 메인: 전체 소속별 점유율":
-    st.title("📊 2026년 전체 소속별 점유율")
-    df1 = sheets[s1_name].copy()
-    st.write("### 💡 전체 소속별 통계 개요")
-    st.dataframe(df1.fillna(""), use_container_width=True, hide_index=True)
+# ------------------------------------------
+# [메뉴 1] 어플 켰을 때 첫번째 시트 (메인)
+# ------------------------------------------
+if menu == "1️⃣ 메인: 전체 소속별 점유율":
+    st.title("📊 전체 소속별 점유율 (메인)")
 
-# 2. 각 8개지부
-elif menu == "🏢 각 8개지부 현장 점유율":
+    raw_df1 = sheets[sheet_keys[0]].fillna("")
+
+    # 메인 시트 예쁘게 테이블로 표시
+    st.markdown("### 💡 전체 현장 통계 개요")
+
+    # 헤더와 데이터 분리
+    header1 = raw_df1.iloc[1].tolist()
+    data1 = raw_df1.iloc[2:].copy()
+    data1.columns = header1
+
+    # 비율 퍼센트 처리
+    if "비율" in data1.columns:
+        data1["비율"] = data1["비율"].apply(to_pct_str)
+
+    st.dataframe(data1, use_container_width=True, hide_index=True)
+
+
+# ------------------------------------------
+# [메뉴 2] 2번째 시트: 각 8개지부 현장점유율
+# ------------------------------------------
+elif menu == "2️⃣ 8개 지부 현장 점유율":
     st.title("🏢 지부별 현장 점유율")
-    df2 = sheets[s2_name].copy()
-    rows = df2.values.tolist()
 
+    raw_df2 = sheets[sheet_keys[1]]
+
+    # 1. 지부별 데이터 분리 파싱
     branches = [
         "북부지부",
         "남부지부",
@@ -99,67 +165,90 @@ elif menu == "🏢 각 8개지부 현장 점유율":
         "용인지부",
         "중부지부",
     ]
-    branch_data = {}
-    current_branch = "북부"
+    branch_map = {
+        "북부": "북부지부",
+        "남부": "남부지부",
+        "남서": "남서지부",
+        "동부": "동부지부",
+        "서부": "서부지부",
+        "북서": "북서지부",
+        "용인": "용인지부",
+        "중부": "중부지부",
+    }
 
-    for r in rows[1:]:
-        branch_col = str(r[0]).strip() if pd.notna(r[0]) else ""
-        for b in ["북부", "남부", "남서", "동부", "서부", "북서", "용인", "중부"]:
-            if branch_col == b:
-                current_branch = b + "지부"
+    b_data = {b: {"summary": None, "pct": None, "sites": []} for b in branches}
+
+    curr_b = "북부지부"
+
+    for idx, row in raw_df2.iterrows():
+        if idx == 0:
+            continue  # 컬럼명 행 제외
+
+        c0 = str(row[0]).strip() if pd.notna(row[0]) else ""
+
+        # 지부 이름 감지
+        for short_k, full_k in branch_map.items():
+            if c0 == short_k:
+                curr_b = full_k
                 break
 
-        if current_branch not in branch_data:
-            branch_data[current_branch] = {
-                "summary": None,
-                "percent": None,
-                "sites": [],
-            }
+        if "소계" in c0 and "퍼센테이지" not in c0:
+            b_data[curr_b]["summary"] = row
+        elif "퍼센테이지" in c0:
+            b_data[curr_b]["pct"] = row
+        elif pd.notna(row[1]) and str(row[1]).strip() != "현장명":
+            b_data[curr_b]["sites"].append(row)
 
-        if "소계" in branch_col:
-            branch_data[current_branch]["summary"] = r
-        elif "퍼센테이지" in branch_col or "소계퍼센테이지" in branch_col:
-            branch_data[current_branch]["percent"] = r
-        elif pd.notna(r[1]) and str(r[1]).strip() != "현장명":
-            branch_data[current_branch]["sites"].append(r)
+    # 2. 먼저 각 지부 소계 및 퍼센티지 한눈에 쫙 출력
+    st.subheader("📌 1. 각 지부 소계 및 퍼센티지 요약")
 
-    st.subheader("📌 지부별 소계 및 퍼센티지")
-    for b_name in branches:
-        if b_name in branch_data:
-            b_info = branch_data[b_name]
-            sum_row = b_info["summary"]
-            pct_row = b_info["percent"]
+    for idx_b, b_name in enumerate(branches, 1):
+        info = b_data[b_name]
+        s_row = info["summary"]
+        p_row = info["pct"]
 
-            with st.expander(f"🔹 {b_name} 요약 보기"):
-                if sum_row is not None:
-                    st.markdown(
-                        f"**[합계]** 총대수: **{sum_row[10] if len(sum_row)>10 else '-'}**대 | "
-                        f"한노: {sum_row[4]} | 민노: {sum_row[5]} | 섬유: {sum_row[6]} | "
-                        f"건산: {sum_row[7]} | 직원: {sum_row[8]} | 미정: {sum_row[9]}"
-                    )
-                if pct_row is not None:
+        with st.container():
+            st.markdown(f"#### {idx_b}. {b_name} 소계 및 퍼센티지")
 
-                    def fmt_pct(val):
-                        try:
-                            return f"{float(val)*100:.1f}%"
-                        except:
-                            return str(val) if pd.notna(val) else "0%"
+            total_cnt = s_row[10] if s_row is not None and len(s_row) > 10 else 0
+            hanno = s_row[4] if s_row is not None else 0
+            minno = s_row[5] if s_row is not None else 0
+            seomoo = s_row[6] if s_row is not None else 0
+            geunsan = s_row[7] if s_row is not None else 0
+            jikwon = s_row[8] if s_row is not None else 0
+            mijeong = s_row[9] if s_row is not None else 0
 
-                    st.markdown(
-                        f"**[점유율]** "
-                        f"한노: **{fmt_pct(pct_row[4])}** | 민노: **{fmt_pct(pct_row[5])}** | "
-                        f"섬유: {fmt_pct(pct_row[6])} | 건산: {fmt_pct(pct_row[7])} | "
-                        f"직원: {fmt_pct(pct_row[8])} | 미정: {fmt_pct(pct_row[9])}"
-                    )
+            hanno_p = to_pct_str(p_row[4]) if p_row is not None else "0%"
+            minno_p = to_pct_str(p_row[5]) if p_row is not None else "0%"
+            seomoo_p = to_pct_str(p_row[6]) if p_row is not None else "0%"
+            geunsan_p = to_pct_str(p_row[7]) if p_row is not None else "0%"
+            jikwon_p = to_pct_str(p_row[8]) if p_row is not None else "0%"
+            mijeong_p = to_pct_str(p_row[9]) if p_row is not None else "0%"
+
+            st.markdown(
+                f"""
+            <div class="card-box">
+                <b>[소계]</b> 총대수: <b>{total_cnt}대</b> | 한노: {hanno} | 민노: {minno} | 섬유: {seomoo} | 건산: {geunsan} | 직원: {jikwon} | 미정: {mijeong}<br>
+                <b>[비율]</b> 한노: <b>{hanno_p}</b> | 민노: <b>{minno_p}</b> | 섬유: {seomoo_p} | 건산: {geunsan_p} | 직원: {jikwon_p} | 미정: {mijeong_p}
+            </div>
+            """,
+                unsafe_allow_html=True,
+            )
 
     st.markdown("---")
-    st.subheader("🔍 상세 현황 조회할 지부 선택")
-    selected_b = st.selectbox("지부를 선택하세요", branches)
 
-    if selected_b in branch_data and branch_data[selected_b]["sites"]:
-        sites_list = branch_data[selected_b]["sites"]
-        site_df = pd.DataFrame(sites_list)
-        display_df = pd.DataFrame(
+    # 3. 클릭 시 해당 지부 상세 정보 출력 (버튼 / 선택 박스)
+    st.subheader("📌 2. 지부 클릭 시 상세 현황 보기")
+    selected_branch = st.selectbox(
+        "상세 내용을 확인할 지부를 선택하세요", branches
+    )
+
+    if selected_branch and b_data[selected_branch]["sites"]:
+        sites_rows = b_data[selected_branch]["sites"]
+        site_df = pd.DataFrame(sites_rows)
+
+        # 표시할 항목: 현장명, 타워회사, 한노, 민노, 섬유, 건산, 직원, 미정, 총대수
+        res_df = pd.DataFrame(
             {
                 "현장명": site_df[1],
                 "타워회사": site_df[2],
@@ -172,96 +261,98 @@ elif menu == "🏢 각 8개지부 현장 점유율":
                 "총대수": site_df[10],
             }
         ).fillna(0)
-        st.markdown(f"### 📍 {selected_b} 상세 현장 목록")
-        st.dataframe(display_df, use_container_width=True, hide_index=True)
 
-# 3. 타워사별
-elif menu == "🏗️ 타워사별 점유 현황":
-    st.title("🏗️ 임대사(타워사)별 점유 현황")
-    df3 = sheets[s3_name].copy()
-    if "타워사" in df3.iloc[0].values:
-        df3.columns = df3.iloc[0]
-        df3 = df3[1:].reset_index(drop=True)
+        st.markdown(f"### 📍 [{selected_branch}] 상세 현장 목록")
+        st.dataframe(res_df, use_container_width=True, hide_index=True)
 
-    df3 = df3.dropna(subset=["타워사"]).fillna(0)
-    search_keyword = st.text_input("🔍 임대사 명칭 검색", "")
 
-    if search_keyword:
-        filtered_df = df3[
-            df3["타워사"].astype(str).str.contains(search_keyword, case=False)
+# ------------------------------------------
+# [메뉴 3] 3번째 시트: 타워사별 점유현황
+# ------------------------------------------
+elif menu == "3️⃣ 타워사별 점유 현황":
+    st.title("🏗️ 임대사 카테고리 검색 및 점유현황")
+
+    raw_df3 = sheets[sheet_keys[2]].fillna(0)
+
+    # 헤더 정리
+    cols = raw_df3.iloc[1].tolist()
+    df3 = raw_df3.iloc[2:].copy()
+    df3.columns = cols
+
+    # 임대사 카테고리 검색 기능
+    search_q = st.text_input(
+        "🔍 임대사(타워사) 검색", "", placeholder="타워사명을 입력하세요 (예: 비엠케이)"
+    )
+
+    if search_q:
+        df3_filtered = df3[
+            df3["타워사"].astype(str).str.contains(search_q, case=False)
         ]
     else:
-        filtered_df = df3
+        df3_filtered = df3
 
-    if "한노점유율" in filtered_df.columns:
+    # 한노점유율 퍼센트 변환
+    if "한노점유율" in df3_filtered.columns:
+        df3_filtered["한노점유율"] = df3_filtered["한노점유율"].apply(
+            to_pct_str
+        )
 
-        def to_pct(val):
-            try:
-                return f"{float(val)*100:.1f}%"
-            except:
-                return str(val)
+    st.markdown("### 📋 임대사 점유현황 목록")
+    st.dataframe(df3_filtered, use_container_width=True, hide_index=True)
 
-        filtered_df_disp = filtered_df.copy()
-        filtered_df_disp["한노점유율"] = filtered_df_disp["한노점유율"].apply(to_pct)
-    else:
-        filtered_df_disp = filtered_df
 
-    st.dataframe(filtered_df_disp, use_container_width=True, hide_index=True)
-
-# 4. 반도체현장
-elif menu == "🏭 반도체 현장 현황":
+# ------------------------------------------
+# [메뉴 4] 4번째 시트: 반도체현장 (전화 연결)
+# ------------------------------------------
+elif menu == "4️⃣ 반도체 현장 파악":
     st.title("🏭 반도체 현장 타워크레인 현황")
-    df4 = sheets[s4_name].copy()
 
+    raw_df4 = sheets[sheet_keys[3]]
+
+    # 1. 요약 현황
     st.subheader("📊 반도체 현장 전체 대수 비교")
     try:
-        summary_data = {
-            "구분": [
-                "전체 대수",
-                "한국노총",
-                "민주노총",
-                "건설노조(건산,섬유)",
-                "비노조",
-                "미정",
-            ],
-            "대수": [
-                df4.iloc[4, 0],
-                df4.iloc[4, 1],
-                df4.iloc[4, 2],
-                df4.iloc[4, 3],
-                df4.iloc[4, 4],
-                df4.iloc[4, 5],
-            ],
-            "점유율": [
-                "-",
-                f"{float(df4.iloc[5, 1])*100:.1f}%"
-                if pd.notna(df4.iloc[5, 1])
-                else "-",
-                f"{float(df4.iloc[5, 2])*100:.1f}%"
-                if pd.notna(df4.iloc[5, 2])
-                else "-",
-                f"{float(df4.iloc[5, 3])*100:.1f}%"
-                if pd.notna(df4.iloc[5, 3])
-                else "-",
-                f"{float(df4.iloc[5, 4])*100:.1f}%"
-                if pd.notna(df4.iloc[5, 4])
-                else "-",
-                f"{float(df4.iloc[5, 5])*100:.1f}%"
-                if pd.notna(df4.iloc[5, 5])
-                else "-",
-            ],
-        }
-        st.table(pd.DataFrame(summary_data))
+        sum_table = pd.DataFrame(
+            {
+                "구분": [
+                    "전체대수",
+                    "한국노총",
+                    "민주노총",
+                    "건설노조(건산,섬유)",
+                    "비노조",
+                    "미정",
+                ],
+                "대수": [
+                    raw_df4.iloc[5, 0],
+                    raw_df4.iloc[5, 1],
+                    raw_df4.iloc[5, 2],
+                    raw_df4.iloc[5, 3],
+                    raw_df4.iloc[5, 4],
+                    raw_df4.iloc[5, 5],
+                ],
+                "점유율": [
+                    "-",
+                    to_pct_str(raw_df4.iloc[6, 1]),
+                    to_pct_str(raw_df4.iloc[6, 2]),
+                    to_pct_str(raw_df4.iloc[6, 3]),
+                    to_pct_str(raw_df4.iloc[6, 4]),
+                    to_pct_str(raw_df4.iloc[6, 5]),
+                ],
+            }
+        )
+        st.table(sum_table)
     except:
         pass
 
     st.markdown("---")
-    st.subheader("📍 각 현장별 상세 현황 및 담당자")
-    detail_rows = df4.iloc[9:].dropna(how="all").copy()
+    st.subheader("📍 각 현장별 상세 내용 및 담당자 통화")
 
-    for idx, row in detail_rows.iterrows():
+    # 현장 데이터 파싱 (10번 행부터)
+    sites_rows = raw_df4.iloc[10:].dropna(how="all").copy()
+
+    for idx, row in sites_rows.iterrows():
         site_name = str(row[1]) if pd.notna(row[1]) else ""
-        if not site_name or site_name == "nan":
+        if not site_name or site_name == "nan" or site_name == "현장명":
             continue
 
         total_cnt = row[2] if pd.notna(row[2]) else 0
@@ -270,7 +361,7 @@ elif menu == "🏭 반도체 현장 현황":
         gunsan = row[5] if pd.notna(row[5]) else 0
         non_union = row[6] if pd.notna(row[6]) else 0
         mijung = row[7] if pd.notna(row[7]) else 0
-        contact_info = str(row[8]) if pd.notna(row[8]) else ""
+        contact_str = str(row[8]) if pd.notna(row[8]) else ""
 
         with st.expander(f"🏢 {site_name} (총 {total_cnt}대)", expanded=True):
             st.write(
@@ -278,96 +369,106 @@ elif menu == "🏭 반도체 현장 현황":
             )
             st.write(f"• **비노조:** {non_union}대 | **미정:** {mijung}대")
 
-            if contact_info:
-                import re
-
+            # 전화번호 자동 감지 및 즉시 통화 연결 버튼
+            if contact_str:
                 phone_match = re.search(
-                    r"01[016789][-\s]?\d{3,4}[-\s]?\d{4}", contact_info
+                    r"01[016789][-\s]?\d{3,4}[-\s]?\d{4}", contact_str
                 )
                 if phone_match:
-                    phone_num = (
+                    clean_phone = (
                         phone_match.group().replace("-", "").replace(" ", "")
                     )
                     st.markdown(
-                        f"👤 **담당자:** {contact_info}<br>"
-                        f'<a href="tel:{phone_num}" class="phone-btn">📞 담당자 바로 전화걸기</a>',
+                        f"👤 **담당자:** {contact_str}<br>"
+                        f'<a href="tel:{clean_phone}" class="phone-btn">📞 담당자에게 전화걸기 ({clean_phone})</a>',
                         unsafe_allow_html=True,
                     )
                 else:
-                    st.write(f"👤 **담당자:** {contact_info}")
+                    st.write(f"👤 **담당자 비고:** {contact_str}")
 
-# 5. 채용추이
-elif menu == "📅 1~9월 채용 추이":
-    st.title("📅 월별 채용 현황 및 추이")
-    df5 = sheets[s5_name].copy()
-    rows = df5.values.tolist()
 
-    month_blocks = {}
-    current_month = None
-    current_data = []
+# ------------------------------------------
+# [메뉴 5] 5번째 시트: 1~9월 채용 추이
+# ------------------------------------------
+elif menu == "5️⃣ 1~9월 채용 현황 및 추이":
+    st.title("📅 월별 채용 현황 및 비율 추이")
 
-    for r in rows:
-        title_cell = str(r[0]).strip() if pd.notna(r[0]) else ""
-        if "채용 현황" in title_cell or "채용현황" in title_cell:
-            if current_month and current_data:
-                month_blocks[current_month] = current_data
-            current_month = title_cell
-            current_data = []
-        elif current_month:
-            current_data.append(r)
+    raw_df5 = sheets[sheet_keys[4]]
 
-    if current_month and current_data:
-        month_blocks[current_month] = current_data
+    # 월별 블록 파싱
+    months_data = {}
+    curr_m = None
+    curr_rows = []
 
-    st.subheader("📌 월별 채용현황 합계 및 비율 요약")
-    for m_name, m_rows in month_blocks.items():
-        sum_row = None
-        pct_row = None
-        for r in m_rows:
-            cell0 = str(r[0]).strip() if pd.notna(r[0]) else ""
-            if "합계" in cell0:
-                sum_row = r
-            elif "비율" in cell0:
-                pct_row = r
+    for idx, row in raw_df5.iterrows():
+        c0 = str(row[0]).strip() if pd.notna(row[0]) else ""
 
-        with st.expander(f"🗓️ {m_name} 요약 보기"):
-            if sum_row is not None:
-                st.markdown(
-                    f"**[합계]** 총대수: **{sum_row[3] if len(sum_row)>3 else '-'}**대 | "
-                    f"한노: {sum_row[4]} | 민노: {sum_row[5]} | 기타: {sum_row[6]} | "
-                    f"직원: {sum_row[7]} | 미정: {sum_row[8]}"
-                )
-            if pct_row is not None:
+        if "채용 현황" in c0 or "채용현황" in c0:
+            if curr_m and curr_rows:
+                months_data[curr_m] = curr_rows
+            curr_m = c0
+            curr_rows = []
+        elif curr_m:
+            curr_rows.append(row)
 
-                def fmt_p(v):
-                    try:
-                        return f"{float(v)*100:.1f}%"
-                    except:
-                        return str(v) if pd.notna(v) else "0%"
+    if curr_m and curr_rows:
+        months_data[curr_m] = curr_rows
 
-                st.markdown(
-                    f"**[비율]** "
-                    f"한노: **{fmt_p(pct_row[4])}** | 민노: **{fmt_p(pct_row[5])}** | "
-                    f"기타: {fmt_p(pct_row[6])} | 직원: {fmt_p(pct_row[7])} | "
-                    f"미정: {fmt_p(pct_row[8])}"
-                )
+    # 1. 1월~9월 채용현황 합계 및 비율 먼저 쫙 출력
+    st.subheader("📌 1. 월별 채용현황 합계 및 비율 요약")
+
+    for m_title, rows_list in months_data.items():
+        sum_r = None
+        pct_r = None
+
+        for r in rows_list:
+            r0 = str(r[0]).strip() if pd.notna(r[0]) else ""
+            if "합계" in r0:
+                sum_r = r
+            elif "비율" in r0:
+                pct_r = r
+
+        st.markdown(f"#### 🗓️ {m_title}")
+
+        total_cnt = sum_r[3] if sum_r is not None and len(sum_r) > 3 else 0
+        hanno = sum_r[4] if sum_r is not None else 0
+        minno = sum_r[5] if sum_r is not None else 0
+        etc = sum_r[6] if sum_r is not None else 0
+        jikwon = sum_r[7] if sum_r is not None else 0
+        mijeong = sum_r[8] if sum_r is not None else 0
+
+        hanno_p = to_pct_str(pct_r[4]) if pct_r is not None else "0%"
+        minno_p = to_pct_str(pct_r[5]) if pct_r is not None else "0%"
+        etc_p = to_pct_str(pct_r[6]) if pct_r is not None else "0%"
+        jikwon_p = to_pct_str(pct_r[7]) if pct_r is not None else "0%"
+        mijeong_p = to_pct_str(pct_r[8]) if pct_r is not None else "0%"
+
+        st.markdown(
+            f"""
+        <div class="card-box">
+            <b>[합계]</b> 총대수: <b>{total_cnt}대</b> | 한노: {hanno} | 민노: {minno} | 기타: {etc} | 직원: {jikwon} | 미정: {mijeong}<br>
+            <b>[비율]</b> 한노: <b>{hanno_p}</b> | 민노: <b>{minno_p}</b> | 기타: {etc_p} | 직원: {jikwon_p} | 미정: {mijeong_p}
+        </div>
+        """,
+            unsafe_allow_html=True,
+        )
 
     st.markdown("---")
-    st.subheader("🔍 상세 채용 현황 조회할 월 선택")
-    selected_m = st.selectbox("월을 선택하세요", list(month_blocks.keys()))
 
-    if selected_m:
-        m_rows = month_blocks[selected_m]
-        detail_list = []
-        for r in m_rows:
-            cell0 = str(r[0]).strip() if pd.notna(r[0]) else ""
-            if (
-                cell0
-                and "임대사" not in cell0
-                and "합계" not in cell0
-                and "비율" not in cell0
-            ):
-                detail_list.append(
+    # 2. 클릭 시 해당 월 상세 수치(임대사, 원청사, 현장명, 총대수, 수치들) 출력
+    st.subheader("📌 2. 클릭하여 상세 현황 수치 보기")
+    selected_month = st.selectbox(
+        "상세 수치를 볼 월을 선택하세요", list(months_data.keys())
+    )
+
+    if selected_month:
+        m_rows_list = months_data[selected_month]
+
+        detail_records = []
+        for r in m_rows_list:
+            r0 = str(r[0]).strip() if pd.notna(r[0]) else ""
+            if r0 and "임대사" not in r0 and "합계" not in r0 and "비율" not in r0:
+                detail_records.append(
                     {
                         "임대사": r[0],
                         "원청사": r[1],
@@ -375,17 +476,17 @@ elif menu == "📅 1~9월 채용 추이":
                         "총대수": r[3],
                         "한노": r[4],
                         "민노": r[5],
-                        "기타": r[6],
+                        "기타(건산,섬유)": r[6],
                         "직원": r[7],
                         "미정": r[8],
                         "비고": r[9] if len(r) > 9 else "",
                     }
                 )
 
-        if detail_list:
-            st.markdown(f"### 📍 {selected_m} 상세 현황")
+        if detail_records:
+            st.markdown(f"### 📍 [{selected_month}] 상세 채용 현황")
             st.dataframe(
-                pd.DataFrame(detail_list).fillna(""),
+                pd.DataFrame(detail_records).fillna(""),
                 use_container_width=True,
                 hide_index=True,
             )
