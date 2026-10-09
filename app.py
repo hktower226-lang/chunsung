@@ -429,11 +429,13 @@ elif menu == "🏭 4. 반도체 현장 현황":
     st.markdown("---")
     st.subheader("📍 각 현장별 상세 현황 및 담당자")
 
-    # 엑셀 시트 4번의 10번 행부터 합계 행 전까지 순회하며 모든 반도체 현장 출력 (P5복합동, P4 복합동 등 완벽 반영)
+    # 엑셀 시트 4번의 10번 행부터 순회 ('합계' 행만 정확히 필터링 제외)
     for idx in range(10, len(df4_raw)):
         row = df4_raw.iloc[idx]
-        site_name = str(row[1]) if pd.notna(row[1]) else ""
-        if not site_name or site_name == "nan" or "합" in site_name:
+        site_name = str(row[1]).strip() if pd.notna(row[1]) else ""
+        
+        # 빈값이거나 '합 계' / '합계'인 행은 건너뜀 (복합동의 '합' 글자로 인한 오류 방지)
+        if not site_name or site_name == "nan" or site_name in ["합 계", "합계"]:
             continue
 
         total_cnt = row[2] if pd.notna(row[2]) else 0
