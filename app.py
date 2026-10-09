@@ -356,7 +356,7 @@ elif menu == "🏗️ 3. 타워사별 점유 현황":
 
 
 # ------------------------------------------
-# [메뉴 4] 반도체 현장 현황
+# [메뉴 4] 반도체 현장 현황 (동적 합계 계산 적용)
 # ------------------------------------------
 elif menu == "🏭 4. 반도체 현장 현황":
     st.title("🏭 반도체 현장 타워크레인 현황")
@@ -366,18 +366,34 @@ elif menu == "🏭 4. 반도체 현장 현황":
 
     st.subheader("📊 반도체 현장 전체 대수 비교")
     try:
-        tot_d = df4_raw.iloc[5, 0]      # 111
-        hanno_cnt = df4_raw.iloc[5, 1]  # 44
-        minno_cnt = df4_raw.iloc[5, 2]  # 54
-        gunsan_cnt = df4_raw.iloc[5, 3] # 1
-        non_cnt = df4_raw.iloc[5, 4]    # 12
-        mi_cnt = df4_raw.iloc[5, 5]     # 0
+        # 상세 현장 목록 행(10번째 행부터 시작)을 읽어서 동적으로 합계 계산
+        site_rows = []
+        for idx in range(10, len(df4_raw)):
+            row = df4_raw.iloc[idx]
+            site_name = str(row[1]) if pd.notna(row[1]) else ""
+            if not site_name or site_name == "nan" or "합" in site_name:
+                continue
+            site_rows.append(row)
 
-        hanno_p = fmt_pct(df4_raw.iloc[6, 1])
-        minno_p = fmt_pct(df4_raw.iloc[6, 2])
-        gunsan_p = fmt_pct(df4_raw.iloc[6, 3])
-        non_p = fmt_pct(df4_raw.iloc[6, 4])
-        mi_p = fmt_pct(df4_raw.iloc[6, 5])
+        if site_rows:
+            site_df = pd.DataFrame(site_rows)
+            tot_d = int(pd.to_numeric(site_df[2], errors='coerce').fillna(0).sum())
+            hanno_cnt = int(pd.to_numeric(site_df[3], errors='coerce').fillna(0).sum())
+            minno_cnt = int(pd.to_numeric(site_df[4], errors='coerce').fillna(0).sum())
+            gunsan_cnt = int(pd.to_numeric(site_df[5], errors='coerce').fillna(0).sum())
+            non_cnt = int(pd.to_numeric(site_df[6], errors='coerce').fillna(0).sum())
+            mi_cnt = int(pd.to_numeric(site_df[7], errors='coerce').fillna(0).sum())
+        else:
+            tot_d = hanno_cnt = minno_cnt = gunsan_cnt = non_cnt = mi_cnt = 0
+
+        if tot_d > 0:
+            hanno_p = f"{(hanno_cnt / tot_d) * 100:.1f}%"
+            minno_p = f"{(minno_cnt / tot_d) * 100:.1f}%"
+            gunsan_p = f"{(gunsan_cnt / tot_d) * 100:.1f}%"
+            non_p = f"{(non_cnt / tot_d) * 100:.1f}%"
+            mi_p = f"{(mi_cnt / tot_d) * 100:.1f}%"
+        else:
+            hanno_p = minno_p = gunsan_p = non_p = mi_p = "0.0%"
 
         st.markdown(
             f"""
@@ -423,8 +439,8 @@ elif menu == "🏭 4. 반도체 현장 현황":
                 unsafe_allow_html=True,
             )
 
-    except Exception:
-        st.info("상단 요약 데이터 표시 중")
+    except Exception as e:
+        st.info(f"상단 요약 데이터 표시 중 오류 발생: {e}")
 
     st.markdown("---")
     st.subheader("📍 각 현장별 상세 현황 및 담당자")
@@ -471,7 +487,7 @@ elif menu == "🏭 4. 반도체 현장 현황":
 
 
 # ------------------------------------------
-# [메뉴 5] 1~9월 채용 추이 (9월 미정 인원 안내 문구 추가)
+# [메뉴 5] 1~9월 채용 추이
 # ------------------------------------------
 elif menu == "📅 5. 1~9월 채용 추이":
     st.title("📅 월별 채용 현황 및 추이")
@@ -533,7 +549,6 @@ elif menu == "📅 5. 1~9월 채용 추이":
                     unsafe_allow_html=True
                 )
             
-            # 9월 채용 현황일 경우 미정 인원 안내 문구 추가
             if "9월" in m_name:
                 st.info("ℹ️ 참고: 미정인원 12명 (인력 확정 시 비율 변동)")
 
