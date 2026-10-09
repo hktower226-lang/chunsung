@@ -30,8 +30,8 @@ st.markdown(
     
     /* 모바일 반응형 좌우 여백 축소 (위아래 세로 스크롤 최적화) */
     .block-container {
-        padding-top: 1.5rem !important;
-        padding-bottom: 3rem !important;
+        padding-top: 1.2rem !important;
+        padding-bottom: 2rem !important;
         padding-left: 0.8rem !important;
         padding-right: 0.8rem !important;
         max-width: 100% !important;
@@ -58,23 +58,23 @@ st.markdown(
         box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
 
-    /* 메인 화면 전용 카드 스타일 & 소속별 구분색 */
+    /* 메인 화면 전용 카드 스타일 & 소속별 구분색 (요청 반영: 크기 및 여백 슬림화) */
     .main-total-card {
         background: linear-gradient(135deg, #1E3A8A, #3B82F6);
         color: white;
-        padding: 20px;
-        border-radius: 12px;
+        padding: 10px 12px;
+        border-radius: 10px;
         text-align: center;
-        margin-bottom: 18px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        margin-bottom: 10px;
+        box-shadow: 0 3px 5px rgba(0,0,0,0.1);
     }
     .main-stat-card {
         background-color: #FFFFFF;
-        border-left: 6px solid #3B82F6;
-        border-radius: 8px;
-        padding: 15px;
-        margin-bottom: 12px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+        border-left: 5px solid #3B82F6;
+        border-radius: 6px;
+        padding: 8px 12px;
+        margin-bottom: 8px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.06);
     }
     .border-hanno { border-left-color: #EF4444 !important; }   /* 빨강 */
     .border-minno { border-left-color: #3B82F6 !important; }   /* 파랑 */
@@ -153,7 +153,7 @@ menu = st.sidebar.radio(
 # ==========================================
 
 # ------------------------------------------
-# [메뉴 1] 메인: 1.26년 전체 소속별 점유율 (수정: 세로 레이아웃, 컬러, 퍼센트)
+# [메뉴 1] 메인: 1.26년 전체 소속별 점유율 (수정: 글자 크기 및 여백 컴팩트 축소)
 # ------------------------------------------
 if menu == "🏠 메인: 전체 소속별 점유율":
     st.title("📊 2026년 전체 소속별 점유율")
@@ -208,29 +208,31 @@ if menu == "🏠 메인: 전체 소속별 점유율":
             },
         ]
 
-        # 1. 상단 총 대수 강조 카드
+        # 1. 상단 총 대수 컴팩트 카드 (글씨 크기 줄임)
         st.markdown(
             f"""
         <div class="main-total-card">
-            <h3 style="margin:0; color:white;">🏆 전체 현장 총 대수</h3>
-            <h1 style="margin:5px 0 0 0; color:white; font-size: 2.8rem !important;">{tot_cnt}대 <span style="font-size:1.5rem;">({tot_pct})</span></h1>
+            <span style="font-size: 1.0rem; font-weight: bold; color: #E0E7FF;">🏆 전체 현장 총 대수</span>
+            <div style="font-size: 1.8rem; font-weight: bold; color: white; margin-top: 2px;">
+                {tot_cnt}대 <span style="font-size: 1.1rem; font-weight: normal;">({tot_pct})</span>
+            </div>
         </div>
         """,
             unsafe_allow_html=True,
         )
 
-        st.subheader("👇 소속별 점유 현황 (위아래 세로 보기)")
+        st.markdown("### 👇 소속별 점유 현황")
 
-        # 2. 위아래로 내리는 세로 배치 카드
+        # 2. 소속별 세로 카드 (글씨 크기 줄임)
         for item in stat_items:
             st.markdown(
                 f"""
             <div class="main-stat-card {item['class']}">
                 <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <span style="font-size: 1.3rem; font-weight:bold; color:{item['color']};">{item['title']}</span>
-                    <span style="font-size: 1.5rem; font-weight:bold; color:#111827;">{item['pct']}</span>
+                    <span style="font-size: 1.1rem; font-weight:bold; color:{item['color']};">{item['title']}</span>
+                    <span style="font-size: 1.2rem; font-weight:bold; color:#111827;">{item['pct']}</span>
                 </div>
-                <div style="margin-top: 6px; font-size: 1.1rem; color: #4B5563;">
+                <div style="margin-top: 2px; font-size: 0.95rem; color: #4B5563;">
                     보유 수량: <b>{item['cnt']}대</b>
                 </div>
             </div>
