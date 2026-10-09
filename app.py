@@ -366,7 +366,6 @@ elif menu == "🏭 4. 반도체 현장 현황":
 
     st.subheader("📊 반도체 현장 전체 대수 비교")
     try:
-        # 엑셀 4번 시트의 5번 행(인덱스 5)에 있는 공식 요약 값을 직접 읽어옴
         tot_d = df4_raw.iloc[5, 0]
         hanno_cnt = df4_raw.iloc[5, 1]
         minno_cnt = df4_raw.iloc[5, 2]
@@ -430,6 +429,7 @@ elif menu == "🏭 4. 반도체 현장 현황":
     st.markdown("---")
     st.subheader("📍 각 현장별 상세 현황 및 담당자")
 
+    # 엑셀 시트 4번의 10번 행부터 합계 행 전까지 순회하며 모든 반도체 현장 출력 (P5복합동, P4 복합동 등 완벽 반영)
     for idx in range(10, len(df4_raw)):
         row = df4_raw.iloc[idx]
         site_name = str(row[1]) if pd.notna(row[1]) else ""
@@ -444,7 +444,6 @@ elif menu == "🏭 4. 반도체 현장 현황":
         mijung = row[7] if pd.notna(row[7]) else 0
         contact_info = str(row[8]) if pd.notna(row[8]) else ""
 
-        # 고유한 key를 부여하여 React DOM 충돌(removeChild 에러) 방지
         with st.expander(f"🏢 {site_name} (총 {total_cnt}대)", expanded=True):
             st.markdown(
                 f"• <span style='color:#EF4444; font-weight:bold;'>한국노총:</span> <b>{hanno}대</b> | "
