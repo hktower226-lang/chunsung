@@ -18,14 +18,10 @@ st.markdown(
         font-size: 17px !important;
     }
     
-    /* 사이드바 메뉴 1~5번 글씨 크기 대폭 확대 */
-    [data-testid="stSidebar"] .stRadio label p, 
-    [data-testid="stSidebar"] .stRadio div[role="radiogroup"] label span {
-        font-size: 1.35rem !important;
-        font-weight: 800 !important;
-    }
-    [data-testid="stSidebar"] .stRadio div[role="radiogroup"] {
-        gap: 12px;
+    /* 사이드바 메뉴 1~5번 글씨 크기 크게 키우기 */
+    [data-testid="stSidebar"] .stRadio label {
+        font-size: 1.25rem !important;
+        font-weight: bold !important;
     }
     
     /* 제목 및 헤더 크기 */
@@ -205,7 +201,7 @@ if menu == "📊 1. 2026년 전체 소속별 점유율":
 
 
 # ------------------------------------------
-# [메뉴 2] 각 8개지부 현장 점유율
+# [메뉴 2] 각 8개지부 현장 점유율 (통합 검색 기능 추가)
 # ------------------------------------------
 elif menu == "🏢 2. 각 8개지부 현장 점유율":
     st.title("🏢 지부별 현장 점유율")
@@ -234,6 +230,7 @@ elif menu == "🏢 2. 각 8개지부 현장 점유율":
         elif pd.notna(r[1]) and str(r[1]).strip() != "현장명":
             branch_data[current_branch]["sites"].append(r)
 
+    # 2번째 메뉴 통합 검색창
     st.subheader("🔍 타워사/현장명 통합 검색")
     search_query = st.text_input("타워사 또는 현장명을 입력하면 어느 지부인지 바로 확인 가능합니다", "", placeholder="예: 백산, 복정 등")
     
@@ -316,7 +313,7 @@ elif menu == "🏢 2. 각 8개지부 현장 점유율":
 
 
 # ------------------------------------------
-# [메뉴 3] 타워사별 점유 현황
+# [메뉴 3] 타워사별 점유 현황 (한노점유율 타워사 바로 다음 배치 및 빨간색 굵게 강조)
 # ------------------------------------------
 elif menu == "🏗️ 3. 타워사별 점유 현황":
     st.title("🏗️ 임대사(타워사)별 점유 현황")
@@ -328,6 +325,7 @@ elif menu == "🏗️ 3. 타워사별 점유 현황":
 
     df3 = df3.dropna(subset=["타워사"]).fillna(0)
 
+    # 컬럼 재배치: '한노점유율'을 타워사 바로 다음(맨 앞)으로 이동
     cols = list(df3.columns)
     if "한노점유율" in cols and "타워사" in cols:
         cols.remove("한노점유율")
@@ -352,37 +350,30 @@ elif menu == "🏗️ 3. 타워사별 점유 현황":
         filtered_df = filtered_df[filtered_df["타워사"].astype(str).str.contains(search_kw, case=False)]
 
     st.markdown("### 📋 타워사 점유 현황 목록")
-    st.dataframe(filtered_df, use_container_width=True, hide_index=True)
+    
+    # 한노점유율 빨간색 굵게 스타일링 적용
+    def style_menu3(df):
+        styler = df.style
+        if '한노점유율' in df.columns:
+            styler = styler.applymap(lambda x: 'color: #DC2626; font-weight: bold;', subset=['한노점유율'])
+        return styler
+
+    st.dataframe(style_menu3(filtered_df), use_container_width=True, hide_index=True)
 
 
 # ------------------------------------------
-# [메뉴 4] 반도체 현장 현황 (노조별 색상 구별 적용)
+# [메뉴 4] 반도체 현장 현황
 # ------------------------------------------
 elif menu == "🏭 4. 반도체 현장 현황":
     st.title("🏭 반도체 현장 타워크레인 현황")
-    
-    xls = pd.ExcelFile(EXCEL_FILE)
-    df4_raw = pd.read_excel(xls, s4_name, header=None)
+    df4 = sheets[s4_name].copy()
 
     st.subheader("📊 반도체 현장 전체 대수 비교")
     try:
-        tot_d = df4_raw.iloc[5, 0]
-        hanno_cnt = df4_raw.iloc[5, 1]
-        minno_cnt = df4_raw.iloc[5, 2]
-        gunsan_cnt = df4_raw.iloc[5, 3]
-        non_cnt = df4_raw.iloc[5, 4]
-        mi_cnt = df4_raw.iloc[5, 5]
-
-        hanno_p = fmt_pct(df4_raw.iloc[6, 1])
-        minno_p = fmt_pct(df4_raw.iloc[6, 2])
-        gunsan_p = fmt_pct(df4_raw.iloc[6, 3])
-        non_p = fmt_pct(df4_raw.iloc[6, 4])
-        mi_p = fmt_pct(df4_raw.iloc[6, 5])
-
         summary_data = {
             "구분": ["전체 대수", "한국노총", "민주노총", "건설노조(건산,섬유)", "비노조", "미정"],
-            "대수": [tot_d, hanno_cnt, minno_cnt, gunsan_cnt, non_cnt, mi_cnt],
-            "점유율": ["-", hanno_p, minno_p, gunsan_p, non_p, mi_p],
+            "대수": [df4.iloc[4, 0], df4.iloc[4, 1], df4.iloc[4, 2], df4.iloc[4, 3], df4.iloc[4, 4], df4.iloc[4, 5]],
+            "점유율": ["-", fmt_pct(df4.iloc[5, 1]), fmt_pct(df4.iloc[5, 2]), fmt_pct(df4.iloc[5, 3]), fmt_pct(df4.iloc[5, 4]), fmt_pct(df4.iloc[5, 5])],
         }
         st.table(pd.DataFrame(summary_data))
     except Exception:
@@ -391,10 +382,11 @@ elif menu == "🏭 4. 반도체 현장 현황":
     st.markdown("---")
     st.subheader("📍 각 현장별 상세 현황 및 담당자")
 
-    for idx in range(10, len(df4_raw)):
-        row = df4_raw.iloc[idx]
+    detail_rows = df4.iloc[9:].dropna(how="all").copy()
+
+    for idx, row in detail_rows.iterrows():
         site_name = str(row[1]) if pd.notna(row[1]) else ""
-        if not site_name or site_name == "nan" or "합" in site_name:
+        if not site_name or site_name == "nan":
             continue
 
         total_cnt = row[2] if pd.notna(row[2]) else 0
@@ -406,20 +398,10 @@ elif menu == "🏭 4. 반도체 현장 현황":
         contact_info = str(row[8]) if pd.notna(row[8]) else ""
 
         with st.expander(f"🏢 {site_name} (총 {total_cnt}대)", expanded=True):
-            # 요청 반영: 노조별 색상 적용 (한노: 빨강, 민노: 파랑, 건설노조: 초록, 비노조: 주황, 미정: 회색)
-            st.markdown(
-                f"• <span style='color:#EF4444; font-weight:bold;'>한국노총:</span> <b>{hanno}대</b> | "
-                f"<span style='color:#3B82F6; font-weight:bold;'>민주노총:</span> <b>{minno}대</b> | "
-                f"<span style='color:#10B981; font-weight:bold;'>건설노조(건산,섬유):</span> <b>{gunsan}대</b>",
-                unsafe_allow_html=True
-            )
-            st.markdown(
-                f"• <span style='color:#F59E0B; font-weight:bold;'>비노조:</span> <b>{non_union}대</b> | "
-                f"<span style='color:#6B7280; font-weight:bold;'>미정:</span> <b>{mijung}대</b>",
-                unsafe_allow_html=True
-            )
+            st.write(f"• **한국노총:** {hanno}대 | **민주노총:** {minno}대 | **건설노조:** {gunsan}대")
+            st.write(f"• **비노조:** {non_union}대 | **미정:** {mijung}대")
 
-            if contact_info and contact_info != "nan":
+            if contact_info:
                 import re
                 phone_match = re.search(r"01[016789][-\s]?\d{3,4}[-\s]?\d{4}", contact_info)
                 if phone_match:
@@ -434,15 +416,13 @@ elif menu == "🏭 4. 반도체 현장 현황":
 
 
 # ------------------------------------------
-# [메뉴 5] 1~9월 채용 추이 (1월 포함 및 요약 타이틀 한노 퍼센트 반영)
+# [메뉴 5] 1~9월 채용 추이
 # ------------------------------------------
 elif menu == "📅 5. 1~9월 채용 추이":
     st.title("📅 월별 채용 현황 및 추이")
-    
-    xls = pd.ExcelFile(EXCEL_FILE)
-    df5_raw = pd.read_excel(xls, s5_name, header=None)
+    df5 = sheets[s5_name].copy()
 
-    rows = df5_raw.values.tolist()
+    rows = df5.values.tolist()
     month_blocks = {}
     current_month = None
     current_data = []
@@ -472,22 +452,19 @@ elif menu == "📅 5. 1~9월 채용 추이":
             elif "비율" in cell0:
                 pct_row = r
 
-        # 요청 반영: 엑셀 데이터를 바탕으로 한노 점유율 퍼센트를 계산하여 제목에 표출 (예: 1월 채용 현황 (한노 33.3%))
-        hanno_pct_str = "0%"
-        if pct_row is not None and len(pct_row) > 4:
-            hanno_pct_str = fmt_pct(pct_row[4])
-
-        with st.expander(f"🗓️ {m_name} (한노 {hanno_pct_str}) 요약 보기 (클릭하여 열기/접기)"):
+        with st.expander(f"🗓️ {m_name} 요약 보기 (클릭하여 열기/접기)"):
             if sum_row is not None:
                 st.markdown(
                     f"**[합계]** 총대수: **{sum_row[3] if len(sum_row)>3 else '-'}**대 | "
-                    f"한노: {sum_row[4]} | 민노: {sum_row[5]} | 기타: {sum_row[6]} | 직원: {sum_row[7]}"
+                    f"한노: {sum_row[4]} | 민노: {sum_row[5]} | 기타: {sum_row[6]} | "
+                    f"직원: {sum_row[7]} | 미정: {sum_row[8]}"
                 )
             if pct_row is not None:
                 st.markdown(
                     f"**[비율]** "
                     f"한노: **{fmt_pct(pct_row[4])}** | 민노: **{fmt_pct(pct_row[5])}** | "
-                    f"기타: {fmt_pct(pct_row[6])} | 직원: {fmt_pct(pct_row[7])}"
+                    f"기타: {fmt_pct(pct_row[6])} | 직원: {fmt_pct(pct_row[7])} | "
+                    f"미정: {fmt_pct(pct_row[8])}"
                 )
 
     st.markdown("---")
@@ -507,9 +484,10 @@ elif menu == "📅 5. 1~9월 채용 추이":
                     "총대수": r[3],
                     "한노": r[4],
                     "민노": r[5],
-                    "기타(건산섬유)": r[6],
+                    "기타": r[6],
                     "직원": r[7],
-                    "비고": r[8] if len(r) > 8 else "",
+                    "미정": r[8],
+                    "비고": r[9] if len(r) > 9 else "",
                 })
 
         if detail_list:
