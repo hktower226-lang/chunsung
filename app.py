@@ -356,7 +356,7 @@ elif menu == "🏗️ 3. 타워사별 점유 현황":
 
 
 # ------------------------------------------
-# [메뉴 4] 반도체 현장 현황 (엑셀 요약 셀 직접 연동)
+# [메뉴 4] 반도체 현장 현황
 # ------------------------------------------
 elif menu == "🏭 4. 반도체 현장 현황":
     st.title("🏭 반도체 현장 타워크레인 현황")
@@ -366,7 +366,6 @@ elif menu == "🏭 4. 반도체 현장 현황":
 
     st.subheader("📊 반도체 현장 전체 대수 비교")
     try:
-        # 엑셀 4번 시트의 5번 행(인덱스 5)에 있는 공식 요약 값을 직접 읽어옴
         tot_d = df4_raw.iloc[5, 0]
         hanno_cnt = df4_raw.iloc[5, 1]
         minno_cnt = df4_raw.iloc[5, 2]
@@ -444,7 +443,6 @@ elif menu == "🏭 4. 반도체 현장 현황":
         mijung = row[7] if pd.notna(row[7]) else 0
         contact_info = str(row[8]) if pd.notna(row[8]) else ""
 
-        # 고유한 key를 부여하여 React DOM 충돌(removeChild 에러) 방지
         with st.expander(f"🏢 {site_name} (총 {total_cnt}대)", expanded=True):
             st.markdown(
                 f"• <span style='color:#EF4444; font-weight:bold;'>한국노총:</span> <b>{hanno}대</b> | "
@@ -473,7 +471,7 @@ elif menu == "🏭 4. 반도체 현장 현황":
 
 
 # ------------------------------------------
-# [메뉴 5] 1~9월 채용 추이
+# [메뉴 5] 1~9월 채용 추이 (완벽 보완)
 # ------------------------------------------
 elif menu == "📅 5. 1~9월 채용 추이":
     st.title("📅 월별 채용 현황 및 추이")
@@ -551,6 +549,7 @@ elif menu == "📅 5. 1~9월 채용 추이":
             detail_list = []
             for r in m_rows:
                 cell0 = str(r[0]).strip() if pd.notna(r[0]) else ""
+                # 헤더행("임대사")이나 합계/비율 행은 제외하고 실제 데이터만 추출
                 if cell0 and "임대사" not in cell0 and "합계" not in cell0 and "비율" not in cell0:
                     detail_list.append({
                         "임대사": r[0],
@@ -561,7 +560,8 @@ elif menu == "📅 5. 1~9월 채용 추이":
                         "민노": r[5] if len(r) > 5 else 0,
                         "기타(건산섬유)": r[6] if len(r) > 6 else 0,
                         "직원": r[7] if len(r) > 7 else 0,
-                        "비고": r[8] if len(r) > 8 else "",
+                        "미정": r[8] if len(r) > 8 else 0,
+                        "비고": r[9] if len(r) > 9 else "",
                     })
 
             if detail_list:
