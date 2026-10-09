@@ -213,7 +213,7 @@ if menu == "📊 1. 2026년 전체 소속별 점유율":
 
 
 # ------------------------------------------
-# [메뉴 2] 각 8개지부 현장 점유율 (철저한 숫자 보정 적용)
+# [메뉴 2] 각 8개지부 현장 점유율
 # ------------------------------------------
 elif menu == "🏢 2. 각 8개지부 현장 점유율":
     st.title("🏢 지부별 현장 점유율")
@@ -304,7 +304,6 @@ elif menu == "🏢 2. 각 8개지부 현장 점유율":
 
             with st.expander(expander_label):
                 if sites_list:
-                    # 상세 목록 테이블 표출 시 비어있는 셀은 0으로 채움
                     clean_sites = []
                     for s in sites_list:
                         clean_sites.append({
@@ -538,65 +537,78 @@ elif menu == "📅 5. 1~9월 채용 추이":
     else:
         st.subheader("📌 월별 채용현황 합계 및 비율 요약")
 
+        processed_months = {}
         for m_name, m_rows in month_blocks.items():
-            sum_row = None
-            pct_row = None
+            detail_list = []
             for r in m_rows:
                 cell0 = str(r[0]).strip() if pd.notna(r[0]) else ""
-                if "합계" in cell0:
-                    sum_row = r
-                elif "비율" in cell0:
-                    pct_row = r
+                if cell0 and "임대사" not in cell0 and "합계" not in cell0 and "비율" not in cell0:
+                    detail_list.append({
+                        "임대사": r[0],
+                        "원청사": r[1] if len(r) > 1 and pd.notna(r[1]) else "",
+                        "현장명": r[2] if len(r) > 2 and pd.notna(r[2]) else "",
+                        "총대수": safe_int(r[3]) if len(r) > 3 else 0,
+                        "한노": safe_int(r[4]) if len(r) > 4 else 0,
+                        "민노": safe_int(r[5]) if len(r) > 5 else 0,
+                        "기타(건산섬유)": safe_int(r[6]) if len(r) > 6 else 0,
+                        "직원": safe_int(r[7]) if len(r) > 7 else 0,
+                        "미정": safe_int(r[8]) if len(r) > 8 else 0,
+                        "비고": r[9] if len(r) > 9 and pd.notna(r[9]) else "",
+                    })
+            
+            t_tot = sum(d["총대수"] for d in detail_list)
+            t_han = sum(d["한노"] for d in detail_list)
+            t_min = sum(d["민노"] for d in detail_list)
+            t_git = sum(d["기타(건산섬유)"] for d in detail_list)
+            t_jik = sum(d["직원"] for d in detail_list)
+            t_mi  = sum(d["미정"] for d in detail_list)
 
-            hanno_pct_str = "0%"
-            if pct_row is not None and len(pct_row) > 4:
-                hanno_pct_str = fmt_pct(pct_row[4])
+            if t_tot > 0:
+                p_han = f"{(t_han / t_tot) * 100:.1f}%"
+                p_min = f"{(t_min / t_tot) * 100:.1f}%"
+                p_git = f"{(t_git / t_tot) * 100:.1f}%"
+                p_jik = f"{(t_jik / t_tot) * 100:.1f}%"
+            else:
+                p_han = p_min = p_git = p_jik = "0.0%"
+
+            processed_months[m_name] = {
+                "details": detail_list,
+                "sum": {"총대수": t_tot, "한노": t_han, "민노": t_min, "기타": t_git, "직원": t_jik, "미정": t_mi},
+                "pct": {"한노": p_han, "민노": p_min, "기타": p_git, "직원": p_jik}
+            }
+
+        for m_name, m_info in processed_months.items():
+            s = m_info["sum"]
+            p = m_info["pct"]
+            hanno_pct_str = p["한노"]
 
             with st.expander(f"🗓️ {m_name} (한노 {hanno_pct_str}) 요약 보기 (클릭하여 열기/접기)"):
-                if sum_row is not None:
-                    st.markdown(
-                        f"**[합계]** 총대수: **{sum_row[3] if len(sum_row)>3 else '-'}**대 | "
-                        f"<span style='color:#EF4444; font-weight:bold;'>한노: {sum_row[4]}</span> | "
-                        f"<span style='color:#3B82F6; font-weight:bold;'>민노: {sum_row[5]}</span> | "
-                        f"<span style='color:#10B981; font-weight:bold;'>기타: {sum_row[6]}</span> | "
-                        f"<span style='color:#8B5CF6; font-weight:bold;'>직원: {sum_row[7]}</span>",
-                        unsafe_allow_html=True
-                    )
-                if pct_row is not None:
-                    st.markdown(
-                        f"**[비율]** "
-                        f"<span style='color:#EF4444; font-weight:bold;'>한노: {fmt_pct(pct_row[4])}</span> | "
-                        f"<span style='color:#3B82F6; font-weight:bold;'>민노: {fmt_pct(pct_row[5])}</span> | "
-                        f"<span style='color:#10B981; font-weight:bold;'>기타: {fmt_pct(pct_row[6])}</span> | "
-                        f"<span style='color:#8B5CF6; font-weight:bold;'>직원: {fmt_pct(pct_row[7])}</span>",
-                        unsafe_allow_html=True
-                    )
+                st.markdown(
+                    f"**[합계]** 총대수: **{s['총대수']}**대 | "
+                    f"<span style='color:#EF4444; font-weight:bold;'>한노: {s['한노']}</span> | "
+                    f"<span style='color:#3B82F6; font-weight:bold;'>민노: {s['민노']}</span> | "
+                    f"<span style='color:#10B981; font-weight:bold;'>기타: {s['기타']}</span> | "
+                    f"<span style='color:#8B5CF6; font-weight:bold;'>직원: {s['직원']}</span>",
+                    unsafe_allow_html=True
+                )
+                st.markdown(
+                    f"**[비율]** "
+                    f"<span style='color:#EF4444; font-weight:bold;'>한노: {p['한노']}</span> | "
+                    f"<span style='color:#3B82F6; font-weight:bold;'>민노: {p['민노']}</span> | "
+                    f"<span style='color:#10B981; font-weight:bold;'>기타: {p['기타']}</span> | "
+                    f"<span style='color:#8B5CF6; font-weight:bold;'>직원: {p['직원']}</span>",
+                    unsafe_allow_html=True
+                )
                 
                 if "9월" in m_name:
                     st.info("ℹ️ 참고: 미정인원 12명 (인력 확정 시 비율 변동)")
 
         st.markdown("---")
         st.subheader("🔍 상세 채용 현황 조회할 월 선택")
-        selected_m = st.selectbox("월을 선택하세요", list(month_blocks.keys()))
+        selected_m = st.selectbox("월을 선택하세요", list(processed_months.keys()))
 
         if selected_m:
-            m_rows = month_blocks[selected_m]
-            detail_list = []
-            for r in m_rows:
-                cell0 = str(r[0]).strip() if pd.notna(r[0]) else ""
-                if cell0 and "임대사" not in cell0 and "합계" not in, "비율" not in cell0:
-                    detail_list.append({
-                        "임대사": r[0],
-                        "원청사": r[1] if len(r) > 1 else "",
-                        "현장명": r[2] if len(r) > 2 else "",
-                        "총대수": r[3] if len(r) > 3 else 0,
-                        "한노": r[4] if len(r) > 4 else 0,
-                        "민노": r[5] if len(r) > 5 else 0,
-                        "기타(건산섬유)": r[6] if len(r) > 6 else 0,
-                        "직원": r[7] if len(r) > 7 else 0,
-                        "비고": r[8] if len(r) > 8 else 0,
-                    })
-
+            detail_list = processed_months[selected_m]["details"]
             if detail_list:
                 st.markdown(f"### 📍 {selected_m} 상세 현황")
                 if "9월" in selected_m:
