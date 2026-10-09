@@ -356,7 +356,7 @@ elif menu == "🏗️ 3. 타워사별 점유 현황":
 
 
 # ------------------------------------------
-# [메뉴 4] 반도체 현장 현황 (동적 합계 계산 완벽 보완)
+# [메뉴 4] 반도체 현장 현황 (엑셀 요약 셀 직접 연동)
 # ------------------------------------------
 elif menu == "🏭 4. 반도체 현장 현황":
     st.title("🏭 반도체 현장 타워크레인 현황")
@@ -366,33 +366,19 @@ elif menu == "🏭 4. 반도체 현장 현황":
 
     st.subheader("📊 반도체 현장 전체 대수 비교")
     try:
-        site_rows = []
-        for idx in range(10, len(df4_raw)):
-            row = df4_raw.iloc[idx]
-            site_name = str(row[1]) if pd.notna(row[1]) else ""
-            if not site_name or site_name == "nan" or "합" in site_name:
-                continue
-            site_rows.append(row)
+        # 엑셀 4번 시트의 5번 행(인덱스 5)에 있는 공식 요약 값을 직접 읽어옴
+        tot_d = df4_raw.iloc[5, 0]
+        hanno_cnt = df4_raw.iloc[5, 1]
+        minno_cnt = df4_raw.iloc[5, 2]
+        gunsan_cnt = df4_raw.iloc[5, 3]
+        non_cnt = df4_raw.iloc[5, 4]
+        mi_cnt = df4_raw.iloc[5, 5]
 
-        if site_rows:
-            site_df = pd.DataFrame(site_rows)
-            tot_d = int(pd.to_numeric(site_df[2], errors='coerce').fillna(0).sum())
-            hanno_cnt = int(pd.to_numeric(site_df[3], errors='coerce').fillna(0).sum())
-            minno_cnt = int(pd.to_numeric(site_df[4], errors='coerce').fillna(0).sum())
-            gunsan_cnt = int(pd.to_numeric(site_df[5], errors='coerce').fillna(0).sum())
-            non_cnt = int(pd.to_numeric(site_df[6], errors='coerce').fillna(0).sum())
-            mi_cnt = int(pd.to_numeric(site_df[7], errors='coerce').fillna(0).sum())
-        else:
-            tot_d = hanno_cnt = minno_cnt = gunsan_cnt = non_cnt = mi_cnt = 0
-
-        if tot_d > 0:
-            hanno_p = f"{(hanno_cnt / tot_d) * 100:.1f}%"
-            minno_p = f"{(minno_cnt / tot_d) * 100:.1f}%"
-            gunsan_p = f"{(gunsan_cnt / tot_d) * 100:.1f}%"
-            non_p = f"{(non_cnt / tot_d) * 100:.1f}%"
-            mi_p = f"{(mi_cnt / tot_d) * 100:.1f}%"
-        else:
-            hanno_p = minno_p = gunsan_p = non_p = mi_p = "0.0%"
+        hanno_p = fmt_pct(df4_raw.iloc[6, 1])
+        minno_p = fmt_pct(df4_raw.iloc[6, 2])
+        gunsan_p = fmt_pct(df4_raw.iloc[6, 3])
+        non_p = fmt_pct(df4_raw.iloc[6, 4])
+        mi_p = fmt_pct(df4_raw.iloc[6, 5])
 
         st.markdown(
             f"""
@@ -458,6 +444,7 @@ elif menu == "🏭 4. 반도체 현장 현황":
         mijung = row[7] if pd.notna(row[7]) else 0
         contact_info = str(row[8]) if pd.notna(row[8]) else ""
 
+        # 고유한 key를 부여하여 React DOM 충돌(removeChild 에러) 방지
         with st.expander(f"🏢 {site_name} (총 {total_cnt}대)", expanded=True):
             st.markdown(
                 f"• <span style='color:#EF4444; font-weight:bold;'>한국노총:</span> <b>{hanno}대</b> | "
@@ -486,7 +473,7 @@ elif menu == "🏭 4. 반도체 현장 현황":
 
 
 # ------------------------------------------
-# [메뉴 5] 1~9월 채용 추이 (안전 파싱 적용)
+# [메뉴 5] 1~9월 채용 추이
 # ------------------------------------------
 elif menu == "📅 5. 1~9월 채용 추이":
     st.title("📅 월별 채용 현황 및 추이")
@@ -507,7 +494,6 @@ elif menu == "📅 5. 1~9월 채용 추이":
             current_month = title_cell
             current_data = []
         elif current_month:
-            # 빈 행이 아닐 경우에만 추가
             if any(pd.notna(cell) for cell in r):
                 current_data.append(r)
 
