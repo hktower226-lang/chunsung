@@ -5,41 +5,43 @@ import streamlit as st
 # 1. 페이지 기본 설정 및 모바일 CSS 스타일링
 # ==========================================
 st.set_page_config(
-    page_title="현장 점유율 및 채용 현황", layout="wide", initial_sidebar_state="collapsed"
+    page_title="현장 점유율 및 채용 현황",
+    layout="wide",
+    initial_sidebar_state="expanded",  # 요청 반영: 첫 화면 접속 시 메뉴 선택 화면이 바로 보이도록 설정
 )
 
-# 모바일용 가독성 증대 CSS (큰 글씨, 위아래 스크롤 레이아웃, 카드 색상 추가)
+# 모바일용 가독성 증대 CSS (요청 반영: 전체 글씨 크기 및 여백을 줄여 한 화면에 들어오도록 최적화)
 st.markdown(
     """
     <style>
-    /* 전체 글꼴 및 기본 폰트 크기 확대 */
+    /* 전체 글꼴 및 기본 폰트 크기 조정 */
     html, body, [class*="css"] {
-        font-size: 19px !important;
+        font-size: 15px !important;
     }
     
-    /* 제목 및 헤더 크기 확대 */
-    h1 { font-size: 2.2rem !important; font-weight: bold !important; color: #1E3A8A; }
-    h2 { font-size: 1.8rem !important; font-weight: bold !important; color: #1E40AF; }
-    h3 { font-size: 1.5rem !important; font-weight: bold !important; }
+    /* 제목 및 헤더 크기 축소 */
+    h1 { font-size: 1.6rem !important; font-weight: bold !important; color: #1E3A8A; margin-bottom: 8px !important; }
+    h2 { font-size: 1.4rem !important; font-weight: bold !important; color: #1E40AF; }
+    h3 { font-size: 1.2rem !important; font-weight: bold !important; }
     
-    /* 카드/Expander 내부 텍스트 확대 */
+    /* 카드/Expander 내부 텍스트 */
     .stSelectbox label, .stRadio label, .stMultiSelect label {
-        font-size: 1.2rem !important;
+        font-size: 1.0rem !important;
         font-weight: bold !important;
     }
     
-    /* 모바일 반응형 좌우 여백 축소 (위아래 세로 스크롤 최적화) */
+    /* 상단 및 좌우 여백 최적화 (위아래 스크롤 없이 한 화면에 다 들어오도록 padding 축소) */
     .block-container {
-        padding-top: 1.5rem !important;
-        padding-bottom: 3rem !important;
+        padding-top: 1.0rem !important;
+        padding-bottom: 1.0rem !important;
         padding-left: 0.8rem !important;
         padding-right: 0.8rem !important;
         max-width: 100% !important;
     }
     
-    /* 테이블 글씨 크기 확대 */
+    /* 테이블 글씨 크기 */
     .dataframe {
-        font-size: 16px !important;
+        font-size: 14px !important;
     }
     
     /* 전화번호 연결 버튼 스타일 */
@@ -47,34 +49,34 @@ st.markdown(
         display: inline-block;
         background-color: #25D366;
         color: white !important;
-        padding: 10px 18px;
-        font-size: 18px;
+        padding: 8px 14px;
+        font-size: 15px;
         font-weight: bold;
         text-decoration: none;
         border-radius: 8px;
-        margin-top: 5px;
-        margin-bottom: 10px;
+        margin-top: 4px;
+        margin-bottom: 8px;
         text-align: center;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.15);
     }
 
-    /* 메인 화면 전용 카드 스타일 & 소속별 구분색 */
+    /* 메인 화면 전용 카드 스타일 (한 화면 2열 배치에 맞춰 높이 및 여백 축소) */
     .main-total-card {
         background: linear-gradient(135deg, #1E3A8A, #3B82F6);
         color: white;
-        padding: 16px;
-        border-radius: 12px;
+        padding: 10px 14px;
+        border-radius: 10px;
         text-align: center;
-        margin-bottom: 18px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        margin-bottom: 12px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     .main-stat-card {
         background-color: #FFFFFF;
-        border-left: 6px solid #3B82F6;
+        border-left: 5px solid #3B82F6;
         border-radius: 8px;
-        padding: 12px 15px;
-        margin-bottom: 10px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+        padding: 8px 12px;
+        margin-bottom: 8px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.06);
     }
     .border-hanno { border-left-color: #EF4444 !important; }   /* 빨강 */
     .border-minno { border-left-color: #3B82F6 !important; }   /* 파랑 */
@@ -154,7 +156,7 @@ def fmt_pct(val):
 
 
 # ==========================================
-# 3. 사이드바 메뉴 (요청 반영: 채용 비율 메뉴 선택)
+# 3. 사이드바 메뉴 (초기 접속 시 펼침 상태)
 # ==========================================
 st.sidebar.title("📌 채용 비율 메뉴 선택")
 menu = st.sidebar.radio(
@@ -173,7 +175,7 @@ menu = st.sidebar.radio(
 # ==========================================
 
 # ------------------------------------------
-# [메뉴 1] 메인: 1.26년 전체 소속별 점유율
+# [메뉴 1] 메인: 1.26년 전체 소속별 점유율 (요청 반영: 스크롤 없는 컴팩트 2열 배치)
 # ------------------------------------------
 if menu == "🏠 메인: 전체 소속별 점유율":
     st.title("📊 2026년 전체 소속별 점유율")
@@ -228,35 +230,39 @@ if menu == "🏠 메인: 전체 소속별 점유율":
             },
         ]
 
-        # 1. 상단 총 대수 강조 카드
+        # 1. 상단 총 대수 요약 (컴팩트 바)
         st.markdown(
             f"""
         <div class="main-total-card">
-            <h3 style="margin:0; color:white; font-size: 1.2rem !important;">🏆 전체 현장 총 대수</h3>
-            <h1 style="margin:4px 0 0 0; color:white; font-size: 2.0rem !important;">{tot_cnt}대 <span style="font-size: 1.2rem;">({tot_pct})</span></h1>
+            <span style="font-size: 0.95rem; font-weight:bold;">🏆 전체 현장 총 대수: </span>
+            <span style="font-size: 1.35rem; font-weight:bold; margin-left:8px;">{tot_cnt}대 ({tot_pct})</span>
         </div>
         """,
             unsafe_allow_html=True,
         )
 
-        st.markdown("<h4 style='font-size: 1.2rem; font-weight: bold; color: #1E40AF; margin-bottom: 10px;'>👇 소속별 점유 현황 (위아래 세로 보기)</h4>", unsafe_allow_html=True)
+        st.markdown("<div style='font-size: 0.95rem; font-weight: bold; color: #1E40AF; margin-bottom: 6px;'>👇 소속별 점유 현황</div>", unsafe_allow_html=True)
 
-        # 2. 위아래로 내리는 세로 배치 카드
-        for item in stat_items:
-            st.markdown(
-                f"""
-            <div class="main-stat-card {item['class']}">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <span style="font-size: 1.05rem; font-weight:bold; color:{item['color']};">{item['title']}</span>
-                    <span style="font-size: 1.25rem; font-weight:bold; color:#111827;">{item['pct']}</span>
+        # 2. 2열 그리드로 나란히 배치하여 한 화면에 표출
+        col1, col2 = st.columns(2)
+
+        for i, item in enumerate(stat_items):
+            target_col = col1 if i % 2 == 0 else col2
+            with target_col:
+                st.markdown(
+                    f"""
+                <div class="main-stat-card {item['class']}">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span style="font-size: 0.85rem; font-weight:bold; color:{item['color']};">{item['title']}</span>
+                        <span style="font-size: 1.0rem; font-weight:bold; color:#111827;">{item['pct']}</span>
+                    </div>
+                    <div style="margin-top: 2px; font-size: 0.8rem; color: #4B5563;">
+                        수량: <b>{item['cnt']}대</b>
+                    </div>
                 </div>
-                <div style="margin-top: 4px; font-size: 0.95rem; color: #4B5563;">
-                    보유 수량: <b>{item['cnt']}대</b>
-                </div>
-            </div>
-            """,
-                unsafe_allow_html=True,
-            )
+                """,
+                    unsafe_allow_html=True,
+                )
 
     except Exception:
         st.write("### 💡 전체 소속별 통계 개요")
@@ -264,7 +270,7 @@ if menu == "🏠 메인: 전체 소속별 점유율":
 
 
 # ------------------------------------------
-# [메뉴 2] 2.각 8개지부 현장점유율 (요청 반영)
+# [메뉴 2] 2.각 8개지부 현장점유율
 # ------------------------------------------
 elif menu == "🏢 각 8개지부 현장 점유율":
     st.title("🏢 지부별 현장 점유율")
@@ -321,7 +327,7 @@ elif menu == "🏢 각 8개지부 현장 점유율":
             pct_row = b_info["percent"]
             sites_list = b_info["sites"]
 
-            # 외부 제목 만들기 (요청대로 소속별 색상 지정 및 한 줄 표출)
+            # 외부 제목 만들기 (소속별 색상 지정 및 한 줄 표출)
             if sum_row is not None and pct_row is not None:
                 hanno_cnt, hanno_pct = sum_row[4], fmt_pct(pct_row[4])
                 minno_cnt, minno_pct = sum_row[5], fmt_pct(pct_row[5])
