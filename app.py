@@ -132,6 +132,15 @@ def fmt_pct(val):
     except:
         return str(val) if pd.notna(val) else "0%"
 
+# 안전한 숫자 변환 헬퍼 함수
+def safe_int(val):
+    try:
+        if pd.isna(val) or val == "" or val == "-":
+            return 0
+        return int(float(val))
+    except:
+        return 0
+
 # ==========================================
 # 사이드바 메뉴 설정
 # ==========================================
@@ -356,7 +365,7 @@ elif menu == "🏗️ 3. 타워사별 점유 현황":
 
 
 # ------------------------------------------
-# [메뉴 4] 반도체 현장 현황 (상세 현장 데이터 합산 동적 연동)
+# [메뉴 4] 반도체 현장 현황 (동적 합산 적용 + 안전한 에러 방지)
 # ------------------------------------------
 elif menu == "🏭 4. 반도체 현장 현황":
     st.title("🏭 반도체 현장 타워크레인 현황")
@@ -364,7 +373,6 @@ elif menu == "🏭 4. 반도체 현장 현황":
     xls = pd.ExcelFile(EXCEL_FILE)
     df4_raw = pd.read_excel(xls, s4_name, header=None)
 
-    # 1. 먼저 각 현장별 상세 데이터를 먼저 파악하여 합산값(동적 통계) 계산
     parsed_sites = []
     for idx in range(10, len(df4_raw)):
         row = df4_raw.iloc[idx]
@@ -372,31 +380,12 @@ elif menu == "🏭 4. 반도체 현장 현황":
         if not site_name or site_name == "nan" or site_name in ["합 계", "합계"]:
             continue
 
-        try:
-            total_cnt = int(row[2]) if pd.notna(row[2]) else 0
-        except:
-            total_cnt = 0
-        try:
-            hanno = int(row[3]) if pd.notna(row[3]) else 0
-        except:
-            hanno = 0
-        try:
-            minno = int(row[4]) if pd.notna(row[4]) else 0
-        except:
-            minno = 0
-        try:
-            gunsan = int(row[5]) if pd.notna(row[5]) else 0
-        except:
-            gunsan = 0
-        try:
-            non_union = int(row[6]) if pd.notna(row[6]) else 0
-        except:
-            non_union = 0
-        try:
-            mijung = int(row[7]) if pd.notna(row[7]) else 0
-        except:
-            mijung = 0
-
+        total_cnt = safe_int(row[2])
+        hanno = safe_int(row[3])
+        minno = safe_int(row[4])
+        gunsan = safe_int(row[5])
+        non_union = safe_int(row[6])
+        mijung = safe_int(row[7])
         contact_info = str(row[8]) if pd.notna(row[8]) else ""
 
         parsed_sites.append({
