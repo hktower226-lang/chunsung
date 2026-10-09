@@ -7,10 +7,9 @@ import streamlit as st
 st.set_page_config(
     page_title="현장 점유율 및 채용 현황",
     layout="wide",
-    initial_sidebar_state="collapsed",  # 요청 반영: 앱 처음 켤 때 사이드바가 닫혀있도록 설정
+    initial_sidebar_state="collapsed",
 )
 
-# 모바일 가독성 최적화 CSS (사이드바 메뉴 글씨 크기 대폭 확대)
 st.markdown(
     """
     <style>
@@ -130,7 +129,7 @@ def fmt_pct(val):
         return str(val) if pd.notna(val) else "0%"
 
 # ==========================================
-# 사이드바 메뉴 설정 (홈 제거, 1~5번 메뉴 직관적 제공)
+# 사이드바 메뉴 설정
 # ==========================================
 st.sidebar.title("📌 채용 비율 메뉴 선택")
 
@@ -202,7 +201,7 @@ if menu == "📊 1. 2026년 전체 소속별 점유율":
 
 
 # ------------------------------------------
-# [메뉴 2] 각 8개지부 현장 점유율 (오류 수정 및 한노 강조)
+# [메뉴 2] 각 8개지부 현장 점유율 (통합 검색 기능 추가)
 # ------------------------------------------
 elif menu == "🏢 2. 각 8개지부 현장 점유율":
     st.title("🏢 지부별 현장 점유율")
@@ -231,7 +230,35 @@ elif menu == "🏢 2. 각 8개지부 현장 점유율":
         elif pd.notna(r[1]) and str(r[1]).strip() != "현장명":
             branch_data[current_branch]["sites"].append(r)
 
-    st.subheader("📌 각 8개 지부 현장 점유율 (한노 강조)")
+    # 2번째 메뉴 통합 검색창
+    st.subheader("🔍 타워사/현장명 통합 검색")
+    search_query = st.text_input("타워사 또는 현장명을 입력하면 어느 지부인지 바로 확인 가능합니다", "", placeholder="예: 백산, 복정 등")
+    
+    if search_query:
+        all_searched_sites = []
+        for b_name, b_info in branch_data.items():
+            for s in b_info["sites"]:
+                site_name = str(s[1]) if len(s) > 1 and pd.notna(s[1]) else ""
+                tower_name = str(s[2]) if len(s) > 2 and pd.notna(s[2]) else ""
+                if search_query.lower() in site_name.lower() or search_query.lower() in tower_name.lower():
+                    all_searched_sites.append({
+                        "지부명": b_name,
+                        "현장명": site_name,
+                        "타워회사": tower_name,
+                        "민노": s[5] if len(s) > 5 else 0,
+                        "한노": s[4] if len(s) > 4 else 0,
+                        "건산": s[7] if len(s) > 7 else 0,
+                        "섬유": s[6] if len(s) > 6 else 0,
+                        "총대수": s[10] if len(s) > 10 else 0
+                    })
+        if all_searched_sites:
+            st.markdown(f"### 🔎 '{search_query}' 검색 결과")
+            st.dataframe(pd.DataFrame(all_searched_sites), use_container_width=True, hide_index=True)
+        else:
+            st.warning("검색 결과가 없습니다.")
+        st.markdown("---")
+
+    st.subheader("📌 각 8개 지부 현장 점유율")
 
     for b_name in branches:
         if b_name in branch_data:
@@ -249,7 +276,6 @@ elif menu == "🏢 2. 각 8개지부 현장 점유율":
                 mijeong_cnt, mijeong_pct = sum_row[9], fmt_pct(pct_row[9])
                 total_cnt = sum_row[10] if len(sum_row) > 10 else "-"
 
-                # 오류 수정: HTML 태그 대신 Streamlit 마크다운 전용 색상 태그 사용하여 깔끔하게 출력
                 expander_label = (
                     f"📁 **{b_name}** | "
                     f":red[**🔥 한노 {hanno_cnt}({hanno_pct})**] | "
@@ -287,7 +313,7 @@ elif menu == "🏢 2. 각 8개지부 현장 점유율":
 
 
 # ------------------------------------------
-# [메뉴 3] 타워사별 점유 현황 (검색 자동완성 및 한노점유율 맨 앞 배치)
+# [메뉴 3] 타워사별 점유 현황 (한노점유율 타워사 바로 다음 배치 및 빨간색 굵게 강조)
 # ------------------------------------------
 elif menu == "🏗️ 3. 타워사별 점유 현황":
     st.title("🏗️ 임대사(타워사)별 점유 현황")
@@ -299,7 +325,7 @@ elif menu == "🏗️ 3. 타워사별 점유 현황":
 
     df3 = df3.dropna(subset=["타워사"]).fillna(0)
 
-    # 컬럼 재배치: '한노점유율'을 타워사 바로 옆으로 이동
+    # 컬럼 재배치: '한노점유율'을 타워사 바로 다음(맨 앞)으로 이동
     cols = list(df3.columns)
     if "한노점유율" in cols and "타워사" in cols:
         cols.remove("한노점유율")
@@ -307,14 +333,12 @@ elif menu == "🏗️ 3. 타워사별 점유 현황":
         cols.insert(tower_idx + 1, "한노점유율")
         df3 = df3[cols]
 
-    # 한노점유율 퍼센트 변환
     if "한노점유율" in df3.columns:
         df3["한노점유율"] = df3["한노점유율"].apply(fmt_pct)
 
-    st.subheader("🔍 임대사(타워사) 검색 (자동완성 및 빠른 필터)")
-    
+    st.subheader("🔍 임대사(타워사) 검색")
     tower_list = ["전체 보기"] + list(df3["타워사"].astype(str).unique())
-    selected_tower = st.selectbox("타워사를 선택하세요 (글자 입력 시 즉시 검색/필터링)", tower_list)
+    selected_tower = st.selectbox("타워사를 선택하세요", tower_list)
 
     search_kw = st.text_input("또는 타워사 이름 일부 직접 입력", "", placeholder="예: 비엠, 대원 등")
 
@@ -325,8 +349,16 @@ elif menu == "🏗️ 3. 타워사별 점유 현황":
     if search_kw:
         filtered_df = filtered_df[filtered_df["타워사"].astype(str).str.contains(search_kw, case=False)]
 
-    st.markdown("### 📋 타워사 점유 현황 목록 (한노점유율 맨 앞 배치 강조)")
-    st.dataframe(filtered_df, use_container_width=True, hide_index=True)
+    st.markdown("### 📋 타워사 점유 현황 목록")
+    
+    # 한노점유율 빨간색 굵게 스타일링 적용
+    def style_menu3(df):
+        styler = df.style
+        if '한노점유율' in df.columns:
+            styler = styler.applymap(lambda x: 'color: #DC2626; font-weight: bold;', subset=['한노점유율'])
+        return styler
+
+    st.dataframe(style_menu3(filtered_df), use_container_width=True, hide_index=True)
 
 
 # ------------------------------------------
