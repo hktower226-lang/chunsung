@@ -356,7 +356,7 @@ elif menu == "🏗️ 3. 타워사별 점유 현황":
 
 
 # ------------------------------------------
-# [메뉴 4] 반도체 현장 현황 (상세 현장 데이터 합산 동적 연동)
+# [메뉴 4] 반도체 현장 현황 (엑셀 요약 셀 직접 연동)
 # ------------------------------------------
 elif menu == "🏭 4. 반도체 현장 현황":
     st.title("🏭 반도체 현장 타워크레인 현황")
@@ -364,72 +364,21 @@ elif menu == "🏭 4. 반도체 현장 현황":
     xls = pd.ExcelFile(EXCEL_FILE)
     df4_raw = pd.read_excel(xls, s4_name, header=None)
 
-    # 1. 먼저 각 현장별 상세 데이터를 먼저 파악하여 합산값(동적 통계) 계산
-    parsed_sites = []
-    for idx in range(10, len(df4_raw)):
-        row = df4_raw.iloc[idx]
-        site_name = str(row[1]).strip() if pd.notna(row[1]) else ""
-        if not site_name or site_name == "nan" or site_name in ["합 계", "합계"]:
-            continue
-
-        try:
-            total_cnt = int(row[2]) if pd.notna(row[2]) else 0
-        except:
-            total_cnt = 0
-        try:
-            hanno = int(row[3]) if pd.notna(row[3]) else 0
-        except:
-            hanno = 0
-        try:
-            minno = int(row[4]) if pd.notna(row[4]) else 0
-        except:
-            minno = 0
-        try:
-            gunsan = int(row[5]) if pd.notna(row[5]) else 0
-        except:
-            gunsan = 0
-        try:
-            non_union = int(row[6]) if pd.notna(row[6]) else 0
-        except:
-            non_union = 0
-        try:
-            mijung = int(row[7]) if pd.notna(row[7]) else 0
-        except:
-            mijung = 0
-
-        contact_info = str(row[8]) if pd.notna(row[8]) else ""
-
-        parsed_sites.append({
-            "site_name": site_name,
-            "total_cnt": total_cnt,
-            "hanno": hanno,
-            "minno": minno,
-            "gunsan": gunsan,
-            "non_union": non_union,
-            "mijung": mijung,
-            "contact_info": contact_info
-        })
-
-    # 동적 합산 계산
-    tot_d = sum(s["total_cnt"] for s in parsed_sites)
-    hanno_cnt = sum(s["hanno"] for s in parsed_sites)
-    minno_cnt = sum(s["minno"] for s in parsed_sites)
-    gunsan_cnt = sum(s["gunsan"] for s in parsed_sites)
-    non_cnt = sum(s["non_union"] for s in parsed_sites)
-    mi_cnt = sum(s["mijung"] for s in parsed_sites)
-
-    # 비율 계산
-    if tot_d > 0:
-        hanno_p = f"{(hanno_cnt / tot_d) * 100:.1f}%"
-        minno_p = f"{(minno_cnt / tot_d) * 100:.1f}%"
-        gunsan_p = f"{(gunsan_cnt / tot_d) * 100:.1f}%"
-        non_p = f"{(non_cnt / tot_d) * 100:.1f}%"
-        mi_p = f"{(mi_cnt / tot_d) * 100:.1f}%"
-    else:
-        hanno_p = minno_p = gunsan_p = non_p = mi_p = "0.0%"
-
-    st.subheader("📊 반도체 현장 전체 대수 비교 (실시간 합산)")
+    st.subheader("📊 반도체 현장 전체 대수 비교")
     try:
+        tot_d = df4_raw.iloc[5, 0]
+        hanno_cnt = df4_raw.iloc[5, 1]
+        minno_cnt = df4_raw.iloc[5, 2]
+        gunsan_cnt = df4_raw.iloc[5, 3]
+        non_cnt = df4_raw.iloc[5, 4]
+        mi_cnt = df4_raw.iloc[5, 5]
+
+        hanno_p = fmt_pct(df4_raw.iloc[6, 1])
+        minno_p = fmt_pct(df4_raw.iloc[6, 2])
+        gunsan_p = fmt_pct(df4_raw.iloc[6, 3])
+        non_p = fmt_pct(df4_raw.iloc[6, 4])
+        mi_p = fmt_pct(df4_raw.iloc[6, 5])
+
         st.markdown(
             f"""
         <div class="main-total-card">
@@ -480,15 +429,22 @@ elif menu == "🏭 4. 반도체 현장 현황":
     st.markdown("---")
     st.subheader("📍 각 현장별 상세 현황 및 담당자")
 
-    for s in parsed_sites:
-        site_name = s["site_name"]
-        total_cnt = s["total_cnt"]
-        hanno = s["hanno"]
-        minno = s["minno"]
-        gunsan = s["gunsan"]
-        non_union = s["non_union"]
-        mijung = s["mijung"]
-        contact_info = s["contact_info"]
+    # 엑셀 시트 4번의 10번 행부터 순회 ('합계' 행만 정확히 필터링 제외)
+    for idx in range(10, len(df4_raw)):
+        row = df4_raw.iloc[idx]
+        site_name = str(row[1]).strip() if pd.notna(row[1]) else ""
+        
+        # 빈값이거나 '합 계' / '합계'인 행은 건너뜀 (복합동의 '합' 글자로 인한 오류 방지)
+        if not site_name or site_name == "nan" or site_name in ["합 계", "합계"]:
+            continue
+
+        total_cnt = row[2] if pd.notna(row[2]) else 0
+        hanno = row[3] if pd.notna(row[3]) else 0
+        minno = row[4] if pd.notna(row[4]) else 0
+        gunsan = row[5] if pd.notna(row[5]) else 0
+        non_union = row[6] if pd.notna(row[6]) else 0
+        mijung = row[7] if pd.notna(row[7]) else 0
+        contact_info = str(row[8]) if pd.notna(row[8]) else ""
 
         with st.expander(f"🏢 {site_name} (총 {total_cnt}대)", expanded=True):
             st.markdown(
