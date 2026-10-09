@@ -121,6 +121,14 @@ s3_name = sheet_names[2] if len(sheet_names) > 2 else "3.타워사별 점유현�
 s4_name = sheet_names[3] if len(sheet_names) > 3 else "4.반도체현장"
 s5_name = sheet_names[4] if len(sheet_names) > 4 else "5.1~9월채용추이"
 
+def safe_int(val):
+    try:
+        if pd.isna(val) or val == "" or val == "-":
+            return 0
+        return int(float(val))
+    except:
+        return 0
+
 def fmt_pct(val):
     try:
         if pd.isna(val) or val == "" or val == "-":
@@ -130,16 +138,7 @@ def fmt_pct(val):
             return f"{f * 100:.1f}%"
         return f"{f:.1f}%"
     except:
-        return str(val) if pd.notna(val) else "0%"
-
-# 안전한 숫자 변환 헬퍼 함수
-def safe_int(val):
-    try:
-        if pd.isna(val) or val == "" or val == "-":
-            return 0
-        return int(float(val))
-    except:
-        return 0
+        return "0%"
 
 # ==========================================
 # 사이드바 메뉴 설정
@@ -214,7 +213,7 @@ if menu == "📊 1. 2026년 전체 소속별 점유율":
 
 
 # ------------------------------------------
-# [메뉴 2] 각 8개지부 현장 점유율
+# [메뉴 2] 각 8개지부 현장 점유율 (철저한 숫자 보정 적용)
 # ------------------------------------------
 elif menu == "🏢 2. 각 8개지부 현장 점유율":
     st.title("🏢 지부별 현장 점유율")
@@ -234,13 +233,9 @@ elif menu == "🏢 2. 각 8개지부 현장 점유율":
                 break
 
         if current_branch not in branch_data:
-            branch_data[current_branch] = {"summary": None, "percent": None, "sites": []}
+            branch_data[current_branch] = {"sites": []}
 
-        if "퍼센테이지" in branch_col or "소계퍼센테이지" in branch_col:
-            branch_data[current_branch]["percent"] = r
-        elif "소계" in branch_col:
-            branch_data[current_branch]["summary"] = r
-        elif pd.notna(r[1]) and str(r[1]).strip() != "현장명":
+        if "소계" not in branch_col and "퍼센테이지" not in branch_col and pd.notna(r[1]) and str(r[1]).strip() != "현장명":
             branch_data[current_branch]["sites"].append(r)
 
     st.subheader("🔍 타워사/현장명 통합 검색")
@@ -257,11 +252,13 @@ elif menu == "🏢 2. 각 8개지부 현장 점유율":
                         "지부명": b_name,
                         "현장명": site_name,
                         "타워회사": tower_name,
-                        "민노": s[5] if len(s) > 5 else 0,
-                        "한노": s[4] if len(s) > 4 else 0,
-                        "건산": s[7] if len(s) > 7 else 0,
-                        "섬유": s[6] if len(s) > 6 else 0,
-                        "총대수": s[10] if len(s) > 10 else 0
+                        "한노": safe_int(s[4]),
+                        "민노": safe_int(s[5]),
+                        "섬유": safe_int(s[6]),
+                        "건산": safe_int(s[7]),
+                        "직원": safe_int(s[8]),
+                        "미정": safe_int(s[9]),
+                        "총대수": safe_int(s[10])
                     })
         if all_searched_sites:
             st.markdown(f"### 🔎 '{search_query}' 검색 결과")
@@ -274,50 +271,54 @@ elif menu == "🏢 2. 각 8개지부 현장 점유율":
 
     for b_name in branches:
         if b_name in branch_data:
-            b_info = branch_data[b_name]
-            sum_row = b_info["summary"]
-            pct_row = b_info["percent"]
-            sites_list = b_info["sites"]
+            sites_list = branch_data[b_name]["sites"]
 
-            if sum_row is not None and pct_row is not None:
-                hanno_cnt, hanno_pct = sum_row[4], fmt_pct(pct_row[4])
-                minno_cnt, minno_pct = sum_row[5], fmt_pct(pct_row[5])
-                seomoo_cnt, seomoo_pct = sum_row[6], fmt_pct(pct_row[6])
-                geunsan_cnt, geunsan_pct = sum_row[7], fmt_pct(pct_row[7])
-                jikwon_cnt, jikwon_pct = sum_row[8], fmt_pct(pct_row[8])
-                mijeong_cnt, mijeong_pct = sum_row[9], fmt_pct(pct_row[9])
-                total_cnt = sum_row[10] if len(sum_row) > 10 else "-"
+            hanno_sum = sum(safe_int(s[4]) for s in sites_list)
+            minno_sum = sum(safe_int(s[5]) for s in sites_list)
+            seomoo_sum = sum(safe_int(s[6]) for s in sites_list)
+            geunsan_sum = sum(safe_int(s[7]) for s in sites_list)
+            jikwon_sum = sum(safe_int(s[8]) for s in sites_list)
+            mijeong_sum = sum(safe_int(s[9]) for s in sites_list)
+            total_sum = sum(safe_int(s[10]) for s in sites_list)
 
-                expander_label = (
-                    f"📁 **{b_name}** | "
-                    f":red[**🔥 한노 {hanno_cnt}({hanno_pct})**] | "
-                    f":blue[민노 {minno_cnt}({minno_pct})] | "
-                    f":green[섬유 {seomoo_cnt}({seomoo_pct})] | "
-                    f":orange[건산 {geunsan_cnt}({geunsan_pct})] | "
-                    f":violet[직원 {jikwon_cnt}({jikwon_pct})] | "
-                    f":gray[미정 {mijeong_cnt}({mijeong_pct})] | "
-                    f"**총대수 {total_cnt}(100%)**"
-                )
+            if total_sum > 0:
+                hanno_pct = f"{(hanno_sum / total_sum) * 100:.1f}%"
+                minno_pct = f"{(minno_sum / total_sum) * 100:.1f}%"
+                seomoo_pct = f"{(seomoo_sum / total_sum) * 100:.1f}%"
+                geunsan_pct = f"{(geunsan_sum / total_sum) * 100:.1f}%"
+                jikwon_pct = f"{(jikwon_sum / total_sum) * 100:.1f}%"
+                mijeong_pct = f"{(mijeong_sum / total_sum) * 100:.1f}%"
             else:
-                expander_label = f"📁 **{b_name}**"
+                hanno_pct = minno_pct = seomoo_pct = geunsan_pct = jikwon_pct = mijeong_pct = "0.0%"
+
+            expander_label = (
+                f"📁 **{b_name}** | "
+                f":red[**🔥 한노 {hanno_sum}({hanno_pct})**] | "
+                f":blue[민노 {minno_sum}({minno_pct})] | "
+                f":green[섬유 {seomoo_sum}({seomoo_pct})] | "
+                f":orange[건산 {geunsan_sum}({geunsan_pct})] | "
+                f":violet[직원 {jikwon_sum}({jikwon_pct})] | "
+                f":gray[미정 {mijeong_sum}({mijeong_pct})] | "
+                f"**총대수 {total_sum}(100%)**"
+            )
 
             with st.expander(expander_label):
                 if sites_list:
-                    site_df = pd.DataFrame(sites_list)
-                    display_df = pd.DataFrame(
-                        {
-                            "현장명": site_df[1],
-                            "타워회사": site_df[2],
-                            "한노": site_df[4],
-                            "민노": site_df[5],
-                            "섬유": site_df[6],
-                            "건산": site_df[7],
-                            "직원": site_df[8],
-                            "미정": site_df[9],
-                            "총대수": site_df[10],
-                        }
-                    ).fillna(0)
-
+                    # 상세 목록 테이블 표출 시 비어있는 셀은 0으로 채움
+                    clean_sites = []
+                    for s in sites_list:
+                        clean_sites.append({
+                            "현장명": s[1] if len(s) > 1 and pd.notna(s[1]) else "",
+                            "타워회사": s[2] if len(s) > 2 and pd.notna(s[2]) else "",
+                            "한노": safe_int(s[4]) if len(s) > 4 else 0,
+                            "민노": safe_int(s[5]) if len(s) > 5 else 0,
+                            "섬유": safe_int(s[6]) if len(s) > 6 else 0,
+                            "건산": safe_int(s[7]) if len(s) > 7 else 0,
+                            "직원": safe_int(s[8]) if len(s) > 8 else 0,
+                            "미정": safe_int(s[9]) if len(s) > 9 else 0,
+                            "총대수": safe_int(s[10]) if len(s) > 10 else 0,
+                        })
+                    display_df = pd.DataFrame(clean_sites)
                     st.markdown(f"📍 **{b_name} 상세 현장 목록**")
                     st.dataframe(display_df, use_container_width=True, hide_index=True)
                 else:
@@ -365,7 +366,7 @@ elif menu == "🏗️ 3. 타워사별 점유 현황":
 
 
 # ------------------------------------------
-# [메뉴 4] 반도체 현장 현황 (동적 합산 적용 + 안전한 에러 방지)
+# [메뉴 4] 반도체 현장 현황
 # ------------------------------------------
 elif menu == "🏭 4. 반도체 현장 현황":
     st.title("🏭 반도체 현장 타워크레인 현황")
@@ -399,7 +400,6 @@ elif menu == "🏭 4. 반도체 현장 현황":
             "contact_info": contact_info
         })
 
-    # 동적 합산 계산
     tot_d = sum(s["total_cnt"] for s in parsed_sites)
     hanno_cnt = sum(s["hanno"] for s in parsed_sites)
     minno_cnt = sum(s["minno"] for s in parsed_sites)
@@ -407,7 +407,6 @@ elif menu == "🏭 4. 반도체 현장 현황":
     non_cnt = sum(s["non_union"] for s in parsed_sites)
     mi_cnt = sum(s["mijung"] for s in parsed_sites)
 
-    # 비율 계산
     if tot_d > 0:
         hanno_p = f"{(hanno_cnt / tot_d) * 100:.1f}%"
         minno_p = f"{(minno_cnt / tot_d) * 100:.1f}%"
@@ -585,7 +584,7 @@ elif menu == "📅 5. 1~9월 채용 추이":
             detail_list = []
             for r in m_rows:
                 cell0 = str(r[0]).strip() if pd.notna(r[0]) else ""
-                if cell0 and "임대사" not in cell0 and "합계" not in cell0 and "비율" not in cell0:
+                if cell0 and "임대사" not in cell0 and "합계" not in, "비율" not in cell0:
                     detail_list.append({
                         "임대사": r[0],
                         "원청사": r[1] if len(r) > 1 else "",
@@ -595,7 +594,7 @@ elif menu == "📅 5. 1~9월 채용 추이":
                         "민노": r[5] if len(r) > 5 else 0,
                         "기타(건산섬유)": r[6] if len(r) > 6 else 0,
                         "직원": r[7] if len(r) > 7 else 0,
-                        "비고": r[8] if len(r) > 8 else "",
+                        "비고": r[8] if len(r) > 8 else 0,
                     })
 
             if detail_list:
