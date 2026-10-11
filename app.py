@@ -104,7 +104,7 @@ EXCEL_FILE = "채용비율.xlsx"
 def load_all_sheets():
     try:
         xls = pd.ExcelFile(EXCEL_FILE)
-        sheets = {sheet: pd.read_excel(xls, sheet) for sheet in xls.sheet_names}
+        sheets = {sheet: pd.read_excel(xls, sheet, header=None) for sheet in xls.sheet_names}
         return sheets
     except Exception as e:
         st.error(f"엑셀 파일을 읽는 중 오류가 발생했습니다. '{EXCEL_FILE}' 파일이 같은 폴더에 있는지 확인해주세요.\n오류 내용: {e}")
@@ -167,23 +167,32 @@ if menu == "📊 1. 2026년 전체 소속별 점유율":
     df1 = sheets[s1_name].copy()
 
     try:
-        tot_cnt = df1.iloc[1, 7]
-        tot_pct = df1.iloc[1, 8]
+        tot_cnt = safe_int(df1.iloc[2, 7])  # 합계
+        
+        hanno_cnt = safe_int(df1.iloc[2, 1])
+        minno_cnt = safe_int(df1.iloc[2, 2])
+        seomoo_cnt = safe_int(df1.iloc[2, 3])
+        geunsan_cnt = safe_int(df1.iloc[2, 4])
+        jikwon_cnt = safe_int(df1.iloc[2, 5])
+        mijeong_cnt = safe_int(df1.iloc[2, 6])
+
+        def calc_p(cnt, total):
+            return f"{(cnt / total) * 100:.1f}%" if total > 0 else "0.0%"
 
         stat_items = [
-            {"title": "한국노총 (한노)", "cnt": df1.iloc[1, 1], "pct": fmt_pct(df1.iloc[2, 1]), "class": "border-hanno", "color": "#EF4444"},
-            {"title": "민주노총 (민노)", "cnt": df1.iloc[1, 2], "pct": fmt_pct(df1.iloc[2, 2]), "class": "border-minno", "color": "#3B82F6"},
-            {"title": "섬유노조", "cnt": df1.iloc[1, 3], "pct": fmt_pct(df1.iloc[2, 3]), "class": "border-seomoo", "color": "#10B981"},
-            {"title": "건설산업 (건산)", "cnt": df1.iloc[1, 4], "pct": fmt_pct(df1.iloc[2, 4]), "class": "border-geunsan", "color": "#F59E0B"},
-            {"title": "직원", "cnt": df1.iloc[1, 5], "pct": fmt_pct(df1.iloc[2, 5]), "class": "border-jikwon", "color": "#8B5CF6"},
-            {"title": "미정", "cnt": df1.iloc[1, 6], "pct": fmt_pct(df1.iloc[2, 6]), "class": "border-mijeong", "color": "#6B7280"},
+            {"title": "한국노총 (한노)", "cnt": hanno_cnt, "pct": calc_p(hanno_cnt, tot_cnt), "class": "border-hanno", "color": "#EF4444"},
+            {"title": "민주노총 (민노)", "cnt": minno_cnt, "pct": calc_p(minno_cnt, tot_cnt), "class": "border-minno", "color": "#3B82F6"},
+            {"title": "섬유노조", "cnt": seomoo_cnt, "pct": calc_p(seomoo_cnt, tot_cnt), "class": "border-seomoo", "color": "#10B981"},
+            {"title": "건설산업 (건산)", "cnt": geunsan_cnt, "pct": calc_p(geunsan_cnt, tot_cnt), "class": "border-geunsan", "color": "#F59E0B"},
+            {"title": "직원", "cnt": jikwon_cnt, "pct": calc_p(jikwon_cnt, tot_cnt), "class": "border-jikwon", "color": "#8B5CF6"},
+            {"title": "미정", "cnt": mijeong_cnt, "pct": calc_p(mijeong_cnt, tot_cnt), "class": "border-mijeong", "color": "#6B7280"},
         ]
 
         st.markdown(
             f"""
         <div class="main-total-card">
             <span style="font-size: 1.05rem; font-weight:bold;">🏆 전체 현장 총 대수: </span>
-            <span style="font-size: 1.5rem; font-weight:bold; margin-left:8px;">{tot_cnt}대 ({tot_pct})</span>
+            <span style="font-size: 1.5rem; font-weight:bold; margin-left:8px;">{tot_cnt}대 (100.0%)</span>
         </div>
         """,
             unsafe_allow_html=True,
@@ -207,7 +216,8 @@ if menu == "📊 1. 2026년 전체 소속별 점유율":
                 unsafe_allow_html=True,
             )
 
-    except Exception:
+    except Exception as e:
+        st.error(f"데이터를 처리하는 중 오류가 발생했습니다: {e}")
         st.write("### 💡 전체 소속별 통계 개요")
         st.dataframe(df1.fillna(""), use_container_width=True, hide_index=True)
 
@@ -370,8 +380,7 @@ elif menu == "🏗️ 3. 타워사별 점유 현황":
 elif menu == "🏭 4. 반도체 현장 현황":
     st.title("🏭 반도체 현장 타워크레인 현황")
     
-    xls = pd.ExcelFile(EXCEL_FILE)
-    df4_raw = pd.read_excel(xls, s4_name, header=None)
+    df4_raw = sheets[s4_name].copy()
 
     parsed_sites = []
     for idx in range(10, len(df4_raw)):
@@ -510,8 +519,7 @@ elif menu == "🏭 4. 반도체 현장 현황":
 elif menu == "📅 5. 1~9월 채용 추이":
     st.title("📅 월별 채용 현황 및 추이")
     
-    xls = pd.ExcelFile(EXCEL_FILE)
-    df5_raw = pd.read_excel(xls, s5_name, header=None)
+    df5_raw = sheets[s5_name].copy()
 
     rows = df5_raw.values.tolist()
     month_blocks = {}
