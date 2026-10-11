@@ -323,7 +323,7 @@ if menu == "📊 1. 26년 소속별 점유율(반도체제외)":
 
 
 # ------------------------------------------
-# [메뉴 2] 각 8개지부 현장 점유율
+# [메뉴 2] 각 8개지부 현장 점유율 (지부별 현장 실시간 합산 보완)
 # ------------------------------------------
 elif menu == "🏢 2. 각 8개지부 현장 점유율":
     st.title("🏢 지부별 현장 점유율")
@@ -389,17 +389,17 @@ elif menu == "🏢 2. 각 8개지부 현장 점유율":
     st.subheader("📌 각 8개 지부 현장 점유율")
 
     for b_name in branches:
-        if b_name in branch_data and branch_data[b_name]["subtotal"] is not None:
-            sub = branch_data[b_name]["subtotal"]
+        if b_name in branch_data:
             sites_list = branch_data[b_name]["sites"]
 
-            hanno_sum = safe_int(sub[4])
-            minno_sum = safe_int(sub[5])
-            seomoo_sum = safe_int(sub[6])
-            geunsan_sum = safe_int(sub[7])
-            jikwon_sum = safe_int(sub[8])
-            mijeong_sum = safe_int(sub[9])
-            total_sum = safe_int(sub[10])
+            # 엑셀의 소계 행 데이터가 비어 있거나 누락되어도 현장 목록을 실시간으로 직접 합산하여 완벽하게 계산
+            hanno_sum = sum(safe_int(s[4]) for s in sites_list)
+            minno_sum = sum(safe_int(s[5]) for s in sites_list)
+            seomoo_sum = sum(safe_int(s[6]) for s in sites_list)
+            geunsan_sum = sum(safe_int(s[7]) for s in sites_list)
+            jikwon_sum = sum(safe_int(s[8]) for s in sites_list)
+            mijeong_sum = sum(safe_int(s[9]) for s in sites_list)
+            total_sum = sum(safe_int(s[10]) for s in sites_list)
 
             if total_sum > 0:
                 hanno_pct = f"{(hanno_sum / total_sum) * 100:.1f}%"
@@ -779,7 +779,7 @@ elif menu == "📅 5. 월별 신규 채용 추이":
             with st.expander(f"🗓️ {m_name} (한노 {hanno_pct_str}) 요약 보기 (클릭하여 열기/접기)"):
                 st.markdown(
                     f"**[합계]** 총대수: **{s['총대수']}**대 | "
-                    f"<span style='color:#EF4444; font-weight:bold;'>한노: {s['한노']}</span> | "
+                    f"<span style='color:#EF4444; font-weight:bold;'>한노: {s['N/A'] if 'N/A' in s else s['한노']}</span> | "
                     f"<span style='color:#3B82F6; font-weight:bold;'>민노: {s['민노']}</span> | "
                     f"<span style='color:#10B981; font-weight:bold;'>기타: {s['기타']}</span> | "
                     f"<span style='color:#8B5CF6; font-weight:bold;'>직원: {s['직원']}</span>",
