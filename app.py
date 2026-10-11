@@ -88,6 +88,51 @@ st.markdown(
     .border-geunsan { border-left-color: #F59E0B !important; }
     .border-jikwon { border-left-color: #8B5CF6 !important; }
     .border-mijeong { border-left-color: #6B7280 !important; }
+
+    /* 타워사 모바일 전용 카드 스타일 */
+    .tower-card {
+        background-color: #FFFFFF;
+        border-radius: 10px;
+        padding: 14px 16px;
+        margin-bottom: 12px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+        border: 1px solid #E5E7EB;
+    }
+    .tower-card-uho {
+        border-left: 6px solid #2563EB !important;
+        background-color: #F0F6FF;
+    }
+    .tower-card-bihyop {
+        border-left: 6px solid #DC2626 !important;
+        background-color: #FEF2F2;
+    }
+    .tower-card-normal {
+        border-left: 6px solid #9CA3AF !important;
+    }
+    .badge-uho {
+        background-color: #2563EB;
+        color: white;
+        padding: 3px 8px;
+        border-radius: 12px;
+        font-size: 0.85rem;
+        font-weight: bold;
+    }
+    .badge-bihyop {
+        background-color: #DC2626;
+        color: white;
+        padding: 3px 8px;
+        border-radius: 12px;
+        font-size: 0.85rem;
+        font-weight: bold;
+    }
+    .badge-normal {
+        background-color: #6B7280;
+        color: white;
+        padding: 3px 8px;
+        border-radius: 12px;
+        font-size: 0.85rem;
+        font-weight: bold;
+    }
     </style>
 """,
     unsafe_allow_html=True,
@@ -123,23 +168,6 @@ def safe_int(val):
         return int(float(val))
     except:
         return 0
-
-def fmt_tower_pct(val):
-    """타워사 한노 점유율 스타일링 (40% 이상 파란색 / 30% 미만 빨간색)"""
-    try:
-        if pd.isna(val) or val == "" or val == "-":
-            return "0.0%"
-        f = float(val)
-        pct_val = f * 100 if f <= 1.0 else f
-        
-        if pct_val >= 40.0:
-            return f'<span style="color: #2563EB; font-weight: bold;">💙 [우호] {pct_val:.1f}%</span>'
-        elif pct_val < 30.0:
-            return f'<span style="color: #DC2626; font-weight: bold;">🔴 [비협조] {pct_val:.1f}%</span>'
-        else:
-            return f'<span>{pct_val:.1f}%</span>'
-    except:
-        return "0.0%"
 
 # ==========================================
 # 사이드바 메뉴 설정
@@ -426,7 +454,7 @@ elif menu == "🏢 2. 각 8개지부 현장 점유율":
 
 
 # ------------------------------------------
-# [메뉴 3] 타워사별 점유 현황 (우호/비협조 색상 강조 적용)
+# [메뉴 3] 타워사별 점유 현황 (모바일 전용 카드 UI)
 # ------------------------------------------
 elif menu == "🏗️ 3. 타워사별 점유 현황":
     st.title("🏗️ 임대사(타워사)별 점유 현황")
@@ -445,13 +473,6 @@ elif menu == "🏗️ 3. 타워사별 점유 현황":
     if "타워사" in df3.columns:
         df3 = df3.dropna(subset=["타워사"]).fillna(0)
 
-        cols = list(df3.columns)
-        if "한노점유율" in cols and "타워사" in cols:
-            cols.remove("한노점유율")
-            tower_idx = cols.index("타워사")
-            cols.insert(tower_idx + 1, "한노점유율")
-            df3 = df3[cols]
-
         st.subheader("🔍 임대사(타워사) 검색")
         tower_list = ["전체 보기"] + list(df3["타워사"].astype(str).unique())
         selected_tower = st.selectbox("타워사를 선택하세요", tower_list)
@@ -465,17 +486,71 @@ elif menu == "🏗️ 3. 타워사별 점유 현황":
         if search_kw:
             filtered_df = filtered_df[filtered_df["타워사"].astype(str).str.contains(search_kw, case=False)]
 
-        # 강조 범례 안내 표시
-        st.info("💡 **점유율 구문 안내:** 💙 **40% 이상 (우호타워사)** | 🔴 **30% 미만 (비협조타워사)**")
+        # 범례 표시
+        st.markdown(
+            """
+            <div style="background-color: #F3F4F6; padding: 10px 14px; border-radius: 8px; font-size: 0.92rem; margin-bottom: 15px;">
+                💡 <b>점유율 구분:</b> 
+                <span style="color:#2563EB; font-weight:bold;">💙 40% 이상 (우호)</span> | 
+                <span style="color:#DC2626; font-weight:bold;">🔴 30% 미만 (비협조)</span>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
-        # 한노점유율 색상 스타일 적용
-        if "한노점유율" in filtered_df.columns:
-            filtered_df["한노점유율"] = filtered_df["한노점유율"].apply(fmt_tower_pct)
+        st.markdown(f"### 📋 타워사 목록 (총 {len(filtered_df)}개사)")
 
-        st.markdown("### 📋 타워사 점유 현황 목록")
-        # HTML 마크업 출력을 위해 write(to_html) 방식으로 테이블을 렌더링합니다
-        html_table = filtered_df.to_html(escape=False, index=False)
-        st.write(html_table, unsafe_allow_html=True)
+        # 모바일 카드 렌더링
+        for _, row in filtered_df.iterrows():
+            tower_name = str(row["타워사"])
+            site_cnt = safe_int(row.get("현장수", 0))
+            hanno = safe_int(row.get("한노", 0))
+            minno = safe_int(row.get("민노", 0))
+            seomoo = safe_int(row.get("섬유", 0))
+            geunsan = safe_int(row.get("건산", 0))
+            jikwon = safe_int(row.get("직원", 0))
+            gita = safe_int(row.get("기타", 0))
+            total = safe_int(row.get("합계", 0))
+
+            raw_pct = row.get("한노점유율", 0)
+            try:
+                f_pct = float(raw_pct)
+                pct_val = f_pct * 100 if f_pct <= 1.0 else f_pct
+            except:
+                pct_val = 0.0
+
+            # 우호 / 비협조 / 일반 판별
+            if pct_val >= 40.0:
+                card_class = "tower-card-uho"
+                badge_html = f'<span class="badge-uho">💙 우호 {pct_val:.1f}%</span>'
+            elif pct_val < 30.0:
+                card_class = "tower-card-bihyop"
+                badge_html = f'<span class="badge-bihyop">🔴 비협조 {pct_val:.1f}%</span>'
+            else:
+                card_class = "tower-card-normal"
+                badge_html = f'<span class="badge-normal">⚪ 일반 {pct_val:.1f}%</span>'
+
+            card_html = f"""
+            <div class="tower-card {card_class}">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-size: 1.15rem; font-weight: bold; color: #111827;">{tower_name}</span>
+                    {badge_html}
+                </div>
+                <div style="font-size: 0.92rem; color: #4B5563; margin-bottom: 6px;">
+                    📍 현장수: <b>{site_cnt}개소</b> | 총 합계대수: <b>{total}대</b>
+                </div>
+                <div style="font-size: 0.88rem; background-color: rgba(255,255,255,0.7); padding: 8px; border-radius: 6px; line-height: 1.5;">
+                    <span style="color:#EF4444; font-weight:bold;">한노 {hanno}대</span> | 
+                    <span style="color:#3B82F6; font-weight:bold;">민노 {minno}대</span> | 
+                    <span style="color:#10B981; font-weight:bold;">섬유 {seomoo}대</span> | 
+                    <span style="color:#F59E0B; font-weight:bold;">건산 {geunsan}대</span><br>
+                    <span style="color:#8B5CF6; font-weight:bold;">직원 {jikwon}대</span> | 
+                    <span style="color:#6B7280; font-weight:bold;">기타 {gita}대</span>
+                </div>
+            </div>
+            """
+            st.markdown(card_html, unsafe_allow_html=True)
+
     else:
         st.error("3번 시트에서 '타워사' 헤더 항목을 찾을 수 없습니다. 엑셀 파일 형식을 확인해주세요.")
 
