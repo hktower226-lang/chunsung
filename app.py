@@ -360,7 +360,6 @@ elif menu == "🏗️ 3. 타워사별 점유 현황":
     st.title("🏗️ 임대사(타워사)별 점유 현황")
     df3 = sheets[s3_name].copy()
 
-    # "타워사" 열 이름을 자동으로 찾아서 헤더로 설정
     header_idx = None
     for idx, row in df3.iterrows():
         if "타워사" in row.values:
@@ -549,10 +548,10 @@ elif menu == "📅 5. 1~9월 채용 추이":
     st.title("📅 월별 채용 현황 및 추이")
     
     df5_raw = sheets[s5_name].copy()
-
     rows = df5_raw.values.tolist()
+    
     month_blocks = {}
-    current_month = None
+    current_month = "1월 채용 현황"
     current_data = []
 
     for r in rows:
@@ -562,6 +561,8 @@ elif menu == "📅 5. 1~9월 채용 추이":
                 month_blocks[current_month] = current_data
             current_month = title_cell
             current_data = []
+        elif "임대사" in title_cell or "1~10월" in title_cell:
+            continue
         elif current_month:
             if any(pd.notna(cell) for cell in r):
                 current_data.append(r)
@@ -608,7 +609,11 @@ elif menu == "📅 5. 1~9월 채용 추이":
             else:
                 p_han = p_min = p_git = p_jik = "0.0%"
 
-            processed_months[m_name] = {
+            display_m_name = m_name
+            if "1~10월" in m_name:
+                display_m_name = "1월 채용 현황"
+
+            processed_months[display_m_name] = {
                 "details": detail_list,
                 "sum": {"총대수": t_tot, "한노": t_han, "민노": t_min, "기타": t_git, "직원": t_jik, "미정": t_mi},
                 "pct": {"한노": p_han, "민노": p_min, "기타": p_git, "직원": p_jik}
