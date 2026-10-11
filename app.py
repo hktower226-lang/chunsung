@@ -124,16 +124,22 @@ def safe_int(val):
     except:
         return 0
 
-def fmt_pct(val):
+def fmt_tower_pct(val):
+    """타워사 한노 점유율 스타일링 (40% 이상 파란색 / 30% 미만 빨간색)"""
     try:
         if pd.isna(val) or val == "" or val == "-":
-            return "0%"
+            return "0.0%"
         f = float(val)
-        if f <= 1.0:
-            return f"{f * 100:.1f}%"
-        return f"{f:.1f}%"
+        pct_val = f * 100 if f <= 1.0 else f
+        
+        if pct_val >= 40.0:
+            return f'<span style="color: #2563EB; font-weight: bold;">💙 [우호] {pct_val:.1f}%</span>'
+        elif pct_val < 30.0:
+            return f'<span style="color: #DC2626; font-weight: bold;">🔴 [비협조] {pct_val:.1f}%</span>'
+        else:
+            return f'<span>{pct_val:.1f}%</span>'
     except:
-        return "0%"
+        return "0.0%"
 
 # ==========================================
 # 사이드바 메뉴 설정
@@ -145,7 +151,7 @@ menu_options = [
     "🏢 2. 각 8개지부 현장 점유율",
     "🏗️ 3. 타워사별 점유 현황",
     "🏭 4. 반도체 현장 현황",
-    "📅 5. 1~9월 채용 추이",
+    "📅 5. 월별 신규 채용 추이",
 ]
 
 menu = st.sidebar.radio("원하시는 화면을 선택하세요", menu_options)
@@ -155,14 +161,13 @@ menu = st.sidebar.radio("원하시는 화면을 선택하세요", menu_options)
 # ==========================================
 
 # ------------------------------------------
-# [메뉴 1] 26년 소속별 점유율(반도체제외) 및 반도체 포함 통합 (반도체 비노조 -> 직원 합산)
+# [메뉴 1] 26년 소속별 점유율(반도체제외) 및 반도체 포함 통합
 # ------------------------------------------
 if menu == "📊 1. 26년 소속별 점유율(반도체제외)":
     st.title("📊 26년 소속별 점유율 (반도체 제외)")
     df1 = sheets[s1_name].copy()
 
     try:
-        # 1번 시트 데이터 (반도체 제외)
         hanno_cnt1 = safe_int(df1.iloc[2, 1])
         minno_cnt1 = safe_int(df1.iloc[2, 2])
         seomoo_cnt1 = safe_int(df1.iloc[2, 3])
@@ -211,9 +216,7 @@ if menu == "📊 1. 26년 소속별 점유율(반도체제외)":
                 unsafe_allow_html=True,
             )
 
-        # ------------------------------------------
-        # 4번 시트 (반도체 현장) 데이터 파싱하여 합산 카드 추가 (비노조 -> 직원 합산)
-        # ------------------------------------------
+        # 반도체 현장 합산
         df4_raw = sheets[s4_name].copy()
         parsed_sites_semi = []
         for idx in range(10, len(df4_raw)):
@@ -234,16 +237,15 @@ if menu == "📊 1. 26년 소속별 점유율(반도체제외)":
         semi_hanno = sum(s["hanno"] for s in parsed_sites_semi)
         semi_minno = sum(s["minno"] for s in parsed_sites_semi)
         semi_gunsan = sum(s["gunsan"] for s in parsed_sites_semi) 
-        semi_non = sum(s["non_union"] for s in parsed_sites_semi) # 반도체 비노조 수량
+        semi_non = sum(s["non_union"] for s in parsed_sites_semi)
         semi_mijung = sum(s["mijung"] for s in parsed_sites_semi)
 
-        # 통합 합산 (1번 시트 + 4번 반도체 시트 / 비노조를 직원에 합산)
         total_combined = tot_cnt1 + semi_tot
         comb_hanno = hanno_cnt1 + semi_hanno
         comb_minno = minno_cnt1 + semi_minno
         comb_seomoo = seomoo_cnt1 + semi_gunsan 
         comb_geunsan = geunsan_cnt1   
-        comb_jikwon = jikwon_cnt1 + semi_non   # 👈 반도체 비노조를 직원 항목에 합산
+        comb_jikwon = jikwon_cnt1 + semi_non   # 반도체 비노조 -> 직원 합산
         comb_mijung = mijeong_cnt1 + semi_mijung
 
         st.markdown("---")
@@ -424,7 +426,7 @@ elif menu == "🏢 2. 각 8개지부 현장 점유율":
 
 
 # ------------------------------------------
-# [메뉴 3] 타워사별 점유 현황
+# [메뉴 3] 타워사별 점유 현황 (우호/비협조 색상 강조 적용)
 # ------------------------------------------
 elif menu == "🏗️ 3. 타워사별 점유 현황":
     st.title("🏗️ 임대사(타워사)별 점유 현황")
@@ -450,9 +452,6 @@ elif menu == "🏗️ 3. 타워사별 점유 현황":
             cols.insert(tower_idx + 1, "한노점유율")
             df3 = df3[cols]
 
-        if "한노점유율" in df3.columns:
-            df3["한노점유율"] = df3["한노점유율"].apply(fmt_pct)
-
         st.subheader("🔍 임대사(타워사) 검색")
         tower_list = ["전체 보기"] + list(df3["타워사"].astype(str).unique())
         selected_tower = st.selectbox("타워사를 선택하세요", tower_list)
@@ -466,8 +465,17 @@ elif menu == "🏗️ 3. 타워사별 점유 현황":
         if search_kw:
             filtered_df = filtered_df[filtered_df["타워사"].astype(str).str.contains(search_kw, case=False)]
 
+        # 강조 범례 안내 표시
+        st.info("💡 **점유율 구문 안내:** 💙 **40% 이상 (우호타워사)** | 🔴 **30% 미만 (비협조타워사)**")
+
+        # 한노점유율 색상 스타일 적용
+        if "한노점유율" in filtered_df.columns:
+            filtered_df["한노점유율"] = filtered_df["한노점유율"].apply(fmt_tower_pct)
+
         st.markdown("### 📋 타워사 점유 현황 목록")
-        st.dataframe(filtered_df, use_container_width=True, hide_index=True)
+        # HTML 마크업 출력을 위해 write(to_html) 방식으로 테이블을 렌더링합니다
+        html_table = filtered_df.to_html(escape=False, index=False)
+        st.write(html_table, unsafe_allow_html=True)
     else:
         st.error("3번 시트에서 '타워사' 헤더 항목을 찾을 수 없습니다. 엑셀 파일 형식을 확인해주세요.")
 
@@ -611,10 +619,10 @@ elif menu == "🏭 4. 반도체 현장 현황":
 
 
 # ------------------------------------------
-# [메뉴 5] 1~9월 채용 추이
+# [메뉴 5] 월별 신규 채용 추이
 # ------------------------------------------
-elif menu == "📅 5. 1~9월 채용 추이":
-    st.title("📅 월별 채용 현황 및 추이")
+elif menu == "📅 5. 월별 신규 채용 추이":
+    st.title("📅 월별 신규 채용 추이 현황")
     
     df5_raw = sheets[s5_name].copy()
     rows = df5_raw.values.tolist()
