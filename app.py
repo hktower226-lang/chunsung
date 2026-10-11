@@ -392,7 +392,6 @@ elif menu == "🏢 2. 각 8개지부 현장 점유율":
         if b_name in branch_data:
             sites_list = branch_data[b_name]["sites"]
 
-            # 엑셀의 소계 행 데이터가 비어 있거나 누락되어도 현장 목록을 실시간으로 직접 합산하여 완벽하게 계산
             hanno_sum = sum(safe_int(s[4]) for s in sites_list)
             minno_sum = sum(safe_int(s[5]) for s in sites_list)
             seomoo_sum = sum(safe_int(s[6]) for s in sites_list)
@@ -486,7 +485,6 @@ elif menu == "🏗️ 3. 타워사별 점유 현황":
         if search_kw:
             filtered_df = filtered_df[filtered_df["타워사"].astype(str).str.contains(search_kw, case=False)]
 
-        # 범례 표시
         st.markdown(
             """
             <div style="background-color: #F3F4F6; padding: 10px 14px; border-radius: 8px; font-size: 0.92rem; margin-bottom: 15px;">
@@ -500,7 +498,6 @@ elif menu == "🏗️ 3. 타워사별 점유 현황":
 
         st.markdown(f"### 📋 타워사 목록 (총 {len(filtered_df)}개사)")
 
-        # 모바일 카드 렌더링
         for _, row in filtered_df.iterrows():
             tower_name = str(row["타워사"])
             site_cnt = safe_int(row.get("현장수", 0))
@@ -519,7 +516,6 @@ elif menu == "🏗️ 3. 타워사별 점유 현황":
             except:
                 pct_val = 0.0
 
-            # 우호 / 비협조 / 일반 판별
             if pct_val >= 40.0:
                 card_class = "tower-card-uho"
                 badge_html = f'<span class="badge-uho">💙 우호 {pct_val:.1f}%</span>'
@@ -694,7 +690,7 @@ elif menu == "🏭 4. 반도체 현장 현황":
 
 
 # ------------------------------------------
-# [메뉴 5] 월별 신규 채용 추이
+# [메뉴 5] 월별 신규 채용 추이 (합계와 비율을 하나로 합쳐서 표시하도록 수정)
 # ------------------------------------------
 elif menu == "📅 5. 월별 신규 채용 추이":
     st.title("📅 월별 신규 채용 추이 현황")
@@ -758,8 +754,9 @@ elif menu == "📅 5. 월별 신규 채용 추이":
                 p_min = f"{(t_min / t_tot) * 100:.1f}%"
                 p_git = f"{(t_git / t_tot) * 100:.1f}%"
                 p_jik = f"{(t_jik / t_tot) * 100:.1f}%"
+                p_mi  = f"{(t_mi / t_tot) * 100:.1f}%"
             else:
-                p_han = p_min = p_git = p_jik = "0.0%"
+                p_han = p_min = p_git = p_jik = p_mi = "0.0%"
 
             display_m_name = m_name
             if "1~10월" in m_name:
@@ -768,45 +765,39 @@ elif menu == "📅 5. 월별 신규 채용 추이":
             processed_months[display_m_name] = {
                 "details": detail_list,
                 "sum": {"총대수": t_tot, "한노": t_han, "민노": t_min, "기타": t_git, "직원": t_jik, "미정": t_mi},
-                "pct": {"한노": p_han, "민노": p_min, "기타": p_git, "직원": p_jik}
+                "pct": {"한노": p_han, "민노": p_min, "기타": p_git, "직원": p_jik, "미정": p_mi}
             }
 
+        # 💡 수정된 부분: 아코디언 타이틀 및 본문에서 '합계(비율)' 형태로 한 번에 표시
         for m_name, m_info in processed_months.items():
             s = m_info["sum"]
             p = m_info["pct"]
-            hanno_pct_str = p["한노"]
 
-            with st.expander(f"🗓️ {m_name} (한노 {hanno_pct_str}) 요약 보기 (클릭하여 열기/접기)"):
+            expander_title = (
+                f"🗓️ {m_name} | "
+                f":red[**한노 {s['한노']}({p['한노']})**] | "
+                f":blue[민노 {s['민노']}({p['민노']})] | "
+                f":green[기타 {s['기타']}({p['기타']})] | "
+                f":violet[직원 {s['직원']}({p['직원']})] | "
+                f":gray[미정 {s['미정']}({p['미정']})] | "
+                f"**총대수 {s['총대수']}(100%)**"
+            )
+
+            with st.expander(expander_title):
                 st.markdown(
-                    f"**[합계]** 총대수: **{s['총대수']}**대 | "
-                    f"<span style='color:#EF4444; font-weight:bold;'>한노: {s['N/A'] if 'N/A' in s else s['한노']}</span> | "
-                    f"<span style='color:#3B82F6; font-weight:bold;'>민노: {s['민노']}</span> | "
-                    f"<span style='color:#10B981; font-weight:bold;'>기타: {s['기타']}</span> | "
-                    f"<span style='color:#8B5CF6; font-weight:bold;'>직원: {s['직원']}</span>",
-                    unsafe_allow_html=True
-                )
-                st.markdown(
-                    f"**[비율]** "
-                    f"<span style='color:#EF4444; font-weight:bold;'>한노: {p['한노']}</span> | "
-                    f"<span style='color:#3B82F6; font-weight:bold;'>민노: {p['민노']}</span> | "
-                    f"<span style='color:#10B981; font-weight:bold;'>기타: {p['기타']}</span> | "
-                    f"<span style='color:#8B5CF6; font-weight:bold;'>직원: {p['직원']}</span>",
+                    f"**[요약 합계 및 비율]**<br>"
+                    f"• <span style='color:#EF4444; font-weight:bold;'>한노:</span> <b>{s['한노']}대 ({p['한노']})</b><br>"
+                    f"• <span style='color:#3B82F6; font-weight:bold;'>민노:</span> <b>{s['민노']}대 ({p['민노']})</b><br>"
+                    f"• <span style='color:#10B981; font-weight:bold;'>기타(건산섬유):</span> <b>{s['기타']}대 ({p['기타']})</b><br>"
+                    f"• <span style='color:#8B5CF6; font-weight:bold;'>직원:</span> <b>{s['직원']}대 ({p['직원']})</b><br>"
+                    f"• <span style='color:#6B7280; font-weight:bold;'>미정:</span> <b>{s['미정']}대 ({p['미정']})</b><br>"
+                    f"• <b>총 대수:</b> <b>{s['총대수']}대 (100.0%)</b>",
                     unsafe_allow_html=True
                 )
                 
-                if "9월" in m_name:
-                    st.info("ℹ️ 참고: 미정인원 12명 (인력 확정 시 비율 변동)")
-
-        st.markdown("---")
-        st.subheader("🔍 상세 채용 현황 조회할 월 선택")
-        selected_m = st.selectbox("월을 선택하세요", list(processed_months.keys()))
-
-        if selected_m:
-            detail_list = processed_months[selected_m]["details"]
-            if detail_list:
-                st.markdown(f"### 📍 {selected_m} 상세 현황")
-                if "9월" in selected_m:
-                    st.info("ℹ️ 참고: 미정인원 12명 (인력 확정 시 비율 변동)")
-                st.dataframe(pd.DataFrame(detail_list).fillna(""), use_container_width=True, hide_index=True)
-            else:
-                st.info("해당 월의 상세 데이터가 없습니다.")
+                if m_info["details"]:
+                    st.markdown("---")
+                    st.markdown(f"📍 **{m_name} 상세 내역**")
+                    st.dataframe(pd.DataFrame(m_info["details"]), use_container_width=True, hide_index=True)
+                else:
+                    st.info("해당 월의 상세 채용 데이터가 없습니다.")
