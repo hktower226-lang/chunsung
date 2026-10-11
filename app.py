@@ -1,5 +1,6 @@
 import pandas as pd
 import streamlit as st
+import re
 
 # ==========================================
 # 1. 페이지 기본 설정 및 모바일 CSS 스타일링
@@ -18,7 +19,7 @@ st.markdown(
         font-size: 17px !important;
     }
     
-    /* 사이드바 메뉴 1~5번 글씨 크기 대폭 확대 */
+    /* 사이드바 메뉴 글씨 크기 확대 */
     [data-testid="stSidebar"] .stRadio label p, 
     [data-testid="stSidebar"] .stRadio div[role="radiogroup"] label span {
         font-size: 1.35rem !important;
@@ -32,12 +33,6 @@ st.markdown(
     h1 { font-size: 1.9rem !important; font-weight: bold !important; color: #1E3A8A; }
     h2 { font-size: 1.5rem !important; font-weight: bold !important; color: #1E40AF; }
     h3 { font-size: 1.3rem !important; font-weight: bold !important; }
-    
-    /* 카드/Expander 내부 텍스트 */
-    .stSelectbox label, .stRadio label, .stMultiSelect label {
-        font-size: 1.1rem !important;
-        font-weight: bold !important;
-    }
     
     /* 여백 설정 */
     .block-container {
@@ -146,7 +141,7 @@ def fmt_pct(val):
 st.sidebar.title("📌 채용 비율 메뉴 선택")
 
 menu_options = [
-    "📊 1. 2026년 전체 소속별 점유율",
+    "📊 1. 26년 소속별 점유율(반도체제외)",
     "🏢 2. 각 8개지부 현장 점유율",
     "🏗️ 3. 타워사별 점유 현황",
     "🏭 4. 반도체 현장 현황",
@@ -160,47 +155,123 @@ menu = st.sidebar.radio("원하시는 화면을 선택하세요", menu_options)
 # ==========================================
 
 # ------------------------------------------
-# [메뉴 1] 전체 소속별 점유율
+# [메뉴 1] 26년 소속별 점유율(반도체제외) 및 반도체 포함 합산 추가
 # ------------------------------------------
-if menu == "📊 1. 2026년 전체 소속별 점유율":
-    st.title("📊 2026년 전체 소속별 점유율")
+if menu == "📊 1. 26년 소속별 점유율(반도체제외)":
+    st.title("📊 26년 소속별 점유율 (반도체 제외)")
     df1 = sheets[s1_name].copy()
 
     try:
-        tot_cnt = safe_int(df1.iloc[2, 7])  # 합계
-        
-        hanno_cnt = safe_int(df1.iloc[2, 1])
-        minno_cnt = safe_int(df1.iloc[2, 2])
-        seomoo_cnt = safe_int(df1.iloc[2, 3])
-        geunsan_cnt = safe_int(df1.iloc[2, 4])
-        jikwon_cnt = safe_int(df1.iloc[2, 5])
-        mijeong_cnt = safe_int(df1.iloc[2, 6])
+        # 1번 시트 데이터 (반도체 제외)
+        hanno_cnt1 = safe_int(df1.iloc[2, 1])
+        minno_cnt1 = safe_int(df1.iloc[2, 2])
+        seomoo_cnt1 = safe_int(df1.iloc[2, 3])
+        geunsan_cnt1 = safe_int(df1.iloc[2, 4])
+        jikwon_cnt1 = safe_int(df1.iloc[2, 5])
+        mijeong_cnt1 = safe_int(df1.iloc[2, 6])
+        tot_cnt1 = safe_int(df1.iloc[2, 7])
 
         def calc_p(cnt, total):
             return f"{(cnt / total) * 100:.1f}%" if total > 0 else "0.0%"
 
-        stat_items = [
-            {"title": "한국노총 (한노)", "cnt": hanno_cnt, "pct": calc_p(hanno_cnt, tot_cnt), "class": "border-hanno", "color": "#EF4444"},
-            {"title": "민주노총 (민노)", "cnt": minno_cnt, "pct": calc_p(minno_cnt, tot_cnt), "class": "border-minno", "color": "#3B82F6"},
-            {"title": "섬유노조", "cnt": seomoo_cnt, "pct": calc_p(seomoo_cnt, tot_cnt), "class": "border-seomoo", "color": "#10B981"},
-            {"title": "건설산업 (건산)", "cnt": geunsan_cnt, "pct": calc_p(geunsan_cnt, tot_cnt), "class": "border-geunsan", "color": "#F59E0B"},
-            {"title": "직원", "cnt": jikwon_cnt, "pct": calc_p(jikwon_cnt, tot_cnt), "class": "border-jikwon", "color": "#8B5CF6"},
-            {"title": "미정", "cnt": mijeong_cnt, "pct": calc_p(mijeong_cnt, tot_cnt), "class": "border-mijeong", "color": "#6B7280"},
+        stat_items1 = [
+            {"title": "한국노총 (한노)", "cnt": hanno_cnt1, "pct": calc_p(hanno_cnt1, tot_cnt1), "class": "border-hanno", "color": "#EF4444"},
+            {"title": "민주노총 (민노)", "cnt": minno_cnt1, "pct": calc_p(minno_cnt1, tot_cnt1), "class": "border-minno", "color": "#3B82F6"},
+            {"title": "섬유노조", "cnt": seomoo_cnt1, "pct": calc_p(seomoo_cnt1, tot_cnt1), "class": "border-seomoo", "color": "#10B981"},
+            {"title": "건설산업 (건산)", "cnt": geunsan_cnt1, "pct": calc_p(geunsan_cnt1, tot_cnt1), "class": "border-geunsan", "color": "#F59E0B"},
+            {"title": "직원", "cnt": jikwon_cnt1, "pct": calc_p(jikwon_cnt1, tot_cnt1), "class": "border-jikwon", "color": "#8B5CF6"},
+            {"title": "미정", "cnt": mijeong_cnt1, "pct": calc_p(mijeong_cnt1, tot_cnt1), "class": "border-mijeong", "color": "#6B7280"},
         ]
 
         st.markdown(
             f"""
         <div class="main-total-card">
-            <span style="font-size: 1.05rem; font-weight:bold;">🏆 전체 현장 총 대수: </span>
-            <span style="font-size: 1.5rem; font-weight:bold; margin-left:8px;">{tot_cnt}대 (100.0%)</span>
+            <span style="font-size: 1.05rem; font-weight:bold;">🏆 전체 현장 총 대수 (반도체 제외): </span>
+            <span style="font-size: 1.5rem; font-weight:bold; margin-left:8px;">{tot_cnt1}대 (100.0%)</span>
         </div>
         """,
             unsafe_allow_html=True,
         )
 
-        st.markdown("<div style='font-size: 1.1rem; font-weight: bold; color: #1E40AF; margin-bottom: 8px;'>👇 소속별 점유 현황</div>", unsafe_allow_html=True)
+        st.markdown("<div style='font-size: 1.1rem; font-weight: bold; color: #1E40AF; margin-bottom: 8px;'>👇 소속별 점유 현황 (반도체 제외)</div>", unsafe_allow_html=True)
 
-        for item in stat_items:
+        for item in stat_items1:
+            st.markdown(
+                f"""
+            <div class="main-stat-card {item['class']}">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size: 1.0rem; font-weight:bold; color:{item['color']};">{item['title']}</span>
+                    <span style="font-size: 1.15rem; font-weight:bold; color:#111827;">{item['pct']}</span>
+                </div>
+                <div style="margin-top: 4px; font-size: 0.95rem; color: #4B5563;">
+                    보유 수량: <b>{item['cnt']}대</b>
+                </div>
+            </div>
+            """,
+                unsafe_allow_html=True,
+            )
+
+        # ------------------------------------------
+        # 4번 시트 (반도체 현장) 데이터 파싱하여 합산 카드 추가
+        # ------------------------------------------
+        df4_raw = sheets[s4_name].copy()
+        parsed_sites_semi = []
+        for idx in range(10, len(df4_raw)):
+            row = df4_raw.iloc[idx]
+            site_name = str(row[1]).strip() if pd.notna(row[1]) else ""
+            if not site_name or site_name == "nan" or site_name in ["합 계", "합계"]:
+                continue
+            parsed_sites_semi.append({
+                "total_cnt": safe_int(row[2]),
+                "hanno": safe_int(row[3]),
+                "minno": safe_int(row[4]),
+                "gunsan": safe_int(row[5]),
+                "non_union": safe_int(row[6]),
+                "mijung": safe_int(row[7])
+            })
+
+        semi_tot = sum(s["total_cnt"] for s in parsed_sites_semi)
+        semi_hanno = sum(s["hanno"] for s in parsed_sites_semi)
+        semi_minno = sum(s["minno"] for s in parsed_sites_semi)
+        semi_gunsan = sum(s["gunsan"] for s in parsed_sites_semi) # 건산, 섬유 계열
+        semi_non = sum(s["non_union"] for s in parsed_sites_semi) # 비노조
+        semi_mijung = sum(s["mijung"] for s in parsed_sites_semi)
+
+        # 통합 합산 (1번 시트 + 4번 반도체 시트)
+        total_combined = tot_cnt1 + semi_tot
+        comb_hanno = hanno_cnt1 + semi_hanno
+        comb_minno = minno_cnt1 + semi_minno
+        comb_seomoo = seomoo_cnt1 + semi_gunsan # 반도체의 건설노조(건산,섬유)를 섬유/건산 통합으로 매칭
+        comb_geunsan = geunsan_cnt1 + semi_non   # 반도체의 비노조를 건산/기타 혹은 비노조로 매칭 (기존 구조 맞춤)
+        comb_jikwon = jikwon_cnt1
+        comb_mijung = mijeong_cnt1 + semi_mijung
+
+        st.markdown("---")
+        st.markdown("<br>", unsafe_allow_html=True)
+        st.title("📊 26년 소속별 점유율 (반도체 포함 통합)")
+
+        st.markdown(
+            f"""
+        <div class="main-total-card">
+            <span style="font-size: 1.05rem; font-weight:bold;">🏆 전체 현장 총 대수 (반도체 포함): </span>
+            <span style="font-size: 1.5rem; font-weight:bold; margin-left:8px;">{total_combined}대 (100.0%)</span>
+        </div>
+        """,
+            unsafe_allow_html=True,
+        )
+
+        comb_items = [
+            {"title": "한국노총 (한노)", "cnt": comb_hanno, "pct": calc_p(comb_hanno, total_combined), "class": "border-hanno", "color": "#EF4444"},
+            {"title": "민주노총 (민노)", "cnt": comb_minno, "pct": calc_p(comb_minno, total_combined), "class": "border-minno", "color": "#3B82F6"},
+            {"title": "섬유노조", "cnt": comb_seomoo, "pct": calc_p(comb_seomoo, total_combined), "class": "border-seomoo", "color": "#10B981"},
+            {"title": "건설산업 / 비노조", "cnt": comb_geunsan, "pct": calc_p(comb_geunsan, total_combined), "class": "border-geunsan", "color": "#F59E0B"},
+            {"title": "직원", "cnt": comb_jikwon, "pct": calc_p(comb_jikwon, total_combined), "class": "border-jikwon", "color": "#8B5CF6"},
+            {"title": "미정", "cnt": comb_mijung, "pct": calc_p(comb_mijung, total_combined), "class": "border-mijeong", "color": "#6B7280"},
+        ]
+
+        st.markdown("<div style='font-size: 1.1rem; font-weight: bold; color: #1E40AF; margin-bottom: 8px;'>👇 소속별 점유 현황 (반도체 포함 통합)</div>", unsafe_allow_html=True)
+
+        for item in comb_items:
             st.markdown(
                 f"""
             <div class="main-stat-card {item['class']}">
@@ -218,7 +289,6 @@ if menu == "📊 1. 2026년 전체 소속별 점유율":
 
     except Exception as e:
         st.error(f"데이터를 처리하는 중 오류가 발생했습니다: {e}")
-        st.write("### 💡 전체 소속별 통계 개요")
         st.dataframe(df1.fillna(""), use_container_width=True, hide_index=True)
 
 
@@ -403,7 +473,7 @@ elif menu == "🏗️ 3. 타워사별 점유 현황":
 
 
 # ------------------------------------------
-# [메뉴 4] 반도체 현장 현황
+# [메뉴 4] 반도체 현장 현황 (제시해주신 이미지 스타일 반영)
 # ------------------------------------------
 elif menu == "🏭 4. 반도체 현장 현황":
     st.title("🏭 반도체 현장 타워크레인 현황")
@@ -528,7 +598,6 @@ elif menu == "🏭 4. 반도체 현장 현황":
             )
 
             if contact_info and contact_info != "nan":
-                import re
                 phone_match = re.search(r"01[016789][-\s]?\d{3,4}[-\s]?\d{4}", contact_info)
                 if phone_match:
                     phone_num = phone_match.group().replace("-", "").replace(" ", "")
