@@ -323,7 +323,7 @@ if menu == "📊 1. 26년 소속별 점유율(반도체제외)":
 
 
 # ------------------------------------------
-# [메뉴 2] 각 8개지부 현장 점유율 (지부별 현장 실시간 합산 보완)
+# [메뉴 2] 각 8개지부 현장 점유율
 # ------------------------------------------
 elif menu == "🏢 2. 각 8개지부 현장 점유율":
     st.title("🏢 지부별 현장 점유율")
@@ -453,7 +453,7 @@ elif menu == "🏢 2. 각 8개지부 현장 점유율":
 
 
 # ------------------------------------------
-# [메뉴 3] 타워사별 점유 현황 (모바일 전용 카드 UI)
+# [메뉴 3] 타워사별 점유 현황
 # ------------------------------------------
 elif menu == "🏗️ 3. 타워사별 점유 현황":
     st.title("🏗️ 임대사(타워사)별 점유 현황")
@@ -690,7 +690,7 @@ elif menu == "🏭 4. 반도체 현장 현황":
 
 
 # ------------------------------------------
-# [메뉴 5] 월별 신규 채용 추이 (합계와 비율을 하나로 합쳐서 표시하도록 수정)
+# [메뉴 5] 월별 신규 채용 추이
 # ------------------------------------------
 elif menu == "📅 5. 월별 신규 채용 추이":
     st.title("📅 월별 신규 채용 추이 현황")
@@ -768,14 +768,14 @@ elif menu == "📅 5. 월별 신규 채용 추이":
                 "pct": {"한노": p_han, "민노": p_min, "기타": p_git, "직원": p_jik, "미정": p_mi}
             }
 
-        # 💡 수정된 부분: 아코디언 타이틀 및 본문에서 '합계(비율)' 형태로 한 번에 표시
+        # 💡 요약바 및 확장 카드 내에서 '한노 5(26.3%)'와 같이 대수와 비율을 합쳐서 한 줄로 표기
         for m_name, m_info in processed_months.items():
             s = m_info["sum"]
             p = m_info["pct"]
 
             expander_title = (
-                f"🗓️ {m_name} | "
-                f":red[**한노 {s['한노']}({p['한노']})**] | "
+                f"🗓️ **{m_name}** | "
+                f":red[**🔥 한노 {s['한노']}({p['한노']})**] | "
                 f":blue[민노 {s['민노']}({p['민노']})] | "
                 f":green[기타 {s['기타']}({p['기타']})] | "
                 f":violet[직원 {s['직원']}({p['직원']})] | "
@@ -785,13 +785,15 @@ elif menu == "📅 5. 월별 신규 채용 추이":
 
             with st.expander(expander_title):
                 st.markdown(
-                    f"**[요약 합계 및 비율]**<br>"
-                    f"• <span style='color:#EF4444; font-weight:bold;'>한노:</span> <b>{s['한노']}대 ({p['한노']})</b><br>"
-                    f"• <span style='color:#3B82F6; font-weight:bold;'>민노:</span> <b>{s['민노']}대 ({p['민노']})</b><br>"
-                    f"• <span style='color:#10B981; font-weight:bold;'>기타(건산섬유):</span> <b>{s['기타']}대 ({p['기타']})</b><br>"
-                    f"• <span style='color:#8B5CF6; font-weight:bold;'>직원:</span> <b>{s['직원']}대 ({p['직원']})</b><br>"
-                    f"• <span style='color:#6B7280; font-weight:bold;'>미정:</span> <b>{s['미정']}대 ({p['미정']})</b><br>"
-                    f"• <b>총 대수:</b> <b>{s['총대수']}대 (100.0%)</b>",
+                    f"• <span style='color:#EF4444; font-weight:bold;'>한국노총:</span> <b>한노 {s['한노']}({p['한노']})</b> | "
+                    f"<span style='color:#3B82F6; font-weight:bold;'>민주노총:</span> <b>민노 {s['민노']}({p['민노']})</b> | "
+                    f"<span style='color:#10B981; font-weight:bold;'>기타(건산,섬유):</span> <b>기타 {s['기타']}({p['기타']})</b>",
+                    unsafe_allow_html=True
+                )
+                st.markdown(
+                    f"• <span style='color:#8B5CF6; font-weight:bold;'>직원:</span> <b>직원 {s['직원']}({p['직원']})</b> | "
+                    f"<span style='color:#6B7280; font-weight:bold;'>미정:</span> <b>미정 {s['미정']}({p['미정']})</b> | "
+                    f"<b>총대수:</b> <b>총 {s['총대수']}대 (100.0%)</b>",
                     unsafe_allow_html=True
                 )
                 
