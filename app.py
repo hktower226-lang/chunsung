@@ -243,9 +243,13 @@ elif menu == "🏢 2. 각 8개지부 현장 점유율":
                 break
 
         if current_branch not in branch_data:
-            branch_data[current_branch] = {"sites": []}
+            branch_data[current_branch] = {"sites": [], "subtotal": None, "pct": None}
 
-        if "소계" not in branch_col and "퍼센테이지" not in branch_col and pd.notna(r[1]) and str(r[1]).strip() != "현장명":
+        if "소계" in branch_col and "퍼센테이지" not in branch_col:
+            branch_data[current_branch]["subtotal"] = r
+        elif "소계퍼센테이지" in branch_col or "퍼센테이지" in branch_col:
+            branch_data[current_branch]["pct"] = r
+        elif pd.notna(r[1]) and str(r[1]).strip() != "현장명":
             branch_data[current_branch]["sites"].append(r)
 
     st.subheader("🔍 타워사/현장명 통합 검색")
@@ -257,10 +261,14 @@ elif menu == "🏢 2. 각 8개지부 현장 점유율":
             for s in b_info["sites"]:
                 site_name = str(s[1]) if len(s) > 1 and pd.notna(s[1]) else ""
                 tower_name = str(s[2]) if len(s) > 2 and pd.notna(s[2]) else ""
+                memo = str(s[3]) if len(s) > 3 and pd.notna(s[3]) else ""
+                note = str(s[11]) if len(s) > 11 and pd.notna(s[11]) else ""
+                
                 if search_query.lower() in site_name.lower() or search_query.lower() in tower_name.lower():
+                    is_excluded = "통계제외" in note or "통계제외" in memo or "통계제외" in str(s)
                     all_searched_sites.append({
                         "지부명": b_name,
-                        "현장명": site_name,
+                        "현장명": f"🔒 [통계제외] {site_name}" if is_excluded else site_name,
                         "타워회사": tower_name,
                         "한노": safe_int(s[4]),
                         "민노": safe_int(s[5]),
@@ -268,7 +276,8 @@ elif menu == "🏢 2. 각 8개지부 현장 점유율":
                         "건산": safe_int(s[7]),
                         "직원": safe_int(s[8]),
                         "미정": safe_int(s[9]),
-                        "총대수": safe_int(s[10])
+                        "총대수": safe_int(s[10]),
+                        "비고": note if note else memo
                     })
         if all_searched_sites:
             st.markdown(f"### 🔎 '{search_query}' 검색 결과")
@@ -280,16 +289,17 @@ elif menu == "🏢 2. 각 8개지부 현장 점유율":
     st.subheader("📌 각 8개 지부 현장 점유율")
 
     for b_name in branches:
-        if b_name in branch_data:
+        if b_name in branch_data and branch_data[b_name]["subtotal"] is not None:
+            sub = branch_data[b_name]["subtotal"]
             sites_list = branch_data[b_name]["sites"]
 
-            hanno_sum = sum(safe_int(s[4]) for s in sites_list)
-            minno_sum = sum(safe_int(s[5]) for s in sites_list)
-            seomoo_sum = sum(safe_int(s[6]) for s in sites_list)
-            geunsan_sum = sum(safe_int(s[7]) for s in sites_list)
-            jikwon_sum = sum(safe_int(s[8]) for s in sites_list)
-            mijeong_sum = sum(safe_int(s[9]) for s in sites_list)
-            total_sum = sum(safe_int(s[10]) for s in sites_list)
+            hanno_sum = safe_int(sub[4])
+            minno_sum = safe_int(sub[5])
+            seomoo_sum = safe_int(sub[6])
+            geunsan_sum = safe_int(sub[7])
+            jikwon_sum = safe_int(sub[8])
+            mijeong_sum = safe_int(sub[9])
+            total_sum = safe_int(sub[10])
 
             if total_sum > 0:
                 hanno_pct = f"{(hanno_sum / total_sum) * 100:.1f}%"
@@ -316,8 +326,15 @@ elif menu == "🏢 2. 각 8개지부 현장 점유율":
                 if sites_list:
                     clean_sites = []
                     for s in sites_list:
+                        site_name = str(s[1]) if len(s) > 1 and pd.notna(s[1]) else ""
+                        memo = str(s[3]) if len(s) > 3 and pd.notna(s[3]) else ""
+                        note = str(s[11]) if len(s) > 11 and pd.notna(s[11]) else ""
+                        
+                        is_excluded = "통계제외" in note or "통계제외" in memo or "통계제외" in str(s)
+                        display_name = f"🔒 [통계제외] {site_name}" if is_excluded else site_name
+
                         clean_sites.append({
-                            "현장명": s[1] if len(s) > 1 and pd.notna(s[1]) else "",
+                            "현장명": display_name,
                             "타워회사": s[2] if len(s) > 2 and pd.notna(s[2]) else "",
                             "한노": safe_int(s[4]) if len(s) > 4 else 0,
                             "민노": safe_int(s[5]) if len(s) > 5 else 0,
@@ -326,9 +343,11 @@ elif menu == "🏢 2. 각 8개지부 현장 점유율":
                             "직원": safe_int(s[8]) if len(s) > 8 else 0,
                             "미정": safe_int(s[9]) if len(s) > 9 else 0,
                             "총대수": safe_int(s[10]) if len(s) > 10 else 0,
+                            "비고": note if note else memo
                         })
+                    
                     display_df = pd.DataFrame(clean_sites)
-                    st.markdown(f"📍 **{b_name} 상세 현장 목록**")
+                    st.markdown(f"📍 **{b_name} 상세 현장 목록** (🔒 표기된 현장은 통계에서 제외된 항목입니다)")
                     st.dataframe(display_df, use_container_width=True, hide_index=True)
                 else:
                     st.info("해당 지부의 상세 현장 데이터가 없습니다.")
