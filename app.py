@@ -155,7 +155,7 @@ menu = st.sidebar.radio("원하시는 화면을 선택하세요", menu_options)
 # ==========================================
 
 # ------------------------------------------
-# [메뉴 1] 26년 소속별 점유율(반도체제외) 및 반도체 포함 합산 추가
+# [메뉴 1] 26년 소속별 점유율(반도체제외) 및 반도체 포함 통합 (반도체 비노조 -> 직원 합산)
 # ------------------------------------------
 if menu == "📊 1. 26년 소속별 점유율(반도체제외)":
     st.title("📊 26년 소속별 점유율 (반도체 제외)")
@@ -212,7 +212,7 @@ if menu == "📊 1. 26년 소속별 점유율(반도체제외)":
             )
 
         # ------------------------------------------
-        # 4번 시트 (반도체 현장) 데이터 파싱하여 합산 카드 추가
+        # 4번 시트 (반도체 현장) 데이터 파싱하여 합산 카드 추가 (비노조 -> 직원 합산)
         # ------------------------------------------
         df4_raw = sheets[s4_name].copy()
         parsed_sites_semi = []
@@ -233,17 +233,17 @@ if menu == "📊 1. 26년 소속별 점유율(반도체제외)":
         semi_tot = sum(s["total_cnt"] for s in parsed_sites_semi)
         semi_hanno = sum(s["hanno"] for s in parsed_sites_semi)
         semi_minno = sum(s["minno"] for s in parsed_sites_semi)
-        semi_gunsan = sum(s["gunsan"] for s in parsed_sites_semi) # 건산, 섬유 계열
-        semi_non = sum(s["non_union"] for s in parsed_sites_semi) # 비노조
+        semi_gunsan = sum(s["gunsan"] for s in parsed_sites_semi) 
+        semi_non = sum(s["non_union"] for s in parsed_sites_semi) # 반도체 비노조 수량
         semi_mijung = sum(s["mijung"] for s in parsed_sites_semi)
 
-        # 통합 합산 (1번 시트 + 4번 반도체 시트)
+        # 통합 합산 (1번 시트 + 4번 반도체 시트 / 비노조를 직원에 합산)
         total_combined = tot_cnt1 + semi_tot
         comb_hanno = hanno_cnt1 + semi_hanno
         comb_minno = minno_cnt1 + semi_minno
-        comb_seomoo = seomoo_cnt1 + semi_gunsan # 반도체의 건설노조(건산,섬유)를 섬유/건산 통합으로 매칭
-        comb_geunsan = geunsan_cnt1 + semi_non   # 반도체의 비노조를 건산/기타 혹은 비노조로 매칭 (기존 구조 맞춤)
-        comb_jikwon = jikwon_cnt1
+        comb_seomoo = seomoo_cnt1 + semi_gunsan 
+        comb_geunsan = geunsan_cnt1   
+        comb_jikwon = jikwon_cnt1 + semi_non   # 👈 반도체 비노조를 직원 항목에 합산
         comb_mijung = mijeong_cnt1 + semi_mijung
 
         st.markdown("---")
@@ -264,8 +264,8 @@ if menu == "📊 1. 26년 소속별 점유율(반도체제외)":
             {"title": "한국노총 (한노)", "cnt": comb_hanno, "pct": calc_p(comb_hanno, total_combined), "class": "border-hanno", "color": "#EF4444"},
             {"title": "민주노총 (민노)", "cnt": comb_minno, "pct": calc_p(comb_minno, total_combined), "class": "border-minno", "color": "#3B82F6"},
             {"title": "섬유노조", "cnt": comb_seomoo, "pct": calc_p(comb_seomoo, total_combined), "class": "border-seomoo", "color": "#10B981"},
-            {"title": "건설산업 / 비노조", "cnt": comb_geunsan, "pct": calc_p(comb_geunsan, total_combined), "class": "border-geunsan", "color": "#F59E0B"},
-            {"title": "직원", "cnt": comb_jikwon, "pct": calc_p(comb_jikwon, total_combined), "class": "border-jikwon", "color": "#8B5CF6"},
+            {"title": "건설산업 (건산)", "cnt": comb_geunsan, "pct": calc_p(comb_geunsan, total_combined), "class": "border-geunsan", "color": "#F59E0B"},
+            {"title": "직원 (반도체 비노조 포함)", "cnt": comb_jikwon, "pct": calc_p(comb_jikwon, total_combined), "class": "border-jikwon", "color": "#8B5CF6"},
             {"title": "미정", "cnt": comb_mijung, "pct": calc_p(comb_mijung, total_combined), "class": "border-mijeong", "color": "#6B7280"},
         ]
 
@@ -473,7 +473,7 @@ elif menu == "🏗️ 3. 타워사별 점유 현황":
 
 
 # ------------------------------------------
-# [메뉴 4] 반도체 현장 현황 (제시해주신 이미지 스타일 반영)
+# [메뉴 4] 반도체 현장 현황
 # ------------------------------------------
 elif menu == "🏭 4. 반도체 현장 현황":
     st.title("🏭 반도체 현장 타워크레인 현황")
