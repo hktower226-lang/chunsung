@@ -360,37 +360,47 @@ elif menu == "🏗️ 3. 타워사별 점유 현황":
     st.title("🏗️ 임대사(타워사)별 점유 현황")
     df3 = sheets[s3_name].copy()
 
-    if "타워사" in df3.iloc[0].values:
-        df3.columns = df3.iloc[0]
-        df3 = df3[1:].reset_index(drop=True)
+    # "타워사" 열 이름을 자동으로 찾아서 헤더로 설정
+    header_idx = None
+    for idx, row in df3.iterrows():
+        if "타워사" in row.values:
+            header_idx = idx
+            break
 
-    df3 = df3.dropna(subset=["타워사"]).fillna(0)
+    if header_idx is not None:
+        df3.columns = df3.iloc[header_idx]
+        df3 = df3[header_idx + 1:].reset_index(drop=True)
 
-    cols = list(df3.columns)
-    if "한노점유율" in cols and "타워사" in cols:
-        cols.remove("한노점유율")
-        tower_idx = cols.index("타워사")
-        cols.insert(tower_idx + 1, "한노점유율")
-        df3 = df3[cols]
+    if "타워사" in df3.columns:
+        df3 = df3.dropna(subset=["타워사"]).fillna(0)
 
-    if "한노점유율" in df3.columns:
-        df3["한노점유율"] = df3["한노점유율"].apply(fmt_pct)
+        cols = list(df3.columns)
+        if "한노점유율" in cols and "타워사" in cols:
+            cols.remove("한노점유율")
+            tower_idx = cols.index("타워사")
+            cols.insert(tower_idx + 1, "한노점유율")
+            df3 = df3[cols]
 
-    st.subheader("🔍 임대사(타워사) 검색")
-    tower_list = ["전체 보기"] + list(df3["타워사"].astype(str).unique())
-    selected_tower = st.selectbox("타워사를 선택하세요", tower_list)
+        if "한노점유율" in df3.columns:
+            df3["한노점유율"] = df3["한노점유율"].apply(fmt_pct)
 
-    search_kw = st.text_input("또는 타워사 이름 일부 직접 입력", "", placeholder="예: 비엠, 대원 등")
+        st.subheader("🔍 임대사(타워사) 검색")
+        tower_list = ["전체 보기"] + list(df3["타워사"].astype(str).unique())
+        selected_tower = st.selectbox("타워사를 선택하세요", tower_list)
 
-    filtered_df = df3.copy()
-    if selected_tower and selected_tower != "전체 보기":
-        filtered_df = filtered_df[filtered_df["타워사"].astype(str) == selected_tower]
+        search_kw = st.text_input("또는 타워사 이름 일부 직접 입력", "", placeholder="예: 비엠, 대원 등")
 
-    if search_kw:
-        filtered_df = filtered_df[filtered_df["타워사"].astype(str).str.contains(search_kw, case=False)]
+        filtered_df = df3.copy()
+        if selected_tower and selected_tower != "전체 보기":
+            filtered_df = filtered_df[filtered_df["타워사"].astype(str) == selected_tower]
 
-    st.markdown("### 📋 타워사 점유 현황 목록")
-    st.dataframe(filtered_df, use_container_width=True, hide_index=True)
+        if search_kw:
+            filtered_df = filtered_df[filtered_df["타워사"].astype(str).str.contains(search_kw, case=False)]
+
+        st.markdown("### 📋 타워사 점유 현황 목록")
+        st.dataframe(filtered_df, use_container_width=True, hide_index=True)
+    else:
+        st.error("3번 시트에서 '타워사' 헤더 항목을 찾을 수 없습니다. 엑셀 파일 형식을 확인해주세요.")
 
 
 # ------------------------------------------
