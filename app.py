@@ -138,7 +138,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-EXCEL_FILE = "채용비율.xlsx"
+EXCEL_FILE = "채용비율-3.xlsx"
 
 @st.cache_data(ttl=5)
 def load_all_sheets():
@@ -767,12 +767,28 @@ elif menu == "📅 5. 월별 신규 채용 추이":
             else:
                 p_han = p_min = p_git = p_jik = p_mi = "0.0%"
 
-            display_m_name = m_name
-            if "1~10월" in m_name:
-                display_m_name = "1월 채용 현황"
-
-            processed_months[display_m_name] = {
+            processed_months[m_name] = {
                 "details": detail_list,
                 "sum": {"총대수": t_tot, "한노": t_han, "민노": t_min, "기타": t_git, "직원": t_jik, "미정": t_mi},
                 "pct": {"한노": p_han, "민노": p_min, "기타": p_git, "직원": p_jik, "미정": p_mi}
             }
+
+        for m_name, m_info in processed_months.items():
+            s = m_info["sum"]
+            p = m_info["pct"]
+
+            expander_title = (
+                f"🗓️ **{m_name}** | "
+                f"🔥 한노 {s['한노']}({p['한노']}) | "
+                f"민노 {s['민노']}({p['민노']}) | "
+                f"기타 {s['기타']}({p['기타']}) | "
+                f"직원 {s['직원']}({p['직원']}) | "
+                f"미정 {s['미정']}({p['미정']}) | "
+                f"**총대수 {s['총대수']}대**"
+            )
+
+            with st.expander(expander_title):
+                if m_info["details"]:
+                    st.dataframe(pd.DataFrame(m_info["details"]), use_container_width=True, hide_index=True)
+                else:
+                    st.info("해당 월의 상세 채용 데이터가 없습니다.")
