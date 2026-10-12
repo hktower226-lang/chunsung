@@ -779,15 +779,25 @@ elif menu == "📅 5. 월별 신규 채용 추이":
 
             expander_title = (
                 f"🗓️ **{m_name}** | "
-                f"🔥 한노 {s['한노']}({p['한노']}) | "
-                f"민노 {s['민노']}({p['민노']}) | "
-                f"기타 {s['기타']}({p['기타']}) | "
-                f"직원 {s['직원']}({p['직원']}) | "
-                f"미정 {s['미정']}({p['미정']}) | "
+                f":red[**🔥 한노 {s['한노']}({p['한노']})**] | "
+                f":blue[민노 {s['민노']}({p['민노']})] | "
+                f":green[기타 {s['기타']}({p['기타']})] | "
+                f":violet[직원 {s['직원']}({p['직원']})] | "
+                f":gray[미정 {s['미정']}({p['미정']})] | "
                 f"**총대수 {s['총대수']}대**"
             )
 
             with st.expander(expander_title):
+                st.markdown(
+                    f"📁 **{m_name}** | "
+                    f"<span style='color:#EF4444; font-weight:bold;'>🔥 한노 {s['한노']}({p['한노']})</span> | "
+                    f"<span style='color:#3B82F6; font-weight:bold;'>민노 {s['민노']}({p['민노']})</span> | "
+                    f"<span style='color:#10B981; font-weight:bold;'>기타 {s['기타']}({p['기타']})</span> | "
+                    f"<span style='color:#8B5CF6; font-weight:bold;'>직원 {s['직원']}({p['직원']})</span> | "
+                    f"<span style='color:#6B7280; font-weight:bold;'>미정 {s['미정']}({p['미정']})</span> | "
+                    f"**총대수 {s['총대수']}대**",
+                    unsafe_allow_html=True
+                )
                 if m_info["details"]:
                     st.dataframe(pd.DataFrame(m_info["details"]), use_container_width=True, hide_index=True)
                 else:
