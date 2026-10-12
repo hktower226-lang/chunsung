@@ -272,7 +272,7 @@ if menu == "📊 1. 26년 소속별 점유율(반도체제외)":
         comb_hanno = hanno_cnt1 + semi_hanno
         comb_minno = minno_cnt1 + semi_minno
         comb_seomoo = seomoo_cnt1 + semi_gunsan 
-        comb_geunsan = geunsan_cnt1   
+        comb_geunsan = geunsan_cnt1    
         comb_jikwon = jikwon_cnt1 + semi_non   # 반도체 비노조 -> 직원 합산
         comb_mijung = mijeong_cnt1 + semi_mijung
 
@@ -392,13 +392,22 @@ elif menu == "🏢 2. 각 8개지부 현장 점유율":
         if b_name in branch_data:
             sites_list = branch_data[b_name]["sites"]
 
-            hanno_sum = sum(safe_int(s[4]) for s in sites_list)
-            minno_sum = sum(safe_int(s[5]) for s in sites_list)
-            seomoo_sum = sum(safe_int(s[6]) for s in sites_list)
-            geunsan_sum = sum(safe_int(s[7]) for s in sites_list)
-            jikwon_sum = sum(safe_int(s[8]) for s in sites_list)
-            mijeong_sum = sum(safe_int(s[9]) for s in sites_list)
-            total_sum = sum(safe_int(s[10]) for s in sites_list)
+            # 통계제외 항목을 제외하고 합산하도록 필터링
+            valid_sites = []
+            for s in sites_list:
+                memo = str(s[3]) if len(s) > 3 and pd.notna(s[3]) else ""
+                note = str(s[11]) if len(s) > 11 and pd.notna(s[11]) else ""
+                is_excluded = "통계제외" in note or "통계제외" in memo or "통계제외" in str(s)
+                if not is_excluded:
+                    valid_sites.append(s)
+
+            hanno_sum = sum(safe_int(s[4]) for s in valid_sites)
+            minno_sum = sum(safe_int(s[5]) for s in valid_sites)
+            seomoo_sum = sum(safe_int(s[6]) for s in valid_sites)
+            geunsan_sum = sum(safe_int(s[7]) for s in valid_sites)
+            jikwon_sum = sum(safe_int(s[8]) for s in valid_sites)
+            mijeong_sum = sum(safe_int(s[9]) for s in valid_sites)
+            total_sum = sum(safe_int(s[10]) for s in valid_sites)
 
             if total_sum > 0:
                 hanno_pct = f"{(hanno_sum / total_sum) * 100:.1f}%"
@@ -767,39 +776,3 @@ elif menu == "📅 5. 월별 신규 채용 추이":
                 "sum": {"총대수": t_tot, "한노": t_han, "민노": t_min, "기타": t_git, "직원": t_jik, "미정": t_mi},
                 "pct": {"한노": p_han, "민노": p_min, "기타": p_git, "직원": p_jik, "미정": p_mi}
             }
-
-        # 💡 요약바 및 확장 카드 내에서 '한노 5(26.3%)'와 같이 대수와 비율을 합쳐서 한 줄로 표기
-        for m_name, m_info in processed_months.items():
-            s = m_info["sum"]
-            p = m_info["pct"]
-
-            expander_title = (
-                f"🗓️ **{m_name}** | "
-                f":red[**🔥 한노 {s['한노']}({p['한노']})**] | "
-                f":blue[민노 {s['민노']}({p['민노']})] | "
-                f":green[기타 {s['기타']}({p['기타']})] | "
-                f":violet[직원 {s['직원']}({p['직원']})] | "
-                f":gray[미정 {s['미정']}({p['미정']})] | "
-                f"**총대수 {s['총대수']}(100%)**"
-            )
-
-            with st.expander(expander_title):
-                st.markdown(
-                    f"• <span style='color:#EF4444; font-weight:bold;'>한국노총:</span> <b>한노 {s['한노']}({p['한노']})</b> | "
-                    f"<span style='color:#3B82F6; font-weight:bold;'>민주노총:</span> <b>민노 {s['민노']}({p['민노']})</b> | "
-                    f"<span style='color:#10B981; font-weight:bold;'>기타(건산,섬유):</span> <b>기타 {s['기타']}({p['기타']})</b>",
-                    unsafe_allow_html=True
-                )
-                st.markdown(
-                    f"• <span style='color:#8B5CF6; font-weight:bold;'>직원:</span> <b>직원 {s['직원']}({p['직원']})</b> | "
-                    f"<span style='color:#6B7280; font-weight:bold;'>미정:</span> <b>미정 {s['미정']}({p['미정']})</b> | "
-                    f"<b>총대수:</b> <b>총 {s['총대수']}대 (100.0%)</b>",
-                    unsafe_allow_html=True
-                )
-                
-                if m_info["details"]:
-                    st.markdown("---")
-                    st.markdown(f"📍 **{m_name} 상세 내역**")
-                    st.dataframe(pd.DataFrame(m_info["details"]), use_container_width=True, hide_index=True)
-                else:
-                    st.info("해당 월의 상세 채용 데이터가 없습니다.")
