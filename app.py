@@ -138,7 +138,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-EXCEL_FILE = "채용비율-3.xlsx"
+EXCEL_FILE = "채용비율.xlsx"
 
 @st.cache_data(ttl=5)
 def load_all_sheets():
