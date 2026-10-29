@@ -25,11 +25,21 @@ h2 .list-title{font:inherit;color:inherit;margin:0}.copy-cell{min-width:160px}.c
   .copy-button{min-height:44px;padding:10px 14px;margin-top:10px;font-size:13px;background:#edf3ff;border-color:#d9e4fa}
   .empty{background:#fff;padding:40px 16px}.foot{padding:14px 16px}.notice{margin-top:16px;padding:14px 16px}
 }
+
+.mobile-reports{display:none}.deadline{display:block;font-size:12px;line-height:1.6;margin-top:7px;font-weight:600}.deadline.soon{color:#9a4b00}.deadline.expired{color:#b52c38}tr.soon{background:#fff7e7}tr.expired{background:#fff0f1}
+@media screen and (max-width:800px){
+ .tablewrap table{display:none}.mobile-reports{display:flex;flex-direction:column;gap:10px;background:#f3f6fa;padding:12px}.mobile-reports:empty{display:none}
+ .report-item{background:white;border:1px solid #e1e7f0;border-radius:10px;overflow:hidden;min-width:0}.report-item.soon{background:#fff7e7;border-color:#eab655}.report-item.expired{background:#fff0f1;border-color:#e4a3ab}
+ .report-item summary{cursor:pointer;list-style:none;position:relative;padding:15px 38px 15px 16px;min-height:70px}.report-item summary::-webkit-details-marker{display:none}.report-item summary::after{content:'⌄';position:absolute;right:16px;top:18px;color:#687b96}.report-item[open] summary::after{content:'⌃'}.report-item summary:focus-visible{outline:2px solid #4777ed;outline-offset:-3px}
+ .report-company{display:block;font-size:17px;font-weight:750;color:#203653;overflow-wrap:anywhere}.report-period{display:block;margin-top:5px;font-size:13px;line-height:1.6;color:#53657e;overflow-wrap:anywhere}
+ .report-detail{border-top:1px solid #e3e9f1;padding:14px 16px;background:#fff}.report-detail dl{display:grid;grid-template-columns:92px minmax(0,1fr);gap:12px 10px;margin:0;font-size:13px;line-height:1.7}.report-detail dt{color:#7b879a}.report-detail dd{margin:0;overflow-wrap:anywhere;white-space:pre-line}.report-detail .copy-button{width:100%;margin-top:16px}
+}
+@media print{.mobile-reports{display:none}}
 </style>
 </head>
 <body>
 <header><div class="brand"><span class="mark">수도권</span></div><h1 id="title">수도권 본부 본사집회신고 공유 대시보드</h1><p id="description">본부별 집회 신고 현황을 한곳에서 확인하세요.</p><div class="status"><span><span class="dot">●</span> 본부별 신고 현황 공유</span><span id="updated">데이터 확인 중</span></div></header>
-<main><div id="error" class="error" role="alert" hidden></div><section class="cards" id="cards" aria-label="본부별 신고 건수"></section><section class="panel"><div class="panelhead"><h2><span id="listTitle" class="list-title">집회 신고 목록</span> <span id="count" aria-live="polite">0건</span></h2><div class="actions"><button class="btn" id="refresh">↻ 새로고침</button><button class="btn" id="export">↓ CSV 내려받기</button><button class="btn" id="print">인쇄</button></div></div><div class="filters"><input id="search" type="search" aria-label="신고 내역 검색" placeholder="건설사명, 장소, 접수번호, 신고인, 담당정보관 검색"><button class="btn" id="reset">초기화</button></div><div class="tablewrap"><table><thead><tr><th>NO</th><th>본부</th><th>접수번호</th><th>건설사명</th><th>개최장소(시위·행진진로)</th><th>개최일시(집회기간)</th><th>접수기관</th><th>신고일자</th><th>신고인</th><th>담당정보관 / 연락처</th></tr></thead><tbody id="rows"></tbody></table><div id="empty" class="empty" hidden><div class="icon">▤</div><strong id="emptyTitle">등록된 신고 내역이 없습니다</strong><p id="emptyText">현재 원본 엑셀에는 본부 구분만 있습니다.<br>data.json에 신고 내역을 추가하면 이곳에 표시됩니다.</p></div></div><div class="foot" id="summary">데이터를 불러오는 중입니다.</div></section><aside class="notice"><span aria-hidden="true">ⓘ</span><div><b>공유 데이터 안내</b><br>신고 내용은 저장소의 data.json을 기준으로 표시됩니다. 최신 내용을 확인하려면 새로고침을 눌러 주세요.</div></aside><footer>수도권 본부 · 본사집회신고 공유 대시보드</footer></main><div id="copyStatus" class="copy-status" role="status" aria-live="polite"></div>
+<main><div id="error" class="error" role="alert" hidden></div><section class="cards" id="cards" aria-label="본부별 신고 건수"></section><section class="panel"><div class="panelhead"><h2><span id="listTitle" class="list-title">집회 신고 목록</span> <span id="count" aria-live="polite">0건</span></h2><div class="actions"><button class="btn" id="refresh">↻ 새로고침</button><button class="btn" id="export">↓ CSV 내려받기</button><button class="btn" id="print">인쇄</button></div></div><div class="filters"><input id="search" type="search" aria-label="신고 내역 검색" placeholder="건설사명, 장소, 접수번호, 신고인, 담당정보관 검색"><button class="btn" id="reset">초기화</button></div><div id="mobileReports" class="mobile-reports"></div><div class="tablewrap"><table><thead><tr><th>NO</th><th>본부</th><th>접수번호</th><th>건설사명</th><th>개최장소(시위·행진진로)</th><th>개최일시(집회기간)</th><th>접수기관</th><th>신고일자</th><th>신고인</th><th>담당정보관 / 연락처</th></tr></thead><tbody id="rows"></tbody></table><div id="empty" class="empty" hidden><div class="icon">▤</div><strong id="emptyTitle">등록된 신고 내역이 없습니다</strong><p id="emptyText">현재 원본 엑셀에는 본부 구분만 있습니다.<br>data.json에 신고 내역을 추가하면 이곳에 표시됩니다.</p></div></div><div class="foot" id="summary">데이터를 불러오는 중입니다.</div></section><aside class="notice"><span aria-hidden="true">ⓘ</span><div><b>공유 데이터 안내</b><br>신고 내용은 저장소의 data.json을 기준으로 표시됩니다. 최신 내용을 확인하려면 새로고침을 눌러 주세요.</div></aside><footer>수도권 본부 · 본사집회신고 공유 대시보드</footer></main><div id="copyStatus" class="copy-status" role="status" aria-live="polite"></div>
 <script>
 'use strict';
 const labels={no:'NO',headquarters:'본부',receiptNumber:'접수번호',company:'건설사명',location:'개최장소',period:'집회기간',receivingAgency:'접수기관',reportedAt:'신고일자',reporter:'신고인',officerContact:'담당정보관 / 연락처'};
@@ -48,13 +58,41 @@ async function copyText(value,button){
   }catch{$('copyStatus').textContent='복사하지 못했습니다. 내용을 길게 누르거나 드래그해 복사해 주세요.'}
   clearTimeout(copyTimer);copyTimer=setTimeout(()=>{$('copyStatus').textContent=''},3500);
 }
+function dateNumber(value){
+  const match=/^(\d{4})-(\d{2})-(\d{2})$/.exec(value||'');if(!match)return null;
+  const [y,m,d]=match.slice(1).map(Number),date=new Date(Date.UTC(y,m-1,d));
+  return date.getUTCFullYear()===y&&date.getUTCMonth()===m-1&&date.getUTCDate()===d?date.getTime()/86400000:null;
+}
+function deadline(report){
+  const dates=String(report.period||'').match(/\d{4}-\d{2}-\d{2}/g)||[];
+  const end=dateNumber(report.endDate||dates[1]);
+  const parts=new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+  const part=type=>parts.find(p=>p.type===type).value;
+  const today=dateNumber(`${part('year')}-${part('month')}-${part('day')}`);
+  if(end===null)return {kind:'',text:'종료일 확인 필요'};
+  const days=end-today;
+  if(days<0)return {kind:'expired',text:'기간 만료 · 다시 집회신고해 주세요'};
+  if(days<=7)return {kind:'soon',text:(days===0?'오늘 종료':`종료까지 ${days}일`)+ ' · 재신고 필요'};
+  return {kind:'',text:''};
+}
+function appendDeadline(parent,status){if(status.text){const note=document.createElement('span');note.className='deadline '+status.kind;note.textContent=status.text;parent.append(note)}}
+function renderMobile(report,status){
+  const item=document.createElement('details');item.className='report-item '+status.kind;
+  const summary=document.createElement('summary'),company=document.createElement('span'),period=document.createElement('span');
+  company.className='report-company';company.textContent=report.company||'건설사명 미입력';period.className='report-period';period.textContent=report.period||'집회기간 미입력';summary.append(company,period);appendDeadline(summary,status);item.append(summary);
+  const detail=document.createElement('div');detail.className='report-detail';const dl=document.createElement('dl');
+  for(const key of fields.filter(k=>!['company','period'].includes(k))){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=labels[key];dd.textContent=report[key]??'—';if(!dd.textContent)dd.textContent='—';dl.append(dt,dd)}
+  detail.append(dl);
+  if(report.company||report.location){const button=document.createElement('button');button.className='copy-button';button.textContent='건설사명 + 장소 복사';button.onclick=()=>copyText(`건설사명: ${report.company||'—'}\n개최장소: ${report.location||'—'}`,button);detail.append(button)}
+  item.append(detail);$('mobileReports').append(item);
+}
 function render(){
   const q=$('search').value.trim().toLocaleLowerCase();
   visible=data.reports.filter(r=>(!selectedHq||r.headquarters===selectedHq)&&(!q||fields.some(k=>String(r[k]??'').toLocaleLowerCase().includes(q))));
   $('listTitle').textContent=(selectedHq?selectedHq+' ':'')+'집회 신고 목록';
-  $('count').textContent=visible.length+'건';$('rows').replaceChildren();
+  $('count').textContent=visible.length+'건';$('rows').replaceChildren();$('mobileReports').replaceChildren();
   for(const r of visible){
-    const tr=document.createElement('tr');
+    const status=deadline(r);renderMobile(r,status);const tr=document.createElement('tr');tr.className=status.kind;
     for(const key of fields){
       const td=document.createElement('td');td.dataset.field=key;td.dataset.label=labels[key];
       if(key==='headquarters'){
@@ -63,7 +101,7 @@ function render(){
         td.className='copy-cell';const text=String(r[key]??'');const value=document.createElement('span');value.className='copy-value';value.textContent=text||'—';td.append(value);
         if(key==='location'&&(r.company||r.location)){const button=document.createElement('button');button.className='copy-button';button.type='button';button.textContent='건설사명 + 장소 복사';button.setAttribute('aria-label','건설사명과 개최장소 함께 복사');button.onclick=()=>copyText(`건설사명: ${r.company||'—'}\n개최장소: ${r.location||'—'}`,button);td.append(button)}
       }else{td.textContent=r[key]||'—';if(key==='officerContact')td.className='contact-cell'}
-      tr.append(td);
+      if(key==='period')appendDeadline(td,status);tr.append(td);
     }
     $('rows').append(tr);
   }
@@ -84,7 +122,7 @@ async function load(){
   const button=$('refresh');button.disabled=true;
   try{
     const response=await fetch('./data.json',{cache:'no-store'});if(!response.ok)throw Error('HTTP '+response.status);const next=await response.json();
-    if(!Array.isArray(next.headquarters)||!next.headquarters.every(x=>typeof x==='string'&&x)||new Set(next.headquarters).size!==next.headquarters.length||!Array.isArray(next.reports)||!next.reports.every(r=>r&&typeof r==='object'&&!Array.isArray(r)&&next.headquarters.includes(r.headquarters)&&fields.every(k=>r[k]===undefined||r[k]===null||['string','number'].includes(typeof r[k]))))throw Error('JSON 데이터 형식을 확인해 주세요.');
+    if(!Array.isArray(next.headquarters)||!next.headquarters.every(x=>typeof x==='string'&&x)||new Set(next.headquarters).size!==next.headquarters.length||!Array.isArray(next.reports)||!next.reports.every(r=>r&&typeof r==='object'&&!Array.isArray(r)&&next.headquarters.includes(r.headquarters)&&[...fields,'endDate'].every(k=>r[k]===undefined||r[k]===null||['string','number'].includes(typeof r[k]))))throw Error('JSON 데이터 형식을 확인해 주세요.');
     data=next;if(!data.headquarters.includes(selectedHq))selectedHq='';document.title=next.title||'집회신고 공유 대시보드';$('title').textContent=document.title;$('description').textContent=next.description||'';$('updated').textContent=next.updatedAt?'자료 기준일 · '+next.updatedAt:'자료 기준일 · 미입력';$('error').hidden=true;render();
   }catch(e){$('error').textContent='데이터를 불러오지 못했습니다. 웹 서버에서 실행하고 data.json 형식을 확인해 주세요. '+e.message;$('error').hidden=false;$('summary').textContent='데이터 불러오기 실패'}finally{button.disabled=false}
 }
