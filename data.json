@@ -8,6 +8,29 @@
     "서울본부",
     "대세충본부"
   ],
-  "reports": [],
+  "reports": [
+    {
+      "no": 1,
+      "headquarters": "서울본부",
+      "receiptNumber": "26-1810001-000675",
+      "company": "디엘이앤씨(주)",
+      "location": "공항대로 165 A동 원그로브 앞 (출입구 제외, 통행로 확보)",
+      "period": "2026-10-23 ~ 2026-11-19 / 매일 00:00 ~ 23:59",
+      "organizer": "박문철 (한국노총 한국타워크레인조종사 노동조합)",
+      "reportedParticipants": 900,
+      "reportedAt": "2026-10-20",
+      "reporter": "남형욱",
+      "eventName": "근로조건 개선 및 최저입찰제 폐지 결의대회",
+      "receivingAgency": "서울강서경찰서",
+      "receivedAt": "2026-10-20 13:08",
+      "officerContact": "박재웅 / 010-3583-0914",
+      "endDate": "2026-11-19",
+      "receiptImageUrl": "https://drive.google.com/file/d/1nTyVj6rDEgTN31shHCmW0rqNCtfkZIPs/view",
+      "receiptImageUrls": [
+        "https://drive.google.com/file/d/1nTyVj6rDEgTN31shHCmW0rqNCtfkZIPs/view",
+        "https://drive.google.com/file/d/1stXgK5-mSGi_r6cxNqwork9fQ12cxkiA/view"
+      ]
+    }
+  ],
   "uploadUrl": "https://script.google.com/macros/s/AKfycby0jWj9GCor4EUQaxKBa8LobgNMwb62M6gib51M5eTuyjYkIFbWx_ZqRd7fIbw40VcD/exec"
 }
