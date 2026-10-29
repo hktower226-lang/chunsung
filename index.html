@@ -11,10 +11,10 @@ h2 .list-title{font:inherit;color:inherit;margin:0}.copy-cell{min-width:160px}.c
 </head>
 <body>
 <header><div class="brand"><span class="mark">수도권</span></div><h1 id="title">수도권 본부 본사집회신고 공유 대시보드</h1><p id="description">본부별 집회 신고 현황을 한곳에서 확인하세요.</p><div class="status"><span><span class="dot">●</span> 본부별 신고 현황 공유</span><span id="updated">데이터 확인 중</span></div></header>
-<main><div id="error" class="error" role="alert" hidden></div><section class="cards" id="cards" aria-label="본부별 신고 건수"></section><section class="panel"><div class="panelhead"><h2><span id="listTitle" class="list-title">집회 신고 목록</span> <span id="count" aria-live="polite">0건</span></h2><div class="actions"><button class="btn" id="refresh">↻ 새로고침</button><button class="btn" id="export">↓ CSV 내려받기</button><button class="btn" id="print">인쇄</button></div></div><div class="filters"><input id="search" type="search" aria-label="신고 내역 검색" placeholder="건설사명, 장소, 접수번호, 신고인, 담당정보관 검색"><button class="btn" id="reset">초기화</button></div><div class="tablewrap"><table><thead><tr><th>NO</th><th>본부</th><th>접수번호</th><th>건설사명</th><th>개최장소(시위·행진진로)</th><th>개최일시(집회기간)</th><th>개최기관</th><th>신고일자</th><th>신고인</th><th>담당정보관 / 연락처</th></tr></thead><tbody id="rows"></tbody></table><div id="empty" class="empty" hidden><div class="icon">▤</div><strong id="emptyTitle">등록된 신고 내역이 없습니다</strong><p id="emptyText">현재 원본 엑셀에는 본부 구분만 있습니다.<br>data.json에 신고 내역을 추가하면 이곳에 표시됩니다.</p></div></div><div class="foot" id="summary">데이터를 불러오는 중입니다.</div></section><aside class="notice"><span aria-hidden="true">ⓘ</span><div><b>공유 데이터 안내</b><br>신고 내용은 저장소의 data.json을 기준으로 표시됩니다. 최신 내용을 확인하려면 새로고침을 눌러 주세요.</div></aside><footer>수도권 본부 · 본사집회신고 공유 대시보드</footer></main><div id="copyStatus" class="copy-status" role="status" aria-live="polite"></div>
+<main><div id="error" class="error" role="alert" hidden></div><section class="cards" id="cards" aria-label="본부별 신고 건수"></section><section class="panel"><div class="panelhead"><h2><span id="listTitle" class="list-title">집회 신고 목록</span> <span id="count" aria-live="polite">0건</span></h2><div class="actions"><button class="btn" id="refresh">↻ 새로고침</button><button class="btn" id="export">↓ CSV 내려받기</button><button class="btn" id="print">인쇄</button></div></div><div class="filters"><input id="search" type="search" aria-label="신고 내역 검색" placeholder="건설사명, 장소, 접수번호, 신고인, 담당정보관 검색"><button class="btn" id="reset">초기화</button></div><div class="tablewrap"><table><thead><tr><th>NO</th><th>본부</th><th>접수번호</th><th>건설사명</th><th>개최장소(시위·행진진로)</th><th>개최일시(집회기간)</th><th>접수기관</th><th>신고일자</th><th>신고인</th><th>담당정보관 / 연락처</th></tr></thead><tbody id="rows"></tbody></table><div id="empty" class="empty" hidden><div class="icon">▤</div><strong id="emptyTitle">등록된 신고 내역이 없습니다</strong><p id="emptyText">현재 원본 엑셀에는 본부 구분만 있습니다.<br>data.json에 신고 내역을 추가하면 이곳에 표시됩니다.</p></div></div><div class="foot" id="summary">데이터를 불러오는 중입니다.</div></section><aside class="notice"><span aria-hidden="true">ⓘ</span><div><b>공유 데이터 안내</b><br>신고 내용은 저장소의 data.json을 기준으로 표시됩니다. 최신 내용을 확인하려면 새로고침을 눌러 주세요.</div></aside><footer>수도권 본부 · 본사집회신고 공유 대시보드</footer></main><div id="copyStatus" class="copy-status" role="status" aria-live="polite"></div>
 <script>
 'use strict';
-const fields=['no','headquarters','receiptNumber','company','location','period','organizer','reportedAt','reporter','officerContact'];
+const fields=['no','headquarters','receiptNumber','company','location','period','receivingAgency','reportedAt','reporter','officerContact'];
 let data={headquarters:[],reports:[]},visible=[],selectedHq='',copyTimer;
 const $=id=>document.getElementById(id);
 async function copyText(value,button){
@@ -42,7 +42,7 @@ function render(){
         const badge=document.createElement('span');badge.className='badge';badge.textContent=r[key]||'—';td.append(badge);
       }else if(key==='company'||key==='location'){
         td.className='copy-cell';const text=String(r[key]??'');const value=document.createElement('span');value.className='copy-value';value.textContent=text||'—';td.append(value);
-        if(text){const button=document.createElement('button');button.className='copy-button';button.type='button';button.textContent='복사';button.setAttribute('aria-label',(key==='company'?'건설사명':'개최장소')+' 복사: '+text);button.onclick=()=>copyText(text,button);td.append(button)}
+        if(key==='location'&&(r.company||r.location)){const button=document.createElement('button');button.className='copy-button';button.type='button';button.textContent='건설사명 + 장소 복사';button.setAttribute('aria-label','건설사명과 개최장소 함께 복사');button.onclick=()=>copyText(`건설사명: ${r.company||'—'}\n개최장소: ${r.location||'—'}`,button);td.append(button)}
       }else{td.textContent=r[key]||'—';if(key==='officerContact')td.className='contact-cell'}
       tr.append(td);
     }
@@ -73,7 +73,7 @@ $('search').oninput=render;
 $('reset').onclick=()=>{$('search').value='';render()};
 $('refresh').onclick=load;$('print').onclick=()=>window.print();
 $('export').onclick=()=>{
-  const headings=['NO','본부','접수번호','건설사명','개최장소(시위,행진진로)','개최일시(집회기간)','개최기관','신고일자','신고인','담당정보관 / 연락처'];
+  const headings=['NO','본부','접수번호','건설사명','개최장소(시위,행진진로)','개최일시(집회기간)','접수기관','신고일자','신고인','담당정보관 / 연락처'];
   const quote=v=>'"'+String(v??'').replace(/^[=+@\-\t\r]/,"'$&").replaceAll('"','""')+'"';
   const csv='\uFEFF'+[headings,...visible.map(r=>fields.map(k=>r[k]))].map(row=>row.map(quote).join(',')).join('\r\n');
   const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='본사집회신고.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
