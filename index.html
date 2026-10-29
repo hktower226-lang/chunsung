@@ -35,6 +35,20 @@ h2 .list-title{font:inherit;color:inherit;margin:0}.copy-cell{min-width:160px}.c
  .report-detail{border-top:1px solid #e3e9f1;padding:14px 16px;background:#fff}.report-detail dl{display:grid;grid-template-columns:92px minmax(0,1fr);gap:12px 10px;margin:0;font-size:13px;line-height:1.7}.report-detail dt{color:#7b879a}.report-detail dd{margin:0;overflow-wrap:anywhere;white-space:pre-line}.report-detail .copy-button{width:100%;margin-top:16px}
 }
 @media print{.mobile-reports{display:none}}
+
+/* Clear hierarchy and restrained color for the shared dashboard. */
+header{background:linear-gradient(125deg,#152d50 0%,#203f6c 70%,#294d7d 100%)}
+.mark{background:#ffffff18;border:1px solid #ffffff30;letter-spacing:.03em}
+.card{transition:border-color .15s,background .15s,box-shadow .15s}.card:hover{border-color:#a8bde9;background:#f9fbff}.card.active{background:#edf3ff;border-color:#537bec;box-shadow:0 0 0 1px #537bec}.card.active strong{color:#315ac4}
+.panelhead{border-bottom:1px solid #edf1f7;margin-bottom:18px}h2{color:#243d60}.panel{box-shadow:0 6px 24px #203b5e06}.filters input{background:#f8fafd}.filters input:focus{background:white}.btn:hover{background:#f0f5fd;border-color:#b9cbed}
+@media screen and (max-width:800px){
+ header{padding-top:18px;padding-bottom:36px}h1{font-size:22px;line-height:1.5;letter-spacing:-.055em;margin-top:16px;margin-bottom:10px}header p{font-size:13px;line-height:1.7}.status{font-size:11px;color:#c9d8ed}
+ .cards{gap:9px}.card{border-radius:10px}.card:first-child{background:#eaf1ff}.card.active{background:#e6eeff}.panelhead{padding-bottom:16px;margin-bottom:16px}.actions{gap:7px}.btn{border-radius:8px}
+ .mobile-reports{padding:12px;gap:12px;background:#f4f7fc}.report-item{border-radius:12px;border-color:#dfe7f2;box-shadow:0 3px 10px #203b5e06;border-left:3px solid #7294d3}.report-item summary{padding:18px 36px 18px 16px}.report-company{font-size:18px;line-height:1.5;letter-spacing:-.035em}
+ .report-period{display:flex;flex-direction:column;align-items:flex-start;gap:5px;margin-top:11px;font-size:13px;line-height:1.75}.period-label{font-size:11px;font-weight:700;letter-spacing:.02em;color:#4d6b97;background:#eaf0fb;border-radius:4px;padding:1px 6px}.period-value{font-variant-numeric:tabular-nums;color:#435873}
+ .report-item summary::after{top:20px;font-size:19px}.report-item[open]{border-color:#8aa7dc}.report-item[open] summary{background:#f8faff}.report-detail{padding:16px}.report-detail dl{gap:13px 10px}.report-detail dt{font-size:12px}.report-detail dd{color:#263c5b}
+ .report-item.soon{border-color:#eab655;border-left-color:#dc921b}.report-item.expired{border-color:#e4a3ab;border-left-color:#c75163}.report-item.soon .period-label{background:#ffebc3;color:#875115}.report-item.expired .period-label{background:#fbe0e4;color:#a2374b}.report-item.soon[open] summary{background:#fff7e7}.report-item.expired[open] summary{background:#fff0f1}.deadline{margin-top:10px;padding-top:8px;border-top:1px solid #0000000a}
+}
 </style>
 </head>
 <body>
@@ -79,7 +93,7 @@ function appendDeadline(parent,status){if(status.text){const note=document.creat
 function renderMobile(report,status){
   const item=document.createElement('details');item.className='report-item '+status.kind;
   const summary=document.createElement('summary'),company=document.createElement('span'),period=document.createElement('span');
-  company.className='report-company';company.textContent=report.company||'건설사명 미입력';period.className='report-period';period.textContent=report.period||'집회기간 미입력';summary.append(company,period);appendDeadline(summary,status);item.append(summary);
+  company.className='report-company';company.textContent=report.company||'건설사명 미입력';period.className='report-period';const periodLabel=document.createElement('span');periodLabel.className='period-label';periodLabel.textContent='집회기간';const periodValue=document.createElement('span');periodValue.className='period-value';periodValue.textContent=report.period||'미입력';period.append(periodLabel,periodValue);summary.append(company,period);appendDeadline(summary,status);item.append(summary);
   const detail=document.createElement('div');detail.className='report-detail';const dl=document.createElement('dl');
   for(const key of fields.filter(k=>!['company','period'].includes(k))){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=labels[key];dd.textContent=report[key]??'—';if(!dd.textContent)dd.textContent='—';dl.append(dt,dd)}
   detail.append(dl);
