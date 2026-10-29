@@ -47,6 +47,23 @@
       "eventName": "근로조건 개선 및 최저입찰제 폐지 결의대회",
       "reportedParticipants": 900,
       "receivedAt": "2026-10-20 09:28"
+    },
+    {
+      "no": 3,
+      "headquarters": "인천본부",
+      "receiptNumber": "26-1811618-000896",
+      "company": "인천경제자유구역청본사",
+      "location": "송도동 24-4 경제청 G타워 출입구 앞 좌우측 인도 각 30m (폭 1m, 출입구 제외, 횡단보도 제외)",
+      "period": "2026-10-30 ~ 2026-11-19 / 매일 00:00 ~ 23:59",
+      "endDate": "2026-11-19",
+      "receivingAgency": "인천연수경찰서",
+      "reportedAt": "2026-10-20",
+      "reporter": "",
+      "officerContact": "",
+      "organizer": "박문철 (한국노총 한국타워크레인조종사노조)",
+      "eventName": "근로조건 개선 및 최저입찰제 폐지 결의대회",
+      "reportedParticipants": 900,
+      "receivedAt": "2026-10-20 09:28"
     }
   ],
   "uploadUrl": "https://script.google.com/macros/s/AKfycby0jWj9GCor4EUQaxKBa8LobgNMwb62M6gib51M5eTuyjYkIFbWx_ZqRd7fIbw40VcD/exec"
