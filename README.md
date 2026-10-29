@@ -50,4 +50,4 @@ python3 -m http.server 8080 --bind 127.0.0.1
 
 ## Drive 접수증 사진 업로드
 
-[설정 안내](google-drive-upload/README.md)를 따라 Apps Script를 본인만 접근 가능하게 배포하세요. `data.json`의 `uploadUrl`에 배포된 웹 앱 주소를 넣으면 업로드 버튼이 표시됩니다. 사진은 지정한 Google Drive 폴더에 보관되며 신고 JSON 자동 등록은 별도입니다.
+[설정 안내](google-drive-upload/README.md)를 따라 Apps Script를 실행 사용자 ‘나’, 액세스 ‘모든 사용자’로 배포하세요. `data.json`의 `uploadUrl`에 배포된 웹 앱 주소를 넣으면 업로드 버튼이 표시됩니다. 사진은 지정한 Google Drive 폴더에 보관되며 신고 JSON 자동 등록은 별도입니다.

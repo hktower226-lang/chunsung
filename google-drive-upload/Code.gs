@@ -1,4 +1,4 @@
-/** 웹 앱 배포: 실행 사용자 ‘나’, 액세스 ‘본인만’으로 설정하세요. */
+/** 웹 앱 배포: 실행 사용자 ‘나’, 액세스 ‘모든 사용자’으로 설정하세요. */
 const FOLDER_ID = '1_VhjNfTPKWy-v_WsY-fZ6jT7VAaqN4Cg';
 const MAX_BYTES = 10 * 1024 * 1024;
 
@@ -12,6 +12,12 @@ function doGet() {
 function uploadReceipt(form) {
   if (!form || !['경기본부', '인천본부', '서울본부', '대세충본부'].includes(form.headquarters)) {
     throw new Error('본부를 선택해 주세요.');
+  }
+  const metadata = {headquarters: form.headquarters};
+  for (const [key, label, limit] of [['company', '건설사명', 60], ['officerContact', '정보관 이름 및 연락처', 120], ['reporter', '신고인 이름', 60]]) {
+    const value = typeof form[key] === 'string' ? form[key].trim() : '';
+    if (!value || value.length > limit) throw new Error(label + '을(를) ' + limit + '자 이내로 입력해 주세요.');
+    metadata[key] = value;
   }
   const blob = form.receipt;
   if (!blob || typeof blob.getBytes !== 'function') throw new Error('사진을 선택해 주세요.');
@@ -33,6 +39,13 @@ function uploadReceipt(form) {
   const timestamp = Utilities.formatDate(new Date(), 'Asia/Seoul', 'yyyyMMdd_HHmmss');
   const name = `${form.headquarters}_${company}_${timestamp}_${Utilities.getUuid().slice(0,8)}.${extension}`;
   const file = DriveApp.getFolderById(FOLDER_ID).createFile(blob.setContentType(type).setName(name));
+  try {
+    // 사진과 입력 정보를 하나로 보관: Drive 파일 상세정보의 ‘설명’에서 확인.
+    file.setDescription(JSON.stringify({...metadata, submittedAt: new Date().toISOString()}, null, 2));
+  } catch (error) {
+    file.setTrashed(true); // 정보가 기록되지 않은 사진을 성공으로 남기지 않음.
+    throw new Error('입력 정보 저장에 실패했습니다. 다시 시도해 주세요.');
+  }
   // 공유 권한을 변경하지 않습니다. 지정 폴더의 접근 정책에 따라 보관합니다.
-  return {name: file.getName(), url: file.getUrl()};
+  return {name: file.getName()};
 }
