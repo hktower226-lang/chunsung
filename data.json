@@ -1,7 +1,27 @@
 {
   "title": "수도권 본부 본사집회신고 공유 대시보드",
   "description": "본부별 집회 신고 현황을 한곳에서 확인하세요.",
-  "updatedAt": null,
-  "headquarters": ["경기본부", "인천본부", "서울본부", "대세충본부"],
-  "reports": []
+  "updatedAt": "2026-10-29",
+  "headquarters": [
+    "경기본부",
+    "인천본부",
+    "서울본부",
+    "대세충본부"
+  ],
+  "reports": [
+    {
+      "no": 1,
+      "headquarters": "서울본부",
+      "receiptNumber": "26-1810001-000675",
+      "company": "디엘이앤씨(주)",
+      "location": "공항대로 165 A동 원그로브 앞 (출입구 제외, 통행로 확보)",
+      "period": "2026-10-23 ~ 2026-11-19 / 매일 00:00 ~ 23:59",
+      "organizer": "한국노총 한국타워크레인조종사 노동조합",
+      "reportedAt": "2026-10-20",
+      "reporter": "남형욱",
+      "eventName": "근로조건 개선 및 최저입찰제 폐지 결의대회",
+      "receivingAgency": "서울강서경찰서장",
+      "receivedAt": "2026-10-20 13:08"
+    }
+  ]
 }
