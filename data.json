@@ -99,6 +99,24 @@
       "eventName": "근로조건 개선 및 최저입찰제 폐지 결의대회",
       "reportedParticipants": 900,
       "receivedAt": "2026-10-20 09:28"
+    },
+    {
+      "no": 6,
+      "headquarters": "인천본부",
+      "receiptNumber": "26-1811618-000124",
+      "company": "유승건설",
+      "location": "인천 남동구 논현동 642-1 유승건설 각 출입구 좌우측 50m (보행자 및 자동차 출입구 제외, 통행로 확보)",
+      "period": "2026-10-22 10:40 이후 ~ 2026-11-19 10:40 / 일별 00:00 ~ 23:59 (첫날·마지막날 시간 제한)",
+      "endDate": "2026-11-19",
+      "receivingAgency": "인천논현경찰서",
+      "reportedAt": "2026-10-20",
+      "reporter": "",
+      "officerContact": "김종민 / 010-2083-0621",
+      "organizer": "박문철 (한국노총 한국타워크레인조종사 노동조합 인천경기서부지역본부)",
+      "eventName": "근로조건 개선 및 최저입찰제 폐지 결의대회",
+      "reportedParticipants": 900,
+      "receivedAt": "2026-10-20 10:40",
+      "notes": "상단 개최일시는 00:00~23:59. 참고사항에 10월 22일 10:40 이후 개최 가능, 11월 19일 10:40까지 종료로 명시되어 해당 제한을 반영. 담당정보관 이름·연락처는 사용자 확인 내용 반영."
     }
   ],
   "uploadUrl": "https://script.google.com/macros/s/AKfycby0jWj9GCor4EUQaxKBa8LobgNMwb62M6gib51M5eTuyjYkIFbWx_ZqRd7fIbw40VcD/exec"
