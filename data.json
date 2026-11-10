@@ -1551,6 +1551,27 @@
       },
       "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
       "startDate": "2026-10-23"
+    },
+    {
+      "headquarters": "인천본부",
+      "receiptNumber": "26-1811618-000976",
+      "location": "송도동 3-1 밀레니엄빌딩 (대우산업개발 및 진흥기업) 각 출입구 좌우측 인도 각 10m (폭 1m, 출입구 제외, 용도표시)",
+      "period": "2026-11-20 ~ 2026-12-10 / 매일 00:00 ~ 23:59",
+      "startDate": "2026-11-20",
+      "endDate": "2026-12-10",
+      "receivingAgency": "인천연수경찰서",
+      "reportedAt": "2026-11-10",
+      "organizer": "박문철 (한국노총 한국타워크레인조종사노조 통합수도권본부)",
+      "eventName": "근로조건 개선 및 최저입찰제 폐지 결의대회",
+      "reportedParticipants": 900,
+      "receivedAt": "2026-11-10 08:46",
+      "no": 72,
+      "company": "진흥기업",
+      "officerContact": "이강현 / 010-2940-0707",
+      "reporter": "송진남 / 010-7636-1245",
+      "reporterName": "송진남",
+      "reporterPhone": "010-7636-1245",
+      "notes": "대우산업개발 및 진흥기업이 함께 기재된 접수증(26-1811618-000976)의 동일 장소·기간으로 회사별 연락처를 구분하여 등록. 정보관·신고자 이름과 연락처는 사용자 확인 내용 반영."
     }
   ],
   "uploadUrl": "https://script.google.com/macros/s/AKfycby0jWj9GCor4EUQaxKBa8LobgNMwb62M6gib51M5eTuyjYkIFbWx_ZqRd7fIbw40VcD/exec"
