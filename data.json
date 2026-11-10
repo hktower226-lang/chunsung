@@ -1572,6 +1572,27 @@
       "reporterName": "송진남",
       "reporterPhone": "010-7636-1245",
       "notes": "대우산업개발 및 진흥기업이 함께 기재된 접수증(26-1811618-000976)의 동일 장소·기간으로 회사별 연락처를 구분하여 등록. 정보관·신고자 이름과 연락처는 사용자 확인 내용 반영."
+    },
+    {
+      "no": 73,
+      "headquarters": "인천본부",
+      "company": "BS한양",
+      "receiptNumber": "26-418 (26-1811618-1811~1825)",
+      "location": "인천광역시 서구 청라한내로 110, 13층 4-비호 (우편번호: 22758)",
+      "startDate": "2026-11-12",
+      "endDate": "2026-12-09",
+      "period": "2026-11-12 09:00 ~ 2026-12-09 23:59 (첫날 09:00부터 개최 가능)",
+      "receivingAgency": "인천서부경찰서",
+      "reportedAt": "2026-11-10",
+      "receivedAt": "2026-11-10 09:00",
+      "reporter": "유기준 / 010-7185-5779",
+      "reporterName": "유기준",
+      "reporterPhone": "010-7185-5779",
+      "officerContact": "유근찬 / 010-2784-1298",
+      "organizer": "박문철 (한국노총 한국타워크레인조종사노동조합 통합 수도권본부)",
+      "eventName": "근로조건 개선 및 최저입찰제 폐지 결의대회",
+      "reportedParticipants": 900,
+      "notes": "사용자가 제공한 별지 15개소 중 BS한양 장소·연락처를 등록. 2026-11-10 인천서부경찰서 접수증(26-418)의 기간 및 첫날 09:00 개최 제한 반영. 접수증에는 26-1811618-1811~1825 범위가 기재되어 있으며 BS한양의 개별 접수번호는 미확인."
     }
   ],
   "uploadUrl": "https://script.google.com/macros/s/AKfycby0jWj9GCor4EUQaxKBa8LobgNMwb62M6gib51M5eTuyjYkIFbWx_ZqRd7fIbw40VcD/exec"
