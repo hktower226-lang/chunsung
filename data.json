@@ -1,7 +1,7 @@
 {
   "title": "수도권 본부 본사집회신고 공유 대시보드",
   "description": "본부별 집회 신고 현황을 한곳에서 확인하세요.",
-  "updatedAt": "2026-11-10",
+  "updatedAt": "2026-11-11",
   "headquarters": [
     "경기본부",
     "인천본부",
@@ -1593,6 +1593,25 @@
       "eventName": "근로조건 개선 및 최저입찰제 폐지 결의대회",
       "reportedParticipants": 900,
       "notes": "사용자가 제공한 별지 15개소 중 BS한양 장소·연락처를 등록. 2026-11-10 인천서부경찰서 접수증(26-418)의 기간 및 첫날 09:00 개최 제한 반영. 접수증에는 26-1811618-1811~1825 범위가 기재되어 있으며 BS한양의 개별 접수번호는 미확인."
+    },
+    {
+      "no": 74,
+      "headquarters": "대세충본부",
+      "receiptNumber": "26-1811833-000394",
+      "company": "계룡대표",
+      "location": "대전광역시 서구 청사서로 11 무지개아파트 후문 좌우측 인도 각 25m",
+      "startDate": "2026-11-16",
+      "endDate": "2026-12-10",
+      "period": "2026-11-16 ~ 2026-12-10 / 매일 00:00 ~ 23:59",
+      "receivingAgency": "대전둔산경찰서",
+      "reportedAt": "2026-11-11",
+      "receivedAt": "2026-11-11 13:24",
+      "reporter": "",
+      "officerContact": "신상준 / 010-8819-2516",
+      "organizer": "박문철 (한국노총 한국타워크레인 조종사노조)",
+      "eventName": "근로조건 개선 및 최저입찰제 폐지 결의대회",
+      "reportedParticipants": 50,
+      "notes": "사용자가 제공한 계룡대표 접수증 기준. 대전 지역은 대세충본부로 분류. 담당정보관 이름과 휴대전화는 첨부된 대전둔산경찰서 명함에서 확인. 신고인 이름은 별도 제공되지 않아 미입력."
     }
   ],
   "uploadUrl": "https://script.google.com/macros/s/AKfycby0jWj9GCor4EUQaxKBa8LobgNMwb62M6gib51M5eTuyjYkIFbWx_ZqRd7fIbw40VcD/exec"
