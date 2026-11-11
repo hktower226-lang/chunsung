@@ -6,8 +6,7 @@
     "경기본부",
     "인천본부",
     "서울본부",
-    "대세충본부",
-    "수도권통합본부"
+    "대세충본부"
   ],
   "reports": [
     {
@@ -1632,30 +1631,6 @@
       "eventName": "근로조건 개선 및 최저입찰제 폐지 결의대회",
       "reportedParticipants": 90,
       "notes": "사용자가 제공한 계룡회장 접수증 기준. 상단 개최일시는 00:00~23:59이나 참고사항의 집회 시작일 시작시간은 14:00으로 기재되어 첫날 14:00 시작을 표시. 담당정보관 이름과 휴대전화는 첨부된 대전유성경찰서 명함 기준. 신고인 이름은 별도 제공되지 않아 미입력."
-    },
-    {
-      "no": 71,
-      "headquarters": "수도권통합본부",
-      "receiptNumber": "26-1810001-000839",
-      "company": "쌍용건설 글로벌세아그룹 회장 김웅기 주거지",
-      "location": "서울특별시 강남구 언주로30길 56, 타워팰리스 B동 6403호, 쌍용건설 글로벌세아그룹 회장 김웅기 주거지 앞 (통행로·사유지 제외, 장소협장 협의)",
-      "period": "2026-11-13 ~ 2026-12-11 / 매일 00:00 ~ 23:59",
-      "startDate": "2026-11-13",
-      "endDate": "2026-12-11",
-      "organizer": "박문철 (한국노총 한국타워크레인조종사 노동조합)",
-      "reportedParticipants": 400,
-      "reportedAt": "2026-11-11",
-      "receivedAt": "2026-11-11 09:35",
-      "reporter": "송가영",
-      "eventName": "건설재해 예방, 건설현장 환경 개선",
-      "receivingAgency": "서울수서경찰서",
-      "officerContact": "양성규 / 010-4438-5985",
-      "receiptImageUrl": "https://drive.google.com/file/d/1ihKbWSELGtbfXF7BmdbrsAEssotdgm8E/view",
-      "receiptImageUrls": [
-        "https://drive.google.com/file/d/1ihKbWSELGtbfXF7BmdbrsAEssotdgm8E/view",
-        "https://drive.google.com/file/d/1O4pkENRJotM05U0Gvz6wctuLt7T3X1Ay/view"
-      ],
-      "notes": "2026-11-11 접수증 및 대화경찰관 연락처 사진 등록. 수도권통합본부 관리 건."
     }
   ],
   "uploadUrl": "https://script.google.com/macros/s/AKfycby0jWj9GCor4EUQaxKBa8LobgNMwb62M6gib51M5eTuyjYkIFbWx_ZqRd7fIbw40VcD/exec"
