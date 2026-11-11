@@ -1612,6 +1612,25 @@
       "eventName": "근로조건 개선 및 최저입찰제 폐지 결의대회",
       "reportedParticipants": 50,
       "notes": "사용자가 제공한 계룡대표 접수증 기준. 대전 지역은 대세충본부로 분류. 담당정보관 이름과 휴대전화는 첨부된 대전둔산경찰서 명함에서 확인. 신고인 이름은 별도 제공되지 않아 미입력."
+    },
+    {
+      "no": 75,
+      "headquarters": "대세충본부",
+      "receiptNumber": "26-1811833-000453",
+      "company": "계룡회장",
+      "location": "대전광역시 유성구 도룡동 383-24 인근 (지도상 우측) 인도 약 50m",
+      "startDate": "2026-11-13",
+      "endDate": "2026-12-10",
+      "period": "2026-11-13 14:00 ~ 2026-12-10 23:59 (첫날 시작시간은 참고사항 기준)",
+      "receivingAgency": "대전유성경찰서",
+      "reportedAt": "2026-11-11",
+      "receivedAt": "2026-11-11 14:11",
+      "reporter": "",
+      "officerContact": "한우진 / 010-9947-1348",
+      "organizer": "박문철 (한국노총 한국타워크레인)",
+      "eventName": "근로조건 개선 및 최저입찰제 폐지 결의대회",
+      "reportedParticipants": 90,
+      "notes": "사용자가 제공한 계룡회장 접수증 기준. 상단 개최일시는 00:00~23:59이나 참고사항의 집회 시작일 시작시간은 14:00으로 기재되어 첫날 14:00 시작을 표시. 담당정보관 이름과 휴대전화는 첨부된 대전유성경찰서 명함 기준. 신고인 이름은 별도 제공되지 않아 미입력."
     }
   ],
   "uploadUrl": "https://script.google.com/macros/s/AKfycby0jWj9GCor4EUQaxKBa8LobgNMwb62M6gib51M5eTuyjYkIFbWx_ZqRd7fIbw40VcD/exec"
