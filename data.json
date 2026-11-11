@@ -6,7 +6,8 @@
     "경기본부",
     "인천본부",
     "서울본부",
-    "대세충본부"
+    "대세충본부",
+    "수도권통합본부"
   ],
   "reports": [
     {
@@ -607,7 +608,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 25,
+      "no": 24,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "엘티삼보(주)",
@@ -629,7 +630,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 26,
+      "no": 25,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "요진건설산업(주)",
@@ -651,7 +652,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 27,
+      "no": 26,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "(주)동양건설산업 (주)라인건설 (주)라인산업",
@@ -673,7 +674,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 28,
+      "no": 27,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "풍림산업(주)",
@@ -695,7 +696,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 29,
+      "no": 28,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "두산건설(주)",
@@ -717,7 +718,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 31,
+      "no": 29,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "동부건설(주)",
@@ -739,7 +740,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 32,
+      "no": 30,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "(주)반도건설",
@@ -761,7 +762,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 33,
+      "no": 31,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "아이에스동서(주)",
@@ -783,7 +784,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 34,
+      "no": 32,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "삼성물산 주식회사,삼성이엔에이",
@@ -805,7 +806,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 35,
+      "no": 33,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "일신건영(주)",
@@ -827,7 +828,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 36,
+      "no": 34,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "대방건설㈜,대방산업개발㈜",
@@ -849,7 +850,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 37,
+      "no": 35,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "자이씨앤에이(주)",
@@ -871,7 +872,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 38,
+      "no": 36,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "제일건설㈜",
@@ -893,7 +894,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 39,
+      "no": 37,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "에이스건설(주)",
@@ -915,7 +916,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 40,
+      "no": 38,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "(주)동양",
@@ -937,7 +938,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 41,
+      "no": 39,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "일성건설(주)",
@@ -959,7 +960,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 42,
+      "no": 40,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "(주)태영건설",
@@ -981,7 +982,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 43,
+      "no": 41,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "디엘건설(주)",
@@ -1003,7 +1004,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 44,
+      "no": 42,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "양우건설(주)",
@@ -1025,7 +1026,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 45,
+      "no": 43,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "동문건설(주)",
@@ -1047,7 +1048,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 46,
+      "no": 44,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "중흥건설",
@@ -1069,7 +1070,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 47,
+      "no": 45,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "한국노총",
@@ -1091,7 +1092,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 48,
+      "no": 46,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "금호건설(주)",
@@ -1113,7 +1114,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 49,
+      "no": 47,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "현대건설(주)",
@@ -1135,7 +1136,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 50,
+      "no": 48,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "현대엔지니어링(주)",
@@ -1157,7 +1158,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 51,
+      "no": 49,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "에스케이에코플랜트(주)",
@@ -1179,7 +1180,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 52,
+      "no": 50,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "지에스건설(주)",
@@ -1201,7 +1202,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 53,
+      "no": 51,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "씨제이대한통운(주)",
@@ -1223,7 +1224,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 54,
+      "no": 52,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "SK그룹본사",
@@ -1245,7 +1246,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 55,
+      "no": 53,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "대상건설(주)",
@@ -1267,7 +1268,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 57,
+      "no": 54,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "대우산업개발(주)",
@@ -1289,7 +1290,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 58,
+      "no": 55,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "(주)부영주택",
@@ -1311,7 +1312,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 59,
+      "no": 56,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "신세계건설(주)",
@@ -1333,7 +1334,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 60,
+      "no": 57,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "(주)한화",
@@ -1355,7 +1356,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 62,
+      "no": 58,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "남광토건(주)",
@@ -1377,7 +1378,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 64,
+      "no": 59,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "신동아건설(주)",
@@ -1399,7 +1400,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 65,
+      "no": 60,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "HDC 현대산업개발(주)",
@@ -1421,7 +1422,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 66,
+      "no": 61,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "(주)에이치제이중공업",
@@ -1443,7 +1444,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 67,
+      "no": 62,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "진흥기업(주)",
@@ -1465,7 +1466,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 68,
+      "no": 63,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "효성중공업(주)",
@@ -1487,7 +1488,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 69,
+      "no": 64,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "극동건설(주)",
@@ -1509,7 +1510,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 70,
+      "no": 65,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "(주)대우건설",
@@ -1531,7 +1532,7 @@
       "startDate": "2026-10-23"
     },
     {
-      "no": 71,
+      "no": 66,
       "headquarters": "서울본부",
       "receiptNumber": "",
       "company": "자이에스앤디(주)",
@@ -1565,7 +1566,7 @@
       "eventName": "근로조건 개선 및 최저입찰제 폐지 결의대회",
       "reportedParticipants": 900,
       "receivedAt": "2026-11-10 08:46",
-      "no": 72,
+      "no": 67,
       "company": "진흥기업",
       "officerContact": "이강현 / 010-2940-0707",
       "reporter": "송진남 / 010-7636-1245",
@@ -1574,7 +1575,7 @@
       "notes": "대우산업개발 및 진흥기업이 함께 기재된 접수증(26-1811618-000976)의 동일 장소·기간으로 회사별 연락처를 구분하여 등록. 정보관·신고자 이름과 연락처는 사용자 확인 내용 반영."
     },
     {
-      "no": 73,
+      "no": 68,
       "headquarters": "인천본부",
       "company": "BS한양",
       "receiptNumber": "26-418 (26-1811618-1811~1825)",
@@ -1595,7 +1596,7 @@
       "notes": "사용자가 제공한 별지 15개소 중 BS한양 장소·연락처를 등록. 2026-11-10 인천서부경찰서 접수증(26-418)의 기간 및 첫날 09:00 개최 제한 반영. 접수증에는 26-1811618-1811~1825 범위가 기재되어 있으며 BS한양의 개별 접수번호는 미확인."
     },
     {
-      "no": 74,
+      "no": 69,
       "headquarters": "대세충본부",
       "receiptNumber": "26-1811833-000394",
       "company": "계룡대표",
@@ -1614,7 +1615,7 @@
       "notes": "사용자가 제공한 계룡대표 접수증 기준. 대전 지역은 대세충본부로 분류. 담당정보관 이름과 휴대전화는 첨부된 대전둔산경찰서 명함에서 확인. 신고인 이름은 별도 제공되지 않아 미입력."
     },
     {
-      "no": 75,
+      "no": 70,
       "headquarters": "대세충본부",
       "receiptNumber": "26-1811833-000453",
       "company": "계룡회장",
@@ -1631,6 +1632,30 @@
       "eventName": "근로조건 개선 및 최저입찰제 폐지 결의대회",
       "reportedParticipants": 90,
       "notes": "사용자가 제공한 계룡회장 접수증 기준. 상단 개최일시는 00:00~23:59이나 참고사항의 집회 시작일 시작시간은 14:00으로 기재되어 첫날 14:00 시작을 표시. 담당정보관 이름과 휴대전화는 첨부된 대전유성경찰서 명함 기준. 신고인 이름은 별도 제공되지 않아 미입력."
+    },
+    {
+      "no": 71,
+      "headquarters": "수도권통합본부",
+      "receiptNumber": "26-1810001-000839",
+      "company": "쌍용건설 글로벌세아그룹 회장 김웅기 주거지",
+      "location": "서울특별시 강남구 언주로30길 56, 타워팰리스 B동 6403호, 쌍용건설 글로벌세아그룹 회장 김웅기 주거지 앞 (통행로·사유지 제외, 장소협장 협의)",
+      "period": "2026-11-13 ~ 2026-12-11 / 매일 00:00 ~ 23:59",
+      "startDate": "2026-11-13",
+      "endDate": "2026-12-11",
+      "organizer": "박문철 (한국노총 한국타워크레인조종사 노동조합)",
+      "reportedParticipants": 400,
+      "reportedAt": "2026-11-11",
+      "receivedAt": "2026-11-11 09:35",
+      "reporter": "송가영",
+      "eventName": "건설재해 예방, 건설현장 환경 개선",
+      "receivingAgency": "서울수서경찰서",
+      "officerContact": "양성규 / 010-4438-5985",
+      "receiptImageUrl": "https://drive.google.com/file/d/1ihKbWSELGtbfXF7BmdbrsAEssotdgm8E/view",
+      "receiptImageUrls": [
+        "https://drive.google.com/file/d/1ihKbWSELGtbfXF7BmdbrsAEssotdgm8E/view",
+        "https://drive.google.com/file/d/1O4pkENRJotM05U0Gvz6wctuLt7T3X1Ay/view"
+      ],
+      "notes": "2026-11-11 접수증 및 대화경찰관 연락처 사진 등록. 수도권통합본부 관리 건."
     }
   ],
   "uploadUrl": "https://script.google.com/macros/s/AKfycby0jWj9GCor4EUQaxKBa8LobgNMwb62M6gib51M5eTuyjYkIFbWx_ZqRd7fIbw40VcD/exec"
