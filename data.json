@@ -12,24 +12,19 @@
     {
       "no": 1,
       "headquarters": "서울본부",
-      "receiptNumber": "26-1810001-000675",
+      "receiptNumber": "26-1810001-000732",
       "company": "디엘이앤씨(주)",
-      "location": "공항대로 165 A동 원그로브 앞 (출입구 제외, 통행로 확보)",
-      "period": "2026-10-23 ~ 2026-11-19 / 매일 00:00 ~ 23:59",
+      "location": "공항대로 165 A동 원그로브 앞 (출입구 제외 및 통행로 확보)",
+      "period": "2026-11-18 ~ 2026-12-16 / 매일 00:00 ~ 23:59",
       "organizer": "박문철 (한국노총 한국타워크레인조종사 노동조합)",
       "reportedParticipants": 900,
-      "reportedAt": "2026-10-20",
-      "reporter": "남형욱",
+      "reportedAt": "2026-11-16",
+      "reporter": "김기표",
       "eventName": "근로조건 개선 및 최저입찰제 폐지 결의대회",
       "receivingAgency": "서울강서경찰서",
-      "receivedAt": "2026-10-20 13:08",
+      "receivedAt": "2026-11-16 13:39",
       "officerContact": "박재웅 / 010-3583-0914",
-      "endDate": "2026-11-19",
-      "receiptImageUrl": "https://drive.google.com/file/d/1nTyVj6rDEgTN31shHCmW0rqNCtfkZIPs/view",
-      "receiptImageUrls": [
-        "https://drive.google.com/file/d/1nTyVj6rDEgTN31shHCmW0rqNCtfkZIPs/view",
-        "https://drive.google.com/file/d/1stXgK5-mSGi_r6cxNqwork9fQ12cxkiA/view"
-      ],
+      "endDate": "2026-12-16",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
@@ -38,7 +33,49 @@
       "filedBy": "김기표",
       "registeredAddress": "서울특별시 강서구 공항대로 165, A동(마곡동,원그로브)",
       "companyRepresentative": "마창민",
-      "startDate": "2026-10-23"
+      "startDate": "2026-11-18",
+      "previousReports": [
+        {
+          "no": 1,
+          "headquarters": "서울본부",
+          "receiptNumber": "26-1810001-000675",
+          "company": "디엘이앤씨(주)",
+          "location": "공항대로 165 A동 원그로브 앞 (출입구 제외, 통행로 확보)",
+          "period": "2026-10-23 ~ 2026-11-19 / 매일 00:00 ~ 23:59",
+          "organizer": "박문철 (한국노총 한국타워크레인조종사 노동조합)",
+          "reportedParticipants": 900,
+          "reportedAt": "2026-10-20",
+          "reporter": "남형욱",
+          "eventName": "근로조건 개선 및 최저입찰제 폐지 결의대회",
+          "receivingAgency": "서울강서경찰서",
+          "receivedAt": "2026-10-20 13:08",
+          "officerContact": "박재웅 / 010-3583-0914",
+          "endDate": "2026-11-19",
+          "receiptImageUrl": "https://drive.google.com/file/d/1nTyVj6rDEgTN31shHCmW0rqNCtfkZIPs/view",
+          "receiptImageUrls": [
+            "https://drive.google.com/file/d/1nTyVj6rDEgTN31shHCmW0rqNCtfkZIPs/view",
+            "https://drive.google.com/file/d/1stXgK5-mSGi_r6cxNqwork9fQ12cxkiA/view"
+          ],
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 40
+          },
+          "filedBy": "김기표",
+          "registeredAddress": "서울특별시 강서구 공항대로 165, A동(마곡동,원그로브)",
+          "companyRepresentative": "마창민",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 기존 신고인 남형욱에서 새 접수자 김기표로 갱신. ",
+      "reporterName": "김기표",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150915_527.jpg",
+          "sha256": "e094cba23c1d088f66590cbf2ccc6e58bf5a1559a914ae324d7703afb0513dec"
+        }
+      ]
     },
     {
       "no": 2,
@@ -235,14 +272,14 @@
     {
       "no": 7,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-000322",
       "company": "이수건설(주)",
-      "location": "서울특별시 서초구 사평대로 84 (반포동) 이수건설",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "방배경찰서",
-      "reportedAt": "",
-      "reporter": "김기표 (엑셀 접수자)",
+      "location": "사평대로 84 이수건설 앞 인도 및 하위 1개 차로 (출입구 좌우 제외)",
+      "period": "2026-11-18 ~ 2026-12-16 / 매일 07:00 ~ 23:59 (11월 18·19일 집회 미개최)",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울방배경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "김기표",
       "officerContact": "김해리 / 010-2056-1809",
       "filedBy": "김기표",
       "companyRepresentative": "장주익",
@@ -251,592 +288,1514 @@
         "sheet": "도급순위100(26.10.20)",
         "row": 3
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 접수증 상단 기간은 11월 18일부터이나 참고사항에 11월 18·19일 집회 미개최로 기재. ",
+      "startDate": "2026-11-18",
+      "previousReports": [
+        {
+          "no": 7,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "이수건설(주)",
+          "location": "서울특별시 서초구 사평대로 84 (반포동) 이수건설",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "방배경찰서",
+          "reportedAt": "",
+          "reporter": "김기표 (엑셀 접수자)",
+          "officerContact": "김해리 / 010-2056-1809",
+          "filedBy": "김기표",
+          "companyRepresentative": "장주익",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 3
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 10:00",
+      "reportedParticipants": 100,
+      "reporterName": "김기표",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150850_260.jpg",
+          "sha256": "69e7e8f1ed0ef2b1c9933c958257cd3bdb79b1f312c44abdcc4095ccdccf8700"
+        }
+      ],
+      "excludedDates": [
+        "2026-11-18",
+        "2026-11-19"
+      ]
     },
     {
       "no": 8,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-004360",
       "company": "㈜KCC건설",
-      "location": "서울특별시 서초구 강남대로 587",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "서초경찰서",
-      "reportedAt": "",
-      "reporter": "신동수 (엑셀 접수자)",
+      "location": "서초구 강남대로 587 KCC건설 앞 인도 (출입구·사유지 제외, 통행로 확보)",
+      "period": "2026-11-20 ~ 2026-12-16 / 매일 00:00 ~ 23:59",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울서초경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "임광호",
       "officerContact": "김성우 / 010-9920-1230",
-      "filedBy": "신동수",
+      "filedBy": "임광호",
       "companyRepresentative": "이창호",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 5
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 주중 주요도로(반포대로·서초대로)는 출퇴근시간대를 피해 10~17시 개최 가능(무대 설치·해체시간 포함). ",
+      "startDate": "2026-11-20",
+      "previousReports": [
+        {
+          "no": 8,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "㈜KCC건설",
+          "location": "서울특별시 서초구 강남대로 587",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "서초경찰서",
+          "reportedAt": "",
+          "reporter": "신동수 (엑셀 접수자)",
+          "officerContact": "김성우 / 010-9920-1230",
+          "filedBy": "신동수",
+          "companyRepresentative": "이창호",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 5
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 09:05",
+      "reportedParticipants": 900,
+      "reporterName": "임광호",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150832_129.jpg",
+          "sha256": "3d48ece4473e7c1f719f1070fe2c75e1c09bfee9af5303cb0f4a8086f9466667"
+        }
+      ]
     },
     {
       "no": 9,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-004361",
       "company": "동원건설산업(주)",
-      "location": "서울특별시 서초구 마방로 68 동원산업빌딩 7층",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "서초경찰서",
-      "reportedAt": "",
-      "reporter": "신동수 (엑셀 접수자)",
+      "location": "서초구 마방로 68 동원산업빌딩 앞 인도 (출입구·사유지 제외, 통행로 확보)",
+      "period": "2026-11-20 ~ 2026-12-16 / 매일 00:00 ~ 23:59",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울서초경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "임광호",
       "officerContact": "최근모 / 010-2075-4760",
-      "filedBy": "신동수",
+      "filedBy": "임광호",
       "companyRepresentative": "조성진",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 6
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 주중 주요도로(반포대로·서초대로)는 출퇴근시간대를 피해 10~17시 개최 가능(무대 설치·해체시간 포함). ",
+      "startDate": "2026-11-20",
+      "previousReports": [
+        {
+          "no": 9,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "동원건설산업(주)",
+          "location": "서울특별시 서초구 마방로 68 동원산업빌딩 7층",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "서초경찰서",
+          "reportedAt": "",
+          "reporter": "신동수 (엑셀 접수자)",
+          "officerContact": "최근모 / 010-2075-4760",
+          "filedBy": "신동수",
+          "companyRepresentative": "조성진",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 6
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 09:05",
+      "reportedParticipants": 900,
+      "reporterName": "임광호",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150832_091.jpg",
+          "sha256": "d413a720d9260a3ca8d56074a2137289b5e572632d3971d97e9703de66f0de2f"
+        }
+      ]
     },
     {
       "no": 10,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-004358",
       "company": "(주)대원",
-      "location": "서울특별시 서초구 마방로10길 25 (양재동, 트윈타워)",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "서초경찰서",
-      "reportedAt": "",
-      "reporter": "신동수 (엑셀 접수자)",
+      "location": "서초구 마방로10길 25 트윈타워 앞 인도 (출입구·사유지 제외, 통행로 확보)",
+      "period": "2026-11-20 ~ 2026-12-16 / 매일 00:00 ~ 23:59",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울서초경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "임광호",
       "officerContact": "최근모 / 010-2075-4760",
-      "filedBy": "신동수",
+      "filedBy": "임광호",
       "companyRepresentative": "전응식",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 7
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 주중 주요도로(반포대로·서초대로)는 출퇴근시간대를 피해 10~17시 개최 가능(무대 설치·해체시간 포함). ",
+      "startDate": "2026-11-20",
+      "previousReports": [
+        {
+          "no": 10,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "(주)대원",
+          "location": "서울특별시 서초구 마방로10길 25 (양재동, 트윈타워)",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "서초경찰서",
+          "reportedAt": "",
+          "reporter": "신동수 (엑셀 접수자)",
+          "officerContact": "최근모 / 010-2075-4760",
+          "filedBy": "신동수",
+          "companyRepresentative": "전응식",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 7
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 09:05",
+      "reportedParticipants": 900,
+      "reporterName": "임광호",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150832_095.jpg",
+          "sha256": "9923ce0287f95992ed5d863373faa6e41742c3f82004063f5d6262a9e3c8bdde"
+        }
+      ]
     },
     {
       "no": 11,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-004359",
       "company": "(주)서해종합건설",
-      "location": "서울특별시 서초구 서초대로 301, 6층 (서초동, 동익성봉빌딩)",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "서초경찰서",
-      "reportedAt": "",
-      "reporter": "신동수 (엑셀 접수자)",
+      "location": "서초구 서초대로 301 동익성봉빌딩 앞 인도 (출입구·사유지 제외, 통행로 확보)",
+      "period": "2026-11-20 ~ 2026-12-16 / 매일 00:00 ~ 23:59",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울서초경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "임광호",
       "officerContact": "황현철 / 010-4742-0881",
-      "filedBy": "신동수",
+      "filedBy": "임광호",
       "companyRepresentative": "박정배",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 8
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 주중 주요도로(반포대로·서초대로)는 출퇴근시간대를 피해 10~17시 개최 가능(무대 설치·해체시간 포함). ",
+      "startDate": "2026-11-20",
+      "previousReports": [
+        {
+          "no": 11,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "(주)서해종합건설",
+          "location": "서울특별시 서초구 서초대로 301, 6층 (서초동, 동익성봉빌딩)",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "서초경찰서",
+          "reportedAt": "",
+          "reporter": "신동수 (엑셀 접수자)",
+          "officerContact": "황현철 / 010-4742-0881",
+          "filedBy": "신동수",
+          "companyRepresentative": "박정배",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 8
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 09:05",
+      "reportedParticipants": 900,
+      "reporterName": "임광호",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150832_166.jpg",
+          "sha256": "969e9e23bbdbb65db4449673a0be4a37b521aedbd65da5bdfd62c3cbfa61372d"
+        }
+      ]
     },
     {
       "no": 12,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-004364",
       "company": "SGC 이테크건설",
-      "location": "서울특별시 서초구 양재대로 246",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "서초경찰서",
-      "reportedAt": "",
-      "reporter": "신동수 (엑셀 접수자)",
+      "location": "서초구 양재대로 246 SGC E&C 앞 인도 (출입구·사유지 제외, 통행로 확보)",
+      "period": "2026-11-20 ~ 2026-12-16 / 매일 00:00 ~ 23:59",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울서초경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "임광호",
       "officerContact": "윤건희 / 010-6733-3767",
-      "filedBy": "신동수",
+      "filedBy": "임광호",
       "companyRepresentative": "이우성",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 9
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 주중 주요도로(반포대로·서초대로)는 출퇴근시간대를 피해 10~17시 개최 가능(무대 설치·해체시간 포함). ",
+      "startDate": "2026-11-20",
+      "previousReports": [
+        {
+          "no": 12,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "SGC 이테크건설",
+          "location": "서울특별시 서초구 양재대로 246",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "서초경찰서",
+          "reportedAt": "",
+          "reporter": "신동수 (엑셀 접수자)",
+          "officerContact": "윤건희 / 010-6733-3767",
+          "filedBy": "신동수",
+          "companyRepresentative": "이우성",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 9
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 09:05",
+      "reportedParticipants": 900,
+      "reporterName": "임광호",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150832_531.jpg",
+          "sha256": "d1ec76d7eb65976654360b169c9c29d62f499c456db6164edd6a2c6db8b0950f"
+        }
+      ]
     },
     {
       "no": 13,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-004363",
       "company": "(주)호반건설(주)호반산업",
-      "location": "서울특별시 서초구 양재대로2길 18 호반파크 2관",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "서초경찰서",
-      "reportedAt": "",
-      "reporter": "신동수 (엑셀 접수자)",
+      "location": "서초구 양재대로2길 18 호반건설 앞 인도 (출입구·사유지 제외, 통행로 확보)",
+      "period": "2026-11-20 ~ 2026-12-16 / 매일 00:00 ~ 23:59",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울서초경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "임광호",
       "officerContact": "최한올 / 010-3212-4784",
-      "filedBy": "신동수",
+      "filedBy": "임광호",
       "companyRepresentative": "박철희",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 10
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 주중 주요도로(반포대로·서초대로)는 출퇴근시간대를 피해 10~17시 개최 가능(무대 설치·해체시간 포함). ",
+      "startDate": "2026-11-20",
+      "previousReports": [
+        {
+          "no": 13,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "(주)호반건설(주)호반산업",
+          "location": "서울특별시 서초구 양재대로2길 18 호반파크 2관",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "서초경찰서",
+          "reportedAt": "",
+          "reporter": "신동수 (엑셀 접수자)",
+          "officerContact": "최한올 / 010-3212-4784",
+          "filedBy": "신동수",
+          "companyRepresentative": "박철희",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 10
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 09:05",
+      "reportedParticipants": 900,
+      "reporterName": "임광호",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150832_353.jpg",
+          "sha256": "7b3e580d8dc3e75ea03268544ccf2c961c917a84a57bca9793d74e7750b29eee"
+        }
+      ]
     },
     {
       "no": 14,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-004357",
       "company": "한신공영(주)",
-      "location": "서울특별시 서초구 잠원로 94 한신공영 빌딩",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "서초경찰서",
-      "reportedAt": "",
-      "reporter": "신동수 (엑셀 접수자)",
+      "location": "서초구 잠원로 94 한신공영빌딩 앞 인도 (출입구·사유지 제외, 통행로 확보)",
+      "period": "2026-11-20 ~ 2026-12-16 / 매일 00:00 ~ 23:59",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울서초경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "임광호",
       "officerContact": "김성우 / 010-9920-1230",
-      "filedBy": "신동수",
+      "filedBy": "임광호",
       "companyRepresentative": "최문규",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 11
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 주중 주요도로(반포대로·서초대로)는 출퇴근시간대를 피해 10~17시 개최 가능(무대 설치·해체시간 포함). ",
+      "startDate": "2026-11-20",
+      "previousReports": [
+        {
+          "no": 14,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "한신공영(주)",
+          "location": "서울특별시 서초구 잠원로 94 한신공영 빌딩",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "서초경찰서",
+          "reportedAt": "",
+          "reporter": "신동수 (엑셀 접수자)",
+          "officerContact": "김성우 / 010-9920-1230",
+          "filedBy": "신동수",
+          "companyRepresentative": "최문규",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 11
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 09:05",
+      "reportedParticipants": 900,
+      "reporterName": "임광호",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150832_789.jpg",
+          "sha256": "efeb19a76f06dd4f3809e53f8dfeba399e72726cf4c0613535333cc4a74a2fc3"
+        }
+      ]
     },
     {
       "no": 15,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-004362",
       "company": "롯데건설(주)",
-      "location": "서울특별시 서초구 잠원로14길 29 롯데건설본사",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "서초경찰서",
-      "reportedAt": "",
-      "reporter": "신동수 (엑셀 접수자)",
+      "location": "서초구 잠원로14길 29 롯데건설 본사 앞 인도 (출입구·사유지 제외, 통행로 확보)",
+      "period": "2026-11-20 ~ 2026-12-16 / 매일 00:00 ~ 23:59",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울서초경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "임광호",
       "officerContact": "김성우 / 010-9920-1230",
-      "filedBy": "신동수",
+      "filedBy": "임광호",
       "companyRepresentative": "박현철",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 12
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 주중 주요도로(반포대로·서초대로)는 출퇴근시간대를 피해 10~17시 개최 가능(무대 설치·해체시간 포함). ",
+      "startDate": "2026-11-20",
+      "previousReports": [
+        {
+          "no": 15,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "롯데건설(주)",
+          "location": "서울특별시 서초구 잠원로14길 29 롯데건설본사",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "서초경찰서",
+          "reportedAt": "",
+          "reporter": "신동수 (엑셀 접수자)",
+          "officerContact": "김성우 / 010-9920-1230",
+          "filedBy": "신동수",
+          "companyRepresentative": "박현철",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 12
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 09:05",
+      "reportedParticipants": 900,
+      "reporterName": "임광호",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150831_849.jpg",
+          "sha256": "3dc82afe07e66c637b82d83f28061a7e5e696ae3b4a6f855b4d443fd283d89b3"
+        }
+      ]
     },
     {
       "no": 16,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-001042",
       "company": "(주)한양",
-      "location": "서울특별시 송파구 법원로 11길 12 한양타워 12층,13층 (주)한양",
-      "period": "2026-10-23 ~ 2026-11-18 / 시간 미입력",
-      "endDate": "2026-11-18",
-      "receivingAgency": "송파경찰서",
-      "reportedAt": "",
-      "reporter": "신동수 (엑셀 접수자)",
+      "location": "법원로11길 12, 한양타워 앞 노상 (출입구 제외, 통행로 확보, 집회 개최 전 담당정보관과 충분히 협의 예정)",
+      "period": "2026-11-18 11:50 ~ 2026-12-16 11:50 / 매일 00:00 ~ 23:59 (첫날·마지막날 시간 제한)",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울송파경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "임광호",
       "officerContact": "김지환 / 010-3218-0518",
-      "filedBy": "신동수",
+      "filedBy": "임광호",
       "companyRepresentative": "최인호",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 14
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 상단 개최일시는 00:00~23:59이나 참고사항에 집회 시작일 11:50, 종료일 11:50로 기재되어 첫날·마지막날 제한을 반영. ",
+      "startDate": "2026-11-18",
+      "previousReports": [
+        {
+          "no": 16,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "(주)한양",
+          "location": "서울특별시 송파구 법원로 11길 12 한양타워 12층,13층 (주)한양",
+          "period": "2026-10-23 ~ 2026-11-18 / 시간 미입력",
+          "endDate": "2026-11-18",
+          "receivingAgency": "송파경찰서",
+          "reportedAt": "",
+          "reporter": "신동수 (엑셀 접수자)",
+          "officerContact": "김지환 / 010-3218-0518",
+          "filedBy": "신동수",
+          "companyRepresentative": "최인호",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 14
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 11:50",
+      "reportedParticipants": 900,
+      "reporterName": "임광호",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150817_546.jpg",
+          "sha256": "657098d0094a4b4c6663d28cfc6126e9298594186b7eacbffec47b583d94a34f"
+        }
+      ]
     },
     {
       "no": 17,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-001043",
       "company": "에이치엘디앤아이한라(주)",
-      "location": "서울특별시 송파구 올림픽로 289",
-      "period": "2026-10-23 ~ 2026-11-18 / 시간 미입력",
-      "endDate": "2026-11-18",
-      "receivingAgency": "송파경찰서",
-      "reportedAt": "",
-      "reporter": "신동수 (엑셀 접수자)",
+      "location": "올림픽로 289 앞 인도 (출입구 제외, 통행로 확보, 집회 개최 전 담당정보관과 충분히 협의 예정)",
+      "period": "2026-11-18 11:50 ~ 2026-12-16 11:50 / 매일 00:00 ~ 23:59 (첫날·마지막날 시간 제한)",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울송파경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "임광호",
       "officerContact": "이동규 / 010-3265-2648",
-      "filedBy": "신동수",
+      "filedBy": "임광호",
       "companyRepresentative": "홍석화",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 15
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 상단 개최일시는 00:00~23:59이나 참고사항에 집회 시작일 11:50, 종료일 11:50로 기재되어 첫날·마지막날 제한을 반영. ",
+      "startDate": "2026-11-18",
+      "previousReports": [
+        {
+          "no": 17,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "에이치엘디앤아이한라(주)",
+          "location": "서울특별시 송파구 올림픽로 289",
+          "period": "2026-10-23 ~ 2026-11-18 / 시간 미입력",
+          "endDate": "2026-11-18",
+          "receivingAgency": "송파경찰서",
+          "reportedAt": "",
+          "reporter": "신동수 (엑셀 접수자)",
+          "officerContact": "이동규 / 010-3265-2648",
+          "filedBy": "신동수",
+          "companyRepresentative": "홍석화",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 15
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 11:50",
+      "reportedParticipants": 900,
+      "reporterName": "임광호",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150817_261.jpg",
+          "sha256": "73f7c79d4edb48eda691d1cc09a8937d6143a742fa8a1213f69981a8d9d67152"
+        }
+      ]
     },
     {
       "no": 18,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-001044",
       "company": "쌍용건설(주)",
-      "location": "서울특별시 송파구 올림픽로 299 (신천동)",
-      "period": "2026-10-23 ~ 2026-11-18 / 시간 미입력",
-      "endDate": "2026-11-18",
-      "receivingAgency": "송파경찰서",
-      "reportedAt": "",
-      "reporter": "신동수 (엑셀 접수자)",
+      "location": "올림픽로 299 앞 인도 (출입구 제외, 통행로 확보, 집회 개최 전 담당정보관과 충분히 협의 예정)",
+      "period": "2026-11-18 11:50 ~ 2026-12-16 11:50 / 매일 00:00 ~ 23:59 (첫날·마지막날 시간 제한)",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울송파경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "임광호",
       "officerContact": "이동규 / 010-3265-2648",
-      "filedBy": "신동수",
+      "filedBy": "임광호",
       "companyRepresentative": "김인수",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 16
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 상단 개최일시는 00:00~23:59이나 참고사항에 집회 시작일 11:50, 종료일 11:50로 기재되어 첫날·마지막날 제한을 반영. ",
+      "startDate": "2026-11-18",
+      "previousReports": [
+        {
+          "no": 18,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "쌍용건설(주)",
+          "location": "서울특별시 송파구 올림픽로 299 (신천동)",
+          "period": "2026-10-23 ~ 2026-11-18 / 시간 미입력",
+          "endDate": "2026-11-18",
+          "receivingAgency": "송파경찰서",
+          "reportedAt": "",
+          "reporter": "신동수 (엑셀 접수자)",
+          "officerContact": "이동규 / 010-3265-2648",
+          "filedBy": "신동수",
+          "companyRepresentative": "김인수",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 16
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 11:50",
+      "reportedParticipants": 900,
+      "reporterName": "임광호",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150817_442.jpg",
+          "sha256": "533ad0c7135229f1ba7c44c13aeff046d6fc4e0533ba5f169eb1847ae47a4ea6"
+        }
+      ]
     },
     {
       "no": 19,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-001045",
       "company": "㈜KR산업",
-      "location": "서울특별시 송파구 위례순환로 480, KR산업 위례빌딩 6층~10층",
-      "period": "2026-10-23 ~ 2026-11-18 / 시간 미입력",
-      "endDate": "2026-11-18",
-      "receivingAgency": "송파경찰서",
-      "reportedAt": "",
-      "reporter": "신동수 (엑셀 접수자)",
+      "location": "위례순환로 480 KR산업 위례빌딩 앞 인도 (출입구 제외, 통행로 확보, 집회 개최 전 담당정보관과 충분히 협의 예정)",
+      "period": "2026-11-18 11:50 ~ 2026-12-16 11:50 / 매일 00:00 ~ 23:59 (첫날·마지막날 시간 제한)",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울송파경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "임광호",
       "officerContact": "은정희 / 010-7124-7736",
-      "filedBy": "신동수",
+      "filedBy": "임광호",
       "companyRepresentative": "박희성",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 17
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 상단 개최일시는 00:00~23:59이나 참고사항에 집회 시작일 11:50, 종료일 11:50로 기재되어 첫날·마지막날 제한을 반영. ",
+      "startDate": "2026-11-18",
+      "previousReports": [
+        {
+          "no": 19,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "㈜KR산업",
+          "location": "서울특별시 송파구 위례순환로 480, KR산업 위례빌딩 6층~10층",
+          "period": "2026-10-23 ~ 2026-11-18 / 시간 미입력",
+          "endDate": "2026-11-18",
+          "receivingAgency": "송파경찰서",
+          "reportedAt": "",
+          "reporter": "신동수 (엑셀 접수자)",
+          "officerContact": "은정희 / 010-7124-7736",
+          "filedBy": "신동수",
+          "companyRepresentative": "박희성",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 17
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 12:05",
+      "reportedParticipants": 900,
+      "reporterName": "임광호",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150817_642.jpg",
+          "sha256": "3521838220dd90607566e68a7de477542f3120ad1a0e87265960855aa69ee45a"
+        }
+      ]
     },
     {
       "no": 20,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-000866",
       "company": "대보건설(주)",
-      "location": "서울특별시 강남구 광평로 280 로즈데일빌딩 6층",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "수서경찰서",
-      "reportedAt": "",
-      "reporter": "신동수 (엑셀 접수자)",
+      "location": "광평로 280 로즈데일빌딩 6층 대보건설(주) (출입구·사유지 제외, 집회장소 현장 조율)",
+      "period": "2026-11-20 13:00 ~ 2026-12-16 23:59 / 매일 00:00 ~ 23:59 (첫날·마지막날 시간 제한)",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울수서경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "임광호",
       "officerContact": "장성훈 / 010-9222-9084",
-      "filedBy": "신동수",
+      "filedBy": "임광호",
       "companyRepresentative": "권오철",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 19
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 상단 개최일시는 00:00~23:59이나 참고사항에 집회 시작일 13:00, 종료일 23:59로 기재되어 첫날·마지막날 제한을 반영. ",
+      "startDate": "2026-11-20",
+      "previousReports": [
+        {
+          "no": 20,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "대보건설(주)",
+          "location": "서울특별시 강남구 광평로 280 로즈데일빌딩 6층",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "수서경찰서",
+          "reportedAt": "",
+          "reporter": "신동수 (엑셀 접수자)",
+          "officerContact": "장성훈 / 010-9222-9084",
+          "filedBy": "신동수",
+          "companyRepresentative": "권오철",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 19
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 10:57",
+      "reportedParticipants": 900,
+      "reporterName": "임광호",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150844_900.jpg",
+          "sha256": "e500f4cc33e2acc0c966934fac8c37578cf93125cfbde96db903580a741c59e7"
+        }
+      ]
     },
     {
       "no": 21,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-000865",
       "company": "강산건설(주)",
-      "location": "서울특별시 강남구 도곡로1길 25, 강산빌딩",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "수서경찰서",
-      "reportedAt": "",
-      "reporter": "신동수 (엑셀 접수자)",
+      "location": "도곡로1길 25(역삼동 837-3) 강산건설 앞 인도 (출입구·사유지 제외, 집회장소 현장 조율)",
+      "period": "2026-11-20 20:30 ~ 2026-12-16 23:59 / 매일 00:00 ~ 23:59 (첫날·마지막날 시간 제한)",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울수서경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "임광호",
       "officerContact": "김춘우 / 010-3009-9117",
-      "filedBy": "신동수",
+      "filedBy": "임광호",
       "companyRepresentative": "김성현",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 20
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 상단 개최일시는 00:00~23:59이나 참고사항에 집회 시작일 20:30, 종료일 23:59로 기재되어 첫날·마지막날 제한을 반영. ",
+      "startDate": "2026-11-20",
+      "previousReports": [
+        {
+          "no": 21,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "강산건설(주)",
+          "location": "서울특별시 강남구 도곡로1길 25, 강산빌딩",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "수서경찰서",
+          "reportedAt": "",
+          "reporter": "신동수 (엑셀 접수자)",
+          "officerContact": "김춘우 / 010-3009-9117",
+          "filedBy": "신동수",
+          "companyRepresentative": "김성현",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 20
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 10:56",
+      "reportedParticipants": 900,
+      "reporterName": "임광호",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150844_796.jpg",
+          "sha256": "5a625ebd42a34e9f632adf82988ecb4883ee5f78b601ef2769f55be7f401d1e5"
+        }
+      ]
     },
     {
       "no": 22,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-000864",
       "company": "(주)금강주택",
-      "location": "서울특별시 강남구 테헤란로 410, 금강타워 19~21층",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "수서경찰서",
-      "reportedAt": "",
-      "reporter": "신동수 (엑셀 접수자)",
+      "location": "테헤란로 410(대치동 889-13) 금강주택 앞 인도 (출입구·사유지 제외, 집회장소 현장 조율)",
+      "period": "2026-11-18 11:30 ~ 2026-12-16 23:59 / 매일 00:00 ~ 23:59 (첫날·마지막날 시간 제한)",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울수서경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "임광호",
       "officerContact": "조규현 / 010-9181-4444",
-      "filedBy": "신동수",
+      "filedBy": "임광호",
       "companyRepresentative": "최상순",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 21
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 상단 개최일시는 00:00~23:59이나 참고사항에 집회 시작일 11:30, 종료일 23:59로 기재되어 첫날·마지막날 제한을 반영. 조규현 정보관 전화번호 가운데 네 자리는 필기가 불명확하여 기존 번호를 유지함. ",
+      "startDate": "2026-11-18",
+      "previousReports": [
+        {
+          "no": 22,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "(주)금강주택",
+          "location": "서울특별시 강남구 테헤란로 410, 금강타워 19~21층",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "수서경찰서",
+          "reportedAt": "",
+          "reporter": "신동수 (엑셀 접수자)",
+          "officerContact": "조규현 / 010-9181-4444",
+          "filedBy": "신동수",
+          "companyRepresentative": "최상순",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 21
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 10:55",
+      "reportedParticipants": 900,
+      "reporterName": "임광호",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150845_364.jpg",
+          "sha256": "8678c1ba24aee46e991dfebbde801bf656a2a7af0c56f79214bf33469652a2e8"
+        }
+      ]
     },
     {
       "no": 23,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-000863",
       "company": "우미건설㈜ / (주)우미개발",
-      "location": "서울특별시 강남구 언주로 30길 39 린스퀘어 (도곡동 467-14)",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "수서경찰서",
-      "reportedAt": "",
-      "reporter": "신동수 (엑셀 접수자)",
+      "location": "언주로30길 39 린스퀘어 앞 인도 (출입구·사유지 제외, 집회장소 현장 조율)",
+      "period": "2026-11-20 13:30 ~ 2026-12-16 23:59 / 매일 00:00 ~ 23:59 (첫날·마지막날 시간 제한)",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울수서경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "임광호",
       "officerContact": "양성규 / 010-4438-5995",
-      "filedBy": "신동수",
+      "filedBy": "임광호",
       "companyRepresentative": "배영한",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 22
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 상단 개최일시는 00:00~23:59이나 참고사항에 집회 시작일 13:30, 종료일 23:59로 기재되어 첫날·마지막날 제한을 반영. ",
+      "startDate": "2026-11-20",
+      "previousReports": [
+        {
+          "no": 23,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "우미건설㈜ / (주)우미개발",
+          "location": "서울특별시 강남구 언주로 30길 39 린스퀘어 (도곡동 467-14)",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "수서경찰서",
+          "reportedAt": "",
+          "reporter": "신동수 (엑셀 접수자)",
+          "officerContact": "양성규 / 010-4438-5995",
+          "filedBy": "신동수",
+          "companyRepresentative": "배영한",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 22
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 10:48",
+      "reportedParticipants": 900,
+      "reporterName": "임광호",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150845_435.jpg",
+          "sha256": "ae39152ebe8d602b72f8a9f8695156a4052c7c7e3e4e08688e35b90d81c65a14"
+        }
+      ]
     },
     {
       "no": 24,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-001059",
       "company": "엘티삼보(주)",
-      "location": "서울특별시 강남구 테헤란로 217 오렌지플래닛 13층",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "강남경찰서",
-      "reportedAt": "",
-      "reporter": "신동수 (엑셀 접수자)",
+      "location": "테헤란로 217 오렌지플래닛 앞 인도",
+      "period": "2026-11-18 13:00 ~ 2026-12-16 13:00 / 매일 00:00 ~ 23:59 (첫날·마지막날 시간 제한)",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울강남경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "임광호",
       "officerContact": "방일형 / 010-3778-6644",
-      "filedBy": "신동수",
+      "filedBy": "임광호",
       "companyRepresentative": "이상덕",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 25
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 상단 개최일시는 00:00~23:59이나 참고사항에 집회 시작일 13:00, 종료일 13:00로 기재되어 첫날·마지막날 제한을 반영. ",
+      "startDate": "2026-11-18",
+      "previousReports": [
+        {
+          "no": 24,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "엘티삼보(주)",
+          "location": "서울특별시 강남구 테헤란로 217 오렌지플래닛 13층",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "강남경찰서",
+          "reportedAt": "",
+          "reporter": "신동수 (엑셀 접수자)",
+          "officerContact": "방일형 / 010-3778-6644",
+          "filedBy": "신동수",
+          "companyRepresentative": "이상덕",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 25
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 09:52",
+      "reportedParticipants": 900,
+      "reporterName": "임광호",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150823_747.jpg",
+          "sha256": "2264ce3829d6a7ce6a83f7c9a6a782c9841401785087a9faa4a8a22165c178ec"
+        }
+      ]
     },
     {
       "no": 25,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-001060",
       "company": "요진건설산업(주)",
-      "location": "서울특별시 강남구 도산대로 168(논현동7-3)",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "강남경찰서",
-      "reportedAt": "",
-      "reporter": "신동수 (엑셀 접수자)",
+      "location": "논현동 7-3 요진건설산업 앞 인도",
+      "period": "2026-11-18 13:00 ~ 2026-12-16 13:00 / 매일 00:00 ~ 23:59 (첫날·마지막날 시간 제한)",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울강남경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "임광호",
       "officerContact": "부승효 / 010-3080-0522",
-      "filedBy": "신동수",
+      "filedBy": "임광호",
       "companyRepresentative": "송선호",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 26
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 상단 개최일시는 00:00~23:59이나 참고사항에 집회 시작일 13:00, 종료일 13:00로 기재되어 첫날·마지막날 제한을 반영. ",
+      "startDate": "2026-11-18",
+      "previousReports": [
+        {
+          "no": 25,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "요진건설산업(주)",
+          "location": "서울특별시 강남구 도산대로 168(논현동7-3)",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "강남경찰서",
+          "reportedAt": "",
+          "reporter": "신동수 (엑셀 접수자)",
+          "officerContact": "부승효 / 010-3080-0522",
+          "filedBy": "신동수",
+          "companyRepresentative": "송선호",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 26
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 09:52",
+      "reportedParticipants": 900,
+      "reporterName": "임광호",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150824_253.jpg",
+          "sha256": "c171b9d4c9660c47f3e1a7d79dc98fcd44e8b670994707b2a1f691f20584477a"
+        }
+      ]
     },
     {
       "no": 26,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-001061",
       "company": "(주)동양건설산업 (주)라인건설 (주)라인산업",
-      "location": "서울특별시 강남구 도산대로 544 (청담동53-4)",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "강남경찰서",
-      "reportedAt": "",
-      "reporter": "신동수 (엑셀 접수자)",
+      "location": "청담동 53-4 동양건설산업 앞 인도",
+      "period": "2026-11-18 13:00 ~ 2026-12-16 13:00 / 매일 00:00 ~ 23:59 (첫날·마지막날 시간 제한)",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울강남경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "임광호",
       "officerContact": "김예찬 / 010-5274-4536",
-      "filedBy": "신동수",
+      "filedBy": "임광호",
       "companyRepresentative": "오성민",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 27
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 상단 개최일시는 00:00~23:59이나 참고사항에 집회 시작일 13:00, 종료일 13:00로 기재되어 첫날·마지막날 제한을 반영. ",
+      "startDate": "2026-11-18",
+      "previousReports": [
+        {
+          "no": 26,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "(주)동양건설산업 (주)라인건설 (주)라인산업",
+          "location": "서울특별시 강남구 도산대로 544 (청담동53-4)",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "강남경찰서",
+          "reportedAt": "",
+          "reporter": "신동수 (엑셀 접수자)",
+          "officerContact": "김예찬 / 010-5274-4536",
+          "filedBy": "신동수",
+          "companyRepresentative": "오성민",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 27
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 09:52",
+      "reportedParticipants": 900,
+      "reporterName": "임광호",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150824_683.jpg",
+          "sha256": "b0722fb8e42e26a86905361ea100e67b922f92bf5ef95402fd3e9c48402a5bc8"
+        }
+      ]
     },
     {
       "no": 27,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-001062",
       "company": "풍림산업(주)",
-      "location": "서울특별시 강남구 테헤란로124 (삼성동157-8) 풍림빌딩",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "강남경찰서",
-      "reportedAt": "",
-      "reporter": "신동수 (엑셀 접수자)",
+      "location": "삼성동 157-8 풍림산업 앞 인도",
+      "period": "2026-11-18 13:00 ~ 2026-12-16 13:00 / 매일 00:00 ~ 23:59 (첫날·마지막날 시간 제한)",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울강남경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "임광호",
       "officerContact": "성진태 / 010-4659-3626",
-      "filedBy": "신동수",
+      "filedBy": "임광호",
       "companyRepresentative": "지우종",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 28
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 상단 개최일시는 00:00~23:59이나 참고사항에 집회 시작일 13:00, 종료일 13:00로 기재되어 첫날·마지막날 제한을 반영. ",
+      "startDate": "2026-11-18",
+      "previousReports": [
+        {
+          "no": 27,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "풍림산업(주)",
+          "location": "서울특별시 강남구 테헤란로124 (삼성동157-8) 풍림빌딩",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "강남경찰서",
+          "reportedAt": "",
+          "reporter": "신동수 (엑셀 접수자)",
+          "officerContact": "성진태 / 010-4659-3626",
+          "filedBy": "신동수",
+          "companyRepresentative": "지우종",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 28
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 09:52",
+      "reportedParticipants": 900,
+      "reporterName": "임광호",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150824_067.jpg",
+          "sha256": "7269427d7841dc27ae54c03f5601fa16565501511d1f03c6a1d8d0df58713327"
+        }
+      ]
     },
     {
       "no": 28,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-001063",
       "company": "두산건설(주)",
-      "location": "서울특별시 강남구 언주로 726 (논현동)",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "강남경찰서",
-      "reportedAt": "",
-      "reporter": "신동수 (엑셀 접수자)",
+      "location": "언주로 726 두산건설 앞 인도",
+      "period": "2026-11-18 13:00 ~ 2026-12-16 13:00 / 매일 00:00 ~ 23:59 (첫날·마지막날 시간 제한)",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울강남경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "임광호",
       "officerContact": "이희형 / 010-8721-8469",
-      "filedBy": "신동수",
+      "filedBy": "임광호",
       "companyRepresentative": "이정환",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 29
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 상단 개최일시는 00:00~23:59이나 참고사항에 집회 시작일 13:00, 종료일 13:00로 기재되어 첫날·마지막날 제한을 반영. ",
+      "startDate": "2026-11-18",
+      "previousReports": [
+        {
+          "no": 28,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "두산건설(주)",
+          "location": "서울특별시 강남구 언주로 726 (논현동)",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "강남경찰서",
+          "reportedAt": "",
+          "reporter": "신동수 (엑셀 접수자)",
+          "officerContact": "이희형 / 010-8721-8469",
+          "filedBy": "신동수",
+          "companyRepresentative": "이정환",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 29
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 09:52",
+      "reportedParticipants": 900,
+      "reporterName": "임광호",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150824_571.jpg",
+          "sha256": "ba2709c6fe029044acde25fef03626f5c4fc4b3f237f75f6be7ae138c1b7cc76"
+        }
+      ]
     },
     {
       "no": 29,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-001064",
       "company": "동부건설(주)",
-      "location": "서울특별시 강남구 테헤란로 137 코레이트타워",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "강남경찰서",
-      "reportedAt": "",
-      "reporter": "신동수 (엑셀 접수자)",
+      "location": "테헤란로 137 코레이트타워, 동부건설 앞 인도",
+      "period": "2026-11-18 13:00 ~ 2026-12-16 13:00 / 매일 00:00 ~ 23:59 (첫날·마지막날 시간 제한)",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울강남경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "임광호",
       "officerContact": "강창구 / 010-8245-0409",
-      "filedBy": "신동수",
+      "filedBy": "임광호",
       "companyRepresentative": "윤진오",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 31
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 상단 개최일시는 00:00~23:59이나 참고사항에 집회 시작일 13:00, 종료일 13:00로 기재되어 첫날·마지막날 제한을 반영. ",
+      "startDate": "2026-11-18",
+      "previousReports": [
+        {
+          "no": 29,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "동부건설(주)",
+          "location": "서울특별시 강남구 테헤란로 137 코레이트타워",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "강남경찰서",
+          "reportedAt": "",
+          "reporter": "신동수 (엑셀 접수자)",
+          "officerContact": "강창구 / 010-8245-0409",
+          "filedBy": "신동수",
+          "companyRepresentative": "윤진오",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 31
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 09:52",
+      "reportedParticipants": 900,
+      "reporterName": "임광호",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150823_927.jpg",
+          "sha256": "c9653d08650c68ee6ef276a38c2dc58de1991d0628cfeb265e19cddef4fb3623"
+        }
+      ]
     },
     {
       "no": 30,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-001065",
       "company": "(주)반도건설",
-      "location": "서울특별시 강남구 테헤란로7길 12, 11층 (역삼동,허바허바빌딩)",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "강남경찰서",
-      "reportedAt": "",
-      "reporter": "신동수 (엑셀 접수자)",
+      "location": "테헤란로7길 12 반도건설 앞 인도",
+      "period": "2026-11-18 13:00 ~ 2026-12-16 13:00 / 매일 00:00 ~ 23:59 (첫날·마지막날 시간 제한)",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울강남경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "임광호",
       "officerContact": "강창구 / 010-8245-0409",
-      "filedBy": "신동수",
+      "filedBy": "임광호",
       "companyRepresentative": "이정렬",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 32
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 상단 개최일시는 00:00~23:59이나 참고사항에 집회 시작일 13:00, 종료일 13:00로 기재되어 첫날·마지막날 제한을 반영. ",
+      "startDate": "2026-11-18",
+      "previousReports": [
+        {
+          "no": 30,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "(주)반도건설",
+          "location": "서울특별시 강남구 테헤란로7길 12, 11층 (역삼동,허바허바빌딩)",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "강남경찰서",
+          "reportedAt": "",
+          "reporter": "신동수 (엑셀 접수자)",
+          "officerContact": "강창구 / 010-8245-0409",
+          "filedBy": "신동수",
+          "companyRepresentative": "이정렬",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 32
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 09:52",
+      "reportedParticipants": 900,
+      "reporterName": "임광호",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150824_612.jpg",
+          "sha256": "f3e8aa4308ec8251d930e96c7f5a0a8ad4f8c98b4cfc9ab5f94b948e44cd94ad"
+        }
+      ]
     },
     {
       "no": 31,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-001058",
       "company": "아이에스동서(주)",
-      "location": "서울특별시 강남구 학동로 231, 논현백영센터",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "강남경찰서",
-      "reportedAt": "",
-      "reporter": "신동수 (엑셀 접수자)",
+      "location": "학동로 231 논현백영센터 앞 인도",
+      "period": "2026-11-18 13:00 ~ 2026-12-16 13:00 / 매일 00:00 ~ 23:59 (첫날·마지막날 시간 제한)",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울강남경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "임광호",
       "officerContact": "이희형 / 010-8721-8469",
-      "filedBy": "신동수",
+      "filedBy": "임광호",
       "companyRepresentative": "권혁운",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 33
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 상단 개최일시는 00:00~23:59이나 참고사항에 집회 시작일 13:00, 종료일 13:00로 기재되어 첫날·마지막날 제한을 반영. ",
+      "startDate": "2026-11-18",
+      "previousReports": [
+        {
+          "no": 31,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "아이에스동서(주)",
+          "location": "서울특별시 강남구 학동로 231, 논현백영센터",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "강남경찰서",
+          "reportedAt": "",
+          "reporter": "신동수 (엑셀 접수자)",
+          "officerContact": "이희형 / 010-8721-8469",
+          "filedBy": "신동수",
+          "companyRepresentative": "권혁운",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 33
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 09:52",
+      "reportedParticipants": 900,
+      "reporterName": "임광호",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150824_378.jpg",
+          "sha256": "b73b2d493d40b09acad60081ca4d27e393e087b6c364931d339969698bdab970"
+        }
+      ]
     },
     {
       "no": 32,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-000485",
       "company": "삼성물산 주식회사,삼성이엔에이",
-      "location": "서울특별시 강동구 상일로 6길 26 삼성E&A",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "강동경찰서",
-      "reportedAt": "",
-      "reporter": "신동수 (엑셀 접수자)",
-      "officerContact": "박태민 / 010-4812-9586",
-      "filedBy": "신동수",
+      "location": "강동구 상일로6길 26 삼성E&A 앞 좌우측 인도 및 하위 1개 차로 (출입구 제외, 출입구로부터 3m 이상 띄우고 선순위 집회 개최 시 정보관과 협의)",
+      "period": "2026-11-20 10:07 ~ 2026-12-16 23:59 / 매일 00:00 ~ 23:59 (첫날·마지막날 시간 제한)",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울강동경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "임광호",
+      "officerContact": "박태민 / 010-7383-9586",
+      "filedBy": "임광호",
       "companyRepresentative": "남궁홍",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 35
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 상단 개최일시는 00:00~23:59이나 참고사항에 집회 시작일 10:07, 종료일 23:59로 기재되어 첫날·마지막날 제한을 반영. ",
+      "startDate": "2026-11-20",
+      "previousReports": [
+        {
+          "no": 32,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "삼성물산 주식회사,삼성이엔에이",
+          "location": "서울특별시 강동구 상일로 6길 26 삼성E&A",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "강동경찰서",
+          "reportedAt": "",
+          "reporter": "신동수 (엑셀 접수자)",
+          "officerContact": "박태민 / 010-4812-9586",
+          "filedBy": "신동수",
+          "companyRepresentative": "남궁홍",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 35
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 12:34",
+      "reportedParticipants": 900,
+      "reporterName": "임광호",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150809_599.jpg",
+          "sha256": "b4aa9d32ec6093eac8f8b891d50f9786925bcf3d464b3ffda9d281bc84b26d89"
+        }
+      ]
     },
     {
       "no": 33,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-000486",
       "company": "일신건영(주)",
-      "location": "서울특별시 강동구 성내로6길 11, 4층 (성내동, 삼원타워)",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "강동경찰서",
-      "reportedAt": "",
-      "reporter": "신동수 (엑셀 접수자)",
+      "location": "강동구 성내로6길 11, 4층(성내동, 삼원타워) 앞 좌우측 인도 및 하위 1개 차로 (출입구 제외, 출입구로부터 3m 이상 띄우고 선순위 집회 개최 시 정보관과 협의)",
+      "period": "2026-11-20 10:07 ~ 2026-12-16 23:59 / 매일 00:00 ~ 23:59 (첫날·마지막날 시간 제한)",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울강동경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "임광호",
       "officerContact": "정소영 / 010-2780-4340",
-      "filedBy": "신동수",
+      "filedBy": "임광호",
       "companyRepresentative": "조태성",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 36
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 상단 개최일시는 00:00~23:59이나 참고사항에 집회 시작일 10:07, 종료일 23:59로 기재되어 첫날·마지막날 제한을 반영. ",
+      "startDate": "2026-11-20",
+      "previousReports": [
+        {
+          "no": 33,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "일신건영(주)",
+          "location": "서울특별시 강동구 성내로6길 11, 4층 (성내동, 삼원타워)",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "강동경찰서",
+          "reportedAt": "",
+          "reporter": "신동수 (엑셀 접수자)",
+          "officerContact": "정소영 / 010-2780-4340",
+          "filedBy": "신동수",
+          "companyRepresentative": "조태성",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 36
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 12:36",
+      "reportedParticipants": 900,
+      "reporterName": "임광호",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150809_737.jpg",
+          "sha256": "5cef80ecb4b10956afb44db23c64883a8236d915d7ad16b1448f40e6a87740b5"
+        }
+      ]
     },
     {
       "no": 34,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-000730",
       "company": "대방건설㈜,대방산업개발㈜",
-      "location": "서울특별시 강서구 공항대로 248 대방빌딩 7층",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "강서경찰서",
-      "reportedAt": "",
-      "reporter": "김기표 (엑셀 접수자)",
+      "location": "공항대로 248 대방빌딩 입구 (출입구 제외, 통행로 확보)",
+      "period": "2026-11-18 ~ 2026-12-16 / 매일 00:00 ~ 23:59",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울강서경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "김기표",
       "officerContact": "박경철 / 010-9048-5610",
       "filedBy": "김기표",
       "companyRepresentative": "윤대인",
@@ -845,20 +1804,54 @@
         "sheet": "도급순위100(26.10.20)",
         "row": 38
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 11월 18·19일에는 집회시위를 가급적 피하고 개최 시 전날 담당정보관에게 연락하도록 참고사항 기재. ",
+      "startDate": "2026-11-18",
+      "previousReports": [
+        {
+          "no": 34,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "대방건설㈜,대방산업개발㈜",
+          "location": "서울특별시 강서구 공항대로 248 대방빌딩 7층",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "강서경찰서",
+          "reportedAt": "",
+          "reporter": "김기표 (엑셀 접수자)",
+          "officerContact": "박경철 / 010-9048-5610",
+          "filedBy": "김기표",
+          "companyRepresentative": "윤대인",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 38
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 13:20",
+      "reportedParticipants": 900,
+      "reporterName": "김기표",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150915_378.jpg",
+          "sha256": "c633b11f6dd2dc37824506940d43fb34b51ab02d2872c42c3c75e9d64c3ef25f"
+        }
+      ]
     },
     {
       "no": 35,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-000731",
       "company": "자이씨앤에이(주)",
-      "location": "서울특별시 강서구 마곡중앙로 105-7",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "강서경찰서",
-      "reportedAt": "",
-      "reporter": "김기표 (엑셀 접수자)",
+      "location": "마곡중앙로 105-7 K스퀘어 앞 (출입구 제외 및 통행로 확보)",
+      "period": "2026-11-18 ~ 2026-12-16 / 매일 00:00 ~ 23:59",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울강서경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "김기표",
       "officerContact": "박재웅 / 010-3583-0914",
       "filedBy": "김기표",
       "companyRepresentative": "안채종",
@@ -867,20 +1860,54 @@
         "sheet": "도급순위100(26.10.20)",
         "row": 39
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 11월 18·19일에는 집회시위를 가급적 피하고 개최 시 전날 담당정보관에게 연락하도록 참고사항 기재. ",
+      "startDate": "2026-11-18",
+      "previousReports": [
+        {
+          "no": 35,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "자이씨앤에이(주)",
+          "location": "서울특별시 강서구 마곡중앙로 105-7",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "강서경찰서",
+          "reportedAt": "",
+          "reporter": "김기표 (엑셀 접수자)",
+          "officerContact": "박재웅 / 010-3583-0914",
+          "filedBy": "김기표",
+          "companyRepresentative": "안채종",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 39
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 13:39",
+      "reportedParticipants": 900,
+      "reporterName": "김기표",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150915_222.jpg",
+          "sha256": "6e42e7d0bd44c36f763ed09349774f74778b8bf17d076599b741d857b5b65972"
+        }
+      ]
     },
     {
       "no": 36,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-000610",
       "company": "제일건설㈜",
-      "location": "서울특별시 동작구 동작대로59 제일건설 서울지사",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "동작경찰서",
-      "reportedAt": "",
-      "reporter": "김기표 (엑셀 접수자)",
+      "location": "동작대로 59 제일건설 서울지사 (출입구 제외, 보행로 확보)",
+      "period": "2026-11-20 ~ 2026-12-16 / 매일 00:00 ~ 23:59",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울동작경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "김기표",
       "officerContact": "이지연 / 010-8778-9505",
       "filedBy": "김기표",
       "companyRepresentative": "",
@@ -889,20 +1916,54 @@
         "sheet": "도급순위100(26.10.20)",
         "row": 42
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. ",
+      "startDate": "2026-11-20",
+      "previousReports": [
+        {
+          "no": 36,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "제일건설㈜",
+          "location": "서울특별시 동작구 동작대로59 제일건설 서울지사",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "동작경찰서",
+          "reportedAt": "",
+          "reporter": "김기표 (엑셀 접수자)",
+          "officerContact": "이지연 / 010-8778-9505",
+          "filedBy": "김기표",
+          "companyRepresentative": "",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 42
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 11:00",
+      "reportedParticipants": 900,
+      "reporterName": "김기표",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150855_724.jpg",
+          "sha256": "6f5313e213e1bdbf518a5d240e1f9a663c1304f19752a6ca4f0afab6c037b791"
+        }
+      ]
     },
     {
       "no": 37,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-004897",
       "company": "에이스건설(주)",
-      "location": "서울특별시 영등포구 경인로 775, 2동 401호 (에이스하이테크시티)",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "영등포경찰서",
-      "reportedAt": "",
-      "reporter": "김기표 (엑셀 접수자)",
+      "location": "영등포구 경인로 775, 에이스하이테크시티 주변 인도 및 1개 차로 (진출입로·통행로 확보)",
+      "period": "2026-11-18 13:15 ~ 2026-12-16 23:59 / 매일 00:00 ~ 23:59 (첫날·마지막날 시간 제한)",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울영등포경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "김기표",
       "officerContact": "조익환 / 010-2224-6135",
       "filedBy": "김기표",
       "companyRepresentative": "권보식",
@@ -911,20 +1972,54 @@
         "sheet": "도급순위100(26.10.20)",
         "row": 44
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 상단 개최일시는 00:00~23:59이나 참고사항에 집회 시작일 13:15, 종료일 23:59로 기재되어 첫날·마지막날 제한을 반영. ",
+      "startDate": "2026-11-18",
+      "previousReports": [
+        {
+          "no": 37,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "에이스건설(주)",
+          "location": "서울특별시 영등포구 경인로 775, 2동 401호 (에이스하이테크시티)",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "영등포경찰서",
+          "reportedAt": "",
+          "reporter": "김기표 (엑셀 접수자)",
+          "officerContact": "조익환 / 010-2224-6135",
+          "filedBy": "김기표",
+          "companyRepresentative": "권보식",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 44
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 11:20",
+      "reportedParticipants": 200,
+      "reporterName": "김기표",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150902_139.jpg",
+          "sha256": "b0e51e77117305a1016dceef0f0adc640c5a1019cce47480022a36103a7d3c8d"
+        }
+      ]
     },
     {
       "no": 38,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-004893",
       "company": "(주)동양",
-      "location": "서울특별시 영등포구 국제금융로2길 24 (여의도동)",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "영등포경찰서",
-      "reportedAt": "",
-      "reporter": "김기표 (엑셀 접수자)",
+      "location": "영등포구 국제금융로2길 24, 주변 인도 및 1개 차로 (진출입로·통행로 확보)",
+      "period": "2026-11-18 13:15 ~ 2026-12-16 23:59 / 매일 00:00 ~ 23:59 (첫날·마지막날 시간 제한)",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울영등포경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "김기표",
       "officerContact": "시정민 / 010-3231-1030",
       "filedBy": "김기표",
       "companyRepresentative": "정진학",
@@ -933,20 +2028,54 @@
         "sheet": "도급순위100(26.10.20)",
         "row": 45
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 상단 개최일시는 00:00~23:59이나 참고사항에 집회 시작일 13:15, 종료일 23:59로 기재되어 첫날·마지막날 제한을 반영. 정보관 성명 필기 확인 중. 기존 성명·연락처 유지. ",
+      "startDate": "2026-11-18",
+      "previousReports": [
+        {
+          "no": 38,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "(주)동양",
+          "location": "서울특별시 영등포구 국제금융로2길 24 (여의도동)",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "영등포경찰서",
+          "reportedAt": "",
+          "reporter": "김기표 (엑셀 접수자)",
+          "officerContact": "시정민 / 010-3231-1030",
+          "filedBy": "김기표",
+          "companyRepresentative": "정진학",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 45
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 11:20",
+      "reportedParticipants": 200,
+      "reporterName": "김기표",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150902_381.jpg",
+          "sha256": "7cd4384469237d759d982c6fda1f1d6bd80687d95428c3d2a0a5c502ec681022"
+        }
+      ]
     },
     {
       "no": 39,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-004900",
       "company": "일성건설(주)",
-      "location": "서울특별시 영등포구 국회대로 62길 21, 4,5층 (여의도동, 동성빌딩)",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "영등포경찰서",
-      "reportedAt": "",
-      "reporter": "김기표 (엑셀 접수자)",
+      "location": "영등포구 국회대로62길 21, 동성빌딩 주변 인도 및 1개 차로 (진출입로·통행로 확보)",
+      "period": "2026-11-18 12:00 ~ 2026-12-16 23:59 / 매일 00:00 ~ 23:59 (첫날·마지막날 시간 제한)",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울영등포경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "김기표",
       "officerContact": "윤재열 / 010-4373-1143",
       "filedBy": "김기표",
       "companyRepresentative": "유필상",
@@ -955,20 +2084,54 @@
         "sheet": "도급순위100(26.10.20)",
         "row": 46
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 상단 개최일시는 00:00~23:59이나 참고사항에 집회 시작일 12:00, 종료일 23:59로 기재되어 첫날·마지막날 제한을 반영. ",
+      "startDate": "2026-11-18",
+      "previousReports": [
+        {
+          "no": 39,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "일성건설(주)",
+          "location": "서울특별시 영등포구 국회대로 62길 21, 4,5층 (여의도동, 동성빌딩)",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "영등포경찰서",
+          "reportedAt": "",
+          "reporter": "김기표 (엑셀 접수자)",
+          "officerContact": "윤재열 / 010-4373-1143",
+          "filedBy": "김기표",
+          "companyRepresentative": "유필상",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 46
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 11:20",
+      "reportedParticipants": 200,
+      "reporterName": "김기표",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150902_050.jpg",
+          "sha256": "f72aaeff3b54a4603e45ee2aaabf4d28f421a6894276b342deb52aa7c7620c47"
+        }
+      ]
     },
     {
       "no": 40,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-004899",
       "company": "(주)태영건설",
-      "location": "서울특별시 영등포구 여의공원로 111",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "영등포경찰서",
-      "reportedAt": "",
-      "reporter": "김기표 (엑셀 접수자)",
+      "location": "영등포구 여의공원로 111, 태영빌딩 주변 인도 및 1개 차로 (진출입로·통행로 확보)",
+      "period": "2026-11-18 13:15 ~ 2026-12-16 23:59 / 매일 00:00 ~ 23:59 (첫날·마지막날 시간 제한)",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울영등포경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "김기표",
       "officerContact": "최영하 / 010-8564-6152",
       "filedBy": "김기표",
       "companyRepresentative": "이재규",
@@ -977,20 +2140,54 @@
         "sheet": "도급순위100(26.10.20)",
         "row": 47
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 상단 개최일시는 00:00~23:59이나 참고사항에 집회 시작일 13:15, 종료일 23:59로 기재되어 첫날·마지막날 제한을 반영. ",
+      "startDate": "2026-11-18",
+      "previousReports": [
+        {
+          "no": 40,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "(주)태영건설",
+          "location": "서울특별시 영등포구 여의공원로 111",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "영등포경찰서",
+          "reportedAt": "",
+          "reporter": "김기표 (엑셀 접수자)",
+          "officerContact": "최영하 / 010-8564-6152",
+          "filedBy": "김기표",
+          "companyRepresentative": "이재규",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 47
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 11:20",
+      "reportedParticipants": 200,
+      "reporterName": "김기표",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150902_535.jpg",
+          "sha256": "7961745b87d94828931638fda9c7a42d2fa1ca3a6d75d716ed04e9f786cb2aff"
+        }
+      ]
     },
     {
       "no": 41,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-004898",
       "company": "디엘건설(주)",
-      "location": "서울특별시 영등포구 여의대로 24 여의도 전경련회관 24~26층",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "영등포경찰서",
-      "reportedAt": "",
-      "reporter": "김기표 (엑셀 접수자)",
+      "location": "영등포구 여의대로 24, 전경련회관 앞 인도 및 1개 차로 (진출입로·통행로 확보)",
+      "period": "2026-11-18 13:15 ~ 2026-12-16 23:59 / 매일 00:00 ~ 23:59 (첫날·마지막날 시간 제한)",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울영등포경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "김기표",
       "officerContact": "이태성 / 010-9025-5616",
       "filedBy": "김기표",
       "companyRepresentative": "곽수윤",
@@ -999,20 +2196,54 @@
         "sheet": "도급순위100(26.10.20)",
         "row": 48
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 상단 개최일시는 00:00~23:59이나 참고사항에 집회 시작일 13:15, 종료일 23:59로 기재되어 첫날·마지막날 제한을 반영. ",
+      "startDate": "2026-11-18",
+      "previousReports": [
+        {
+          "no": 41,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "디엘건설(주)",
+          "location": "서울특별시 영등포구 여의대로 24 여의도 전경련회관 24~26층",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "영등포경찰서",
+          "reportedAt": "",
+          "reporter": "김기표 (엑셀 접수자)",
+          "officerContact": "이태성 / 010-9025-5616",
+          "filedBy": "김기표",
+          "companyRepresentative": "곽수윤",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 48
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 11:20",
+      "reportedParticipants": 200,
+      "reporterName": "김기표",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150901_611.jpg",
+          "sha256": "e3583e3e07451ec40b4e56c82fe14831b98452434663d0a9191d8e341a4c8f90"
+        }
+      ]
     },
     {
       "no": 42,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-004895",
       "company": "양우건설(주)",
-      "location": "서울특별시 영등포구 영등포로35길 10 양우화인텔",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "영등포경찰서",
-      "reportedAt": "",
-      "reporter": "김기표 (엑셀 접수자)",
+      "location": "영등포구 영등포로35길 10, 양우화인텔 주변 인도 및 1개 차로 (진출입로·통행로 확보)",
+      "period": "2026-11-18 13:15 ~ 2026-12-16 23:59 / 매일 00:00 ~ 23:59 (첫날·마지막날 시간 제한)",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울영등포경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "김기표",
       "officerContact": "조익환 / 010-2224-6135",
       "filedBy": "김기표",
       "companyRepresentative": "고문철",
@@ -1021,20 +2252,54 @@
         "sheet": "도급순위100(26.10.20)",
         "row": 49
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 상단 개최일시는 00:00~23:59이나 참고사항에 집회 시작일 13:15, 종료일 23:59로 기재되어 첫날·마지막날 제한을 반영. ",
+      "startDate": "2026-11-18",
+      "previousReports": [
+        {
+          "no": 42,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "양우건설(주)",
+          "location": "서울특별시 영등포구 영등포로35길 10 양우화인텔",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "영등포경찰서",
+          "reportedAt": "",
+          "reporter": "김기표 (엑셀 접수자)",
+          "officerContact": "조익환 / 010-2224-6135",
+          "filedBy": "김기표",
+          "companyRepresentative": "고문철",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 49
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 11:20",
+      "reportedParticipants": 200,
+      "reporterName": "김기표",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150902_551.jpg",
+          "sha256": "726e4dc556028336d821f15bba6cec330785186274693057429ef6312917d963"
+        }
+      ]
     },
     {
       "no": 43,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-004894",
       "company": "동문건설(주)",
-      "location": "서울특별시 영등포구 의사당대로1길 25, 8층 (여의도동, 하남빌딩)",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "영등포경찰서",
-      "reportedAt": "",
-      "reporter": "김기표 (엑셀 접수자)",
+      "location": "영등포구 의사당대로1길 25, 하남빌딩 주변 인도 및 1개 차로 (진출입로·통행로 확보)",
+      "period": "2026-11-18 13:15 ~ 2026-12-16 23:59 / 매일 00:00 ~ 23:59 (첫날·마지막날 시간 제한)",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울영등포경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "김기표",
       "officerContact": "시정민 / 010-3231-1030",
       "filedBy": "김기표",
       "companyRepresentative": "이상주",
@@ -1043,20 +2308,54 @@
         "sheet": "도급순위100(26.10.20)",
         "row": 50
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 상단 개최일시는 00:00~23:59이나 참고사항에 집회 시작일 13:15, 종료일 23:59로 기재되어 첫날·마지막날 제한을 반영. 정보관 성명 필기 확인 중. 기존 성명·연락처 유지. ",
+      "startDate": "2026-11-18",
+      "previousReports": [
+        {
+          "no": 43,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "동문건설(주)",
+          "location": "서울특별시 영등포구 의사당대로1길 25, 8층 (여의도동, 하남빌딩)",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "영등포경찰서",
+          "reportedAt": "",
+          "reporter": "김기표 (엑셀 접수자)",
+          "officerContact": "시정민 / 010-3231-1030",
+          "filedBy": "김기표",
+          "companyRepresentative": "이상주",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 50
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 11:20",
+      "reportedParticipants": 200,
+      "reporterName": "김기표",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150902_477.jpg",
+          "sha256": "41d3817f323908f2a7aa11c446fc8ce76898ebf5097fa07b981d34552690186e"
+        }
+      ]
     },
     {
       "no": 44,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-004896",
       "company": "중흥건설",
-      "location": "서울특별시 영등포구 당산동5가 9-13, 당산역2차 SK V1타워 14층-15층",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "영등포경찰서",
-      "reportedAt": "",
-      "reporter": "김기표 (엑셀 접수자)",
+      "location": "영등포구 당산동5가 9-13, 당산SKV1타워 중흥건설 주변 인도 및 1개 차로 (진출입로·통행로 확보)",
+      "period": "2026-11-18 17:23 ~ 2026-12-16 23:59 / 매일 00:00 ~ 23:59 (첫날·마지막날 시간 제한)",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울영등포경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "김기표",
       "officerContact": "조익환 / 010-2224-6135",
       "filedBy": "김기표",
       "companyRepresentative": "",
@@ -1065,20 +2364,54 @@
         "sheet": "도급순위100(26.10.20)",
         "row": 51
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 상단 개최일시는 00:00~23:59이나 참고사항에 집회 시작일 17:23, 종료일 23:59로 기재되어 첫날·마지막날 제한을 반영. ",
+      "startDate": "2026-11-18",
+      "previousReports": [
+        {
+          "no": 44,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "중흥건설",
+          "location": "서울특별시 영등포구 당산동5가 9-13, 당산역2차 SK V1타워 14층-15층",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "영등포경찰서",
+          "reportedAt": "",
+          "reporter": "김기표 (엑셀 접수자)",
+          "officerContact": "조익환 / 010-2224-6135",
+          "filedBy": "김기표",
+          "companyRepresentative": "",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 51
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 11:20",
+      "reportedParticipants": 300,
+      "reporterName": "김기표",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150901_915.jpg",
+          "sha256": "7829b178c1c7f117e60f92723d9e01d65b36af19be42568bffc238d53562374d"
+        }
+      ]
     },
     {
       "no": 45,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-004901",
       "company": "한국노총",
-      "location": "서울특별시 영등포구 국제금융로6길 26",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "영등포경찰서",
-      "reportedAt": "",
-      "reporter": "김기표 (엑셀 접수자)",
+      "location": "영등포구 국제금융로6길 26, 한국노총 주변 인도 및 1개 차로 (진출입로·통행로 확보)",
+      "period": "2026-11-18 13:15 ~ 2026-12-16 23:59 / 매일 00:00 ~ 23:59 (첫날·마지막날 시간 제한)",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울영등포경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "김기표",
       "officerContact": "시정민 / 010-3231-1030",
       "filedBy": "김기표",
       "companyRepresentative": "",
@@ -1087,306 +2420,782 @@
         "sheet": "도급순위100(26.10.20)",
         "row": 52
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 상단 개최일시는 00:00~23:59이나 참고사항에 집회 시작일 13:15, 종료일 23:59로 기재되어 첫날·마지막날 제한을 반영. 정보관 성명 필기 확인 중. 기존 성명·연락처 유지. ",
+      "startDate": "2026-11-18",
+      "previousReports": [
+        {
+          "no": 45,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "한국노총",
+          "location": "서울특별시 영등포구 국제금융로6길 26",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "영등포경찰서",
+          "reportedAt": "",
+          "reporter": "김기표 (엑셀 접수자)",
+          "officerContact": "시정민 / 010-3231-1030",
+          "filedBy": "김기표",
+          "companyRepresentative": "",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 52
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 11:20",
+      "reportedParticipants": 200,
+      "reporterName": "김기표",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150901_755.jpg",
+          "sha256": "d7f56c2ad34d4993b872c2f600671eb04f36404e5dbce8991337cd5a47bf7cdd"
+        }
+      ]
     },
     {
       "no": 46,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-005125",
       "company": "금호건설(주)",
-      "location": "서울특별시 종로구 우정국로 26 센트로폴리스 A동",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "종로경찰서",
-      "reportedAt": "",
-      "reporter": "홍정호 (엑셀 접수자)",
+      "location": "센트로폴리스 금호건설 앞 남측·서측 인도",
+      "period": "2026-11-20 ~ 2026-12-16 / 매일 06:00 ~ 23:59",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울종로경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "",
       "officerContact": "김영열 / 010-6238-7701",
-      "filedBy": "홍정호",
+      "filedBy": "",
       "companyRepresentative": "조완석",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 54
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 새 접수자 성명은 김승희/김승회 중 확인 필요. 기존 접수자 성명은 이전 신고 이력에 보존하고 이번 신고의 접수자 성명은 미입력. 하나의 접수증에 기재된 여섯 장소를 기존 업체별로 구분. 현대건설·현대엔지니어링은 기존 현대빌딩 장소를 각각 유지. 신고인원 900명은 통합 접수증 전체 인원. 주최자 박문철을 신고인으로 입력하지 않음. ",
+      "startDate": "2026-11-20",
+      "previousReports": [
+        {
+          "no": 46,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "금호건설(주)",
+          "location": "서울특별시 종로구 우정국로 26 센트로폴리스 A동",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "종로경찰서",
+          "reportedAt": "",
+          "reporter": "홍정호 (엑셀 접수자)",
+          "officerContact": "김영열 / 010-6238-7701",
+          "filedBy": "홍정호",
+          "companyRepresentative": "조완석",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 54
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 15:10",
+      "reportedParticipants": 900,
+      "reporterName": "",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150919_956.jpg",
+          "sha256": "fd37838094bfe92649480b5a4f27ec071251fe4bb5a2637aa56032bef4ef6c8a"
+        }
+      ]
     },
     {
       "no": 47,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-005125",
       "company": "현대건설(주)",
-      "location": "서울특별시 종로구 율곡로 75 현대빌딩",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "종로경찰서",
-      "reportedAt": "",
-      "reporter": "홍정호 (엑셀 접수자)",
+      "location": "현대빌딩 현대건설 남측·서측 인도",
+      "period": "2026-11-20 ~ 2026-12-16 / 매일 06:00 ~ 23:59",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울종로경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "",
       "officerContact": "고범석 / 010-7123-5899",
-      "filedBy": "홍정호",
+      "filedBy": "",
       "companyRepresentative": "윤영준",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 55
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 새 접수자 성명은 김승희/김승회 중 확인 필요. 기존 접수자 성명은 이전 신고 이력에 보존하고 이번 신고의 접수자 성명은 미입력. 하나의 접수증에 기재된 여섯 장소를 기존 업체별로 구분. 현대건설·현대엔지니어링은 기존 현대빌딩 장소를 각각 유지. 신고인원 900명은 통합 접수증 전체 인원. 주최자 박문철을 신고인으로 입력하지 않음. ",
+      "startDate": "2026-11-20",
+      "previousReports": [
+        {
+          "no": 47,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "현대건설(주)",
+          "location": "서울특별시 종로구 율곡로 75 현대빌딩",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "종로경찰서",
+          "reportedAt": "",
+          "reporter": "홍정호 (엑셀 접수자)",
+          "officerContact": "고범석 / 010-7123-5899",
+          "filedBy": "홍정호",
+          "companyRepresentative": "윤영준",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 55
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 15:10",
+      "reportedParticipants": 900,
+      "reporterName": "",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150919_956.jpg",
+          "sha256": "fd37838094bfe92649480b5a4f27ec071251fe4bb5a2637aa56032bef4ef6c8a"
+        }
+      ]
     },
     {
       "no": 48,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-005125",
       "company": "현대엔지니어링(주)",
-      "location": "서울특별시 종로구 율곡로 75 현대빌딩",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "종로경찰서",
-      "reportedAt": "",
-      "reporter": "홍정호 (엑셀 접수자)",
+      "location": "현대빌딩 현대건설 남측·서측 인도",
+      "period": "2026-11-20 ~ 2026-12-16 / 매일 06:00 ~ 23:59",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울종로경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "",
       "officerContact": "고범석 / 010-7123-5899",
-      "filedBy": "홍정호",
+      "filedBy": "",
       "companyRepresentative": "홍현성",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 56
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 새 접수자 성명은 김승희/김승회 중 확인 필요. 기존 접수자 성명은 이전 신고 이력에 보존하고 이번 신고의 접수자 성명은 미입력. 하나의 접수증에 기재된 여섯 장소를 기존 업체별로 구분. 현대건설·현대엔지니어링은 기존 현대빌딩 장소를 각각 유지. 신고인원 900명은 통합 접수증 전체 인원. 주최자 박문철을 신고인으로 입력하지 않음. ",
+      "startDate": "2026-11-20",
+      "previousReports": [
+        {
+          "no": 48,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "현대엔지니어링(주)",
+          "location": "서울특별시 종로구 율곡로 75 현대빌딩",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "종로경찰서",
+          "reportedAt": "",
+          "reporter": "홍정호 (엑셀 접수자)",
+          "officerContact": "고범석 / 010-7123-5899",
+          "filedBy": "홍정호",
+          "companyRepresentative": "홍현성",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 56
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 15:10",
+      "reportedParticipants": 900,
+      "reporterName": "",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150919_956.jpg",
+          "sha256": "fd37838094bfe92649480b5a4f27ec071251fe4bb5a2637aa56032bef4ef6c8a"
+        }
+      ]
     },
     {
       "no": 49,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-005125",
       "company": "에스케이에코플랜트(주)",
-      "location": "서울특별시 종로구 율곡로2길 19, SK에코플랜트",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "종로경찰서",
-      "reportedAt": "",
-      "reporter": "홍정호 (엑셀 접수자)",
+      "location": "SK에코플랜트 앞 인도",
+      "period": "2026-11-20 ~ 2026-12-16 / 매일 06:00 ~ 23:59",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울종로경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "",
       "officerContact": "김주한 / 010-4019-0173",
-      "filedBy": "홍정호",
+      "filedBy": "",
       "companyRepresentative": "박경일",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 57
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 새 접수자 성명은 김승희/김승회 중 확인 필요. 기존 접수자 성명은 이전 신고 이력에 보존하고 이번 신고의 접수자 성명은 미입력. 하나의 접수증에 기재된 여섯 장소를 기존 업체별로 구분. 현대건설·현대엔지니어링은 기존 현대빌딩 장소를 각각 유지. 신고인원 900명은 통합 접수증 전체 인원. 주최자 박문철을 신고인으로 입력하지 않음. ",
+      "startDate": "2026-11-20",
+      "previousReports": [
+        {
+          "no": 49,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "에스케이에코플랜트(주)",
+          "location": "서울특별시 종로구 율곡로2길 19, SK에코플랜트",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "종로경찰서",
+          "reportedAt": "",
+          "reporter": "홍정호 (엑셀 접수자)",
+          "officerContact": "김주한 / 010-4019-0173",
+          "filedBy": "홍정호",
+          "companyRepresentative": "박경일",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 57
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 15:10",
+      "reportedParticipants": 900,
+      "reporterName": "",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150919_956.jpg",
+          "sha256": "fd37838094bfe92649480b5a4f27ec071251fe4bb5a2637aa56032bef4ef6c8a"
+        }
+      ]
     },
     {
       "no": 50,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-005125",
       "company": "지에스건설(주)",
-      "location": "서울특별시 종로구 종로 33 그랑서울",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "종로경찰서",
-      "reportedAt": "",
-      "reporter": "홍정호 (엑셀 접수자)",
+      "location": "그랑서울 GS건설 앞 인도",
+      "period": "2026-11-20 ~ 2026-12-16 / 매일 06:00 ~ 23:59",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울종로경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "",
       "officerContact": "김민수 / 010-9947-0524",
-      "filedBy": "홍정호",
+      "filedBy": "",
       "companyRepresentative": "임병용",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 58
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 새 접수자 성명은 김승희/김승회 중 확인 필요. 기존 접수자 성명은 이전 신고 이력에 보존하고 이번 신고의 접수자 성명은 미입력. 하나의 접수증에 기재된 여섯 장소를 기존 업체별로 구분. 현대건설·현대엔지니어링은 기존 현대빌딩 장소를 각각 유지. 신고인원 900명은 통합 접수증 전체 인원. 주최자 박문철을 신고인으로 입력하지 않음. ",
+      "startDate": "2026-11-20",
+      "previousReports": [
+        {
+          "no": 50,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "지에스건설(주)",
+          "location": "서울특별시 종로구 종로 33 그랑서울",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "종로경찰서",
+          "reportedAt": "",
+          "reporter": "홍정호 (엑셀 접수자)",
+          "officerContact": "김민수 / 010-9947-0524",
+          "filedBy": "홍정호",
+          "companyRepresentative": "임병용",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 58
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 15:10",
+      "reportedParticipants": 900,
+      "reporterName": "",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150919_956.jpg",
+          "sha256": "fd37838094bfe92649480b5a4f27ec071251fe4bb5a2637aa56032bef4ef6c8a"
+        }
+      ]
     },
     {
       "no": 51,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-005125",
       "company": "씨제이대한통운(주)",
-      "location": "서울특별시 종로구 종로5길 7, Tower 8",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "종로경찰서",
-      "reportedAt": "",
-      "reporter": "홍정호 (엑셀 접수자)",
+      "location": "CJ대한통운(타워8빌딩) 앞 인도",
+      "period": "2026-11-20 ~ 2026-12-16 / 매일 06:00 ~ 23:59",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울종로경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "",
       "officerContact": "김민수 / 010-9947-0524",
-      "filedBy": "홍정호",
+      "filedBy": "",
       "companyRepresentative": "민영학",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 59
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 새 접수자 성명은 김승희/김승회 중 확인 필요. 기존 접수자 성명은 이전 신고 이력에 보존하고 이번 신고의 접수자 성명은 미입력. 하나의 접수증에 기재된 여섯 장소를 기존 업체별로 구분. 현대건설·현대엔지니어링은 기존 현대빌딩 장소를 각각 유지. 신고인원 900명은 통합 접수증 전체 인원. 주최자 박문철을 신고인으로 입력하지 않음. ",
+      "startDate": "2026-11-20",
+      "previousReports": [
+        {
+          "no": 51,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "씨제이대한통운(주)",
+          "location": "서울특별시 종로구 종로5길 7, Tower 8",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "종로경찰서",
+          "reportedAt": "",
+          "reporter": "홍정호 (엑셀 접수자)",
+          "officerContact": "김민수 / 010-9947-0524",
+          "filedBy": "홍정호",
+          "companyRepresentative": "민영학",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 59
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 15:10",
+      "reportedParticipants": 900,
+      "reporterName": "",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150919_956.jpg",
+          "sha256": "fd37838094bfe92649480b5a4f27ec071251fe4bb5a2637aa56032bef4ef6c8a"
+        }
+      ]
     },
     {
       "no": 52,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-005125",
       "company": "SK그룹본사",
-      "location": "서울특별시 종로구 종로 26 SK서린빌딩",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "종로경찰서",
-      "reportedAt": "",
-      "reporter": "홍정호 (엑셀 접수자)",
+      "location": "SK서린빌딩 정문 앞 인도",
+      "period": "2026-11-20 ~ 2026-12-16 / 매일 06:00 ~ 23:59",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울종로경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "",
       "officerContact": "유종관 / 010-9662-3300",
-      "filedBy": "홍정호",
+      "filedBy": "",
       "companyRepresentative": "민영학",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 60
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 새 접수자 성명은 김승희/김승회 중 확인 필요. 기존 접수자 성명은 이전 신고 이력에 보존하고 이번 신고의 접수자 성명은 미입력. 하나의 접수증에 기재된 여섯 장소를 기존 업체별로 구분. 현대건설·현대엔지니어링은 기존 현대빌딩 장소를 각각 유지. 신고인원 900명은 통합 접수증 전체 인원. 주최자 박문철을 신고인으로 입력하지 않음. ",
+      "startDate": "2026-11-20",
+      "previousReports": [
+        {
+          "no": 52,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "SK그룹본사",
+          "location": "서울특별시 종로구 종로 26 SK서린빌딩",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "종로경찰서",
+          "reportedAt": "",
+          "reporter": "홍정호 (엑셀 접수자)",
+          "officerContact": "유종관 / 010-9662-3300",
+          "filedBy": "홍정호",
+          "companyRepresentative": "민영학",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 60
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 15:10",
+      "reportedParticipants": 900,
+      "reporterName": "",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150919_956.jpg",
+          "sha256": "fd37838094bfe92649480b5a4f27ec071251fe4bb5a2637aa56032bef4ef6c8a"
+        }
+      ]
     },
     {
       "no": 53,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-000267",
       "company": "대상건설(주)",
-      "location": "서울특별시 종로구 종로33길 15, 연강빌딩 3층",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "혜화경찰서",
-      "reportedAt": "",
-      "reporter": "홍정호 (엑셀 접수자)",
+      "location": "서울 종로구 종로33길 15, 연강빌딩 앞 인도",
+      "period": "2026-11-19 ~ 2026-12-16 / 매일 00:00 ~ 23:59",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울혜화경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "",
       "officerContact": "신승룡 / 010-6374-2807",
-      "filedBy": "홍정호",
+      "filedBy": "",
       "companyRepresentative": "임용일",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 61
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 새 접수자 성명은 김승희/김승회 중 확인 필요. 기존 접수자 성명은 이전 신고 이력에 보존하고 이번 신고의 접수자 성명은 미입력. ",
+      "startDate": "2026-11-19",
+      "previousReports": [
+        {
+          "no": 53,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "대상건설(주)",
+          "location": "서울특별시 종로구 종로33길 15, 연강빌딩 3층",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "혜화경찰서",
+          "reportedAt": "",
+          "reporter": "홍정호 (엑셀 접수자)",
+          "officerContact": "신승룡 / 010-6374-2807",
+          "filedBy": "홍정호",
+          "companyRepresentative": "임용일",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 61
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 16:00",
+      "reportedParticipants": 900,
+      "reporterName": "",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150923_943.jpg",
+          "sha256": "64ceaf818e916c7a1f90bc0dc7f88a90607ab8688d777792f78fbea66fbf017c"
+        }
+      ]
     },
     {
       "no": 54,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-002246",
       "company": "대우산업개발(주)",
-      "location": "서울특별시 중구 세종대로 17 WISE TOWER 11층",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "남대문경찰서",
-      "reportedAt": "",
-      "reporter": "홍정호 (엑셀 접수자)",
-      "officerContact": "연락준담",
-      "filedBy": "홍정호",
+      "location": "세종대로 17 와이즈타워 앞 인도",
+      "period": "2026-11-20 11:00 ~ 2026-12-16 23:59 / 매일 00:00 ~ 23:59 (첫날·마지막날 시간 제한)",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울남대문경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "",
+      "officerContact": "",
+      "filedBy": "",
       "companyRepresentative": "신수길",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 64
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 상단 개최일시는 00:00~23:59이나 참고사항에 집회 시작일 11:00, 종료일 23:59로 기재되어 첫날·마지막날 제한을 반영. 새 접수자 성명은 김승희/김승회 중 확인 필요. 기존 접수자 성명은 이전 신고 이력에 보존하고 이번 신고의 접수자 성명은 미입력. 접수증에 담당정보관 연락 예정으로 표기되어 이름·번호 미입력. ",
+      "startDate": "2026-11-20",
+      "previousReports": [
+        {
+          "no": 54,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "대우산업개발(주)",
+          "location": "서울특별시 중구 세종대로 17 WISE TOWER 11층",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "남대문경찰서",
+          "reportedAt": "",
+          "reporter": "홍정호 (엑셀 접수자)",
+          "officerContact": "연락준담",
+          "filedBy": "홍정호",
+          "companyRepresentative": "신수길",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 64
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 17:40",
+      "reportedParticipants": 900,
+      "reporterName": "",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150944_418.jpg",
+          "sha256": "c05be9ba8a575c2e9cf4b98d2d99ec3d1d0044feb754a6bc16c8651bc3b7aa09"
+        }
+      ]
     },
     {
       "no": 55,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-002247",
       "company": "(주)부영주택",
-      "location": "서울특별시 중구 세종대로9길 42",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "남대문경찰서",
-      "reportedAt": "",
-      "reporter": "홍정호 (엑셀 접수자)",
-      "officerContact": "연락준담",
-      "filedBy": "홍정호",
+      "location": "세종대로9길 42 (주)부영주택 앞 인도",
+      "period": "2026-11-20 ~ 2026-12-16 / 매일 00:00 ~ 23:59",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울남대문경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "",
+      "officerContact": "",
+      "filedBy": "",
       "companyRepresentative": "최양환",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 65
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 새 접수자 성명은 김승희/김승회 중 확인 필요. 기존 접수자 성명은 이전 신고 이력에 보존하고 이번 신고의 접수자 성명은 미입력. 접수증에 담당정보관 연락 예정으로 표기되어 이름·번호 미입력. ",
+      "startDate": "2026-11-20",
+      "previousReports": [
+        {
+          "no": 55,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "(주)부영주택",
+          "location": "서울특별시 중구 세종대로9길 42",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "남대문경찰서",
+          "reportedAt": "",
+          "reporter": "홍정호 (엑셀 접수자)",
+          "officerContact": "연락준담",
+          "filedBy": "홍정호",
+          "companyRepresentative": "최양환",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 65
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 17:40",
+      "reportedParticipants": 900,
+      "reporterName": "",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150944_321.jpg",
+          "sha256": "f2464e5aea4ba16cb4b04260f7706820b4164f29c679446b8f19fbc1aed91a9e"
+        }
+      ]
     },
     {
       "no": 56,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-002248",
       "company": "신세계건설(주)",
-      "location": "서울특별시 중구 소월로 10 단암타워 21층",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "남대문경찰서",
-      "reportedAt": "",
-      "reporter": "홍정호 (엑셀 접수자)",
-      "officerContact": "연락준담",
-      "filedBy": "홍정호",
+      "location": "소월로 10 단암타워 앞 인도",
+      "period": "2026-11-20 ~ 2026-12-16 / 매일 00:00 ~ 23:59",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울남대문경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "",
+      "officerContact": "",
+      "filedBy": "",
       "companyRepresentative": "정두영",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 66
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 새 접수자 성명은 김승희/김승회 중 확인 필요. 기존 접수자 성명은 이전 신고 이력에 보존하고 이번 신고의 접수자 성명은 미입력. 접수증에 담당정보관 연락 예정으로 표기되어 이름·번호 미입력. ",
+      "startDate": "2026-11-20",
+      "previousReports": [
+        {
+          "no": 56,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "신세계건설(주)",
+          "location": "서울특별시 중구 소월로 10 단암타워 21층",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "남대문경찰서",
+          "reportedAt": "",
+          "reporter": "홍정호 (엑셀 접수자)",
+          "officerContact": "연락준담",
+          "filedBy": "홍정호",
+          "companyRepresentative": "정두영",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 66
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 17:40",
+      "reportedParticipants": 900,
+      "reporterName": "",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150944_477.jpg",
+          "sha256": "912123cd4bc503d829cb773c46a4538122d23bf8d30b4a4cdb16a00c3c4c79b1"
+        }
+      ]
     },
     {
       "no": 57,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-002249",
       "company": "(주)한화",
-      "location": "서울특별시 중구 청계천로 86 (장교동) 한화빌딩",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "남대문경찰서",
-      "reportedAt": "",
-      "reporter": "홍정호 (엑셀 접수자)",
-      "officerContact": "연락준담",
-      "filedBy": "홍정호",
+      "location": "청계천로 86(장교동) 한화빌딩 앞 인도",
+      "period": "2026-11-20 ~ 2026-12-16 / 매일 00:00 ~ 23:59",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울남대문경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "",
+      "officerContact": "",
+      "filedBy": "",
       "companyRepresentative": "김승모",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 67
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 새 접수자 성명은 김승희/김승회 중 확인 필요. 기존 접수자 성명은 이전 신고 이력에 보존하고 이번 신고의 접수자 성명은 미입력. 접수증에 담당정보관 연락 예정으로 표기되어 이름·번호 미입력. ",
+      "startDate": "2026-11-20",
+      "previousReports": [
+        {
+          "no": 57,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "(주)한화",
+          "location": "서울특별시 중구 청계천로 86 (장교동) 한화빌딩",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "남대문경찰서",
+          "reportedAt": "",
+          "reporter": "홍정호 (엑셀 접수자)",
+          "officerContact": "연락준담",
+          "filedBy": "홍정호",
+          "companyRepresentative": "김승모",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 67
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 17:40",
+      "reportedParticipants": 900,
+      "reporterName": "",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150944_189.jpg",
+          "sha256": "3933f5c255cd643dfbe84c6b8c927d4c7461a91d47c74790f859d33f34f5f8bf"
+        }
+      ]
     },
     {
       "no": 58,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-000409",
       "company": "남광토건(주)",
-      "location": "서울특별시 서대문구 충정로 29, 5층 (동아일보)",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "서대문경찰서",
-      "reportedAt": "",
-      "reporter": "홍정호 (엑셀 접수자)",
+      "location": "서울 서대문구 충정로 29 남광토건 본사 앞 인도",
+      "period": "2026-11-20 ~ 2026-12-16 / 매일 00:00 ~ 23:59",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울서대문경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "",
       "officerContact": "신동훈 / 010-9885-9940",
-      "filedBy": "홍정호",
+      "filedBy": "",
       "companyRepresentative": "임민규",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 70
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 새 접수자 성명은 김승희/김승회 중 확인 필요. 기존 접수자 성명은 이전 신고 이력에 보존하고 이번 신고의 접수자 성명은 미입력. ",
+      "startDate": "2026-11-20",
+      "previousReports": [
+        {
+          "no": 58,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "남광토건(주)",
+          "location": "서울특별시 서대문구 충정로 29, 5층 (동아일보)",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "서대문경찰서",
+          "reportedAt": "",
+          "reporter": "홍정호 (엑셀 접수자)",
+          "officerContact": "신동훈 / 010-9885-9940",
+          "filedBy": "홍정호",
+          "companyRepresentative": "임민규",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 70
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 19:10",
+      "reportedParticipants": 400,
+      "reporterName": "",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150939_166.jpg",
+          "sha256": "42ff978ed3667ce46b4a8ccf2ce7153a5d5e48c76b0a33c4a7c547f70e92e0a6"
+        }
+      ]
     },
     {
       "no": 59,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-002850",
       "company": "신동아건설(주)",
-      "location": "서울특별시 용산구 이촌로 352 신동아빌딩",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "용산경찰서",
-      "reportedAt": "",
-      "reporter": "김기표 (엑셀 접수자)",
+      "location": "서울시 용산구 이촌로 352 신동아건설 빌딩 앞 인도 (보행자·차량 통행로 확보)",
+      "period": "2026-11-20 ~ 2026-12-16 / 매일 00:00 ~ 23:59",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울용산경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "김기표",
       "officerContact": "오동규 / 010-7437-4276",
       "filedBy": "김기표",
       "companyRepresentative": "우수영",
@@ -1395,20 +3204,54 @@
         "sheet": "도급순위100(26.10.20)",
         "row": 73
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. ",
+      "startDate": "2026-11-20",
+      "previousReports": [
+        {
+          "no": 59,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "신동아건설(주)",
+          "location": "서울특별시 용산구 이촌로 352 신동아빌딩",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "용산경찰서",
+          "reportedAt": "",
+          "reporter": "김기표 (엑셀 접수자)",
+          "officerContact": "오동규 / 010-7437-4276",
+          "filedBy": "김기표",
+          "companyRepresentative": "우수영",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 73
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 09:11",
+      "reportedParticipants": 200,
+      "reporterName": "김기표",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150908_930.jpg",
+          "sha256": "fa7a86e2beebd5506143d76b56c95145e1e51a057e72c55d9659a577f87c5f29"
+        }
+      ]
     },
     {
       "no": 60,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-002849",
       "company": "HDC 현대산업개발(주)",
-      "location": "서울특별시 용산구 한강대로23길 55, 9층 (한강로3가, 현대아이파크몰)",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "용산경찰서",
-      "reportedAt": "",
-      "reporter": "김기표 (엑셀 접수자)",
+      "location": "서울시 용산구 용산역 잔디광장 남측 인도 및 1개 차로 (보행자·차량 통행로 확보)",
+      "period": "2026-11-20 ~ 2026-12-16 / 매일 00:00 ~ 23:59",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울용산경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "김기표",
       "officerContact": "김진선 / 010-3080-8338",
       "filedBy": "김기표",
       "companyRepresentative": "최익훈",
@@ -1417,20 +3260,54 @@
         "sheet": "도급순위100(26.10.20)",
         "row": 74
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 김진선 정보관 전화번호는 원본 필기와 기존 데이터가 달라 확인 중. 기존 번호를 유지함. ",
+      "startDate": "2026-11-20",
+      "previousReports": [
+        {
+          "no": 60,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "HDC 현대산업개발(주)",
+          "location": "서울특별시 용산구 한강대로23길 55, 9층 (한강로3가, 현대아이파크몰)",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "용산경찰서",
+          "reportedAt": "",
+          "reporter": "김기표 (엑셀 접수자)",
+          "officerContact": "김진선 / 010-3080-8338",
+          "filedBy": "김기표",
+          "companyRepresentative": "최익훈",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 74
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 09:10",
+      "reportedParticipants": 200,
+      "reporterName": "김기표",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150909_050.jpg",
+          "sha256": "54df18f148b17ba3099ef0791e7cac46d1f0e119377790f4a5ee86b44893ff0e"
+        }
+      ]
     },
     {
       "no": 61,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-002848",
       "company": "(주)에이치제이중공업",
-      "location": "서울특별시 용산구 한강대로71길 4 (갈월동)",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "용산경찰서",
-      "reportedAt": "",
-      "reporter": "김기표 (엑셀 접수자)",
+      "location": "서울시 용산구 한강대로71길 4 HJ중공업 앞 인도 및 포켓차로 (보행자·차량 통행로 확보)",
+      "period": "2026-11-20 ~ 2026-12-16 / 매일 00:00 ~ 23:59",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울용산경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "김기표",
       "officerContact": "최영균 / 010-3890-2010",
       "filedBy": "김기표",
       "companyRepresentative": "김완석",
@@ -1439,20 +3316,54 @@
         "sheet": "도급순위100(26.10.20)",
         "row": 75
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. ",
+      "startDate": "2026-11-20",
+      "previousReports": [
+        {
+          "no": 61,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "(주)에이치제이중공업",
+          "location": "서울특별시 용산구 한강대로71길 4 (갈월동)",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "용산경찰서",
+          "reportedAt": "",
+          "reporter": "김기표 (엑셀 접수자)",
+          "officerContact": "최영균 / 010-3890-2010",
+          "filedBy": "김기표",
+          "companyRepresentative": "김완석",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 75
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 09:10",
+      "reportedParticipants": 200,
+      "reporterName": "김기표",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150908_997.jpg",
+          "sha256": "5bb109d062f301338f3b131fcb5a9123d4d4fc43d47e8b0fd11f478df167cc70"
+        }
+      ]
     },
     {
       "no": 62,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-002847",
       "company": "진흥기업(주)",
-      "location": "서울특별시 용산구 후암로 27 (후암동)",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "용산경찰서",
-      "reportedAt": "",
-      "reporter": "김기표 (엑셀 접수자)",
+      "location": "서울시 용산구 후암로 27 진흥기업 앞 인도 및 1개 차로 (보행자·차량 통행로 확보)",
+      "period": "2026-11-20 ~ 2026-12-16 / 매일 00:00 ~ 23:59",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울용산경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "김기표",
       "officerContact": "김재환 / 010-9967-1059",
       "filedBy": "김기표",
       "companyRepresentative": "김태균",
@@ -1461,96 +3372,300 @@
         "sheet": "도급순위100(26.10.20)",
         "row": 76
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. ",
+      "startDate": "2026-11-20",
+      "previousReports": [
+        {
+          "no": 62,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "진흥기업(주)",
+          "location": "서울특별시 용산구 후암로 27 (후암동)",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "용산경찰서",
+          "reportedAt": "",
+          "reporter": "김기표 (엑셀 접수자)",
+          "officerContact": "김재환 / 010-9967-1059",
+          "filedBy": "김기표",
+          "companyRepresentative": "김태균",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 76
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 09:09",
+      "reportedParticipants": 200,
+      "reporterName": "김기표",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150908_790.jpg",
+          "sha256": "b5e864c21f664080677ceed4d6b29201d7990989b62d89ec610167f55a27498a"
+        }
+      ]
     },
     {
       "no": 63,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-000707",
       "company": "효성중공업(주)",
-      "location": "서울특별시 마포구 마포대로 119 (공덕동)",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "마포경찰서",
-      "reportedAt": "",
-      "reporter": "홍정호 (엑셀 접수자)",
+      "location": "마포대로 119 효성본사 앞 인도 및 하위 1개 차로 (지도 참조, 출입·통행로 확보 및 사유지 제외)",
+      "period": "2026-11-20 12:00 ~ 2026-12-16 23:59 / 매일 00:00 ~ 23:59 (첫날·마지막날 시간 제한)",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울마포경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "",
       "officerContact": "강봉조 / 010-4038-0335",
-      "filedBy": "홍정호",
+      "filedBy": "",
       "companyRepresentative": "양동기",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 78
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 상단 개최일시는 00:00~23:59이나 참고사항에 집회 시작일 12:00, 종료일 23:59로 기재되어 첫날·마지막날 제한을 반영. 새 접수자 성명은 김승희/김승회 중 확인 필요. 기존 접수자 성명은 이전 신고 이력에 보존하고 이번 신고의 접수자 성명은 미입력. ",
+      "startDate": "2026-11-20",
+      "previousReports": [
+        {
+          "no": 63,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "효성중공업(주)",
+          "location": "서울특별시 마포구 마포대로 119 (공덕동)",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "마포경찰서",
+          "reportedAt": "",
+          "reporter": "홍정호 (엑셀 접수자)",
+          "officerContact": "강봉조 / 010-4038-0335",
+          "filedBy": "홍정호",
+          "companyRepresentative": "양동기",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 78
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 18:40",
+      "reportedParticipants": 900,
+      "reporterName": "",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150935_268.jpg",
+          "sha256": "4aa75edd1f25066188e18f68b0be479c75721d641dccde6aca436337dda9eb39"
+        }
+      ]
     },
     {
       "no": 64,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-000706",
       "company": "극동건설(주)",
-      "location": "서울특별시 마포구 마포대로 163, 서울신용보증재단 9층",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "마포경찰서",
-      "reportedAt": "",
-      "reporter": "홍정호 (엑셀 접수자)",
+      "location": "마포대로 163 서울신용보증재단 앞 인도 및 하위 1개 차로 (지도 참조, 출입·통행로 확보 및 사유지 제외)",
+      "period": "2026-11-20 12:00 ~ 2026-12-16 23:59 / 매일 00:00 ~ 23:59 (첫날·마지막날 시간 제한)",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울마포경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "",
       "officerContact": "강봉조 / 010-4038-0335",
-      "filedBy": "홍정호",
+      "filedBy": "",
       "companyRepresentative": "문정동",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 79
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 상단 개최일시는 00:00~23:59이나 참고사항에 집회 시작일 12:00, 종료일 23:59로 기재되어 첫날·마지막날 제한을 반영. 새 접수자 성명은 김승희/김승회 중 확인 필요. 기존 접수자 성명은 이전 신고 이력에 보존하고 이번 신고의 접수자 성명은 미입력. ",
+      "startDate": "2026-11-20",
+      "previousReports": [
+        {
+          "no": 64,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "극동건설(주)",
+          "location": "서울특별시 마포구 마포대로 163, 서울신용보증재단 9층",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "마포경찰서",
+          "reportedAt": "",
+          "reporter": "홍정호 (엑셀 접수자)",
+          "officerContact": "강봉조 / 010-4038-0335",
+          "filedBy": "홍정호",
+          "companyRepresentative": "문정동",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 79
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 18:35",
+      "reportedParticipants": 900,
+      "reporterName": "",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150934_838.jpg",
+          "sha256": "d279173e694cc9fea57bcc74087b6a10b0de8afc4961e12fc7ab301bd4607aab"
+        }
+      ]
     },
     {
       "no": 65,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-000610",
       "company": "(주)대우건설",
-      "location": "서울특별시 중구 을지로 170 (을지로4가)",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "중부경찰서",
-      "reportedAt": "",
-      "reporter": "홍정호 (엑셀 접수자)",
+      "location": "서울시 중구 을지로 170 대우건설 앞 인도 및 1개 차로 (출입구 제외, 통행로 확보)",
+      "period": "시작일 확인 필요 (접수증 사본별 2026-11-18 / 2026-11-20) ~ 2026-12-16 / 매일 00:00 ~ 23:59",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울중부경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "",
       "officerContact": "유영범 / 010-4435-5346",
-      "filedBy": "홍정호",
+      "filedBy": "",
       "companyRepresentative": "백정완",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 81
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 새 접수자 성명은 김승희/김승회 중 확인 필요. 기존 접수자 성명은 이전 신고 이력에 보존하고 이번 신고의 접수자 성명은 미입력. 동일 접수번호의 두 사본에서 개최 시작일과 집회일 목록이 각각 11월 18일·11월 20일로 다름. ",
+      "startDate": "",
+      "previousReports": [
+        {
+          "no": 65,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "(주)대우건설",
+          "location": "서울특별시 중구 을지로 170 (을지로4가)",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "중부경찰서",
+          "reportedAt": "",
+          "reporter": "홍정호 (엑셀 접수자)",
+          "officerContact": "유영범 / 010-4435-5346",
+          "filedBy": "홍정호",
+          "companyRepresentative": "백정완",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 81
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 17:08",
+      "reportedParticipants": 900,
+      "reporterName": "",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150949_629.jpg",
+          "sha256": "9be05a7199aafb6d9a6d417b96aacfc7fd114ac7ed6669e7806059e9145d6607"
+        },
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150929_920.jpg",
+          "sha256": "4c791522f12ac43cbbb12c1c30d641a774c15725523fc104e319b00a4cc9c412"
+        }
+      ],
+      "sourcePeriodVariants": [
+        {
+          "fileName": "IMG_20261117_150949_629.jpg",
+          "startDate": "2026-11-20",
+          "endDate": "2026-12-16"
+        },
+        {
+          "fileName": "IMG_20261117_150929_920.jpg",
+          "startDate": "2026-11-18",
+          "endDate": "2026-12-16"
+        }
+      ]
     },
     {
       "no": 66,
       "headquarters": "서울본부",
-      "receiptNumber": "",
+      "receiptNumber": "26-1810001-000609",
       "company": "자이에스앤디(주)",
-      "location": "서울특별시 중구 마른내로 27 TOWER",
-      "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
-      "endDate": "2026-11-19",
-      "receivingAgency": "중부경찰서",
-      "reportedAt": "",
-      "reporter": "홍정호 (엑셀 접수자)",
-      "officerContact": "윤성현 / 010-4574-4772",
-      "filedBy": "홍정호",
+      "location": "서울시 중구 마른내로 27 타워 자이에스앤디 앞 인도 및 1개 차로 (출입구 제외, 통행로 확보)",
+      "period": "시작일 확인 필요 (접수증 사본별 2026-11-18 / 2026-11-20) ~ 2026-12-16 / 매일 00:00 ~ 23:59",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울중부경찰서",
+      "reportedAt": "2026-11-16",
+      "reporter": "",
+      "officerContact": "유영범 / 010-4435-5346",
+      "filedBy": "",
       "companyRepresentative": "엄관석",
       "sourceSpreadsheet": {
         "fileName": "5_6249233031211525079_80563690783119.xlsx",
         "sheet": "도급순위100(26.10.20)",
         "row": 82
       },
-      "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
-      "startDate": "2026-10-23"
+      "notes": "2026-11-16 접수증 원본 및 접수자·담당정보관 표기 확인. 이전 신고는 previousReports에 보관. 새 접수자 성명은 김승희/김승회 중 확인 필요. 기존 접수자 성명은 이전 신고 이력에 보존하고 이번 신고의 접수자 성명은 미입력. 동일 접수번호의 두 사본에서 개최 시작일과 집회일 목록이 각각 11월 18일·11월 20일로 다름. 11월 18일 사본의 자이에스앤디 접수증 상단에 직접 기재된 유영범 정보관 연락처로 갱신. 기존 윤성현 연락처는 이전 신고 이력에 보관. ",
+      "startDate": "",
+      "previousReports": [
+        {
+          "no": 66,
+          "headquarters": "서울본부",
+          "receiptNumber": "",
+          "company": "자이에스앤디(주)",
+          "location": "서울특별시 중구 마른내로 27 TOWER",
+          "period": "2026-10-23 ~ 2026-11-19 / 시간 미입력",
+          "endDate": "2026-11-19",
+          "receivingAgency": "중부경찰서",
+          "reportedAt": "",
+          "reporter": "홍정호 (엑셀 접수자)",
+          "officerContact": "윤성현 / 010-4574-4772",
+          "filedBy": "홍정호",
+          "companyRepresentative": "엄관석",
+          "sourceSpreadsheet": {
+            "fileName": "5_6249233031211525079_80563690783119.xlsx",
+            "sheet": "도급순위100(26.10.20)",
+            "row": 82
+          },
+          "notes": "서울본부 제공 엑셀 최신 시트 기준. 주소를 장소로 표시했으며 정확한 집회 구역·시간·접수번호·신고일은 원본에 미기재. 시작일 2026-10-23은 사용자 확인 내용 반영. 접수자는 엑셀 표기이며 접수증 신고인 여부는 미확인.",
+          "startDate": "2026-10-23"
+        }
+      ],
+      "receivedAt": "2026-11-16 17:01",
+      "reportedParticipants": 300,
+      "reporterName": "",
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150949_991.jpg",
+          "sha256": "a6d3f40e39c1a708a207de5424fa3cb5b6c2badbd358925281acbdf560c54d79"
+        },
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150930_174.jpg",
+          "sha256": "c967912c3c0889c25f4a88b521b418754913d57faa03e2747c3cbefefbbdbac4"
+        }
+      ],
+      "sourcePeriodVariants": [
+        {
+          "fileName": "IMG_20261117_150949_991.jpg",
+          "startDate": "2026-11-20",
+          "endDate": "2026-12-16"
+        },
+        {
+          "fileName": "IMG_20261117_150930_174.jpg",
+          "startDate": "2026-11-18",
+          "endDate": "2026-12-16"
+        }
+      ]
     },
     {
       "headquarters": "인천본부",
@@ -1671,6 +3786,32 @@
       "eventName": "건설재해 예방 및 건설현장 환경 개선",
       "notes": "2026-11-17 접수증 원본 확인. 상단 개최일시와 참고사항의 시작일 00:00·종료일 23:59가 일치하며 2026-11-20 00:00부터 개최 가능. 천막 등 점용 미허가 물품은 부분 집회신고로 허가할 수 없고 해당 도로 등 관내 부처의 허가 및 협조를 사전에 구해야 한다는 참고사항 기재. 신고인 이름과 담당정보관 이름·전화번호는 사용자 확인 내용 반영. 신고인 전화번호는 미제공으로 미입력.",
       "reporterName": "성경민"
+    },
+    {
+      "headquarters": "서울본부",
+      "receiptNumber": "26-1810001-000485",
+      "location": "강동구 상일로6길 26 삼성E&A 앞 좌우측 인도 및 하위 1개 차로 (출입구 제외, 출입구로부터 3m 이상 띄우고 선순위 집회 개최 시 정보관과 협의)",
+      "period": "2026-11-20 10:07 ~ 2026-12-16 23:59 / 매일 00:00 ~ 23:59 (첫날·마지막날 시간 제한)",
+      "endDate": "2026-12-16",
+      "receivingAgency": "서울강동경찰서",
+      "reportedAt": "2026-11-16",
+      "startDate": "2026-11-20",
+      "receivedAt": "2026-11-16 12:34",
+      "reportedParticipants": 900,
+      "sourceReceipts": [
+        {
+          "archive": "11월18일 집회신고.zip",
+          "fileName": "IMG_20261117_150809_599.jpg",
+          "sha256": "b4aa9d32ec6093eac8f8b891d50f9786925bcf3d464b3ffda9d281bc84b26d89"
+        }
+      ],
+      "no": 73,
+      "company": "아이에스동서(주)",
+      "reporter": "임광호",
+      "reporterName": "임광호",
+      "filedBy": "임광호",
+      "officerContact": "",
+      "notes": "접수증(26-1810001-000485)의 개최장소 옆에 아이에스동서(주)·삼성물산·삼성이앤에이가 함께 필기되어 회사·장소를 구분해 신규 등록. 기존 강남구 학동로 231 아이에스동서 항목은 별도로 유지. 상단은 00:00~23:59, 참고사항은 첫날 10:07·마지막날 23:59로 기재되어 제한을 반영. 접수자 임광호는 해당 접수증 표기 기준. 아이에스동서의 해당 장소 담당정보관은 별도 확인되지 않아 타 업체 연락처를 복사하지 않음."
     }
   ],
   "uploadUrl": "https://script.google.com/macros/s/AKfycby0jWj9GCor4EUQaxKBa8LobgNMwb62M6gib51M5eTuyjYkIFbWx_ZqRd7fIbw40VcD/exec"
