@@ -3830,6 +3830,27 @@
         "url": "https://github.com/hktower226-lang/rally-report-dashboard/blob/main/assemblyData.json",
         "receiptFileName": "2026-11-19_수도권통합본부_한림제약본사_000431_접수증.jpg"
       }
+    },
+    {
+      "no": 78,
+      "headquarters": "대세충본부",
+      "company": "계룡본사",
+      "receiptNumber": "26-1811833-000401",
+      "location": "탄방동 소재 계룡건설 앞 인도 40m",
+      "startDate": "2026-11-20",
+      "endDate": "2026-12-17",
+      "period": "2026-11-20 10:00 ~ 2026-12-17 23:59 (첫날 10:00 시작, 참고사항 집회일 목록은 11월 23일부터 기재)",
+      "receivingAgency": "대전둔산경찰서",
+      "reportedAt": "2026-11-18",
+      "receivedAt": "2026-11-18 10:00",
+      "reporter": "",
+      "reporterName": "",
+      "reporterPhone": "",
+      "officerContact": "",
+      "organizer": "박문철 (한국노총 건설노조연맹 한국타워크레인조종사노조 통합 수도권본부)",
+      "eventName": "근로조건 개선 및 최저입찰제 폐지 결의대회",
+      "reportedParticipants": 200,
+      "notes": "사용자 첨부 접수증 기준으로 계룡본사를 대세충본부에 등록. 상단 개최일시는 2026-11-20~2026-12-17, 00:00~23:59이나 참고사항에는 집회 시작일 시작시간 10:00, 종료일 종료시간 23:59로 기재되어 첫날·마지막날 제한을 반영. 참고사항의 집회일 목록은 2026-11-23~2026-12-17로 기재되어 상단 시작일과 차이가 있음. 11월 20~22일은 목록에 없으나 미개최로 명시된 것은 아니므로 제외일로 단정하거나 시작일을 임의로 변경하지 않음. 신고인·담당정보관 이름과 전화번호는 확인되지 않아 비워두었으며, 주최자 박문철을 신고인으로 입력하지 않음. 기존 계룡대표·계룡회장과 다른 장소로 구분하고 연락처를 복사하지 않음."
     }
   ],
   "uploadUrl": "https://script.google.com/macros/s/AKfycby0jWj9GCor4EUQaxKBa8LobgNMwb62M6gib51M5eTuyjYkIFbWx_ZqRd7fIbw40VcD/exec"
